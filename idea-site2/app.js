@@ -56,11 +56,12 @@ function deleteIdea(category, id) {
 function renderIdeas(category, ideas) {
   const list = document.querySelector(`.idea-list[data-category="${category}"]`);
   const items = ideas[category];
+  const sorted = [...items].sort((a, b) => (a.status === 'done') - (b.status === 'done'));
 
-  if (items.length === 0) {
+  if (sorted.length === 0) {
     list.innerHTML = '<li class="idea-empty">まだアイデアがありません。最初の一歩を踏み出しましょう。</li>';
   } else {
-    list.innerHTML = items.map(item => `
+    list.innerHTML = sorted.map(item => `
       <li class="idea-item ${item.status === 'done' ? 'done' : ''}" data-id="${item.id}">
         <span class="idea-text">${linkify(item.text, item.linkTitles)}</span>
         <button class="idea-status ${item.status}" data-category="${category}" data-id="${item.id}">
