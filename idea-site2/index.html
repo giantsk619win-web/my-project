@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idea Forest - あなたの夢を咲かせる場所</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ヒーローセクション -->
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Idea Forest</h1>
+      <p class="hero-subtitle">あなたの夢を咲かせる場所</p>
+      <p class="hero-description">やりたいこと、行きたい場所、体験したいこと。<br>すべての想いをここに。</p>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </header>
+
+  <!-- カテゴリカードセクション -->
+  <section class="categories-section">
+    <h2 class="section-heading">カテゴリ</h2>
+    <p class="section-subheading">あなたの想いを、4つのカテゴリで整理しましょう</p>
+    <div class="category-cards">
+      <a href="#category-experience" class="category-card card-experience">
+        <div class="card-icon">✦</div>
+        <h3>体験</h3>
+        <p>やってみたいこと、挑戦したいこと</p>
+        <span class="card-count" data-category="experience">0 ideas</span>
+      </a>
+      <a href="#category-place" class="category-card card-place">
+        <div class="card-icon">✦</div>
+        <h3>場所</h3>
+        <p>行きたい場所、訪れたい空間</p>
+        <span class="card-count" data-category="place">0 ideas</span>
+      </a>
+      <a href="#category-action" class="category-card card-action">
+        <div class="card-icon">✦</div>
+        <h3>行動</h3>
+        <p>日々の中で始めたいこと</p>
+        <span class="card-count" data-category="action">0 ideas</span>
+      </a>
+      <a href="#category-content" class="category-card card-content">
+        <div class="card-icon">✦</div>
+        <h3>コンテンツ</h3>
+        <p>観たい・読みたい・聴きたいもの</p>
+        <span class="card-count" data-category="content">0 ideas</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- アイデアセクション -->
+  <section class="ideas-section">
+
+    <!-- 体験 -->
+    <div id="category-experience" class="idea-category">
+      <div class="category-header" data-toggle="experience">
+        <div class="category-title-group">
+          <span class="category-label">Experience</span>
+          <h2>体験</h2>
+        </div>
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="category-body" data-category="experience">
+        <div class="idea-input-group">
+          <input type="text" class="idea-input" data-category="experience" placeholder="やってみたいことを入力...">
+          <button class="idea-add-btn" data-category="experience">追加</button>
+        </div>
+        <ul class="idea-list" data-category="experience"></ul>
+      </div>
+    </div>
+
+    <!-- 場所 -->
+    <div id="category-place" class="idea-category">
+      <div class="category-header" data-toggle="place">
+        <div class="category-title-group">
+          <span class="category-label">Place</span>
+          <h2>場所</h2>
+        </div>
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="category-body" data-category="place">
+        <div class="idea-input-group">
+          <input type="text" class="idea-input" data-category="place" placeholder="行きたい場所を入力...">
+          <button class="idea-add-btn" data-category="place">追加</button>
+        </div>
+        <ul class="idea-list" data-category="place"></ul>
+      </div>
+    </div>
+
+    <!-- 行動 -->
+    <div id="category-action" class="idea-category">
+      <div class="category-header" data-toggle="action">
+        <div class="category-title-group">
+          <span class="category-label">Action</span>
+          <h2>行動</h2>
+        </div>
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="category-body" data-category="action">
+        <div class="idea-input-group">
+          <input type="text" class="idea-input" data-category="action" placeholder="始めたいことを入力...">
+          <button class="idea-add-btn" data-category="action">追加</button>
+        </div>
+        <ul class="idea-list" data-category="action"></ul>
+      </div>
+    </div>
+
+    <!-- コンテンツ -->
+    <div id="category-content" class="idea-category">
+      <div class="category-header" data-toggle="content">
+        <div class="category-title-group">
+          <span class="category-label">Content</span>
+          <h2>コンテンツ</h2>
+        </div>
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="category-body" data-category="content">
+        <div class="idea-input-group">
+          <input type="text" class="idea-input" data-category="content" placeholder="観たい・読みたい・聴きたいものを入力...">
+          <button class="idea-add-btn" data-category="content">追加</button>
+        </div>
+        <ul class="idea-list" data-category="content"></ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- 叶えたアイデアカウンター -->
+  <div class="achievement-counter" id="achievement-counter"></div>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <p>Idea Forest &mdash; あなたの夢を咲かせる場所</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
