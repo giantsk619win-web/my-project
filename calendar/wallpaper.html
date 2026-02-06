@@ -130,87 +130,13 @@
       opacity: 0;
       cursor: pointer;
     }
-    .upload-zone .icon {
-      font-size: 2rem;
-      margin-bottom: 6px;
-    }
-    .upload-zone .label {
-      font-size: 0.85rem;
-      color: #888;
-      line-height: 1.5;
-    }
-    .upload-zone .label strong {
-      color: #5a4a42;
-    }
-    .upload-zone .current-file {
-      font-size: 0.75rem;
-      color: #bbb;
-      margin-top: 6px;
-    }
+    .upload-zone .icon { font-size: 2rem; margin-bottom: 6px; }
+    .upload-zone .label { font-size: 0.85rem; color: #888; line-height: 1.5; }
+    .upload-zone .label strong { color: #5a4a42; }
+    .upload-zone .current-file { font-size: 0.75rem; color: #bbb; margin-top: 6px; }
 
-    /* ── ボタン ── */
-    .btn-row {
-      display: flex;
-      gap: 8px;
-    }
-    .btn {
-      flex: 1;
-      padding: 14px 12px;
-      border: none;
-      border-radius: 12px;
-      font-family: inherit;
-      font-size: 0.85rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn:active { transform: scale(0.97); }
-    .btn-primary {
-      background: linear-gradient(135deg, #d4728c, #b8a9c9);
-      color: #fff;
-    }
-    .btn-primary:hover { opacity: 0.9; }
-    .btn-primary:disabled {
-      opacity: 0.35;
-      cursor: not-allowed;
-      transform: none;
-    }
-    .btn-secondary {
-      background: #f0ebe6;
-      color: #5a4a42;
-    }
-    .btn-secondary:hover { background: #e6dfd8; }
-
-    /* ── 一括ダウンロード ── */
-    .batch-section {
-      text-align: center;
-      padding: 16px;
-      border-top: 1px solid #eee;
-      margin-top: 8px;
-    }
-    .btn-batch {
-      display: inline-block;
-      padding: 12px 32px;
-      border: none;
-      border-radius: 10px;
-      background: #5a4a42;
-      color: #fff;
-      font-family: inherit;
-      font-size: 0.85rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-batch:hover { opacity: 0.85; }
-    .btn-batch:disabled { opacity: 0.35; cursor: not-allowed; }
-    .batch-note {
-      font-size: 0.75rem;
-      color: #bbb;
-      margin-top: 8px;
-    }
-
-    /* ── ぼかし調整パネル ── */
-    .blur-panel {
+    /* ── エフェクトパネル ── */
+    .effect-panel {
       background: #fdfbf9;
       border: 1px solid #eee;
       border-radius: 14px;
@@ -218,25 +144,65 @@
       margin-bottom: 12px;
       display: none;
     }
-    .blur-panel.visible { display: block; }
-    .blur-panel h4 {
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: #aaa;
-      margin-bottom: 12px;
-      letter-spacing: 0.05em;
+    .effect-panel.visible { display: block; }
+    .effect-section {
+      margin-bottom: 14px;
     }
+    .effect-section:last-child { margin-bottom: 0; }
+    .effect-section h4 {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #bbb;
+      margin-bottom: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── カラーパレット ── */
+    .color-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .color-row-label {
+      font-size: 0.72rem;
+      color: #999;
+      width: 68px;
+      flex-shrink: 0;
+    }
+    .palette {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s;
+      position: relative;
+    }
+    .swatch:hover { transform: scale(1.15); }
+    .swatch.active {
+      border-color: #5a4a42;
+      box-shadow: 0 0 0 2px #fff, 0 0 0 4px #5a4a42;
+    }
+
+    /* ── スライダー ── */
     .slider-row {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .slider-row:last-child { margin-bottom: 0; }
     .slider-label {
-      font-size: 0.75rem;
-      color: #888;
-      width: 56px;
+      font-size: 0.72rem;
+      color: #999;
+      width: 68px;
       flex-shrink: 0;
     }
     .slider-row input[type="range"] {
@@ -269,20 +235,62 @@
       box-shadow: 0 1px 4px rgba(0,0,0,0.15);
     }
     .slider-value {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       color: #bbb;
-      width: 36px;
+      width: 34px;
       text-align: right;
       flex-shrink: 0;
     }
 
-    /* ── プログレス ── */
-    .progress {
-      text-align: center;
-      padding: 12px;
-      color: #999;
-      font-size: 0.8rem;
+    /* ── ボタン ── */
+    .btn-row { display: flex; gap: 8px; }
+    .btn {
+      flex: 1;
+      padding: 14px 12px;
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
     }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+      background: linear-gradient(135deg, #d4728c, #b8a9c9);
+      color: #fff;
+    }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+    .btn-secondary { background: #f0ebe6; color: #5a4a42; }
+    .btn-secondary:hover { background: #e6dfd8; }
+
+    /* ── 一括ダウンロード ── */
+    .batch-section {
+      text-align: center;
+      padding: 16px;
+      border-top: 1px solid #eee;
+      margin-top: 8px;
+    }
+    .btn-batch {
+      display: inline-block;
+      padding: 12px 32px;
+      border: none;
+      border-radius: 10px;
+      background: #5a4a42;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-batch:hover { opacity: 0.85; }
+    .btn-batch:disabled { opacity: 0.35; cursor: not-allowed; }
+    .batch-note { font-size: 0.75rem; color: #bbb; margin-top: 8px; }
+
+    /* ── プログレス ── */
+    .progress { text-align: center; padding: 12px; color: #999; font-size: 0.8rem; }
     .progress:empty { display: none; }
   </style>
 </head>
@@ -312,17 +320,33 @@
       <input type="file" id="fileInput" accept="image/*">
     </div>
 
-    <div class="blur-panel" id="blurPanel">
-      <h4>写真エフェクト</h4>
-      <div class="slider-row">
-        <span class="slider-label">ぼかし</span>
-        <input type="range" id="blurSlider" min="0" max="10" step="0.5" value="3">
-        <span class="slider-value" id="blurValue">3px</span>
+    <div class="effect-panel" id="effectPanel">
+      <!-- カラーパレット -->
+      <div class="effect-section">
+        <h4>カラー設定</h4>
+        <div class="color-row">
+          <span class="color-row-label">背景色</span>
+          <div class="palette" id="bgPalette"></div>
+        </div>
+        <div class="color-row">
+          <span class="color-row-label">オーバーレイ</span>
+          <div class="palette" id="overlayPalette"></div>
+        </div>
       </div>
-      <div class="slider-row">
-        <span class="slider-label">透明度</span>
-        <input type="range" id="overlaySlider" min="0" max="70" step="1" value="30">
-        <span class="slider-value" id="overlayValue">30%</span>
+
+      <!-- ぼかし・透明度スライダー -->
+      <div class="effect-section">
+        <h4>エフェクト</h4>
+        <div class="slider-row">
+          <span class="slider-label">ぼかし</span>
+          <input type="range" id="blurSlider" min="0" max="10" step="0.5" value="3">
+          <span class="slider-value" id="blurValue">3px</span>
+        </div>
+        <div class="slider-row">
+          <span class="slider-label">透明度</span>
+          <input type="range" id="overlaySlider" min="0" max="70" step="1" value="30">
+          <span class="slider-value" id="overlayValue">30%</span>
+        </div>
       </div>
     </div>
 
@@ -349,9 +373,20 @@
     'JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'
   ];
   const MONTH_JP = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
-
   const DAY_LABELS = ['MON','TUE','WED','THU','FRI','SAT','SUN'];
 
+  // プリセットカラー
+  const PRESET_COLORS = [
+    { name: 'ピンク',       hex: '#FFF5F5' },
+    { name: 'ベージュ',     hex: '#F5F5DC' },
+    { name: 'ラベンダー',   hex: '#E6E6FA' },
+    { name: 'ミント',       hex: '#F0FFF0' },
+    { name: 'ピーチ',       hex: '#FFDAB9' },
+    { name: 'スカイブルー', hex: '#F0F8FF' },
+    { name: 'アイボリー',   hex: '#FFFFF0' },
+  ];
+
+  // 月テーマ（デフォルト背景グラデーション用）
   const THEMES = [
     { top: '#FFF5F5', bottom: '#FFE4E1', accent: '#E8A0BF', badge: '#D4728C' },
     { top: '#F5F0FF', bottom: '#E8E0F0', accent: '#B8A9C9', badge: '#9B8BB4' },
@@ -367,49 +402,53 @@
     { top: '#F0F8FA', bottom: '#E0EEF2', accent: '#A0C4D0', badge: '#7AA0B4' },
   ];
 
-  // 2026年 日本の祝日
   const HOLIDAYS = new Set([
     '1-1','1-12','2-11','2-23','3-20','4-29',
     '5-3','5-4','5-5','5-6','7-20','8-11',
     '9-21','9-23','10-12','11-3','11-23'
   ]);
   function isHoliday(m, d) { return HOLIDAYS.has(`${m+1}-${d}`); }
-
   function getDowMon(month, day) {
     const d = new Date(2026, month, day).getDay();
     return d === 0 ? 6 : d - 1;
   }
   function getDaysInMonth(m) { return new Date(2026, m + 1, 0).getDate(); }
 
-  // 各月の写真（Image オブジェクト）を保持
-  const photos = new Array(12).fill(null);
-
-  // 各月のぼかし設定
-  const DEFAULT_BLUR = 3;
-  const DEFAULT_OVERLAY = 30;
-  const blurSettings = Array.from({ length: 12 }, () => ({ blur: DEFAULT_BLUR, overlay: DEFAULT_OVERLAY }));
-
-  // localStorage から復元
-  try {
-    const saved = JSON.parse(localStorage.getItem('calendarBlurSettings'));
-    if (saved) saved.forEach((s, i) => { if (s) Object.assign(blurSettings[i], s); });
-  } catch (_) {}
-
-  function saveBlurSettings() {
-    localStorage.setItem('calendarBlurSettings', JSON.stringify(blurSettings));
+  // hex を {r,g,b} に変換
+  function hexToRgb(hex) {
+    const n = parseInt(hex.replace('#', ''), 16);
+    return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+  }
+  // hex を少し暗くして accent / badge 生成
+  function darken(hex, amount) {
+    const { r, g, b } = hexToRgb(hex);
+    const f = 1 - amount;
+    const to2 = (v) => Math.round(v * f).toString(16).padStart(2, '0');
+    return '#' + to2(r) + to2(g) + to2(b);
   }
 
+  // ── 月別設定 ──
+  const DEFAULTS = { blur: 3, overlay: 30, bgColor: null, overlayColor: '#FFF5F5' };
+  const photos = new Array(12).fill(null);
+  const settings = Array.from({ length: 12 }, () => ({ ...DEFAULTS }));
+
+  // localStorage 復元
+  const LS_KEY = 'calendarSettings2026';
+  try {
+    const saved = JSON.parse(localStorage.getItem(LS_KEY));
+    if (saved) saved.forEach((s, i) => { if (s) Object.assign(settings[i], s); });
+  } catch (_) {}
+  function saveSettings() { localStorage.setItem(LS_KEY, JSON.stringify(settings)); }
+
+  // ── Canvas ──
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
-  canvas.width = W;
-  canvas.height = H;
-
-  // ぼかし用オフスクリーンCanvas
+  canvas.width = W; canvas.height = H;
   const offCanvas = document.createElement('canvas');
-  offCanvas.width = W;
-  offCanvas.height = H;
+  offCanvas.width = W; offCanvas.height = H;
   const offCtx = offCanvas.getContext('2d');
 
+  // ── DOM ──
   const monthNav = document.getElementById('monthNav');
   const monthTitle = document.getElementById('monthTitle');
   const uploadZone = document.getElementById('uploadZone');
@@ -420,29 +459,79 @@
   const downloadAllBtn = document.getElementById('downloadAllBtn');
   const batchNote = document.getElementById('batchNote');
   const progress = document.getElementById('progress');
-  const blurPanel = document.getElementById('blurPanel');
+  const effectPanel = document.getElementById('effectPanel');
   const blurSlider = document.getElementById('blurSlider');
   const blurValue = document.getElementById('blurValue');
   const overlaySlider = document.getElementById('overlaySlider');
   const overlayValue = document.getElementById('overlayValue');
+  const bgPalette = document.getElementById('bgPalette');
+  const overlayPalette = document.getElementById('overlayPalette');
 
   let currentMonth = 0;
 
-  // ── ぼかしスライダー ──
-  blurSlider.addEventListener('input', () => {
-    blurSettings[currentMonth].blur = parseFloat(blurSlider.value);
-    blurValue.textContent = blurSlider.value + 'px';
-    saveBlurSettings();
+  // ── カラーパレット生成 ──
+  function buildPalette(container, type) {
+    // 「自動」スウォッチ
+    const autoSw = document.createElement('div');
+    autoSw.className = 'swatch';
+    autoSw.dataset.color = '';
+    autoSw.dataset.type = type;
+    autoSw.title = '自動（月テーマ）';
+    autoSw.style.background = 'conic-gradient(#FFF5F5, #E6E6FA, #F0FFF0, #FFDAB9, #F0F8FF, #FFF5F5)';
+    autoSw.addEventListener('click', () => pickColor(type, null));
+    container.appendChild(autoSw);
+
+    PRESET_COLORS.forEach(pc => {
+      const sw = document.createElement('div');
+      sw.className = 'swatch';
+      sw.dataset.color = pc.hex;
+      sw.dataset.type = type;
+      sw.title = pc.name;
+      sw.style.background = pc.hex;
+      sw.style.boxShadow = `inset 0 0 0 1px rgba(0,0,0,0.08)`;
+      sw.addEventListener('click', () => pickColor(type, pc.hex));
+      container.appendChild(sw);
+    });
+  }
+  buildPalette(bgPalette, 'bg');
+  buildPalette(overlayPalette, 'overlay');
+
+  function pickColor(type, hex) {
+    if (type === 'bg') settings[currentMonth].bgColor = hex;
+    else settings[currentMonth].overlayColor = hex || '#FFF5F5';
+    saveSettings();
+    updateSwatches();
     render();
+  }
+
+  function updateSwatches() {
+    const s = settings[currentMonth];
+    bgPalette.querySelectorAll('.swatch').forEach(sw => {
+      const c = sw.dataset.color || null;
+      sw.classList.toggle('active', c === s.bgColor);
+    });
+    overlayPalette.querySelectorAll('.swatch').forEach(sw => {
+      const c = sw.dataset.color || null;
+      const current = s.overlayColor || null;
+      // auto = null matches first swatch (empty string)
+      if (!c && !current) sw.classList.add('active');
+      else sw.classList.toggle('active', c === current);
+    });
+  }
+
+  // ── スライダー ──
+  blurSlider.addEventListener('input', () => {
+    settings[currentMonth].blur = parseFloat(blurSlider.value);
+    blurValue.textContent = blurSlider.value + 'px';
+    saveSettings(); render();
   });
   overlaySlider.addEventListener('input', () => {
-    blurSettings[currentMonth].overlay = parseInt(overlaySlider.value);
+    settings[currentMonth].overlay = parseInt(overlaySlider.value);
     overlayValue.textContent = overlaySlider.value + '%';
-    saveBlurSettings();
-    render();
+    saveSettings(); render();
   });
 
-  // ── 月ナビ生成 ──
+  // ── 月ナビ ──
   for (let i = 0; i < 12; i++) {
     const btn = document.createElement('button');
     btn.innerHTML = `${i+1}月<span class="dot" data-dot="${i}"></span>`;
@@ -456,22 +545,15 @@
     currentMonth = i;
     monthNav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
     monthNav.children[i].classList.add('active');
-    updateUI();
-    render();
+    updateUI(); render();
   }
 
   // ── 写真アップロード ──
-  fileInput.addEventListener('change', (e) => {
-    if (e.target.files[0]) loadPhoto(e.target.files[0]);
-  });
-  uploadZone.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    uploadZone.classList.add('dragover');
-  });
+  fileInput.addEventListener('change', (e) => { if (e.target.files[0]) loadPhoto(e.target.files[0]); });
+  uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('dragover'); });
   uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
   uploadZone.addEventListener('drop', (e) => {
-    e.preventDefault();
-    uploadZone.classList.remove('dragover');
+    e.preventDefault(); uploadZone.classList.remove('dragover');
     if (e.dataTransfer.files[0]) loadPhoto(e.dataTransfer.files[0]);
   });
 
@@ -482,49 +564,43 @@
       img.onload = () => {
         photos[currentMonth] = img;
         currentFile.textContent = file.name;
-        updateUI();
-        render();
+        updateUI(); render();
       };
       img.src = e.target.result;
     };
     reader.readAsDataURL(file);
   }
 
-  // 写真を外す
   removeBtn.addEventListener('click', () => {
     photos[currentMonth] = null;
-    blurSettings[currentMonth] = { blur: DEFAULT_BLUR, overlay: DEFAULT_OVERLAY };
-    saveBlurSettings();
+    settings[currentMonth] = { ...DEFAULTS };
+    saveSettings();
     fileInput.value = '';
     currentFile.textContent = '';
-    updateUI();
-    render();
+    updateUI(); render();
   });
 
+  // ── UI更新 ──
   function updateUI() {
     const hasPhoto = !!photos[currentMonth];
+    const s = settings[currentMonth];
     monthTitle.textContent = `${MONTH_JP[currentMonth]} / ${MONTH_EN[currentMonth]} 2026`;
     downloadBtn.disabled = !hasPhoto;
     removeBtn.style.display = hasPhoto ? '' : 'none';
     currentFile.textContent = hasPhoto ? (currentFile.textContent || '写真設定済み') : '';
 
-    // ぼかしパネル表示/非表示
-    blurPanel.classList.toggle('visible', hasPhoto);
+    effectPanel.classList.toggle('visible', hasPhoto);
     if (hasPhoto) {
-      const s = blurSettings[currentMonth];
       blurSlider.value = s.blur;
       blurValue.textContent = s.blur + 'px';
       overlaySlider.value = s.overlay;
       overlayValue.textContent = s.overlay + '%';
+      updateSwatches();
     }
 
-    // ドットインジケーター更新
     for (let i = 0; i < 12; i++) {
-      const dot = document.querySelector(`[data-dot="${i}"]`);
-      dot.classList.toggle('visible', !!photos[i]);
+      document.querySelector(`[data-dot="${i}"]`).classList.toggle('visible', !!photos[i]);
     }
-
-    // 一括ダウンロード
     const count = photos.filter(Boolean).length;
     downloadAllBtn.disabled = count === 0;
     batchNote.textContent = count > 0
@@ -537,14 +613,10 @@
     if (!photos[currentMonth]) return;
     downloadCanvas(canvas, currentMonth);
   });
-
   downloadAllBtn.addEventListener('click', async () => {
-    const cvs = document.createElement('canvas');
-    cvs.width = W;
-    cvs.height = H;
+    const cvs = document.createElement('canvas'); cvs.width = W; cvs.height = H;
     const tmpCtx = cvs.getContext('2d');
     let downloaded = 0;
-
     for (let i = 0; i < 12; i++) {
       if (!photos[i]) continue;
       downloaded++;
@@ -556,10 +628,9 @@
     progress.textContent = `${downloaded}ヶ月分のダウンロード完了！`;
     setTimeout(() => { progress.textContent = ''; }, 3000);
   });
-
-  function downloadCanvas(cvs, monthIndex) {
+  function downloadCanvas(cvs, mi) {
     const link = document.createElement('a');
-    link.download = `calendar_2026_${String(monthIndex+1).padStart(2,'0')}.png`;
+    link.download = `calendar_2026_${String(mi+1).padStart(2,'0')}.png`;
     link.href = cvs.toDataURL('image/png');
     link.click();
   }
@@ -567,12 +638,26 @@
   // ── 描画 ──
   function render() { renderToContext(ctx, currentMonth); }
 
+  function getThemeForMonth(mi) {
+    const s = settings[mi];
+    const base = THEMES[mi];
+    if (!s.bgColor) return base;
+    // カスタム背景色からテーマ生成
+    return {
+      top: s.bgColor,
+      bottom: darken(s.bgColor, 0.06),
+      accent: darken(s.bgColor, 0.25),
+      badge: darken(s.bgColor, 0.4),
+    };
+  }
+
   function renderToContext(c, mi) {
-    const theme = THEMES[mi];
+    const theme = getThemeForMonth(mi);
     const days = getDaysInMonth(mi);
     const photo = photos[mi];
+    const s = settings[mi];
 
-    // 背景グラデーション（全面）
+    // 背景グラデーション
     const bgGrad = c.createLinearGradient(0, 0, 0, H);
     bgGrad.addColorStop(0, theme.top);
     bgGrad.addColorStop(1, theme.bottom);
@@ -585,10 +670,8 @@
     c.fillStyle = theme.accent + '12';
     c.beginPath(); c.arc(100, H - 200, 180, 0, Math.PI * 2); c.fill();
 
-    // ── カレンダーエリア（上部 ~20%）──
+    // ── カレンダーエリア ──
     const calTop = 60;
-
-    // 月バッジ
     const badgeR = 52;
     const badgeX = 80 + badgeR;
     const badgeY = calTop + 50;
@@ -601,7 +684,6 @@
     c.font = '400 16px "Noto Sans JP", sans-serif';
     c.fillText('月', badgeX, badgeY + 22);
 
-    // 英語月名 + 年
     c.fillStyle = '#4a4a4a';
     c.font = '700 28px "Noto Sans JP", sans-serif';
     c.textAlign = 'left';
@@ -618,7 +700,6 @@
     const colW = halfW / 7;
     const rowH = 38;
     const headerH = 28;
-
     const colorWeekday = '#333333';
     const colorSat = '#4A90E2';
     const colorSun = '#E94B3C';
@@ -631,15 +712,11 @@
 
       if (half === 1) {
         c.strokeStyle = theme.accent + '40';
-        c.lineWidth = 1;
-        c.beginPath();
+        c.lineWidth = 1; c.beginPath();
         const lineEnd = gridTop + headerH + Math.ceil((endDay - startDay + 1 + getDowMon(mi, startDay)) / 7) * rowH + 4;
         c.moveTo(offsetX - 12, gridTop - 4);
-        c.lineTo(offsetX - 12, lineEnd);
-        c.stroke();
+        c.lineTo(offsetX - 12, lineEnd); c.stroke();
       }
-
-      // 曜日ヘッダー
       c.font = '500 16px "Noto Sans JP", sans-serif';
       c.textAlign = 'center'; c.textBaseline = 'middle';
       for (let i = 0; i < 7; i++) {
@@ -647,8 +724,6 @@
         c.fillStyle = i === 5 ? colorSat : i === 6 ? colorSun : colorHeader;
         c.fillText(DAY_LABELS[i], x, gridTop + headerH / 2);
       }
-
-      // 日付
       c.font = '400 20px "Noto Sans JP", sans-serif';
       let col = getDowMon(mi, startDay);
       let row = 0;
@@ -663,7 +738,7 @@
       }
     }
 
-    // ── 写真エリア（下部 ~75%）──
+    // ── 写真エリア ──
     const photoTop = H * 0.24;
     const photoMargin = 48;
     const photoW = W - photoMargin * 2;
@@ -671,52 +746,43 @@
     const photoR = 24;
 
     if (photo) {
-      const settings = blurSettings[mi];
-      const blurPx = settings.blur;
-      const overlayAlpha = settings.overlay / 100;
+      const blurPx = s.blur;
+      const overlayAlpha = s.overlay / 100;
+      const olColor = hexToRgb(s.overlayColor || '#FFF5F5');
 
-      // Cover fit 計算
+      // Cover fit
       const imgRatio = photo.width / photo.height;
       const areaRatio = photoW / photoH;
       let sx, sy, sw, sh;
       if (imgRatio > areaRatio) {
-        sh = photo.height;
-        sw = sh * areaRatio;
-        sx = (photo.width - sw) / 2;
-        sy = 0;
+        sh = photo.height; sw = sh * areaRatio;
+        sx = (photo.width - sw) / 2; sy = 0;
       } else {
-        sw = photo.width;
-        sh = sw / areaRatio;
-        sx = 0;
-        sy = (photo.height - sh) / 2;
+        sw = photo.width; sh = sw / areaRatio;
+        sx = 0; sy = (photo.height - sh) / 2;
       }
 
-      // ぼかしがある場合はオフスクリーンで描画してからコピー
       if (blurPx > 0) {
         offCtx.clearRect(0, 0, W, H);
         offCtx.filter = `blur(${blurPx}px)`;
         offCtx.drawImage(photo, sx, sy, sw, sh, photoMargin, photoTop, photoW, photoH);
         offCtx.filter = 'none';
-
         c.save();
-        roundRect(c, photoMargin, photoTop, photoW, photoH, photoR);
-        c.clip();
+        roundRect(c, photoMargin, photoTop, photoW, photoH, photoR); c.clip();
         c.drawImage(offCanvas, 0, 0);
         c.restore();
       } else {
         c.save();
-        roundRect(c, photoMargin, photoTop, photoW, photoH, photoR);
-        c.clip();
+        roundRect(c, photoMargin, photoTop, photoW, photoH, photoR); c.clip();
         c.drawImage(photo, sx, sy, sw, sh, photoMargin, photoTop, photoW, photoH);
         c.restore();
       }
 
-      // 白オーバーレイ
+      // カラーオーバーレイ
       if (overlayAlpha > 0) {
         c.save();
-        roundRect(c, photoMargin, photoTop, photoW, photoH, photoR);
-        c.clip();
-        c.fillStyle = `rgba(255, 255, 255, ${overlayAlpha})`;
+        roundRect(c, photoMargin, photoTop, photoW, photoH, photoR); c.clip();
+        c.fillStyle = `rgba(${olColor.r}, ${olColor.g}, ${olColor.b}, ${overlayAlpha})`;
         c.fillRect(photoMargin, photoTop, photoW, photoH);
         c.restore();
       }
@@ -724,31 +790,21 @@
       // 角丸ボーダー
       c.strokeStyle = 'rgba(255,255,255,0.5)';
       c.lineWidth = 3;
-      roundRect(c, photoMargin, photoTop, photoW, photoH, photoR);
-      c.stroke();
+      roundRect(c, photoMargin, photoTop, photoW, photoH, photoR); c.stroke();
     } else {
-      // プレースホルダー
       c.fillStyle = theme.accent + '12';
-      roundRect(c, photoMargin, photoTop, photoW, photoH, photoR);
-      c.fill();
-
+      roundRect(c, photoMargin, photoTop, photoW, photoH, photoR); c.fill();
       c.strokeStyle = theme.accent + '40';
-      c.lineWidth = 2;
-      c.setLineDash([10, 8]);
-      roundRect(c, photoMargin + 10, photoTop + 10, photoW - 20, photoH - 20, photoR - 4);
-      c.stroke();
+      c.lineWidth = 2; c.setLineDash([10, 8]);
+      roundRect(c, photoMargin + 10, photoTop + 10, photoW - 20, photoH - 20, photoR - 4); c.stroke();
       c.setLineDash([]);
-
       const cx = W / 2;
       const cy = photoTop + photoH / 2;
-
-      // カメラアイコン
       c.fillStyle = theme.accent + '20';
       c.beginPath(); c.arc(cx, cy - 30, 48, 0, Math.PI * 2); c.fill();
       c.strokeStyle = theme.accent + '50';
       c.lineWidth = 2.5;
       c.beginPath(); c.arc(cx, cy - 30, 24, 0, Math.PI * 2); c.stroke();
-
       c.fillStyle = theme.accent + '70';
       c.font = '500 26px "Noto Sans JP", sans-serif';
       c.textAlign = 'center'; c.textBaseline = 'middle';
@@ -773,7 +829,6 @@
     c.closePath();
   }
 
-  // 初期表示
   updateUI();
   render();
 })();
