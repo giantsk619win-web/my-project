@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 Calendar Wallpaper Maker</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>2026 Calendar Wallpaper</h1>
+      <p class="subtitle">写真をアップロードして、オリジナルカレンダー壁紙を作ろう</p>
+    </header>
+
+    <div class="controls">
+      <div class="month-selector">
+        <button class="month-btn selected" data-month="0">1月</button>
+        <button class="month-btn" data-month="1">2月</button>
+        <button class="month-btn" data-month="2">3月</button>
+        <button class="month-btn" data-month="3">4月</button>
+        <button class="month-btn" data-month="4">5月</button>
+        <button class="month-btn" data-month="5">6月</button>
+        <button class="month-btn" data-month="6">7月</button>
+        <button class="month-btn" data-month="7">8月</button>
+        <button class="month-btn" data-month="8">9月</button>
+        <button class="month-btn" data-month="9">10月</button>
+        <button class="month-btn" data-month="10">11月</button>
+        <button class="month-btn" data-month="11">12月</button>
+      </div>
+
+      <div class="options-row">
+        <label class="option">
+          <span>カレンダー位置</span>
+          <select id="calendarPosition">
+            <option value="bottom">下部</option>
+            <option value="top">上部</option>
+          </select>
+        </label>
+        <label class="option">
+          <span>テーマ</span>
+          <select id="calendarTheme">
+            <option value="dark">ダーク（白文字）</option>
+            <option value="light">ライト（黒文字）</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="preview-area">
+      <div class="canvas-wrapper">
+        <canvas id="canvas"></canvas>
+        <div class="upload-overlay" id="uploadOverlay">
+          <div class="upload-icon">📷</div>
+          <p>写真をドラッグ&ドロップ<br>またはタップして選択</p>
+          <input type="file" id="fileInput" accept="image/*">
+        </div>
+      </div>
+    </div>
+
+    <button class="download-btn" id="downloadBtn" disabled>ダウンロード</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

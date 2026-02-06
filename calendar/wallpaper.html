@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 Calendar Wallpaper Maker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #f5f0eb;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    /* ── ヘッダー ── */
+    .header {
+      text-align: center;
+      padding: 32px 16px 0;
+    }
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #5a4a42;
+      letter-spacing: 0.06em;
+    }
+    .header p {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 4px;
+    }
+
+    /* ── 月ナビ ── */
+    .month-nav {
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 20px 12px 0;
+    }
+    .month-nav button {
+      width: 52px;
+      padding: 8px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+      color: #888;
+      font-family: inherit;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .month-nav button:hover { border-color: #bbb; }
+    .month-nav button.active {
+      background: #5a4a42;
+      color: #fff;
+      border-color: #5a4a42;
+      font-weight: 700;
+    }
+    .month-nav button .dot {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #e8a0bf;
+      display: none;
+    }
+    .month-nav button .dot.visible { display: block; }
+
+    /* ── メインエリア ── */
+    .main {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    /* ── プレビューカード ── */
+    .preview-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      margin-bottom: 16px;
+    }
+    .preview-card h3 {
+      font-size: 0.8rem;
+      color: #aaa;
+      text-align: center;
+      margin-bottom: 12px;
+      font-weight: 400;
+    }
+    .canvas-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #faf5f2;
+    }
+    .canvas-wrap canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* ── 写真アップロードゾーン ── */
+    .upload-zone {
+      position: relative;
+      border: 2px dashed #ddd;
+      border-radius: 14px;
+      padding: 28px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #fdfbf9;
+      margin-bottom: 12px;
+    }
+    .upload-zone:hover, .upload-zone.dragover {
+      border-color: #c8a090;
+      background: #fdf5f0;
+    }
+    .upload-zone input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .upload-zone .icon {
+      font-size: 2rem;
+      margin-bottom: 6px;
+    }
+    .upload-zone .label {
+      font-size: 0.85rem;
+      color: #888;
+      line-height: 1.5;
+    }
+    .upload-zone .label strong {
+      color: #5a4a42;
+    }
+    .upload-zone .current-file {
+      font-size: 0.75rem;
+      color: #bbb;
+      margin-top: 6px;
+    }
+
+    /* ── ボタン ── */
+    .btn-row {
+      display: flex;
+      gap: 8px;
+    }
+    .btn {
+      flex: 1;
+      padding: 14px 12px;
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+      background: linear-gradient(135deg, #d4728c, #b8a9c9);
+      color: #fff;
+    }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-primary:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-secondary {
+      background: #f0ebe6;
+      color: #5a4a42;
+    }
+    .btn-secondary:hover { background: #e6dfd8; }
+
+    /* ── 一括ダウンロード ── */
+    .batch-section {
+      text-align: center;
+      padding: 16px;
+      border-top: 1px solid #eee;
+      margin-top: 8px;
+    }
+    .btn-batch {
+      display: inline-block;
+      padding: 12px 32px;
+      border: none;
+      border-radius: 10px;
+      background: #5a4a42;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-batch:hover { opacity: 0.85; }
+    .btn-batch:disabled { opacity: 0.35; cursor: not-allowed; }
+    .batch-note {
+      font-size: 0.75rem;
+      color: #bbb;
+      margin-top: 8px;
+    }
+
+    /* ── プログレス ── */
+    .progress {
+      text-align: center;
+      padding: 12px;
+      color: #999;
+      font-size: 0.8rem;
+    }
+    .progress:empty { display: none; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>2026 Calendar Wallpaper</h1>
+    <p>写真を選んでオリジナル壁紙を作ろう - 1080 x 1920px</p>
+  </div>
+
+  <div class="month-nav" id="monthNav"></div>
+
+  <div class="main">
+    <div class="preview-card">
+      <h3 id="monthTitle"></h3>
+      <div class="canvas-wrap">
+        <canvas id="canvas"></canvas>
+      </div>
+    </div>
+
+    <div class="upload-zone" id="uploadZone">
+      <div class="icon">📷</div>
+      <div class="label">
+        <strong>写真を選択</strong>またはドラッグ&ドロップ<br>
+        この月の壁紙に使う写真を選んでください
+      </div>
+      <div class="current-file" id="currentFile"></div>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" id="downloadBtn" disabled>この月をダウンロード</button>
+      <button class="btn btn-secondary" id="removeBtn" style="flex:0.5; display:none;">写真を外す</button>
+    </div>
+
+    <div class="batch-section">
+      <button class="btn-batch" id="downloadAllBtn" disabled>写真を設定した月を一括ダウンロード</button>
+      <div class="batch-note" id="batchNote">写真をアップロードすると有効になります</div>
+    </div>
+
+    <div class="progress" id="progress"></div>
+  </div>
+
+  <script>
+(() => {
+  const W = 1080;
+  const H = 1920;
+
+  const MONTH_EN = [
+    'JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE',
+    'JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'
+  ];
+  const MONTH_JP = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+
+  const DAY_LABELS = ['MON','TUE','WED','THU','FRI','SAT','SUN'];
+
+  const THEMES = [
+    { top: '#FFF5F5', bottom: '#FFE4E1', accent: '#E8A0BF', badge: '#D4728C' },
+    { top: '#F5F0FF', bottom: '#E8E0F0', accent: '#B8A9C9', badge: '#9B8BB4' },
+    { top: '#FFF5F0', bottom: '#FFE8E0', accent: '#F0B8A0', badge: '#D4907A' },
+    { top: '#F0FFF5', bottom: '#E0F5E8', accent: '#A0D4B8', badge: '#7AB89A' },
+    { top: '#F5FFF0', bottom: '#E8F5E0', accent: '#B8D4A0', badge: '#96B87A' },
+    { top: '#F0F5FF', bottom: '#E0E8F5', accent: '#A0B8D4', badge: '#7A96B8' },
+    { top: '#F0FAFF', bottom: '#E0F0F8', accent: '#90C8E0', badge: '#6AAEC8' },
+    { top: '#FFFAF0', bottom: '#F5EDE0', accent: '#D4C0A0', badge: '#B8A080' },
+    { top: '#FFF8F0', bottom: '#F0E4D8', accent: '#D4A878', badge: '#B88A5C' },
+    { top: '#F8F0F5', bottom: '#EAE0E8', accent: '#C4A0B8', badge: '#A87A96' },
+    { top: '#FAF5F0', bottom: '#EDE8E0', accent: '#C8B8A0', badge: '#A89878' },
+    { top: '#F0F8FA', bottom: '#E0EEF2', accent: '#A0C4D0', badge: '#7AA0B4' },
+  ];
+
+  // 2026年 日本の祝日
+  const HOLIDAYS = new Set([
+    '1-1','1-12','2-11','2-23','3-20','4-29',
+    '5-3','5-4','5-5','5-6','7-20','8-11',
+    '9-21','9-23','10-12','11-3','11-23'
+  ]);
+  function isHoliday(m, d) { return HOLIDAYS.has(`${m+1}-${d}`); }
+
+  function getDowMon(month, day) {
+    const d = new Date(2026, month, day).getDay();
+    return d === 0 ? 6 : d - 1;
+  }
+  function getDaysInMonth(m) { return new Date(2026, m + 1, 0).getDate(); }
+
+  // 各月の写真（Image オブジェクト）を保持
+  const photos = new Array(12).fill(null);
+
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = W;
+  canvas.height = H;
+
+  const monthNav = document.getElementById('monthNav');
+  const monthTitle = document.getElementById('monthTitle');
+  const uploadZone = document.getElementById('uploadZone');
+  const fileInput = document.getElementById('fileInput');
+  const currentFile = document.getElementById('currentFile');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const removeBtn = document.getElementById('removeBtn');
+  const downloadAllBtn = document.getElementById('downloadAllBtn');
+  const batchNote = document.getElementById('batchNote');
+  const progress = document.getElementById('progress');
+
+  let currentMonth = 0;
+
+  // ── 月ナビ生成 ──
+  for (let i = 0; i < 12; i++) {
+    const btn = document.createElement('button');
+    btn.innerHTML = `${i+1}月<span class="dot" data-dot="${i}"></span>`;
+    btn.dataset.month = i;
+    if (i === 0) btn.classList.add('active');
+    btn.addEventListener('click', () => selectMonth(i));
+    monthNav.appendChild(btn);
+  }
+
+  function selectMonth(i) {
+    currentMonth = i;
+    monthNav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    monthNav.children[i].classList.add('active');
+    updateUI();
+    render();
+  }
+
+  // ── 写真アップロード ──
+  fileInput.addEventListener('change', (e) => {
+    if (e.target.files[0]) loadPhoto(e.target.files[0]);
+  });
+  uploadZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    uploadZone.classList.add('dragover');
+  });
+  uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
+  uploadZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadZone.classList.remove('dragover');
+    if (e.dataTransfer.files[0]) loadPhoto(e.dataTransfer.files[0]);
+  });
+
+  function loadPhoto(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        photos[currentMonth] = img;
+        currentFile.textContent = file.name;
+        updateUI();
+        render();
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // 写真を外す
+  removeBtn.addEventListener('click', () => {
+    photos[currentMonth] = null;
+    fileInput.value = '';
+    currentFile.textContent = '';
+    updateUI();
+    render();
+  });
+
+  function updateUI() {
+    const hasPhoto = !!photos[currentMonth];
+    monthTitle.textContent = `${MONTH_JP[currentMonth]} / ${MONTH_EN[currentMonth]} 2026`;
+    downloadBtn.disabled = !hasPhoto;
+    removeBtn.style.display = hasPhoto ? '' : 'none';
+    currentFile.textContent = hasPhoto ? (currentFile.textContent || '写真設定済み') : '';
+
+    // ドットインジケーター更新
+    for (let i = 0; i < 12; i++) {
+      const dot = document.querySelector(`[data-dot="${i}"]`);
+      dot.classList.toggle('visible', !!photos[i]);
+    }
+
+    // 一括ダウンロード
+    const count = photos.filter(Boolean).length;
+    downloadAllBtn.disabled = count === 0;
+    batchNote.textContent = count > 0
+      ? `${count}ヶ月分の写真が設定されています`
+      : '写真をアップロードすると有効になります';
+  }
+
+  // ── ダウンロード ──
+  downloadBtn.addEventListener('click', () => {
+    if (!photos[currentMonth]) return;
+    downloadCanvas(canvas, currentMonth);
+  });
+
+  downloadAllBtn.addEventListener('click', async () => {
+    const cvs = document.createElement('canvas');
+    cvs.width = W;
+    cvs.height = H;
+    const tmpCtx = cvs.getContext('2d');
+    let downloaded = 0;
+
+    for (let i = 0; i < 12; i++) {
+      if (!photos[i]) continue;
+      downloaded++;
+      progress.textContent = `ダウンロード中... (${downloaded}/${photos.filter(Boolean).length})`;
+      renderToContext(tmpCtx, i);
+      downloadCanvas(cvs, i);
+      await new Promise(r => setTimeout(r, 500));
+    }
+    progress.textContent = `${downloaded}ヶ月分のダウンロード完了！`;
+    setTimeout(() => { progress.textContent = ''; }, 3000);
+  });
+
+  function downloadCanvas(cvs, monthIndex) {
+    const link = document.createElement('a');
+    link.download = `calendar_2026_${String(monthIndex+1).padStart(2,'0')}.png`;
+    link.href = cvs.toDataURL('image/png');
+    link.click();
+  }
+
+  // ── 描画 ──
+  function render() { renderToContext(ctx, currentMonth); }
+
+  function renderToContext(c, mi) {
+    const theme = THEMES[mi];
+    const days = getDaysInMonth(mi);
+    const photo = photos[mi];
+
+    // 背景グラデーション（全面）
+    const bgGrad = c.createLinearGradient(0, 0, 0, H);
+    bgGrad.addColorStop(0, theme.top);
+    bgGrad.addColorStop(1, theme.bottom);
+    c.fillStyle = bgGrad;
+    c.fillRect(0, 0, W, H);
+
+    // 装飾円
+    c.fillStyle = theme.accent + '18';
+    c.beginPath(); c.arc(W - 80, 120, 260, 0, Math.PI * 2); c.fill();
+    c.fillStyle = theme.accent + '12';
+    c.beginPath(); c.arc(100, H - 200, 180, 0, Math.PI * 2); c.fill();
+
+    // ── カレンダーエリア（上部 ~20%）──
+    const calTop = 60;
+
+    // 月バッジ
+    const badgeR = 52;
+    const badgeX = 80 + badgeR;
+    const badgeY = calTop + 50;
+    c.fillStyle = theme.badge;
+    c.beginPath(); c.arc(badgeX, badgeY, badgeR, 0, Math.PI * 2); c.fill();
+    c.fillStyle = '#fff';
+    c.font = '700 38px "Noto Sans JP", sans-serif';
+    c.textAlign = 'center'; c.textBaseline = 'middle';
+    c.fillText(String(mi + 1), badgeX, badgeY - 6);
+    c.font = '400 16px "Noto Sans JP", sans-serif';
+    c.fillText('月', badgeX, badgeY + 22);
+
+    // 英語月名 + 年
+    c.fillStyle = '#4a4a4a';
+    c.font = '700 28px "Noto Sans JP", sans-serif';
+    c.textAlign = 'left';
+    c.fillText(MONTH_EN[mi], badgeX + badgeR + 20, badgeY - 10);
+    c.fillStyle = '#999';
+    c.font = '300 20px "Noto Sans JP", sans-serif';
+    c.fillText('2026', badgeX + badgeR + 20, badgeY + 18);
+
+    // ── 2段カレンダー ──
+    const gridTop = calTop + 115;
+    const gridPadX = 48;
+    const gridW = W - gridPadX * 2;
+    const halfW = gridW / 2 - 12;
+    const colW = halfW / 7;
+    const rowH = 38;
+    const headerH = 28;
+
+    const colorWeekday = '#333333';
+    const colorSat = '#4A90E2';
+    const colorSun = '#E94B3C';
+    const colorHeader = '#aaaaaa';
+
+    for (let half = 0; half < 2; half++) {
+      const offsetX = gridPadX + half * (halfW + 24);
+      const startDay = half === 0 ? 1 : 16;
+      const endDay = half === 0 ? 15 : days;
+
+      if (half === 1) {
+        c.strokeStyle = theme.accent + '40';
+        c.lineWidth = 1;
+        c.beginPath();
+        const lineEnd = gridTop + headerH + Math.ceil((endDay - startDay + 1 + getDowMon(mi, startDay)) / 7) * rowH + 4;
+        c.moveTo(offsetX - 12, gridTop - 4);
+        c.lineTo(offsetX - 12, lineEnd);
+        c.stroke();
+      }
+
+      // 曜日ヘッダー
+      c.font = '500 16px "Noto Sans JP", sans-serif';
+      c.textAlign = 'center'; c.textBaseline = 'middle';
+      for (let i = 0; i < 7; i++) {
+        const x = offsetX + i * colW + colW / 2;
+        c.fillStyle = i === 5 ? colorSat : i === 6 ? colorSun : colorHeader;
+        c.fillText(DAY_LABELS[i], x, gridTop + headerH / 2);
+      }
+
+      // 日付
+      c.font = '400 20px "Noto Sans JP", sans-serif';
+      let col = getDowMon(mi, startDay);
+      let row = 0;
+      for (let d = startDay; d <= endDay; d++) {
+        const x = offsetX + col * colW + colW / 2;
+        const y = gridTop + headerH + row * rowH + rowH / 2;
+        const dow = getDowMon(mi, d);
+        c.fillStyle = (dow === 6 || isHoliday(mi, d)) ? colorSun : dow === 5 ? colorSat : colorWeekday;
+        c.fillText(String(d), x, y);
+        col++;
+        if (col >= 7) { col = 0; row++; }
+      }
+    }
+
+    // ── 写真エリア（下部 ~75%）──
+    const photoTop = H * 0.24;
+    const photoMargin = 48;
+    const photoW = W - photoMargin * 2;
+    const photoH = H - photoTop - photoMargin;
+    const photoR = 24;
+
+    if (photo) {
+      // 写真を角丸クリップで描画
+      c.save();
+      roundRect(c, photoMargin, photoTop, photoW, photoH, photoR);
+      c.clip();
+
+      // Cover fit
+      const imgRatio = photo.width / photo.height;
+      const areaRatio = photoW / photoH;
+      let sx, sy, sw, sh;
+      if (imgRatio > areaRatio) {
+        sh = photo.height;
+        sw = sh * areaRatio;
+        sx = (photo.width - sw) / 2;
+        sy = 0;
+      } else {
+        sw = photo.width;
+        sh = sw / areaRatio;
+        sx = 0;
+        sy = (photo.height - sh) / 2;
+      }
+      c.drawImage(photo, sx, sy, sw, sh, photoMargin, photoTop, photoW, photoH);
+      c.restore();
+
+      // 角丸ボーダー
+      c.strokeStyle = 'rgba(255,255,255,0.5)';
+      c.lineWidth = 3;
+      roundRect(c, photoMargin, photoTop, photoW, photoH, photoR);
+      c.stroke();
+    } else {
+      // プレースホルダー
+      c.fillStyle = theme.accent + '12';
+      roundRect(c, photoMargin, photoTop, photoW, photoH, photoR);
+      c.fill();
+
+      c.strokeStyle = theme.accent + '40';
+      c.lineWidth = 2;
+      c.setLineDash([10, 8]);
+      roundRect(c, photoMargin + 10, photoTop + 10, photoW - 20, photoH - 20, photoR - 4);
+      c.stroke();
+      c.setLineDash([]);
+
+      const cx = W / 2;
+      const cy = photoTop + photoH / 2;
+
+      // カメラアイコン
+      c.fillStyle = theme.accent + '20';
+      c.beginPath(); c.arc(cx, cy - 30, 48, 0, Math.PI * 2); c.fill();
+      c.strokeStyle = theme.accent + '50';
+      c.lineWidth = 2.5;
+      c.beginPath(); c.arc(cx, cy - 30, 24, 0, Math.PI * 2); c.stroke();
+
+      c.fillStyle = theme.accent + '70';
+      c.font = '500 26px "Noto Sans JP", sans-serif';
+      c.textAlign = 'center'; c.textBaseline = 'middle';
+      c.fillText('YOUR PHOTO HERE', cx, cy + 40);
+      c.fillStyle = theme.accent + '45';
+      c.font = '300 18px "Noto Sans JP", sans-serif';
+      c.fillText('写真をアップロードしてください', cx, cy + 72);
+    }
+  }
+
+  function roundRect(c, x, y, w, h, r) {
+    c.beginPath();
+    c.moveTo(x + r, y);
+    c.lineTo(x + w - r, y);
+    c.quadraticCurveTo(x + w, y, x + w, y + r);
+    c.lineTo(x + w, y + h - r);
+    c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    c.lineTo(x + r, y + h);
+    c.quadraticCurveTo(x, y + h, x, y + h - r);
+    c.lineTo(x, y + r);
+    c.quadraticCurveTo(x, y, x + r, y);
+    c.closePath();
+  }
+
+  // 初期表示
+  updateUI();
+  render();
+})();
+  </script>
+</body>
+</html>
