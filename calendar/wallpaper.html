@@ -209,6 +209,73 @@
       margin-top: 8px;
     }
 
+    /* ── ぼかし調整パネル ── */
+    .blur-panel {
+      background: #fdfbf9;
+      border: 1px solid #eee;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      display: none;
+    }
+    .blur-panel.visible { display: block; }
+    .blur-panel h4 {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #aaa;
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+    }
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .slider-row:last-child { margin-bottom: 0; }
+    .slider-label {
+      font-size: 0.75rem;
+      color: #888;
+      width: 56px;
+      flex-shrink: 0;
+    }
+    .slider-row input[type="range"] {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      border-radius: 2px;
+      background: #e6dfd8;
+      outline: none;
+    }
+    .slider-row input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #5a4a42;
+      cursor: pointer;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+    .slider-row input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #5a4a42;
+      cursor: pointer;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+    .slider-value {
+      font-size: 0.7rem;
+      color: #bbb;
+      width: 36px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
     /* ── プログレス ── */
     .progress {
       text-align: center;
@@ -243,6 +310,20 @@
       </div>
       <div class="current-file" id="currentFile"></div>
       <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div class="blur-panel" id="blurPanel">
+      <h4>写真エフェクト</h4>
+      <div class="slider-row">
+        <span class="slider-label">ぼかし</span>
+        <input type="range" id="blurSlider" min="0" max="10" step="0.5" value="3">
+        <span class="slider-value" id="blurValue">3px</span>
+      </div>
+      <div class="slider-row">
+        <span class="slider-label">透明度</span>
+        <input type="range" id="overlaySlider" min="0" max="70" step="1" value="30">
+        <span class="slider-value" id="overlayValue">30%</span>
+      </div>
     </div>
 
     <div class="btn-row">
@@ -303,10 +384,31 @@
   // 各月の写真（Image オブジェクト）を保持
   const photos = new Array(12).fill(null);
 
+  // 各月のぼかし設定
+  const DEFAULT_BLUR = 3;
+  const DEFAULT_OVERLAY = 30;
+  const blurSettings = Array.from({ length: 12 }, () => ({ blur: DEFAULT_BLUR, overlay: DEFAULT_OVERLAY }));
+
+  // localStorage から復元
+  try {
+    const saved = JSON.parse(localStorage.getItem('calendarBlurSettings'));
+    if (saved) saved.forEach((s, i) => { if (s) Object.assign(blurSettings[i], s); });
+  } catch (_) {}
+
+  function saveBlurSettings() {
+    localStorage.setItem('calendarBlurSettings', JSON.stringify(blurSettings));
+  }
+
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
   canvas.width = W;
   canvas.height = H;
+
+  // ぼかし用オフスクリーンCanvas
+  const offCanvas = document.createElement('canvas');
+  offCanvas.width = W;
+  offCanvas.height = H;
+  const offCtx = offCanvas.getContext('2d');
 
   const monthNav = document.getElementById('monthNav');
   const monthTitle = document.getElementById('monthTitle');
@@ -318,8 +420,27 @@
   const downloadAllBtn = document.getElementById('downloadAllBtn');
   const batchNote = document.getElementById('batchNote');
   const progress = document.getElementById('progress');
+  const blurPanel = document.getElementById('blurPanel');
+  const blurSlider = document.getElementById('blurSlider');
+  const blurValue = document.getElementById('blurValue');
+  const overlaySlider = document.getElementById('overlaySlider');
+  const overlayValue = document.getElementById('overlayValue');
 
   let currentMonth = 0;
+
+  // ── ぼかしスライダー ──
+  blurSlider.addEventListener('input', () => {
+    blurSettings[currentMonth].blur = parseFloat(blurSlider.value);
+    blurValue.textContent = blurSlider.value + 'px';
+    saveBlurSettings();
+    render();
+  });
+  overlaySlider.addEventListener('input', () => {
+    blurSettings[currentMonth].overlay = parseInt(overlaySlider.value);
+    overlayValue.textContent = overlaySlider.value + '%';
+    saveBlurSettings();
+    render();
+  });
 
   // ── 月ナビ生成 ──
   for (let i = 0; i < 12; i++) {
@@ -372,6 +493,8 @@
   // 写真を外す
   removeBtn.addEventListener('click', () => {
     photos[currentMonth] = null;
+    blurSettings[currentMonth] = { blur: DEFAULT_BLUR, overlay: DEFAULT_OVERLAY };
+    saveBlurSettings();
     fileInput.value = '';
     currentFile.textContent = '';
     updateUI();
@@ -384,6 +507,16 @@
     downloadBtn.disabled = !hasPhoto;
     removeBtn.style.display = hasPhoto ? '' : 'none';
     currentFile.textContent = hasPhoto ? (currentFile.textContent || '写真設定済み') : '';
+
+    // ぼかしパネル表示/非表示
+    blurPanel.classList.toggle('visible', hasPhoto);
+    if (hasPhoto) {
+      const s = blurSettings[currentMonth];
+      blurSlider.value = s.blur;
+      blurValue.textContent = s.blur + 'px';
+      overlaySlider.value = s.overlay;
+      overlayValue.textContent = s.overlay + '%';
+    }
 
     // ドットインジケーター更新
     for (let i = 0; i < 12; i++) {
@@ -538,12 +671,11 @@
     const photoR = 24;
 
     if (photo) {
-      // 写真を角丸クリップで描画
-      c.save();
-      roundRect(c, photoMargin, photoTop, photoW, photoH, photoR);
-      c.clip();
+      const settings = blurSettings[mi];
+      const blurPx = settings.blur;
+      const overlayAlpha = settings.overlay / 100;
 
-      // Cover fit
+      // Cover fit 計算
       const imgRatio = photo.width / photo.height;
       const areaRatio = photoW / photoH;
       let sx, sy, sw, sh;
@@ -558,8 +690,36 @@
         sx = 0;
         sy = (photo.height - sh) / 2;
       }
-      c.drawImage(photo, sx, sy, sw, sh, photoMargin, photoTop, photoW, photoH);
-      c.restore();
+
+      // ぼかしがある場合はオフスクリーンで描画してからコピー
+      if (blurPx > 0) {
+        offCtx.clearRect(0, 0, W, H);
+        offCtx.filter = `blur(${blurPx}px)`;
+        offCtx.drawImage(photo, sx, sy, sw, sh, photoMargin, photoTop, photoW, photoH);
+        offCtx.filter = 'none';
+
+        c.save();
+        roundRect(c, photoMargin, photoTop, photoW, photoH, photoR);
+        c.clip();
+        c.drawImage(offCanvas, 0, 0);
+        c.restore();
+      } else {
+        c.save();
+        roundRect(c, photoMargin, photoTop, photoW, photoH, photoR);
+        c.clip();
+        c.drawImage(photo, sx, sy, sw, sh, photoMargin, photoTop, photoW, photoH);
+        c.restore();
+      }
+
+      // 白オーバーレイ
+      if (overlayAlpha > 0) {
+        c.save();
+        roundRect(c, photoMargin, photoTop, photoW, photoH, photoR);
+        c.clip();
+        c.fillStyle = `rgba(255, 255, 255, ${overlayAlpha})`;
+        c.fillRect(photoMargin, photoTop, photoW, photoH);
+        c.restore();
+      }
 
       // 角丸ボーダー
       c.strokeStyle = 'rgba(255,255,255,0.5)';
