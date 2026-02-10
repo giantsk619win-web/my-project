@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4-3. 技術用語ブリッジ辞典 | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .dict-controls {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      position: sticky;
+      top: 60px;
+      background: var(--bg-light);
+      padding: 1rem;
+      border-radius: 12px;
+      z-index: 10;
+      border: 1px solid #e0d8cf;
+    }
+    .dict-search {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.6rem 1rem;
+      border: 2px solid #e0d8cf;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .dict-search:focus {
+      outline: none;
+      border-color: var(--phase4-color);
+    }
+    .dict-filters {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .dict-filter-btn {
+      padding: 0.4rem 0.8rem;
+      border: 2px solid #e0d8cf;
+      border-radius: 20px;
+      background: #fff;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .dict-filter-btn:hover { border-color: var(--phase4-color); }
+    .dict-filter-btn.active {
+      background: var(--phase4-color);
+      color: #fff;
+      border-color: var(--phase4-color);
+    }
+    .dict-count {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+    .dict-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .dict-card {
+      background: #fff;
+      border: 1px solid #e0d8cf;
+      border-radius: 10px;
+      padding: 1.25rem;
+      transition: border-color 0.2s;
+    }
+    .dict-card:hover { border-color: var(--phase4-color); }
+    .dict-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .dict-term {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .dict-term-en {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+    .dict-category {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.15rem 0.6rem;
+      border-radius: 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .cat-infra { background: #e3f2fd; color: #1565c0; }
+    .cat-devprocess { background: #f3e5f5; color: #6a1b9a; }
+    .cat-security { background: #fce4ec; color: #c62828; }
+    .cat-data { background: #e8f5e9; color: #2e7d32; }
+    .cat-cloud { background: #fff3e0; color: #e65100; }
+
+    .dict-translation {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+    .dict-scene {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      background: var(--bg-light);
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      margin-bottom: 0.4rem;
+      line-height: 1.6;
+    }
+    .dict-scene strong { color: var(--phase4-color); }
+    .dict-phase-link {
+      font-size: 0.8rem;
+      color: var(--phase4-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .dict-phase-link:hover { text-decoration: underline; }
+    .dict-empty {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+    .dict-card.hidden { display: none; }
+  </style>
+</head>
+<body data-phase="4">
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo"><span class="owl-icon">🦉</span><span>アーキテクチャ学習ランド</span></a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav><ul class="nav-links">
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../phase1/index.html">Phase 1</a></li>
+        <li><a href="../phase2/index.html">Phase 2</a></li>
+        <li><a href="../phase3/index.html">Phase 3</a></li>
+        <li><a href="index.html" class="active">Phase 4</a></li>
+        <li><a href="../phase5/index.html">Phase 5</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <main class="topic-page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span class="separator">/</span>
+        <a href="index.html">Phase 4</a>
+        <span class="separator">/</span>
+        <span class="current">4-3. 技術用語ブリッジ辞典</span>
+      </nav>
+
+      <h1>4-3. 技術用語ブリッジ辞典</h1>
+
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生より</p>
+          <p>開発チームとの打ち合わせで「？？？」となったこと、ありませんか？この辞典は<strong>技術用語を営業の言葉に翻訳する橋渡し（ブリッジ）</strong>です。用語の正確な定義ではなく「営業として最低限知っておくべきこと」に絞っています。検索やカテゴリで絞り込んで、必要な用語をサッと確認してください！</p>
+        </div>
+      </div>
+
+      <section class="content-section">
+        <!-- 検索・フィルター -->
+        <div class="dict-controls">
+          <input type="text" class="dict-search" id="dictSearch" placeholder="用語を検索...（例：API、キャッシュ）">
+          <div class="dict-filters" id="dictFilters">
+            <button class="dict-filter-btn active" data-category="all">すべて</button>
+            <button class="dict-filter-btn" data-category="infra">インフラ系</button>
+            <button class="dict-filter-btn" data-category="devprocess">開発プロセス系</button>
+            <button class="dict-filter-btn" data-category="security">セキュリティ系</button>
+            <button class="dict-filter-btn" data-category="data">データ系</button>
+            <button class="dict-filter-btn" data-category="cloud">クラウド系</button>
+          </div>
+        </div>
+
+        <p class="dict-count" id="dictCount"></p>
+
+        <!-- 用語カード -->
+        <div class="dict-grid" id="dictGrid">
+          <!-- インフラ系 -->
+          <div class="dict-card" data-category="infra" data-terms="サーバー Server">
+            <div class="dict-card-header">
+              <div class="dict-term">サーバー <span class="dict-term-en">Server</span></div>
+              <span class="dict-category cat-infra">インフラ</span>
+            </div>
+            <p class="dict-translation">データやサービスを提供する側のコンピューター。レストランでいう「厨房」。お客様（クライアント）からの注文を受けて料理（データ）を返す。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「このサーバーのスペックでは足りない」→ コンピューターの処理能力が不足している</div>
+            <a class="dict-phase-link" href="../phase1/01-what-is-architecture.html">Phase 1-1 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="infra" data-terms="ロードバランサー Load Balancer LB">
+            <div class="dict-card-header">
+              <div class="dict-term">ロードバランサー <span class="dict-term-en">Load Balancer</span></div>
+              <span class="dict-category cat-infra">インフラ</span>
+            </div>
+            <p class="dict-translation">アクセスを複数のサーバーに振り分ける装置。デパートの「案内係」のようなもので、空いている窓口に誘導する。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「LBの後ろにWebサーバーを3台置く」→ 負荷分散してアクセス集中に耐える構成</div>
+            <a class="dict-phase-link" href="../phase2/05-performance.html">Phase 2-5 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="infra" data-terms="CDN Content Delivery Network シーディーエヌ">
+            <div class="dict-card-header">
+              <div class="dict-term">CDN <span class="dict-term-en">Content Delivery Network</span></div>
+              <span class="dict-category cat-infra">インフラ</span>
+            </div>
+            <p class="dict-translation">画像やJSファイルなど、変わらないコンテンツを世界中のサーバーに配置し、ユーザーに近い場所から配信する仕組み。コンビニの配送センターのようなイメージ。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「静的ファイルはCDNに乗せましょう」→ 表示速度が速くなり、サーバーの負荷も下がる</div>
+            <a class="dict-phase-link" href="../phase2/05-performance.html">Phase 2-5 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="infra" data-terms="DNS Domain Name System ディーエヌエス">
+            <div class="dict-card-header">
+              <div class="dict-term">DNS <span class="dict-term-en">Domain Name System</span></div>
+              <span class="dict-category cat-infra">インフラ</span>
+            </div>
+            <p class="dict-translation">ドメイン名（例：example.com）をIPアドレス（サーバーの住所）に変換する仕組み。インターネットの「電話帳」。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「DNSの切り替えに最大72時間かかる」→ ドメインの向き先変更は即座に反映されない</div>
+            <a class="dict-phase-link" href="../phase1/04-cloud-basics.html">Phase 1-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="infra" data-terms="ファイアウォール Firewall FW">
+            <div class="dict-card-header">
+              <div class="dict-term">ファイアウォール <span class="dict-term-en">Firewall</span></div>
+              <span class="dict-category cat-infra">インフラ</span>
+            </div>
+            <p class="dict-translation">不正なアクセスを遮断する「防火壁」。許可された通信だけを通し、それ以外はブロックする。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「FWでポートを開ける必要がある」→ 特定の通信を許可する設定変更が必要</div>
+            <a class="dict-phase-link" href="../phase2/04-security.html">Phase 2-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="infra" data-terms="VPN Virtual Private Network ブイピーエヌ">
+            <div class="dict-card-header">
+              <div class="dict-term">VPN <span class="dict-term-en">Virtual Private Network</span></div>
+              <span class="dict-category cat-infra">インフラ</span>
+            </div>
+            <p class="dict-translation">インターネット上に暗号化された専用トンネルを作る技術。外出先から社内ネットワークに安全にアクセスできる。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「VPN経由でないとアクセスできない」→ セキュリティのため専用接続が必要</div>
+            <a class="dict-phase-link" href="../phase2/04-security.html">Phase 2-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="infra" data-terms="オンプレミス On-Premises オンプレ">
+            <div class="dict-card-header">
+              <div class="dict-term">オンプレミス <span class="dict-term-en">On-Premises</span></div>
+              <span class="dict-category cat-infra">インフラ</span>
+            </div>
+            <p class="dict-translation">自社のサーバールームやデータセンターにサーバーを設置して運用する形態。「自社ビルに自前の厨房を持つ」イメージ。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「現行システムはオンプレです」→ クラウドではなく自社設備で動いている</div>
+            <a class="dict-phase-link" href="../phase1/04-cloud-basics.html">Phase 1-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="infra" data-terms="コンテナ Container Docker ドッカー">
+            <div class="dict-card-header">
+              <div class="dict-term">コンテナ <span class="dict-term-en">Container / Docker</span></div>
+              <span class="dict-category cat-infra">インフラ</span>
+            </div>
+            <p class="dict-translation">アプリケーションと動作に必要なものをひとまとめにした「箱」。どの環境でも同じように動く。引っ越しのダンボール箱のように、中身ごと移動可能。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「コンテナで動かしているので環境差異がない」→ 開発環境と本番環境が同じ構成で動く</div>
+            <a class="dict-phase-link" href="../phase1/04-cloud-basics.html">Phase 1-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="infra" data-terms="Kubernetes K8s クバネティス クバネテス">
+            <div class="dict-card-header">
+              <div class="dict-term">Kubernetes <span class="dict-term-en">K8s</span></div>
+              <span class="dict-category cat-infra">インフラ</span>
+            </div>
+            <p class="dict-translation">大量のコンテナを自動管理するシステム。コンテナの「指揮者」で、どのサーバーでどのコンテナを動かすかを自動制御する。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「K8sクラスタで運用する」→ コンテナを自動管理・スケールできる基盤を使う</div>
+            <a class="dict-phase-link" href="../phase1/03-architecture-patterns.html">Phase 1-3 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="infra" data-terms="冗長化 Redundancy じょうちょうか">
+            <div class="dict-card-header">
+              <div class="dict-term">冗長化 <span class="dict-term-en">Redundancy</span></div>
+              <span class="dict-category cat-infra">インフラ</span>
+            </div>
+            <p class="dict-translation">同じ機能を持つ機器を複数用意し、1台が壊れても別の1台が引き継ぐ構成。「予備の発電機」のようなもの。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「DBは冗長構成にします」→ データベースを2台以上用意して障害に備える</div>
+            <a class="dict-phase-link" href="../phase2/02-availability.html">Phase 2-2 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="infra" data-terms="SPOF Single Point of Failure 単一障害点">
+            <div class="dict-card-header">
+              <div class="dict-term">SPOF <span class="dict-term-en">Single Point of Failure</span></div>
+              <span class="dict-category cat-infra">インフラ</span>
+            </div>
+            <p class="dict-translation">その1箇所が壊れるとシステム全体が止まるポイント。「橋が1本しかない川」のようなもの。構成図で1台しかないコンポーネントを探す。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「ここがSPOFになっている」→ このポイントが止まると全部止まる危険がある</div>
+            <a class="dict-phase-link" href="../phase3/04-reading-diagrams.html">Phase 3-4 参照</a>
+          </div>
+
+          <!-- 開発プロセス系 -->
+          <div class="dict-card" data-category="devprocess" data-terms="API Application Programming Interface エーピーアイ">
+            <div class="dict-card-header">
+              <div class="dict-term">API <span class="dict-term-en">Application Programming Interface</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">ソフトウェア同士が会話するための「窓口」。レストランのメニュー表のように、「何を頼めば何が返ってくるか」が決まっている。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「APIを公開する」→ 他のシステムがデータを取得・送信できる窓口を作る</div>
+            <a class="dict-phase-link" href="../phase1/05-api-integration.html">Phase 1-5 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="REST API レスト RESTful">
+            <div class="dict-card-header">
+              <div class="dict-term">REST API <span class="dict-term-en">RESTful API</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">Web上で最も一般的なAPIの形式。URLにアクセスしてデータをやり取りする。ブラウザでWebサイトを見る仕組みの延長線上にある。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「REST APIで連携する」→ HTTPベースの標準的な方法でシステム間を接続する</div>
+            <a class="dict-phase-link" href="../phase1/05-api-integration.html">Phase 1-5 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="Git ギット バージョン管理">
+            <div class="dict-card-header">
+              <div class="dict-term">Git <span class="dict-term-en">Version Control</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">ソースコードの変更履歴を管理するツール。Wordの「変更履歴」の超高機能版。誰がいつ何を変えたか全て記録される。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「Gitにpushした」→ コードの変更をチーム共有のリポジトリに反映した</div>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="CI/CD Continuous Integration Continuous Delivery シーアイシーディー">
+            <div class="dict-card-header">
+              <div class="dict-term">CI/CD <span class="dict-term-en">Continuous Integration / Delivery</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">コードの変更を自動でテスト・ビルド・デプロイする仕組み。工場の「自動化ライン」。人手を介さず品質チェックからリリースまで行う。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「CI/CDパイプラインを構築する」→ 自動テスト・自動デプロイの仕組みを作る</div>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="デプロイ Deploy リリース">
+            <div class="dict-card-header">
+              <div class="dict-term">デプロイ <span class="dict-term-en">Deploy</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">開発したプログラムを本番環境に配置して使えるようにすること。「新商品を棚に並べる」作業にあたる。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「今夜デプロイします」→ 今夜、本番環境にプログラムを配置する</div>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="マイグレーション Migration 移行">
+            <div class="dict-card-header">
+              <div class="dict-term">マイグレーション <span class="dict-term-en">Migration</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">既存のシステムやデータを新しい環境に移行すること。「引っ越し」と同じで、荷物（データ）を壊さず新居（新システム）に運ぶ必要がある。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「データマイグレーションに2週間必要」→ 既存データの移行作業に2週間かかる</div>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="リファクタリング Refactoring">
+            <div class="dict-card-header">
+              <div class="dict-term">リファクタリング <span class="dict-term-en">Refactoring</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">動作を変えずにコードの内部構造を改善すること。家の「リフォーム」に近い。見た目（機能）は変わらないが、住みやすさ（保守性）が向上する。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「リファクタリングの時間がほしい」→ 今後の開発を楽にするためにコード整理をしたい</div>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="技術的負債 Technical Debt テクニカルデット">
+            <div class="dict-card-header">
+              <div class="dict-term">技術的負債 <span class="dict-term-en">Technical Debt</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">「今は楽だけど後で大変になる」コードの借金。急いで作ったツケが溜まり、将来の機能追加や修正が困難になっていく状態。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「技術的負債が溜まっている」→ 過去の設計判断のツケで、改修に余計な工数がかかる状態</div>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="スプリント Sprint イテレーション">
+            <div class="dict-card-header">
+              <div class="dict-term">スプリント <span class="dict-term-en">Sprint</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">アジャイル開発における、通常2〜4週間の開発サイクル。1スプリントごとに動くソフトウェアを作り、お客様にレビューしてもらう。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「次のスプリントで対応します」→ 次の2〜4週間の開発サイクルで取り組む</div>
+            <a class="dict-phase-link" href="01-dev-process.html">Phase 4-1 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="MVP Minimum Viable Product 最小限の実用製品 エムブイピー">
+            <div class="dict-card-header">
+              <div class="dict-term">MVP <span class="dict-term-en">Minimum Viable Product</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">最小限の機能で動く製品。「全機能を作ってからリリース」ではなく「最低限の機能で早くリリースし、フィードバックを得る」戦略。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「まずMVPで出しましょう」→ 最低限の機能で早くリリースし、反応を見てから拡張する</div>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="PoC Proof of Concept 概念実証 ピーオーシー">
+            <div class="dict-card-header">
+              <div class="dict-term">PoC <span class="dict-term-en">Proof of Concept</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">「本当にできるか」を確認するための小規模な検証。本番開発の前に技術的な実現可能性を確かめる「お試し」。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「まずPoCで検証したい」→ 本格開発の前に、技術的に実現可能か小さく試したい</div>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="コードレビュー Code Review プルリクエスト">
+            <div class="dict-card-header">
+              <div class="dict-term">コードレビュー <span class="dict-term-en">Code Review</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">他の開発者がソースコードをチェックする品質管理プロセス。論文の「査読」にあたる。バグや設計ミスを早期に発見する。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「レビュー待ちです」→ 他のメンバーのコードチェックを待っている状態</div>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="テスト自動化 Test Automation ユニットテスト">
+            <div class="dict-card-header">
+              <div class="dict-term">テスト自動化 <span class="dict-term-en">Test Automation</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">テストをプログラムで自動実行する仕組み。手動テストに比べ、繰り返し実行が容易で品質が安定する。初期コストは高いが長期的にはコスト減。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「テストを自動化したい」→ テストをプログラムで自動実行し、品質を安定させたい</div>
+          </div>
+
+          <!-- セキュリティ系 -->
+          <div class="dict-card" data-category="security" data-terms="認証 Authentication 認可 Authorization">
+            <div class="dict-card-header">
+              <div class="dict-term">認証/認可 <span class="dict-term-en">Authentication / Authorization</span></div>
+              <span class="dict-category cat-security">セキュリティ</span>
+            </div>
+            <p class="dict-translation">認証は「あなたは誰？」を確認すること（ログイン）。認可は「あなたは何ができる？」を決めること（権限管理）。セットで使われることが多い。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「認証はOAuthで認可はRBACで」→ ログインは外部サービス連携、権限は役割ベースで管理</div>
+            <a class="dict-phase-link" href="../phase2/04-security.html">Phase 2-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="security" data-terms="SSO Single Sign-On シングルサインオン">
+            <div class="dict-card-header">
+              <div class="dict-term">SSO <span class="dict-term-en">Single Sign-On</span></div>
+              <span class="dict-category cat-security">セキュリティ</span>
+            </div>
+            <p class="dict-translation">1回のログインで複数のシステムにアクセスできる仕組み。「社員証1枚で全部屋に入れる」ようなもの。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「SSO対応が必要」→ 既存の社内認証基盤と連携したログイン機能を作る</div>
+            <a class="dict-phase-link" href="../phase2/04-security.html">Phase 2-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="security" data-terms="暗号化 Encryption SSL TLS HTTPS">
+            <div class="dict-card-header">
+              <div class="dict-term">暗号化 <span class="dict-term-en">Encryption / SSL/TLS</span></div>
+              <span class="dict-category cat-security">セキュリティ</span>
+            </div>
+            <p class="dict-translation">データを読めない形に変換して保護すること。通信の暗号化（HTTPS）と保存データの暗号化がある。手紙を「暗号文」にして送るイメージ。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「通信はSSL/TLSで暗号化」→ インターネット上のデータを盗み見できないように保護する</div>
+            <a class="dict-phase-link" href="../phase2/04-security.html">Phase 2-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="security" data-terms="脆弱性 Vulnerability ぜいじゃくせい">
+            <div class="dict-card-header">
+              <div class="dict-term">脆弱性 <span class="dict-term-en">Vulnerability</span></div>
+              <span class="dict-category cat-security">セキュリティ</span>
+            </div>
+            <p class="dict-translation">セキュリティ上の弱点・穴のこと。建物でいう「鍵のかかっていない窓」。放置すると不正アクセスの入口になる。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「脆弱性スキャンで問題が見つかった」→ セキュリティチェックで弱点が発見された、対応が必要</div>
+            <a class="dict-phase-link" href="../phase2/04-security.html">Phase 2-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="security" data-terms="ゼロトラスト Zero Trust">
+            <div class="dict-card-header">
+              <div class="dict-term">ゼロトラスト <span class="dict-term-en">Zero Trust</span></div>
+              <span class="dict-category cat-security">セキュリティ</span>
+            </div>
+            <p class="dict-translation">「社内ネットワークだから安全」と信用せず、すべてのアクセスを毎回検証するセキュリティモデル。「社員証を持っていても毎回本人確認する」方針。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「ゼロトラストモデルで設計する」→ 内部/外部に関わらず全てのアクセスを検証する方式にする</div>
+            <a class="dict-phase-link" href="../phase2/04-security.html">Phase 2-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="security" data-terms="WAF Web Application Firewall ワフ">
+            <div class="dict-card-header">
+              <div class="dict-term">WAF <span class="dict-term-en">Web Application Firewall</span></div>
+              <span class="dict-category cat-security">セキュリティ</span>
+            </div>
+            <p class="dict-translation">Webアプリへの攻撃（SQLインジェクション等）を検知・遮断する専門の防御壁。通常のファイアウォールよりWebアプリに特化している。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「WAFを前段に入れましょう」→ Webアプリへの攻撃を自動的にブロックする防御層を追加する</div>
+          </div>
+
+          <div class="dict-card" data-category="security" data-terms="多要素認証 MFA Multi-Factor Authentication 二段階認証">
+            <div class="dict-card-header">
+              <div class="dict-term">多要素認証 <span class="dict-term-en">MFA / Multi-Factor Authentication</span></div>
+              <span class="dict-category cat-security">セキュリティ</span>
+            </div>
+            <p class="dict-translation">パスワードに加えてSMSコードや指紋など複数の方法で本人確認すること。「鍵」と「暗証番号」の両方が必要な金庫のようなもの。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「MFAを必須にしたい」→ パスワードだけでなく追加の認証手段を求める仕様にする</div>
+          </div>
+
+          <!-- データ系 -->
+          <div class="dict-card" data-category="data" data-terms="データベース Database DB RDB リレーショナル">
+            <div class="dict-card-header">
+              <div class="dict-term">データベース <span class="dict-term-en">Database / RDB</span></div>
+              <span class="dict-category cat-data">データ</span>
+            </div>
+            <p class="dict-translation">データを整理して保存・検索するための仕組み。Excelの超大規模版。RDB（リレーショナルDB）は表形式でデータを管理する。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「RDBかNoSQLか検討中」→ データの管理方式を比較検討している</div>
+            <a class="dict-phase-link" href="../phase1/02-data-lifecycle.html">Phase 1-2 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="data" data-terms="NoSQL ノーエスキューエル MongoDB">
+            <div class="dict-card-header">
+              <div class="dict-term">NoSQL <span class="dict-term-en">Not Only SQL</span></div>
+              <span class="dict-category cat-data">データ</span>
+            </div>
+            <p class="dict-translation">表形式（SQL）にこだわらないデータベース。大量データの高速処理や柔軟なデータ構造が得意。SNSの投稿データやIoTセンサーデータなどに適する。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「ログデータはNoSQLに入れる」→ 大量の非構造化データを高速に保存・検索する</div>
+          </div>
+
+          <div class="dict-card" data-category="data" data-terms="キャッシュ Cache Redis メモリキャッシュ">
+            <div class="dict-card-header">
+              <div class="dict-term">キャッシュ <span class="dict-term-en">Cache / Redis</span></div>
+              <span class="dict-category cat-data">データ</span>
+            </div>
+            <p class="dict-translation">よく使うデータを高速な場所に一時保存する仕組み。「よく使う書類をデスクの上に置いておく」ようなもの。DBへのアクセスを減らし高速化する。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「Redisでキャッシュする」→ よく読まれるデータをメモリに置いて表示を高速化する</div>
+            <a class="dict-phase-link" href="../phase2/05-performance.html">Phase 2-5 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="data" data-terms="ETL Extract Transform Load イーティーエル">
+            <div class="dict-card-header">
+              <div class="dict-term">ETL <span class="dict-term-en">Extract, Transform, Load</span></div>
+              <span class="dict-category cat-data">データ</span>
+            </div>
+            <p class="dict-translation">データを「抽出（E）→変換（T）→格納（L）」する処理。様々なシステムからデータを集めて、分析しやすい形に整えて保存する。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「ETLパイプラインを構築する」→ 複数システムのデータを収集・加工・格納する仕組みを作る</div>
+            <a class="dict-phase-link" href="../phase3/04-reading-diagrams.html">Phase 3-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="data" data-terms="データレイク Data Lake">
+            <div class="dict-card-header">
+              <div class="dict-term">データレイク <span class="dict-term-en">Data Lake</span></div>
+              <span class="dict-category cat-data">データ</span>
+            </div>
+            <p class="dict-translation">あらゆる種類のデータを「そのまま」大量に保存する場所。湖（レイク）のように何でも流し込める。後から必要に応じて分析する。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「まずデータレイクに溜めましょう」→ まず全データを一箇所に集め、後で分析方法を決める</div>
+          </div>
+
+          <div class="dict-card" data-category="data" data-terms="DWH データウェアハウス Data Warehouse BigQuery">
+            <div class="dict-card-header">
+              <div class="dict-term">DWH <span class="dict-term-en">Data Warehouse</span></div>
+              <span class="dict-category cat-data">データ</span>
+            </div>
+            <p class="dict-translation">分析用に整理されたデータの倉庫。データレイクの「生データ」に対し、DWHは「分析しやすく整理されたデータ」を保持する。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「BigQueryをDWHに使う」→ Google の分析用データベースで大規模データ分析する</div>
+          </div>
+
+          <div class="dict-card" data-category="data" data-terms="バックアップ Backup リストア Restore">
+            <div class="dict-card-header">
+              <div class="dict-term">バックアップ/リストア <span class="dict-term-en">Backup / Restore</span></div>
+              <span class="dict-category cat-data">データ</span>
+            </div>
+            <p class="dict-translation">データの複製を保存（バックアップ）し、障害時に復元（リストア）すること。「大事な書類のコピーを金庫に保管する」のと同じ。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「日次バックアップでRPO 24時間」→ 毎日データを保存するので、最悪24時間分のデータが失われる可能性</div>
+            <a class="dict-phase-link" href="../phase2/02-availability.html">Phase 2-2 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="data" data-terms="メッセージキュー Message Queue MQ Kafka SQS">
+            <div class="dict-card-header">
+              <div class="dict-term">メッセージキュー <span class="dict-term-en">Message Queue / Kafka</span></div>
+              <span class="dict-category cat-data">データ</span>
+            </div>
+            <p class="dict-translation">システム間でメッセージ（データ）を受け渡すための「郵便受け」。送り側と受け側が同時に動いている必要がなく、非同期で処理できる。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「Kafkaで非同期処理する」→ メッセージキューを使い、重い処理を後から実行する</div>
+            <a class="dict-phase-link" href="../phase1/05-api-integration.html">Phase 1-5 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="data" data-terms="ACID トランザクション Transaction">
+            <div class="dict-card-header">
+              <div class="dict-term">トランザクション <span class="dict-term-en">Transaction / ACID</span></div>
+              <span class="dict-category cat-data">データ</span>
+            </div>
+            <p class="dict-translation">「全部成功するか、全部失敗するか」のどちらかにする処理の単位。銀行送金で「引き落としだけ成功して入金は失敗」を防ぐ仕組み。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「この処理はトランザクションで管理する」→ 途中で失敗しても中途半端な状態にならないようにする</div>
+          </div>
+
+          <!-- クラウド系 -->
+          <div class="dict-card" data-category="cloud" data-terms="AWS Amazon Web Services アマゾン">
+            <div class="dict-card-header">
+              <div class="dict-term">AWS <span class="dict-term-en">Amazon Web Services</span></div>
+              <span class="dict-category cat-cloud">クラウド</span>
+            </div>
+            <p class="dict-translation">Amazonが提供する世界最大のクラウドサービス。サーバー、DB、AI、ストレージなど200以上のサービスがある。シェアNo.1。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「AWSのEC2とRDSを使う」→ Amazonクラウドの仮想サーバーとデータベースサービスを使う</div>
+            <a class="dict-phase-link" href="../phase1/04-cloud-basics.html">Phase 1-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="cloud" data-terms="Azure Microsoft マイクロソフト アジュール">
+            <div class="dict-card-header">
+              <div class="dict-term">Azure <span class="dict-term-en">Microsoft Azure</span></div>
+              <span class="dict-category cat-cloud">クラウド</span>
+            </div>
+            <p class="dict-translation">Microsoftが提供するクラウドサービス。Office 365やActive Directoryとの連携が強み。既にMicrosoft製品を使っている企業に人気。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「Azure ADと連携する」→ MicrosoftのID管理サービスでログイン認証する</div>
+            <a class="dict-phase-link" href="../phase1/04-cloud-basics.html">Phase 1-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="cloud" data-terms="GCP Google Cloud Platform グーグル ジーシーピー">
+            <div class="dict-card-header">
+              <div class="dict-term">GCP <span class="dict-term-en">Google Cloud Platform</span></div>
+              <span class="dict-category cat-cloud">クラウド</span>
+            </div>
+            <p class="dict-translation">Googleが提供するクラウドサービス。データ分析（BigQuery）やAI/機械学習に強み。Googleのインフラ技術が基盤。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「BigQueryでデータ分析する」→ Googleの分析基盤で大規模データを高速処理する</div>
+            <a class="dict-phase-link" href="../phase1/04-cloud-basics.html">Phase 1-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="cloud" data-terms="SaaS Software as a Service サース">
+            <div class="dict-card-header">
+              <div class="dict-term">SaaS <span class="dict-term-en">Software as a Service</span></div>
+              <span class="dict-category cat-cloud">クラウド</span>
+            </div>
+            <p class="dict-translation">ソフトウェアをインターネット経由で利用するサービス。Gmail、Slack、Salesforceなどが該当。インストール不要でブラウザから使える。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「そこはSaaSで済ませましょう」→ 自分で作らず既存のクラウドサービスを利用する</div>
+            <a class="dict-phase-link" href="../phase1/04-cloud-basics.html">Phase 1-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="cloud" data-terms="PaaS Platform as a Service パース">
+            <div class="dict-card-header">
+              <div class="dict-term">PaaS <span class="dict-term-en">Platform as a Service</span></div>
+              <span class="dict-category cat-cloud">クラウド</span>
+            </div>
+            <p class="dict-translation">アプリケーションの実行環境をクラウドで提供するサービス。サーバーの管理はお任せで、開発者はコードを書くことに集中できる。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「PaaS上にデプロイする」→ サーバー管理不要のクラウド環境にアプリを配置する</div>
+            <a class="dict-phase-link" href="../phase1/04-cloud-basics.html">Phase 1-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="cloud" data-terms="IaaS Infrastructure as a Service イアース">
+            <div class="dict-card-header">
+              <div class="dict-term">IaaS <span class="dict-term-en">Infrastructure as a Service</span></div>
+              <span class="dict-category cat-cloud">クラウド</span>
+            </div>
+            <p class="dict-translation">仮想サーバーやネットワークなどのインフラをクラウドで提供。自由度は最大だが運用も自分でやる。「空き地を借りて自分で建てる」イメージ。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「IaaSだとOS管理も自分たちで」→ サーバーの中身まで自分たちで管理する必要がある</div>
+            <a class="dict-phase-link" href="../phase1/04-cloud-basics.html">Phase 1-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="cloud" data-terms="サーバーレス Serverless Lambda ラムダ">
+            <div class="dict-card-header">
+              <div class="dict-term">サーバーレス <span class="dict-term-en">Serverless / Lambda</span></div>
+              <span class="dict-category cat-cloud">クラウド</span>
+            </div>
+            <p class="dict-translation">サーバーの存在を意識せずにプログラムを実行できるサービス。使った分だけ課金。「タクシー」のようにサーバーを必要な時だけ使う。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「Lambda で処理する」→ AWSのサーバーレス環境で、必要な時だけプログラムを実行する</div>
+            <a class="dict-phase-link" href="../phase1/03-architecture-patterns.html">Phase 1-3 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="cloud" data-terms="マルチクラウド Multi-Cloud ハイブリッドクラウド">
+            <div class="dict-card-header">
+              <div class="dict-term">マルチクラウド <span class="dict-term-en">Multi-Cloud</span></div>
+              <span class="dict-category cat-cloud">クラウド</span>
+            </div>
+            <p class="dict-translation">複数のクラウド（AWS + Azure等）を組み合わせて使うこと。ベンダーロックインを避け、各クラウドの得意分野を活かす戦略。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「マルチクラウド構成にする」→ 複数のクラウドを組み合わせて、特定ベンダーへの依存を減らす</div>
+            <a class="dict-phase-link" href="../phase1/04-cloud-basics.html">Phase 1-4 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="cloud" data-terms="オートスケール Auto Scaling スケールアウト">
+            <div class="dict-card-header">
+              <div class="dict-term">オートスケール <span class="dict-term-en">Auto Scaling</span></div>
+              <span class="dict-category cat-cloud">クラウド</span>
+            </div>
+            <p class="dict-translation">アクセスの増減に合わせてサーバー台数を自動的に増減する仕組み。「混雑時にレジを自動で増やし、空いたら減らす」ようなもの。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「オートスケール設定してある」→ アクセス集中時に自動でサーバーが増える</div>
+            <a class="dict-phase-link" href="../phase2/03-scalability.html">Phase 2-3 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="cloud" data-terms="リージョン Region AZ アベイラビリティゾーン">
+            <div class="dict-card-header">
+              <div class="dict-term">リージョン/AZ <span class="dict-term-en">Region / Availability Zone</span></div>
+              <span class="dict-category cat-cloud">クラウド</span>
+            </div>
+            <p class="dict-translation">リージョンはクラウドのデータセンターがある地域（東京、大阪等）。AZはリージョン内の独立したデータセンター群。複数AZで災害対策。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「東京リージョンの2AZ構成」→ 東京の2つの独立データセンターに分散配置して耐障害性を確保</div>
+            <a class="dict-phase-link" href="../phase2/02-availability.html">Phase 2-2 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="cloud" data-terms="IaC Infrastructure as Code インフラのコード化 Terraform">
+            <div class="dict-card-header">
+              <div class="dict-term">IaC <span class="dict-term-en">Infrastructure as Code</span></div>
+              <span class="dict-category cat-cloud">クラウド</span>
+            </div>
+            <p class="dict-translation">サーバーやネットワークの構成をコード（プログラム）で管理する手法。手順書を人が実行する代わりにコードが自動実行する。再現性が高い。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「Terraformで環境を作る」→ コードで自動的にクラウド環境を構築・管理する</div>
+          </div>
+
+          <div class="dict-card" data-category="cloud" data-terms="SLA Service Level Agreement サービスレベル">
+            <div class="dict-card-header">
+              <div class="dict-term">SLA <span class="dict-term-en">Service Level Agreement</span></div>
+              <span class="dict-category cat-cloud">クラウド</span>
+            </div>
+            <p class="dict-translation">サービスの品質保証の約束。「稼働率99.9%を保証」「月間ダウンタイム43分以内」など、具体的な数値で合意する契約。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「SLA 99.9%で設計する」→ 年間で約8.7時間以内の停止に抑える構成で設計する</div>
+            <a class="dict-phase-link" href="../phase2/02-availability.html">Phase 2-2 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="cloud" data-terms="DR Disaster Recovery ディザスタリカバリ 災害対策">
+            <div class="dict-card-header">
+              <div class="dict-term">DR <span class="dict-term-en">Disaster Recovery</span></div>
+              <span class="dict-category cat-cloud">クラウド</span>
+            </div>
+            <p class="dict-translation">災害時にシステムを復旧する計画・仕組み。「非常時の避難計画」のようなもの。別の場所にバックアップ環境を用意しておく。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「DR環境を大阪に構築」→ 東京のシステムが被災しても大阪で業務を継続できるようにする</div>
+            <a class="dict-phase-link" href="../phase2/02-availability.html">Phase 2-2 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="data" data-terms="RPO Recovery Point Objective 目標復旧地点">
+            <div class="dict-card-header">
+              <div class="dict-term">RPO <span class="dict-term-en">Recovery Point Objective</span></div>
+              <span class="dict-category cat-data">データ</span>
+            </div>
+            <p class="dict-translation">障害時に「どの時点のデータまで戻せるか」の目標。RPO 1時間なら、最悪でも1時間前のデータに復旧できる。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「RPO 0を要求されると構成が大きく変わる」→ データ損失ゼロの要件は同期レプリケーションが必要で高コスト</div>
+            <a class="dict-phase-link" href="../phase2/02-availability.html">Phase 2-2 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="data" data-terms="RTO Recovery Time Objective 目標復旧時間">
+            <div class="dict-card-header">
+              <div class="dict-term">RTO <span class="dict-term-en">Recovery Time Objective</span></div>
+              <span class="dict-category cat-data">データ</span>
+            </div>
+            <p class="dict-translation">障害発生から「何時間以内にシステムを復旧させるか」の目標。RTO 4時間なら、4時間以内にサービスを再開する。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「RTO 1時間だとホットスタンバイが必要」→ 1時間以内の復旧には、常に待機している予備システムが必要</div>
+            <a class="dict-phase-link" href="../phase2/02-availability.html">Phase 2-2 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="マイクロサービス Microservices">
+            <div class="dict-card-header">
+              <div class="dict-term">マイクロサービス <span class="dict-term-en">Microservices</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">機能ごとに独立した小さなサービスに分割するアーキテクチャ。「専門店が集まるモール」のように、各サービスが独立して動く。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「マイクロサービスに分割する」→ 大きなシステムを機能ごとの小さなサービスに分ける</div>
+            <a class="dict-phase-link" href="../phase1/03-architecture-patterns.html">Phase 1-3 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="モノリス Monolith モノリシック">
+            <div class="dict-card-header">
+              <div class="dict-term">モノリス <span class="dict-term-en">Monolith</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">全機能を1つのアプリケーションに含む構成。「一軒家」のようにすべてが1つの建物に収まっている。シンプルだが大規模化すると管理が大変。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「現行はモノリスです」→ 全機能が1つのアプリに入っている（分割されていない）</div>
+            <a class="dict-phase-link" href="../phase1/03-architecture-patterns.html">Phase 1-3 参照</a>
+          </div>
+
+          <div class="dict-card" data-category="infra" data-terms="ミドルウェア Middleware">
+            <div class="dict-card-header">
+              <div class="dict-term">ミドルウェア <span class="dict-term-en">Middleware</span></div>
+              <span class="dict-category cat-infra">インフラ</span>
+            </div>
+            <p class="dict-translation">OS とアプリケーションの間で動くソフトウェア。Webサーバー（Apache、Nginx）やDB（MySQL、PostgreSQL）などが該当。「建物の配管や電気設備」にあたる。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「ミドルウェアのバージョンアップが必要」→ 基盤ソフトの更新が必要（セキュリティや互換性のため）</div>
+          </div>
+
+          <div class="dict-card" data-category="security" data-terms="ペネトレーションテスト Penetration Test 脆弱性診断 ペンテスト">
+            <div class="dict-card-header">
+              <div class="dict-term">ペネトレーションテスト <span class="dict-term-en">Penetration Test</span></div>
+              <span class="dict-category cat-security">セキュリティ</span>
+            </div>
+            <p class="dict-translation">専門家が実際に攻撃を試みて、セキュリティの穴を見つけるテスト。「泥棒役を雇って自社ビルの防犯を確認する」ようなもの。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「リリース前にペンテストを実施する」→ セキュリティ専門家に攻撃テストしてもらい、問題を事前に発見する</div>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="API Gateway エーピーアイゲートウェイ">
+            <div class="dict-card-header">
+              <div class="dict-term">API Gateway <span class="dict-term-en">API Gateway</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">複数のAPIへのアクセスを一元管理する「受付窓口」。認証チェック、流量制限、ルーティングなどを一箇所で行う。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「API Gatewayを前段に置く」→ 全APIへのアクセスをゲートウェイ経由にし、セキュリティと管理を一元化する</div>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="BFF Backend for Frontend バックエンドフォーフロントエンド">
+            <div class="dict-card-header">
+              <div class="dict-term">BFF <span class="dict-term-en">Backend for Frontend</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">フロントエンド（画面側）専用のバックエンドサーバー。複数のマイクロサービスのデータを画面表示に適した形にまとめて返す「まとめ役」。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「BFFパターンで実装する」→ 画面に最適化した中間サーバーを用意して、裏の複数サービスをまとめる</div>
+          </div>
+
+          <div class="dict-card" data-category="devprocess" data-terms="WebSocket ウェブソケット リアルタイム通信">
+            <div class="dict-card-header">
+              <div class="dict-term">WebSocket <span class="dict-term-en">WebSocket</span></div>
+              <span class="dict-category cat-devprocess">開発プロセス</span>
+            </div>
+            <p class="dict-translation">サーバーとクライアント間で常時接続の双方向通信を行う仕組み。通常のHTTPは「質問→回答」だが、WebSocketは「電話のように常につながっている」。</p>
+            <div class="dict-scene"><strong>開発チーム：</strong>「リアルタイム更新はWebSocketで」→ サーバーから即座にデータを送れる常時接続を使う</div>
+          </div>
+
+        </div>
+
+        <div class="dict-empty" id="dictEmpty" style="display: none;">
+          該当する用語が見つかりません。検索キーワードやカテゴリを変えてみてください。
+        </div>
+      </section>
+
+      <!-- 確認クイズ -->
+      <section class="content-section">
+        <h2>確認クイズ</h2>
+
+        <div class="quiz-card" data-phase="phase4" data-topic="tech-dictionary" data-quiz="1">
+          <p class="quiz-question">Q1. 開発チームが「SPOFをなくしたい」と言ったとき、何をしようとしている？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">不要なサーバーを撤去する</button>
+            <button class="quiz-option" data-correct="true">単一障害点を冗長化して障害に備える</button>
+            <button class="quiz-option" data-correct="false">セキュリティの穴を塞ぐ</button>
+            <button class="quiz-option" data-correct="false">データベースを高速化する</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">SPOF（Single Point of Failure）は「その1箇所が止まるとシステム全体が止まるポイント」です。これをなくすとは、冗長化（複数台構成）して、1台が止まっても別の1台が引き継げるようにすることです。</p>
+        </div>
+
+        <div class="quiz-card" data-phase="phase4" data-topic="tech-dictionary" data-quiz="2">
+          <p class="quiz-question">Q2. 「技術的負債が溜まっている」とはどういう状態？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">最新技術を使いすぎている</button>
+            <button class="quiz-option" data-correct="false">サーバー費用が未払い</button>
+            <button class="quiz-option" data-correct="true">過去の設計判断のツケで改修に余計な工数がかかる状態</button>
+            <button class="quiz-option" data-correct="false">セキュリティの脆弱性がある</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">技術的負債は、過去に「急いで作った」「仮の対応で済ませた」などのツケが溜まり、新機能の追加やバグ修正に余計な工数がかかる状態を指します。</p>
+        </div>
+
+        <div class="quiz-card" data-phase="phase4" data-topic="tech-dictionary" data-quiz="3">
+          <p class="quiz-question">Q3. 「CDNに乗せる」の効果として正しいのは？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">データベースのバックアップが取れる</button>
+            <button class="quiz-option" data-correct="false">セキュリティが強化される</button>
+            <button class="quiz-option" data-correct="true">ユーザーに近い場所からコンテンツを配信し表示速度が向上する</button>
+            <button class="quiz-option" data-correct="false">開発コストが削減される</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">CDN（Content Delivery Network）は世界中のサーバーにコンテンツをキャッシュし、ユーザーに最も近い場所から配信します。表示速度の向上とメインサーバーの負荷軽減が主な効果です。</p>
+        </div>
+      </section>
+
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生のまとめ</p>
+          <p>50以上の用語を一度に覚える必要はありません。大切なのは<strong>「開発チームの言葉を聞いて、何のことかわかる」レベル</strong>になること。この辞典はいつでも検索できるので、打ち合わせの前後にチェックするハンドブックとして活用してくださいね。次はアーキレビュー会議への参加ガイドです！</p>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <a href="02-reading-estimates.html" class="page-nav-prev">
+          <span class="page-nav-label">前のトピック</span>
+          <span class="page-nav-title">4-2. 見積もりの読み方</span>
+        </a>
+        <a href="04-review-guide.html" class="page-nav-next">
+          <span class="page-nav-label">次のトピック</span>
+          <span class="page-nav-title">4-4. アーキレビュー参加ガイド</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>学習の進捗は自動保存されます 🦉</p><p>アーキテクチャ学習ランド &copy; 2025</p></div></footer>
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ProgressManager.initScrollTracking('phase4', 'tech-dictionary');
+
+      const searchInput = document.getElementById('dictSearch');
+      const filterBtns = document.querySelectorAll('.dict-filter-btn');
+      const cards = document.querySelectorAll('.dict-card');
+      const countEl = document.getElementById('dictCount');
+      const emptyEl = document.getElementById('dictEmpty');
+      let activeCategory = 'all';
+
+      function updateCount() {
+        const visible = document.querySelectorAll('.dict-card:not(.hidden)').length;
+        countEl.textContent = `${visible} / ${cards.length} 用語を表示中`;
+        emptyEl.style.display = visible === 0 ? 'block' : 'none';
+      }
+
+      function filterCards() {
+        const query = searchInput.value.toLowerCase().trim();
+        cards.forEach(card => {
+          const matchCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+          const terms = (card.dataset.terms || '').toLowerCase();
+          const text = card.textContent.toLowerCase();
+          const matchSearch = !query || terms.includes(query) || text.includes(query);
+          card.classList.toggle('hidden', !(matchCategory && matchSearch));
+        });
+        updateCount();
+      }
+
+      searchInput.addEventListener('input', filterCards);
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeCategory = btn.dataset.category;
+          filterCards();
+        });
+      });
+
+      updateCount();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3-4. 構成図の読み方・描き方 | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    /* 構成図専用スタイル */
+    .diagram-container {
+      background: #fff;
+      border: 2px solid #e0d8cf;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+    }
+    .diagram-title {
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--phase3-color);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px dashed #e0d8cf;
+    }
+
+    /* 共通ボックス */
+    .d-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      min-width: 100px;
+      line-height: 1.4;
+    }
+    .d-icon { font-size: 1.4rem; margin-bottom: 0.2rem; }
+
+    /* ボックスカラー */
+    .d-user     { background: #e8f5e9; border: 2px solid #66bb6a; color: #2e7d32; }
+    .d-web      { background: #e3f2fd; border: 2px solid #42a5f5; color: #1565c0; }
+    .d-app      { background: #fff3e0; border: 2px solid #ffa726; color: #e65100; }
+    .d-db       { background: #fce4ec; border: 2px solid #ef5350; color: #c62828; }
+    .d-cache    { background: #f3e5f5; border: 2px solid #ab47bc; color: #6a1b9a; }
+    .d-queue    { background: #fff8e1; border: 2px solid #ffca28; color: #f57f17; }
+    .d-storage  { background: #e0f2f1; border: 2px solid #26a69a; color: #00695c; }
+    .d-external { background: #f5f5f5; border: 2px solid #9e9e9e; color: #424242; }
+    .d-lb       { background: #e8eaf6; border: 2px solid #5c6bc0; color: #283593; }
+    .d-cdn      { background: #e0f7fa; border: 2px solid #26c6da; color: #00838f; }
+    .d-worker   { background: #fff3e0; border: 2px solid #ff7043; color: #bf360c; }
+    .d-analytics { background: #f1f8e9; border: 2px solid #9ccc65; color: #33691e; }
+
+    /* 矢印（横方向） */
+    .d-arrow-right {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      color: #999;
+      padding: 0 0.3rem;
+      flex-shrink: 0;
+    }
+    .d-arrow-right::after { content: '→'; }
+
+    /* 矢印（縦方向） */
+    .d-arrow-down {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #999;
+      padding: 0.2rem 0;
+    }
+    .d-arrow-down::after { content: '↓'; }
+
+    /* 横並びレイアウト */
+    .d-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 0.5rem 0;
+    }
+
+    /* グループ枠 */
+    .d-group {
+      border: 2px dashed #bbb;
+      border-radius: 10px;
+      padding: 0.75rem;
+      position: relative;
+    }
+    .d-group-label {
+      position: absolute;
+      top: -0.7rem;
+      left: 1rem;
+      background: #fff;
+      padding: 0 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #888;
+    }
+
+    /* サービスメッシュ表現 */
+    .d-services {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* 凡例 */
+    .icon-legend {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+    .icon-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .icon-legend-box {
+      width: 2.5rem;
+      height: 2rem;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* 5つの観点チェックリスト */
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+    .checklist li {
+      padding: 1rem 1rem 1rem 3rem;
+      margin-bottom: 0.75rem;
+      background: #fff;
+      border: 1px solid #e0d8cf;
+      border-radius: 8px;
+      position: relative;
+      line-height: 1.7;
+    }
+    .checklist li::before {
+      content: attr(data-num);
+      position: absolute;
+      left: 0.75rem;
+      top: 1rem;
+      width: 1.8rem;
+      height: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--phase3-color);
+      color: #fff;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .checklist li strong {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    @media (max-width: 768px) {
+      .d-box { min-width: 80px; font-size: 0.78rem; padding: 0.5rem 0.6rem; }
+      .d-icon { font-size: 1.1rem; }
+      .icon-legend { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body data-phase="3">
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo"><span class="owl-icon">🦉</span><span>アーキテクチャ学習ランド</span></a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav><ul class="nav-links">
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../phase1/index.html">Phase 1</a></li>
+        <li><a href="../phase2/index.html">Phase 2</a></li>
+        <li><a href="index.html" class="active">Phase 3</a></li>
+        <li><a href="../phase4/index.html">Phase 4</a></li>
+        <li><a href="../phase5/index.html">Phase 5</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <main class="topic-page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span class="separator">/</span>
+        <a href="index.html">Phase 3</a>
+        <span class="separator">/</span>
+        <span class="current">3-4. 構成図の読み方・描き方</span>
+      </nav>
+
+      <h1>3-4. 構成図の読み方・描き方</h1>
+
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生より</p>
+          <p>提案書やレビュー会議で必ず出てくるのが<strong>システム構成図</strong>です。「図が読めない＝会議についていけない」ということ。でも心配いりません！アイコンの意味と<strong>5つの確認観点</strong>を覚えれば、構成図はぐっと身近になりますよ。</p>
+        </div>
+      </div>
+
+      <!-- セクション1: アイコン凡例 -->
+      <section class="content-section">
+        <h2>構成図で使われるアイコン凡例</h2>
+        <p>構成図には様々なコンポーネントが登場します。まずは主要なアイコン（＝箱の種類）を覚えましょう。</p>
+
+        <div class="icon-legend">
+          <div class="icon-legend-item">
+            <div class="icon-legend-box d-user"><span>👤</span></div>
+            <span>ユーザー / クライアント</span>
+          </div>
+          <div class="icon-legend-item">
+            <div class="icon-legend-box d-cdn"><span>🌍</span></div>
+            <span>CDN（コンテンツ配信）</span>
+          </div>
+          <div class="icon-legend-item">
+            <div class="icon-legend-box d-lb"><span>⚖️</span></div>
+            <span>ロードバランサー</span>
+          </div>
+          <div class="icon-legend-item">
+            <div class="icon-legend-box d-web"><span>🖥️</span></div>
+            <span>Webサーバー</span>
+          </div>
+          <div class="icon-legend-item">
+            <div class="icon-legend-box d-app"><span>⚙️</span></div>
+            <span>APサーバー / API</span>
+          </div>
+          <div class="icon-legend-item">
+            <div class="icon-legend-box d-cache"><span>⚡</span></div>
+            <span>キャッシュ（Redis等）</span>
+          </div>
+          <div class="icon-legend-item">
+            <div class="icon-legend-box d-queue"><span>📮</span></div>
+            <span>メッセージキュー</span>
+          </div>
+          <div class="icon-legend-item">
+            <div class="icon-legend-box d-db"><span>🗄️</span></div>
+            <span>データベース</span>
+          </div>
+          <div class="icon-legend-item">
+            <div class="icon-legend-box d-storage"><span>📦</span></div>
+            <span>ストレージ（S3等）</span>
+          </div>
+          <div class="icon-legend-item">
+            <div class="icon-legend-box d-worker"><span>🔄</span></div>
+            <span>ワーカー / バッチ</span>
+          </div>
+          <div class="icon-legend-item">
+            <div class="icon-legend-box d-analytics"><span>📊</span></div>
+            <span>分析 / BI</span>
+          </div>
+          <div class="icon-legend-item">
+            <div class="icon-legend-box d-external"><span>🔗</span></div>
+            <span>外部システム連携</span>
+          </div>
+        </div>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">重要ポイント</p>
+            <p>構成図で大切なのは<strong>「矢印の方向」</strong>です。矢印は「データの流れ」や「リクエストの方向」を示します。箱（コンポーネント）の名前よりも、<strong>どこからどこにデータが流れるか</strong>を追うと理解しやすくなります。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- セクション2: 構成図パターン1 - Webアプリ基本 -->
+      <section class="content-section">
+        <h2>パターン1：Webアプリケーション基本構成</h2>
+        <p>最も基本的な構成図です。多くの業務システムはこの形がベースになっています。</p>
+
+        <div class="diagram-container">
+          <div class="diagram-title">Webアプリケーション基本構成図</div>
+
+          <div class="d-row">
+            <div class="d-box d-user">
+              <span class="d-icon">👤</span>ユーザー
+            </div>
+          </div>
+          <div class="d-arrow-down"></div>
+          <div class="d-row">
+            <div class="d-box d-cdn">
+              <span class="d-icon">🌍</span>CDN<br>(静的ファイル)
+            </div>
+          </div>
+          <div class="d-arrow-down"></div>
+          <div class="d-row">
+            <div class="d-box d-lb">
+              <span class="d-icon">⚖️</span>ロードバランサー
+            </div>
+          </div>
+          <div class="d-arrow-down"></div>
+          <div class="d-row" style="gap: 1.5rem;">
+            <div class="d-group" style="padding: 1rem;">
+              <div class="d-group-label">Webサーバー群</div>
+              <div class="d-row" style="margin-top: 0.5rem; gap: 0.75rem;">
+                <div class="d-box d-web"><span class="d-icon">🖥️</span>Web #1</div>
+                <div class="d-box d-web"><span class="d-icon">🖥️</span>Web #2</div>
+              </div>
+            </div>
+          </div>
+          <div class="d-arrow-down"></div>
+          <div class="d-row">
+            <div class="d-box d-app">
+              <span class="d-icon">⚙️</span>APサーバー
+            </div>
+            <div class="d-arrow-right"></div>
+            <div class="d-box d-cache">
+              <span class="d-icon">⚡</span>キャッシュ
+            </div>
+          </div>
+          <div class="d-arrow-down"></div>
+          <div class="d-row" style="gap: 1.5rem;">
+            <div class="d-box d-db">
+              <span class="d-icon">🗄️</span>DB (Primary)
+            </div>
+            <div class="d-box d-db" style="opacity: 0.7;">
+              <span class="d-icon">🗄️</span>DB (Replica)
+            </div>
+          </div>
+        </div>
+
+        <div class="column-sales">
+          <h4>営業が確認すべきポイント</h4>
+          <ul>
+            <li>Webサーバーが2台 → 冗長化されている（1台止まってもサービス継続）</li>
+            <li>DB ReplicaがPrimaryと別にある → 読み取り負荷分散＆バックアップ</li>
+            <li>CDNがある → 静的ファイルの配信が高速、サーバー負荷軽減</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- セクション3: 構成図パターン2 - マイクロサービス -->
+      <section class="content-section">
+        <h2>パターン2：マイクロサービス構成</h2>
+        <p>機能ごとにサービスが独立している構成です。ECサイトやSaaSなどで見かけます。</p>
+
+        <div class="diagram-container">
+          <div class="diagram-title">マイクロサービス構成図（ECサイト例）</div>
+
+          <div class="d-row">
+            <div class="d-box d-user">
+              <span class="d-icon">👤</span>ユーザー
+            </div>
+          </div>
+          <div class="d-arrow-down"></div>
+          <div class="d-row">
+            <div class="d-box d-lb">
+              <span class="d-icon">⚖️</span>API Gateway
+            </div>
+          </div>
+          <div class="d-arrow-down"></div>
+          <div class="d-row">
+            <div class="d-group" style="padding: 1.2rem 1rem;">
+              <div class="d-group-label">サービス群（各サービスが独立してスケール）</div>
+              <div class="d-services" style="margin-top: 0.5rem;">
+                <div style="text-align: center;">
+                  <div class="d-box d-app"><span class="d-icon">⚙️</span>商品サービス</div>
+                  <div class="d-arrow-down"></div>
+                  <div class="d-box d-db" style="font-size: 0.78rem;"><span class="d-icon">🗄️</span>商品DB</div>
+                </div>
+                <div style="text-align: center;">
+                  <div class="d-box d-app"><span class="d-icon">⚙️</span>注文サービス</div>
+                  <div class="d-arrow-down"></div>
+                  <div class="d-box d-db" style="font-size: 0.78rem;"><span class="d-icon">🗄️</span>注文DB</div>
+                </div>
+                <div style="text-align: center;">
+                  <div class="d-box d-app"><span class="d-icon">⚙️</span>認証サービス</div>
+                  <div class="d-arrow-down"></div>
+                  <div class="d-box d-db" style="font-size: 0.78rem;"><span class="d-icon">🗄️</span>ユーザーDB</div>
+                </div>
+                <div style="text-align: center;">
+                  <div class="d-box d-app"><span class="d-icon">⚙️</span>決済サービス</div>
+                  <div class="d-arrow-down"></div>
+                  <div class="d-box d-external" style="font-size: 0.78rem;"><span class="d-icon">🔗</span>決済API</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-arrow-down"></div>
+          <div class="d-row">
+            <div class="d-box d-queue">
+              <span class="d-icon">📮</span>メッセージキュー<br>(イベントバス)
+            </div>
+          </div>
+        </div>
+
+        <div class="column-dev">
+          <h4>開発チームの視点</h4>
+          <p>この構成では各サービスが「自分専用のDB」を持っています。これは<strong>Database per Service</strong>パターンと呼ばれ、マイクロサービスの基本原則です。営業が「なぜDBが4つもあるのか？」と疑問に思ったときの答えは「サービス間の独立性を保つため」です。</p>
+        </div>
+      </section>
+
+      <!-- セクション4: 構成図パターン3 - データ分析基盤 -->
+      <section class="content-section">
+        <h2>パターン3：データ分析基盤</h2>
+        <p>業務データを収集・加工・可視化するためのデータパイプライン構成です。DX推進案件で頻出します。</p>
+
+        <div class="diagram-container">
+          <div class="diagram-title">データ分析基盤構成図</div>
+
+          <div class="d-row" style="gap: 1rem;">
+            <div class="d-box d-external">
+              <span class="d-icon">🔗</span>基幹システム
+            </div>
+            <div class="d-box d-external">
+              <span class="d-icon">🔗</span>Webサイト<br>ログ
+            </div>
+            <div class="d-box d-external">
+              <span class="d-icon">🔗</span>IoT<br>センサー
+            </div>
+          </div>
+          <div class="d-arrow-down"></div>
+          <div class="d-row">
+            <div class="d-box d-queue">
+              <span class="d-icon">📮</span>データ収集<br>(Kafka / Kinesis)
+            </div>
+          </div>
+          <div class="d-arrow-down"></div>
+          <div class="d-row">
+            <div class="d-box d-worker">
+              <span class="d-icon">🔄</span>ETL処理<br>(加工・変換)
+            </div>
+          </div>
+          <div class="d-arrow-down"></div>
+          <div class="d-row">
+            <div class="d-box d-storage">
+              <span class="d-icon">📦</span>データレイク<br>(S3 / GCS)
+            </div>
+            <div class="d-arrow-right"></div>
+            <div class="d-box d-db">
+              <span class="d-icon">🗄️</span>DWH<br>(BigQuery等)
+            </div>
+          </div>
+          <div class="d-arrow-down" style="margin-left: 8rem;"></div>
+          <div class="d-row">
+            <div class="d-box d-analytics">
+              <span class="d-icon">📊</span>BIツール<br>(ダッシュボード)
+            </div>
+            <div class="d-arrow-right"></div>
+            <div class="d-box d-user">
+              <span class="d-icon">👤</span>経営層 /<br>分析担当
+            </div>
+          </div>
+        </div>
+
+        <div class="column-sales">
+          <h4>営業トーク例</h4>
+          <p>「御社の基幹システムのデータ、Webのアクセスログ、工場のセンサーデータを<strong>一箇所に集約</strong>して、ダッシュボードで可視化する構成です。データは一度データレイクに溜めるので、後から新しい分析を追加するのも容易です。」</p>
+        </div>
+      </section>
+
+      <!-- セクション5: 5つの確認観点 -->
+      <section class="content-section">
+        <h2>構成図を読む「5つの確認観点」</h2>
+        <p>構成図を見たとき、以下の5つの観点で確認すると、的確な質問ができるようになります。提案書レビューや技術レビュー会議で即使えるチェックリストです。</p>
+
+        <ol class="checklist">
+          <li data-num="1">
+            <strong>冗長化：単一障害点（SPOF）はないか？</strong>
+            各コンポーネントが1つしかない場合、そこが止まるとシステム全体が止まります。「この箱が1台だけですが、止まった場合の影響は？」と確認しましょう。
+          </li>
+          <li data-num="2">
+            <strong>データの流れ：矢印の方向は正しいか？</strong>
+            リクエストはどこから始まり、どこまで到達するか。逆方向のレスポンスは省略されていることが多いですが、双方向通信（WebSocket等）が必要な場合は要確認です。
+          </li>
+          <li data-num="3">
+            <strong>セキュリティ境界：ネットワーク区分は適切か？</strong>
+            インターネットからアクセスできる範囲（パブリック）と、内部だけの範囲（プライベート）は明確ですか？「DBがインターネットから直接アクセスできる構成になっていませんか？」は重要な確認ポイントです。
+          </li>
+          <li data-num="4">
+            <strong>スケールポイント：ボトルネックはどこか？</strong>
+            負荷が集中するポイントはどこか、そこがスケールアウト可能な構成になっているかを確認します。「アクセスが10倍になった場合、この構成で耐えられますか？」と聞きましょう。
+          </li>
+          <li data-num="5">
+            <strong>外部連携：外部システムとの接続方式は？</strong>
+            外部API・レガシーシステムとの接続部分は障害の影響を受けやすいポイントです。「外部決済APIが停止した場合、注文処理はどうなりますか？」と確認しましょう。
+          </li>
+        </ol>
+
+        <div class="owl-box owl-trivia">
+          <div class="owl-box-content">
+            <p class="owl-box-title">豆知識</p>
+            <p>構成図を「描く」必要はなくても、「読んで質問できる」だけで大きな差がつきます。レビュー会議で上の5つの観点から1つでも質問できると、「この営業さん、ちゃんとわかっている」と技術チームから信頼されます。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- セクション6: 構成図チェック実践 -->
+      <section class="content-section">
+        <h2>実践：構成図にツッコミを入れてみよう</h2>
+        <p>以下の構成図にはいくつかの「気になるポイント」があります。5つの確認観点を使って問題点を見つけてみましょう。</p>
+
+        <div class="diagram-container">
+          <div class="diagram-title">あるECサイトの構成図（ツッコミ対象）</div>
+
+          <div class="d-row">
+            <div class="d-box d-user"><span class="d-icon">👤</span>ユーザー</div>
+          </div>
+          <div class="d-arrow-down"></div>
+          <div class="d-row">
+            <div class="d-box d-web" style="border-color: #ef5350; border-style: dashed;">
+              <span class="d-icon">🖥️</span>Webサーバー<br><small style="color:#c62828;">（1台のみ）</small>
+            </div>
+          </div>
+          <div class="d-arrow-down"></div>
+          <div class="d-row">
+            <div class="d-box d-app"><span class="d-icon">⚙️</span>APサーバー</div>
+            <div class="d-arrow-right"></div>
+            <div class="d-box d-external" style="border-color: #ef5350; border-style: dashed;">
+              <span class="d-icon">🔗</span>決済API<br><small style="color:#c62828;">（障害時は？）</small>
+            </div>
+          </div>
+          <div class="d-arrow-down"></div>
+          <div class="d-row">
+            <div class="d-box d-db" style="border-color: #ef5350; border-style: dashed;">
+              <span class="d-icon">🗄️</span>DB<br><small style="color:#c62828;">（1台のみ）</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="owl-box owl-encourage">
+          <div class="owl-box-content">
+            <p class="owl-box-title">解答：見つけるべきポイント</p>
+            <ul style="margin: 0.5rem 0 0; padding-left: 1.5rem;">
+              <li><strong>観点1（冗長化）</strong>：Webサーバーが1台 → SPOF。障害時にサービス全停止</li>
+              <li><strong>観点1（冗長化）</strong>：DBも1台 → SPOF。データ損失のリスクもある</li>
+              <li><strong>観点3（セキュリティ）</strong>：ネットワーク境界が描かれていない → パブリック/プライベートの区分が不明</li>
+              <li><strong>観点5（外部連携）</strong>：決済API障害時のフォールバック（代替手段）が不明</li>
+              <li><strong>観点4（スケール）</strong>：ロードバランサーがない → 水平スケール不可</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 確認クイズ -->
+      <section class="content-section">
+        <h2>確認クイズ</h2>
+
+        <div class="quiz-card" data-phase="phase3" data-topic="reading-diagrams" data-quiz="1">
+          <p class="quiz-question">Q1. 構成図で「SPOF（単一障害点）」を見つけるには、どこに注目すべき？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">矢印の方向</button>
+            <button class="quiz-option" data-correct="true">1台しかないコンポーネント</button>
+            <button class="quiz-option" data-correct="false">外部システムとの接続部分</button>
+            <button class="quiz-option" data-correct="false">データベースの種類</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">SPOFは「1つしかないコンポーネント」です。そこが止まるとシステム全体が止まります。冗長化（2台以上の構成）がされているかを確認しましょう。</p>
+        </div>
+
+        <div class="quiz-card" data-phase="phase3" data-topic="reading-diagrams" data-quiz="2">
+          <p class="quiz-question">Q2. マイクロサービス構成でサービスごとにDBを分ける理由は？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">コストを削減するため</button>
+            <button class="quiz-option" data-correct="false">データの一貫性を高めるため</button>
+            <button class="quiz-option" data-correct="true">サービス間の独立性を保つため</button>
+            <button class="quiz-option" data-correct="false">バックアップを容易にするため</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">Database per Serviceパターンは、各サービスが自分のデータだけに責任を持ち、他サービスに影響を与えずに独立して開発・デプロイできるようにするためです。</p>
+        </div>
+
+        <div class="quiz-card" data-phase="phase3" data-topic="reading-diagrams" data-quiz="3">
+          <p class="quiz-question">Q3. 構成図を読む5つの確認観点に含まれないものはどれ？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">冗長化（SPOF確認）</button>
+            <button class="quiz-option" data-correct="false">セキュリティ境界</button>
+            <button class="quiz-option" data-correct="true">開発言語の選定</button>
+            <button class="quiz-option" data-correct="false">外部連携の接続方式</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">構成図から読み取れるのはコンポーネントの配置と通信の流れです。開発言語の選定は構成図の範疇ではなく、別途確認すべき事項です。5つの観点は「冗長化・データの流れ・セキュリティ境界・スケールポイント・外部連携」です。</p>
+        </div>
+      </section>
+
+      <!-- フクロウ先生のまとめ＋Phase4への橋渡し -->
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生のまとめ</p>
+          <p>Phase 3、お疲れさまでした！業界別のDX課題マップ、ヒアリングフレームワーク、ディシジョンツリー、そして構成図の読み方まで——<strong>お客様の課題からアーキテクチャ提案につなげるスキル</strong>が身につきましたね。</p>
+          <p style="margin-top: 0.75rem;">🦉✨ アーキ選定の考え方がわかってきたね！でもアーキを実現するのはエンジニアの仲間たち。<strong>Phase 4では、開発チームと同じ言葉で話せるようになろう！</strong></p>
+        </div>
+      </div>
+
+      <!-- ページナビゲーション -->
+      <div class="page-nav">
+        <a href="03-decision-tree.html" class="page-nav-prev">
+          <span class="page-nav-label">前のトピック</span>
+          <span class="page-nav-title">3-3. アーキ選定ディシジョンツリー</span>
+        </a>
+        <a href="../phase4/index.html" class="page-nav-next">
+          <span class="page-nav-label">次のフェーズ</span>
+          <span class="page-nav-title">Phase 4: 旅の仲間と話す</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>学習の進捗は自動保存されます 🦉</p><p>アーキテクチャ学習ランド &copy; 2025</p></div></footer>
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ProgressManager.initScrollTracking('phase3', 'reading-diagrams');
+    });
+  </script>
+</body>
+</html>

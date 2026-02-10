@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2-2. 可用性（Availability） | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body data-phase="2">
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo">
+        <span class="owl-icon">🦉</span>
+        <span>アーキテクチャ学習ランド</span>
+      </a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html">ホーム</a></li>
+          <li><a href="../phase1/index.html">Phase 1</a></li>
+          <li><a href="index.html" class="active">Phase 2</a></li>
+          <li><a href="../phase3/index.html">Phase 3</a></li>
+          <li><a href="../phase4/index.html">Phase 4</a></li>
+          <li><a href="../phase5/index.html">Phase 5</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="phase-page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span class="separator">/</span>
+        <a href="index.html">Phase 2</a>
+        <span class="separator">/</span>
+        <span class="current">2-2. 可用性（Availability）</span>
+      </nav>
+
+      <div class="phase-header">
+        <h1><span class="phase-icon">🛡️</span>2-2. 可用性（Availability）</h1>
+      </div>
+
+      <!-- フクロウ先生の導入 -->
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の導入</p>
+          <p>「システムが止まったら業務が止まる」——お客様がもっとも恐れることの一つです。でも「止まらないシステム」って、具体的にどうやって実現するのでしょう？答えは<span class="tech-term">可用性<span class="tooltip">システムが必要な時に正常に利用できる度合いのこと。「止まらない度」とも言える</span></span>の設計にあります。病院にたとえると、普段の診療が「機能」、停電しても非常電源で診療を続けられることが「可用性」です。</p>
+        </div>
+      </div>
+
+      <!-- 本文 -->
+      <section>
+        <h2>SLAとダウンタイム——「99.9%」の本当の意味</h2>
+
+        <p>お客様との契約でよく出てくる「SLA 99.9%」。この数字の意味を正確に理解しましょう。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>SLA</th>
+                <th>通称</th>
+                <th>年間ダウンタイム</th>
+                <th>月間ダウンタイム</th>
+                <th>イメージ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>99%</strong></td>
+                <td>ツーナイン</td>
+                <td>約3日15時間</td>
+                <td>約7時間18分</td>
+                <td>月1回、半日止まる可能性</td>
+              </tr>
+              <tr>
+                <td><strong>99.9%</strong></td>
+                <td>スリーナイン</td>
+                <td>約8時間46分</td>
+                <td>約43分</td>
+                <td>月1回、1時間弱の停止</td>
+              </tr>
+              <tr>
+                <td><strong>99.99%</strong></td>
+                <td>フォーナイン</td>
+                <td>約52分</td>
+                <td>約4.3分</td>
+                <td>年に1回、1時間弱の停止</td>
+              </tr>
+              <tr>
+                <td><strong>99.999%</strong></td>
+                <td>ファイブナイン</td>
+                <td>約5.3分</td>
+                <td>約26秒</td>
+                <td>ほぼ止まらない（金融レベル）</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-trivia">
+          <div class="owl-box-content">
+            <p class="owl-box-title">豆知識</p>
+            <p>「ナイン」の数が1つ増えるだけで、ダウンタイムは約10分の1に。でもコストは2倍以上に。この「9の法則」は提案の場で必ず役に立つフレーズです。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>冗長化——「予備」を持つ設計</h2>
+
+        <p><span class="tech-term">冗長化<span class="tooltip">同じ機能を持つ部品を複数用意し、1つが故障しても他で代替できるようにする設計手法</span></span>は、可用性を高める最も基本的な手法です。飛行機にエンジンが2つ以上ある理由と同じ。1つが壊れても、もう1つで飛び続けられます。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>方式</th>
+                <th>たとえ</th>
+                <th>仕組み</th>
+                <th>切り替え時間</th>
+                <th>コスト</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><span class="tech-term">アクティブ-スタンバイ<span class="tooltip">1台が稼働（アクティブ）し、もう1台が待機（スタンバイ）。障害時にスタンバイが引き継ぐ</span></span></strong></td>
+                <td>控えの投手（ベンチで待機）</td>
+                <td>普段は1台が稼働、もう1台は待機。障害時に切り替え</td>
+                <td>数分〜数十分</td>
+                <td>中（2台分のハードが必要）</td>
+              </tr>
+              <tr>
+                <td><strong><span class="tech-term">アクティブ-アクティブ<span class="tooltip">複数台が同時に稼働し、負荷を分散。1台が故障しても残りで処理を継続</span></span></strong></td>
+                <td>2人のレジ係（両方が同時に働く）</td>
+                <td>複数台が同時に稼働。1台が倒れても残りが処理を継続</td>
+                <td>ほぼ瞬時</td>
+                <td>高（全台が常時フル稼働）</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>DR（災害復旧）——最悪の事態に備える</h2>
+
+        <p><span class="tech-term">DR<span class="tooltip">Disaster Recovery（災害復旧）。地震、火災、データセンター障害などの大規模災害からの復旧計画</span></span>は、データセンターごと使えなくなるような大規模障害に備える計画です。2つの重要な指標があります。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>指標</th>
+                <th>意味</th>
+                <th>わかりやすく言うと</th>
+                <th>例</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><span class="tech-term">RPO<span class="tooltip">Recovery Point Objective（目標復旧時点）。障害発生時にどの時点のデータまで戻せるかの目標値</span></span></strong></td>
+                <td>目標復旧時点</td>
+                <td>「どのくらい前のデータまで戻せるか」（バックアップの頻度）</td>
+                <td>RPO=1時間 → 最大1時間分のデータ消失を許容</td>
+              </tr>
+              <tr>
+                <td><strong><span class="tech-term">RTO<span class="tooltip">Recovery Time Objective（目標復旧時間）。障害発生から復旧完了までの目標時間</span></span></strong></td>
+                <td>目標復旧時間</td>
+                <td>「障害からどのくらいの時間で復旧するか」</td>
+                <td>RTO=4時間 → 障害から4時間以内に復旧</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">ポイント</p>
+            <p>RPOとRTOは<strong>小さいほど安心だが、コストは高くなる</strong>。RPO=0（データ消失ゼロ）、RTO=0（瞬時復旧）を実現するには、リアルタイムのデータ同期と自動フェイルオーバーが必要で、莫大なコストがかかります。お客様の業務にとって「どのレベルが本当に必要か」を一緒に考えることが重要です。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>「24時間365日止まらないシステム」と言われたら確認すべき5つの質問</h2>
+
+        <ol>
+          <li><strong>「止まらない」の定義は？</strong>——完全無停止？それとも計画メンテナンスは許容？</li>
+          <li><strong>業務への影響度は？</strong>——止まったとき、1時間あたりの損失額は？</li>
+          <li><strong>許容ダウンタイムは？</strong>——年間何時間の停止なら業務に支障がないか？</li>
+          <li><strong>データの消失はどこまで許容？</strong>——RPOは？ 1時間前のデータに戻っても大丈夫？</li>
+          <li><strong>災害時の復旧はどこまで求める？</strong>——東京のデータセンターが被災しても大阪で継続？</li>
+        </ol>
+
+        <div class="owl-box owl-trivia">
+          <div class="owl-box-content">
+            <p class="owl-box-title">豆知識</p>
+            <p>多くのお客様は最初「絶対に止まらないシステム」と言いますが、コストを聞くと「計画メンテナンスはOK、年に数時間の停止は許容」に落ち着くことがほとんど。<strong>質問によって要件を具体化するのが営業の腕の見せどころ</strong>です。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 営業コラム -->
+      <div class="column-sales">
+        <p class="column-title">営業の現場では...</p>
+        <p>お客様に可用性の話をするとき、「御社のシステムが1時間止まった場合、業務への影響はどのくらいですか？」と聞いてみましょう。<strong>停止時の損失額</strong>がわかると、「それなら99.99%の投資は十分に回収できます」という費用対効果の議論ができます。逆に、損失が小さいなら「99.9%で十分です。コストを他に回しましょう」という提案もできる。可用性はコストと天秤にかけるもの——これを理解している営業は信頼されます。</p>
+      </div>
+
+      <!-- 開発チームコラム -->
+      <div class="column-dev">
+        <p class="column-title">開発チームの視点</p>
+        <p>開発チームにとって、可用性設計はアーキテクチャ全体に影響する最重要決定の一つ。とくに営業さんから聞きたい情報は：(1) メンテナンス時間帯の有無（深夜2〜5時なら停止OKなど）、(2) 障害時の業務代替手段の有無（紙伝票で代替できるか）、(3) 過去に障害で困った経験。これらがわかると「どこまで冗長化するか」の判断が格段にしやすくなります。</p>
+      </div>
+
+      <!-- クイズ -->
+      <h2>理解度チェック</h2>
+
+      <div class="quiz-card" data-answer="C" data-phase="phase2" data-topic="availability">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q1</div>
+          <h4>SLAの意味</h4>
+        </div>
+        <p class="quiz-question">SLA 99.9%（スリーナイン）の年間ダウンタイムとして正しいものはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>約52分</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>約5.3分</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>約8時間46分</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>約3日15時間</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>99.9%（スリーナイン）は年間約8時間46分のダウンタイムを意味します。約52分はフォーナイン（99.99%）、約5.3分はファイブナイン（99.999%）、約3日15時間はツーナイン（99%）の値です。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="quiz-card" data-answer="B" data-phase="phase2" data-topic="availability">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q2</div>
+          <h4>冗長化方式</h4>
+        </div>
+        <p class="quiz-question">障害発生時に「ほぼ瞬時」に切り替わる冗長化方式はどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>アクティブ-スタンバイ</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>アクティブ-アクティブ</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>コールドスタンバイ</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>手動切り替え</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p><strong>アクティブ-アクティブ</strong>は複数台が同時に稼働しているため、1台が障害を起こしても残りがそのまま処理を継続し、ユーザーにはほぼ影響がありません。アクティブ-スタンバイは切り替えに数分〜数十分かかることがあります。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="quiz-card" data-answer="D" data-phase="phase2" data-topic="availability">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q3</div>
+          <h4>RPOとRTO</h4>
+        </div>
+        <p class="quiz-question">RPO（目標復旧時点）が「1時間」の場合、正しい解釈はどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>障害から1時間以内に復旧すること</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>1時間に1回システムを再起動すること</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>1時間以上の連続稼働を保証すること</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>障害時に最大1時間分のデータ消失を許容すること</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>RPO=1時間は「最大1時間前の状態までデータを復元できる」という意味です。つまり、最悪の場合1時間分のデータが失われることを許容します。Aの「障害から1時間以内に復旧」はRTO（目標復旧時間）の説明ですね。RPOとRTOは混同しやすいので、しっかり区別しましょう。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- 振り返り -->
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の振り返り</p>
+          <p>可用性の基本がバッチリ身につきましたね！「9の法則」とRPO/RTOは、お客様との会話で必ず役立ちます。次は「スケーラビリティ」——ビジネスの成長に合わせてシステムを大きくする方法を、お店のたとえで学びましょう！</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <a href="01-non-functional-requirements.html" class="btn btn-outline">← 前のトピック</a>
+        <a href="03-scalability.html" class="btn btn-primary">次のトピック：スケーラビリティ →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>学習の進捗は自動保存されます 🦉</p>
+      <p>アーキテクチャ学習ランド &copy; 2025</p>
+    </div>
+  </footer>
+
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>ProgressManager.initScrollTracking('phase2', 'availability');</script>
+</body>
+</html>

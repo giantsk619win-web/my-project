@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2-3. スケーラビリティ | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body data-phase="2">
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo"><span class="owl-icon">🦉</span><span>アーキテクチャ学習ランド</span></a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav><ul class="nav-links">
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../phase1/index.html">Phase 1</a></li>
+        <li><a href="index.html" class="active">Phase 2</a></li>
+        <li><a href="../phase3/index.html">Phase 3</a></li>
+        <li><a href="../phase4/index.html">Phase 4</a></li>
+        <li><a href="../phase5/index.html">Phase 5</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <main class="phase-page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a><span class="separator">/</span>
+        <a href="index.html">Phase 2</a><span class="separator">/</span>
+        <span class="current">2-3. スケーラビリティ</span>
+      </nav>
+
+      <div class="phase-header">
+        <h1><span class="phase-icon">🛡️</span>2-3. スケーラビリティ</h1>
+      </div>
+
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の導入</p>
+          <p>繁盛しているラーメン屋を想像してください。行列ができたとき、どうしますか？方法は2つ。「キッチンを広くして作れる量を増やす」か「2号店を出す」か。システムも同じ。<span class="tech-term">スケーラビリティ<span class="tooltip">利用者やデータ量の増加に対して、システムの処理能力を拡張できる能力のこと</span></span>とは、ビジネスの成長に合わせてシステムを拡張できる能力のこと。お客様が「将来ユーザーが10倍になるかも」と言ったら、これが出番です！</p>
+        </div>
+      </div>
+
+      <section>
+        <h2>垂直スケーリング vs 水平スケーリング</h2>
+
+        <p>スケーリング（拡張）には大きく2つの方法があります。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>方式</th>
+                <th>お店のたとえ</th>
+                <th>システムでは</th>
+                <th>メリット</th>
+                <th>デメリット</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><span class="tech-term">垂直スケーリング<span class="tooltip">スケールアップとも呼ぶ。サーバーのCPUやメモリを増強して1台の処理能力を上げる方法</span></span></strong>（スケールアップ）</td>
+                <td>お店を改装して大きくする</td>
+                <td>サーバーのCPU・メモリを増強</td>
+                <td>構成がシンプル、既存アプリの修正不要</td>
+                <td>物理的な上限がある、拡張中は停止が必要な場合も</td>
+              </tr>
+              <tr>
+                <td><strong><span class="tech-term">水平スケーリング<span class="tooltip">スケールアウトとも呼ぶ。同じ構成のサーバーを台数を増やして処理を分散する方法</span></span></strong>（スケールアウト）</td>
+                <td>2号店、3号店を出す</td>
+                <td>同じサーバーを台数を増やして負荷分散</td>
+                <td>理論上は無限に拡張可能、1台の障害に強い</td>
+                <td>アプリの設計対応が必要、データ同期が複雑</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">ポイント</p>
+            <p>小規模なら垂直（スケールアップ）で十分。でも大規模になるほど<strong>水平（スケールアウト）が主流</strong>です。クラウドの登場で、水平スケーリングが格段にやりやすくなりました。「今は小さいけど将来大きくなるかも」という案件では、<strong>水平スケーリングしやすいアーキテクチャ</strong>を最初から選んでおくことが大切です。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>キャパシティプランニング——「ピーク」に備える</h2>
+
+        <p><span class="tech-term">キャパシティプランニング<span class="tooltip">将来の利用量を予測し、必要な処理能力（CPU、メモリ、ネットワーク等）を計画すること</span></span>とは、「このシステムにはどれくらいの処理能力が必要か」を計画すること。ここで大切なのが<strong>「ピーク時」と「平常時」</strong>の考え方です。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>考え方</th>
+                <th>オンプレミスの場合</th>
+                <th>クラウドの場合</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>平常時に合わせる</strong></td>
+                <td>普段はOKだがピーク時にシステムダウン</td>
+                <td>ピーク時だけスケールアウトで対応可能</td>
+              </tr>
+              <tr>
+                <td><strong>ピーク時に合わせる</strong></td>
+                <td>普段はリソースが余ってコスト無駄</td>
+                <td>不要なリソースは縮小してコスト節約</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>オンプレミスでは「ピーク時に合わせて余裕を持ったサーバーを買う」のが一般的でしたが、クラウドでは<span class="tech-term">オートスケーリング<span class="tooltip">アクセス量に応じてサーバー台数を自動的に増減する仕組み。ピーク時に増やし、閑散時に減らすことでコスト最適化</span></span>によって「必要なときだけ拡張し、不要になったら縮小」できます。</p>
+
+        <div class="owl-box owl-trivia">
+          <div class="owl-box-content">
+            <p class="owl-box-title">豆知識</p>
+            <p>有名な事例として、チケット販売サイトは発売開始の瞬間にアクセスが数百倍になります。このような「年に数回の超ピーク」のために常に巨大なサーバーを維持するのは非効率。クラウドのオートスケーリングはまさにこうした課題を解決するために生まれました。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>「年に1回のキャンペーンで10倍のアクセス」への対応策</h2>
+
+        <p>お客様からよくある要望です。選択肢を整理しましょう。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>対応策</th>
+                <th>仕組み</th>
+                <th>コスト感</th>
+                <th>適したケース</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>オートスケーリング</strong></td>
+                <td>アクセス増をトリガーにサーバーを自動追加</td>
+                <td>使った分だけ（変動費）</td>
+                <td>ピークが予測しづらい場合</td>
+              </tr>
+              <tr>
+                <td><strong>事前スケーリング</strong></td>
+                <td>キャンペーン前にあらかじめサーバーを増強</td>
+                <td>ピーク期間分の追加費用</td>
+                <td>ピークのタイミングが事前にわかる場合</td>
+              </tr>
+              <tr>
+                <td><strong><span class="tech-term">CDN<span class="tooltip">Content Delivery Network。世界中に分散配置されたサーバーから、ユーザーに近い場所でコンテンツを配信する仕組み</span></span>の活用</strong></td>
+                <td>静的コンテンツをCDNに逃がしてサーバー負荷軽減</td>
+                <td>比較的安い</td>
+                <td>画像や動画が多いサイト</td>
+              </tr>
+              <tr>
+                <td><strong>待機列（キュー）の導入</strong></td>
+                <td>アクセスをキューに溜めて順番に処理</td>
+                <td>中程度</td>
+                <td>チケット販売など順番制が許容される場合</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 営業コラム -->
+      <div class="column-sales">
+        <p class="column-title">営業の現場では...</p>
+        <p>お客様に「将来どのくらいユーザーが増える見込みですか？」と聞くのは必須の質問です。「今は100人だけど、3年後には1万人かも」——この情報があれば、最初から水平スケーリング対応の構成を提案できます。逆に「100人から増える予定はない」なら、シンプルな構成で十分。<strong>未来の成長イメージ</strong>を聞き出すことで、過剰投資も過少投資も防げます。</p>
+      </div>
+
+      <!-- 開発チームコラム -->
+      <div class="column-dev">
+        <p class="column-title">開発チームの視点</p>
+        <p>スケーラビリティの設計で開発チームが最も知りたい情報は3つ。(1) <strong>現在の同時ユーザー数</strong>、(2) <strong>3〜5年後の見込み</strong>、(3) <strong>ピーク時の倍率</strong>（平常時の何倍になるか）。とくに(3)が重要で、「普段100人、ピーク10,000人」と「普段1,000人、ピーク2,000人」ではアーキテクチャの方針がまったく異なります。営業さんがこの3つを聞いてきてくれると、最適な構成を提案しやすくなります。</p>
+      </div>
+
+      <!-- クイズ -->
+      <h2>理解度チェック</h2>
+
+      <div class="quiz-card" data-answer="B" data-phase="phase2" data-topic="scalability">
+        <div class="quiz-card-header"><div class="quiz-icon">Q1</div><h4>スケーリング方式</h4></div>
+        <p class="quiz-question">「2号店を出す」にあたるスケーリング方式はどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>垂直スケーリング（スケールアップ）</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>水平スケーリング（スケールアウト）</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>オートスケーリング</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>CDN</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>「2号店を出す」＝同じ構成のサーバーを台数を増やして負荷を分散する<strong>水平スケーリング（スケールアウト）</strong>です。「お店を改装して大きくする」が垂直スケーリング。オートスケーリングは水平スケーリングを自動で行う仕組みです。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="quiz-card" data-answer="C" data-phase="phase2" data-topic="scalability">
+        <div class="quiz-card-header"><div class="quiz-icon">Q2</div><h4>オートスケーリング</h4></div>
+        <p class="quiz-question">オートスケーリングの最大のメリットはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>プログラムの修正が不要になる</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>セキュリティが自動的に強化される</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>負荷に応じて自動で拡張・縮小し、コストを最適化できる</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>バックアップが自動で取られる</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>オートスケーリングの最大のメリットは、<strong>負荷に応じた自動的な拡張・縮小</strong>です。ピーク時にサーバーを増やし、閑散時に減らすことで、パフォーマンスとコストの両方を最適化できます。セキュリティやバックアップは別の仕組みで対応が必要です。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="quiz-card" data-answer="A" data-phase="phase2" data-topic="scalability">
+        <div class="quiz-card-header"><div class="quiz-icon">Q3</div><h4>キャパシティプランニング</h4></div>
+        <p class="quiz-question">スケーラビリティ設計のために、営業がお客様から聞くべき情報として最も重要なものはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>現在の同時ユーザー数、将来の見込み、ピーク時の倍率</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>使用するプログラミング言語の希望</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>お客様の社員数と売上高</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>好みのクラウドベンダー</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>スケーラビリティの設計に最も必要な情報は「<strong>現在の同時ユーザー数</strong>」「<strong>将来の見込み</strong>」「<strong>ピーク時の倍率</strong>」の3つです。これがわかると、開発チームは適切な拡張戦略を計画できます。プログラミング言語やクラウドベンダーは、スケーリング方針が決まった後に検討する項目です。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- 振り返り -->
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の振り返り</p>
+          <p>スケーラビリティの2つの方法、お店のたとえで理解できましたか？「スケールアップとスケールアウト、どっちがいいですか？」——こんな質問をSEにできるだけで、頼りにされますよ。次は「セキュリティ」。お客様の大切なデータを守る仕組みを学びましょう！</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <a href="02-availability.html" class="btn btn-outline">← 前のトピック</a>
+        <a href="04-security.html" class="btn btn-primary">次のトピック：セキュリティ →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>学習の進捗は自動保存されます 🦉</p><p>アーキテクチャ学習ランド &copy; 2025</p></div></footer>
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>ProgressManager.initScrollTracking('phase2', 'scalability');</script>
+</body>
+</html>

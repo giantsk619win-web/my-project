@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2-6. コスト構造と運用保守 | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body data-phase="2">
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo"><span class="owl-icon">🦉</span><span>アーキテクチャ学習ランド</span></a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav><ul class="nav-links">
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../phase1/index.html">Phase 1</a></li>
+        <li><a href="index.html" class="active">Phase 2</a></li>
+        <li><a href="../phase3/index.html">Phase 3</a></li>
+        <li><a href="../phase4/index.html">Phase 4</a></li>
+        <li><a href="../phase5/index.html">Phase 5</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <main class="phase-page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a><span class="separator">/</span>
+        <a href="index.html">Phase 2</a><span class="separator">/</span>
+        <span class="current">2-6. コスト構造と運用保守</span>
+      </nav>
+
+      <div class="phase-header">
+        <h1><span class="phase-icon">🛡️</span>2-6. コスト構造と運用保守</h1>
+      </div>
+
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の導入</p>
+          <p>お客様が一番気にすること、それは「いくらかかるの？」ですよね。でも、システムのコストは「作る費用」だけじゃありません。家を買うとき、住宅ローンだけでなく固定資産税、修繕費、光熱費もかかりますよね？システムも同じ。今日は営業の得意分野、<strong>お金の話</strong>をアーキテクチャの観点から整理しましょう！</p>
+        </div>
+      </div>
+
+      <section>
+        <h2>TCO（総所有コスト）という考え方</h2>
+
+        <p><span class="tech-term">TCO<span class="tooltip">Total Cost of Ownership（総所有コスト）。システムの導入から運用・廃棄までに必要なすべてのコストの合計</span></span>とは、「作る費用」だけでなく「使い続ける費用」も含めたトータルコストのこと。家のたとえなら「購入価格 + 35年分の維持費」です。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>コスト区分</th>
+                <th>家のたとえ</th>
+                <th>システムの例</th>
+                <th>発生タイミング</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>初期費用（CAPEX）</strong></td>
+                <td>建築費、土地代</td>
+                <td>開発費、サーバー購入、ライセンス</td>
+                <td>最初の1回</td>
+              </tr>
+              <tr>
+                <td><strong>運用費（OPEX）</strong></td>
+                <td>光熱費、管理費</td>
+                <td>クラウド利用料、監視、バックアップ</td>
+                <td>毎月</td>
+              </tr>
+              <tr>
+                <td><strong>保守費</strong></td>
+                <td>修繕費、リフォーム</td>
+                <td>バグ修正、セキュリティパッチ、機能改修</td>
+                <td>随時/定期</td>
+              </tr>
+              <tr>
+                <td><strong>人件費</strong></td>
+                <td>管理人さんの給料</td>
+                <td>運用担当者、ヘルプデスク</td>
+                <td>毎月</td>
+              </tr>
+              <tr>
+                <td><strong>廃棄・移行費</strong></td>
+                <td>解体費、引越し費</td>
+                <td>旧システムのデータ移行、廃止作業</td>
+                <td>最後の1回</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">ポイント</p>
+            <p>お客様は「開発費」だけに注目しがちですが、実際には<strong>運用保守コストが開発費の1.5〜2倍</strong>かかるのが一般的です。5年間のTCOで見ると、開発費は全体の30〜40%に過ぎません。この事実を知っている営業は、お客様に「本当のコスト」を説明できます。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>オンプレミス vs クラウドの5年TCO比較</h2>
+
+        <p>同じシステムをオンプレとクラウドで構築した場合の、5年間のコスト比較イメージです。（金額は相対比較のための概算）</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>コスト項目</th>
+                <th>オンプレミス</th>
+                <th>クラウド</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>初期費用</strong></td>
+                <td>サーバー購入 1,000万円<br>設置・構築 300万円</td>
+                <td>初期構築 200万円<br>（ハード購入不要）</td>
+              </tr>
+              <tr>
+                <td><strong>年間運用費 × 5年</strong></td>
+                <td>保守契約 150万円/年<br>電気代 50万円/年<br>人件費 300万円/年<br>＝ 2,500万円</td>
+                <td>クラウド利用料 200万円/年<br>運用人件費 200万円/年<br><br>＝ 2,000万円</td>
+              </tr>
+              <tr>
+                <td><strong>5年TCO合計</strong></td>
+                <td><strong>約3,800万円</strong></td>
+                <td><strong>約2,200万円</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-trivia">
+          <div class="owl-box-content">
+            <p class="owl-box-title">豆知識</p>
+            <p>「クラウドの方が安い」と一概には言えません。上の例は変動の大きいワークロード向け。<strong>24時間365日フル稼働の基幹システム</strong>では、オンプレの方がTCOが安くなるケースもあります。大切なのは「お客様の使い方」に合わせて比較すること。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>クラウドの従量課金モデルの落とし穴</h2>
+
+        <p>クラウドの「使った分だけ」は魅力的ですが、注意点があります。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>落とし穴</th>
+                <th>どうなるか</th>
+                <th>対策</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>「使いすぎ」問題</strong></td>
+                <td>開発者がリソースを消し忘れ、月額が想定の3倍に</td>
+                <td>コストアラートの設定、定期的なリソース棚卸し</td>
+              </tr>
+              <tr>
+                <td><strong>データ転送料の罠</strong></td>
+                <td>クラウドからのデータ送信（エグレス）に課金され、予想外の請求</td>
+                <td>事前にデータ転送量を見積もる。CDN活用で軽減</td>
+              </tr>
+              <tr>
+                <td><strong>リザーブド未活用</strong></td>
+                <td>常時稼働サーバーをオンデマンドで使い続け、割高に</td>
+                <td><span class="tech-term">リザーブドインスタンス<span class="tooltip">1年〜3年の利用を予約することで、オンデマンド料金より30〜70%安くなるクラウドの料金プラン</span></span>で30〜70%割引を活用</td>
+              </tr>
+              <tr>
+                <td><strong>無料枠の終了</strong></td>
+                <td>最初の12ヶ月は無料だったサービスが、いきなり課金開始</td>
+                <td>無料枠の期限と条件を事前確認</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>運用保守コストの現実</h2>
+
+        <p>「システムは作ったら終わり」と思っているお客様は少なくありません。しかし実態は——</p>
+
+        <ul>
+          <li><strong>運用保守費 ＝ 開発費の15〜20%/年</strong>が一般的。5年で開発費を超える</li>
+          <li><strong>セキュリティパッチ適用</strong>：年間を通じて必要。放置すると脆弱性が放置される</li>
+          <li><strong>OS・ミドルウェアのEOL対応</strong>：サポート終了への対応で大規模改修が必要になることも</li>
+          <li><strong>障害対応</strong>：24時間監視が必要なら人件費が大幅増</li>
+        </ul>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">ポイント</p>
+            <p>提案時に「開発費だけ」を見せるのは危険。必ず<strong>5年TCOで提案する</strong>のがプロの営業です。初期費用が安くても運用で逆転されることもある。お客様には「5年間のトータルコストで比較しましょう」と提案すると、より誠実な印象を与えられます。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>お客様に5年TCOを説明するテンプレート</h2>
+
+        <p>お客様への説明の流れです。</p>
+
+        <ol>
+          <li><strong>前提を共有</strong>：「システムのコストは開発費だけではありません。5年間のトータルで考えましょう」</li>
+          <li><strong>内訳を見せる</strong>：「初期費用○○万円、年間運用費○○万円、5年TCOは○○万円です」</li>
+          <li><strong>比較する</strong>：「オンプレ案とクラウド案の5年TCOを比較すると...」</li>
+          <li><strong>判断材料を提供</strong>：「初期費用を抑えたいならクラウド、長期安定運用ならオンプレも選択肢です」</li>
+          <li><strong>運用体制の確認</strong>：「運用は自社で行いますか？当社に委託しますか？それによってもコストが変わります」</li>
+        </ol>
+      </section>
+
+      <!-- 営業コラム -->
+      <div class="column-sales">
+        <p class="column-title">営業の現場では...</p>
+        <p>コストの話は営業の最大の武器。「開発費3,000万円です」より「5年TCOで比較すると、A案が5,500万円、B案が4,200万円。B案の方が初期費用は高いですが、運用コストが低いため5年で逆転します」——こう説明できる営業は、お客様の信頼を勝ち取れます。アーキテクチャの知識は「なぜB案の運用コストが低いのか」を説明する力にもなります。</p>
+      </div>
+
+      <!-- 開発チームコラム -->
+      <div class="column-dev">
+        <p class="column-title">開発チームの視点</p>
+        <p>開発チームがコスト面で営業さんに知っておいてほしいこと：(1) <strong>「安く作る」と「安く運用する」は別物</strong>。初期開発を安くするために自動化を省くと、運用コストが膨れ上がる。(2) <strong>テストの自動化やCI/CDの導入は初期コストが上がるが、長期的には保守コストを大幅に削減</strong>。(3) <strong>技術的負債</strong>（後回しにした設計上の問題）は時間が経つほど修正コストが増大する。これらを踏まえた「長期視点の提案」ができると、お客様にもチームにも感謝されます。</p>
+      </div>
+
+      <!-- クイズ -->
+      <h2>理解度チェック</h2>
+
+      <div class="quiz-card" data-answer="C" data-phase="phase2" data-topic="cost-structure">
+        <div class="quiz-card-header"><div class="quiz-icon">Q1</div><h4>TCOの構成要素</h4></div>
+        <p class="quiz-question">TCO（総所有コスト）に含まれないものはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>初期開発費</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>年間の運用保守費</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>競合他社の開発費</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>旧システムからのデータ移行費</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>TCOは「自社のシステム」にかかるすべてのコスト（初期費用、運用費、保守費、移行費など）を含みますが、<strong>競合他社のコスト</strong>は自社のTCOには含まれません。競合分析は別の話ですね。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="quiz-card" data-answer="A" data-phase="phase2" data-topic="cost-structure">
+        <div class="quiz-card-header"><div class="quiz-icon">Q2</div><h4>運用保守コスト</h4></div>
+        <p class="quiz-question">一般的に、運用保守費は開発費に対してどのくらいの割合ですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>年間15〜20%（5年で開発費を超える）</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>年間1〜2%（ほとんどかからない）</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>開発費の10倍以上</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>クラウドなら無料</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>一般的に運用保守費は<strong>開発費の年間15〜20%</strong>が目安です。5年間で計算すると75〜100%、つまり開発費と同額〜それ以上のコストがかかります。「作ったら終わり」ではなく「作ってからが本番」——この認識がお客様との信頼関係を築きます。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="quiz-card" data-answer="B" data-phase="phase2" data-topic="cost-structure">
+        <div class="quiz-card-header"><div class="quiz-icon">Q3</div><h4>クラウドコストの落とし穴</h4></div>
+        <p class="quiz-question">クラウドの従量課金モデルでよくある「落とし穴」はどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>使わなくても毎月固定費がかかる</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>リソースの消し忘れで想定外の請求が来る</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>データを保存できる量に上限がある</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>セキュリティ対策が一切ない</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>クラウドの「使った分だけ」課金は魅力的ですが、<strong>リソースの消し忘れ</strong>（開発環境のサーバーを止め忘れるなど）で想定外の請求が来るのはよくある落とし穴です。コストアラートの設定や定期的なリソース棚卸しが重要です。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- 振り返り -->
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の振り返り</p>
+          <p>コスト構造と運用保守の現実、しっかり理解できましたね。「5年TCOで提案する」「運用保守は開発費の1.5〜2倍」——この2つは、お客様との予算の話で必ず役立ちます。お金の話ができる営業は、アーキテクチャの話もできる営業。Phase 2の学びをフル活用してください！</p>
+        </div>
+      </div>
+
+      <!-- Phase 2 → Phase 3 ブリッジ -->
+      <div class="owl-box owl-point" style="background: linear-gradient(135deg, #e3f2fd, #e8f5e9); border-left-color: var(--color-accent);">
+        <div class="owl-box-content">
+          <p class="owl-box-title" style="color: var(--color-accent); font-size: 1.1rem;">🦉 Phase 2 完了おめでとう！</p>
+          <p>非機能要件もバッチリだね！可用性、スケーラビリティ、セキュリティ、パフォーマンス、コスト構造——これだけの知識があれば、もう「技術のことはわからないので...」とは言わなくて済むよ。</p>
+          <p style="margin-top: 1rem;">ここからが営業の腕の見せどころ。お客様がDXの課題を話してくれたとき、<strong>「それならこういうアーキテクチャが合いそうです」</strong>って提案できたらかっこいいよね？Phase 3では、お客様の課題からアーキテクチャを選定し、提案書に落とし込む力を身につけていこう！</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <a href="05-performance.html" class="btn btn-outline">← 前のトピック</a>
+        <a href="../phase3/index.html" class="btn btn-primary" style="background: var(--phase3-color);">Phase 3: 旅のルートを設計する へ進む →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>学習の進捗は自動保存されます 🦉</p><p>アーキテクチャ学習ランド &copy; 2025</p></div></footer>
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>ProgressManager.initScrollTracking('phase2', 'cost-structure');</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phase 2: 旅の安全を守る | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body data-phase="2">
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo">
+        <span class="owl-icon">🦉</span>
+        <span>アーキテクチャ学習ランド</span>
+      </a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html">ホーム</a></li>
+          <li><a href="../phase1/index.html">Phase 1</a></li>
+          <li><a href="index.html" class="active">Phase 2</a></li>
+          <li><a href="../phase3/index.html">Phase 3</a></li>
+          <li><a href="../phase4/index.html">Phase 4</a></li>
+          <li><a href="../phase5/index.html">Phase 5</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="phase-page">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span class="separator">/</span>
+        <span class="current">Phase 2: 旅の安全を守る</span>
+      </nav>
+
+      <!-- Phase Header -->
+      <div class="phase-header">
+        <h1><span class="phase-icon">🛡️</span>Phase 2: 旅の安全を守る</h1>
+      </div>
+
+      <!-- Owl Introduction -->
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生より</p>
+          <p>Phase 1でデータの旅の全体像がつかめましたね。でも、旅には安全対策が必要です。家を建てるとき「間取り」だけでなく「耐震性」「断熱性」「防犯」も考えますよね？システムも同じ。機能だけでなく<strong>非機能要件</strong>——可用性、スケーラビリティ、セキュリティ、パフォーマンス——を理解することで、提案の説得力がまるで変わります。この領域は営業が最も見落としやすく、しかし提案金額とプロジェクトの成否に最も影響するところ。しっかり学んでいきましょう！</p>
+        </div>
+      </div>
+
+      <!-- Phase Progress -->
+      <div class="phase-progress" style="margin-bottom: 2rem;">
+        <h3 style="font-size: 0.95rem; font-weight: 700; color: var(--phase2-color); margin-bottom: 0.5rem;">Phase 2 の進捗</h3>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" style="width: 0%; background: var(--phase2-color);"></div>
+        </div>
+        <p class="progress-label">0 / 6 トピック完了（0%）</p>
+      </div>
+
+      <!-- Topic List -->
+      <div class="topic-grid">
+        <div class="topic-card" data-phase="phase2" data-topic="non-functional-requirements">
+          <div class="topic-status incomplete"></div>
+          <div class="topic-info">
+            <h3><a href="01-non-functional-requirements.html">2-1. 非機能要件とは何か</a></h3>
+            <p>「家の間取り」と「耐震性」の違い。非機能要件を見落とすとどうなるか、実際の失敗シナリオで学びます。</p>
+          </div>
+        </div>
+
+        <div class="topic-card" data-phase="phase2" data-topic="availability">
+          <div class="topic-status incomplete"></div>
+          <div class="topic-info">
+            <h3><a href="02-availability.html">2-2. 可用性（Availability）</a></h3>
+            <p>SLA 99.9%と99.99%の差は？冗長化やDR（災害復旧）など、システムを止めない仕組みを学びます。</p>
+          </div>
+        </div>
+
+        <div class="topic-card" data-phase="phase2" data-topic="scalability">
+          <div class="topic-status incomplete"></div>
+          <div class="topic-info">
+            <h3><a href="03-scalability.html">2-3. スケーラビリティ</a></h3>
+            <p>お店の拡大で理解する水平・垂直スケーリング。ピーク対策とオートスケーリングも解説します。</p>
+          </div>
+        </div>
+
+        <div class="topic-card" data-phase="phase2" data-topic="security">
+          <div class="topic-status incomplete"></div>
+          <div class="topic-info">
+            <h3><a href="04-security.html">2-4. セキュリティ</a></h3>
+            <p>ゼロトラスト、認証と認可、暗号化。お客様のデータを守るための基本設計と業界別の要件を理解します。</p>
+          </div>
+        </div>
+
+        <div class="topic-card" data-phase="phase2" data-topic="performance">
+          <div class="topic-status incomplete"></div>
+          <div class="topic-info">
+            <h3><a href="05-performance.html">2-5. パフォーマンス</a></h3>
+            <p>レスポンスタイムとスループット、3秒ルール。キャッシュやCDNの仕組みもわかりやすく解説します。</p>
+          </div>
+        </div>
+
+        <div class="topic-card" data-phase="phase2" data-topic="cost-structure">
+          <div class="topic-status incomplete"></div>
+          <div class="topic-info">
+            <h3><a href="06-cost-structure.html">2-6. コスト構造と運用保守</a></h3>
+            <p>TCOの考え方、オンプレvsクラウドの5年コスト比較、運用保守コストの現実を学びます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>学習の進捗は自動保存されます 🦉</p>
+      <p>アーキテクチャ学習ランド &copy; 2025</p>
+    </div>
+  </footer>
+
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+</body>
+</html>

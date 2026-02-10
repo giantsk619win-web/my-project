@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1-2. データのライフサイクル | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body data-phase="1">
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo">
+        <span class="owl-icon">🦉</span>
+        <span>アーキテクチャ学習ランド</span>
+      </a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html">ホーム</a></li>
+          <li><a href="index.html" class="active">Phase 1</a></li>
+          <li><a href="../phase2/index.html">Phase 2</a></li>
+          <li><a href="../phase3/index.html">Phase 3</a></li>
+          <li><a href="../phase4/index.html">Phase 4</a></li>
+          <li><a href="../phase5/index.html">Phase 5</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="phase-page">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span class="separator">/</span>
+        <a href="index.html">Phase 1</a>
+        <span class="separator">/</span>
+        <span class="current">1-2. データのライフサイクル</span>
+      </nav>
+
+      <div class="phase-header">
+        <h1><span class="phase-icon">🌱</span>1-2. データのライフサイクル</h1>
+      </div>
+
+      <!-- ==================== -->
+      <!-- フクロウ先生の導入 -->
+      <!-- ==================== -->
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の導入</p>
+          <p>このサイトのテーマは「データの旅」。でも、データって一体どこから生まれて、どこへ行くのでしょう？実は、私たちが日常で体験していることと同じなんです。たとえば、あなたがコンビニでお弁当を買う——その瞬間に「購買データ」が生まれ、集計され、分析され、「次にどんな商品を仕入れるか」という経営判断に使われます。データには一生（ライフサイクル）があるんですよ。</p>
+        </div>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 本文解説 -->
+      <!-- ==================== -->
+      <section>
+        <h2>データの旅路：6つのステージ</h2>
+
+        <p>1つのデータが生まれてから役目を終えるまで、大きく<strong>6つのステージ</strong>を旅します。郵便物にたとえながら見ていきましょう。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>ステージ</th>
+                <th>やること</th>
+                <th>郵便のたとえ</th>
+                <th>代表的な技術</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. 生成</strong></td>
+                <td>データが生まれる</td>
+                <td>手紙を書く</td>
+                <td>Webフォーム、<span class="tech-term">IoT<span class="tooltip">Internet of Things。センサーやカメラなど、インターネットに接続されたモノのこと</span></span>センサー、アプリ入力</td>
+              </tr>
+              <tr>
+                <td><strong>2. 収集</strong></td>
+                <td>データを集める</td>
+                <td>ポストに投函→集配局へ</td>
+                <td><span class="tech-term">API<span class="tooltip">Application Programming Interface。異なるシステム間でデータをやり取りするための仕組み</span></span>、<span class="tech-term">ETL<span class="tooltip">Extract（抽出）、Transform（変換）、Load（読み込み）の略。データを別のシステムに移す処理</span></span>ツール、ログ収集</td>
+              </tr>
+              <tr>
+                <td><strong>3. 処理</strong></td>
+                <td>データを加工・変換する</td>
+                <td>仕分け・消印押し</td>
+                <td>バッチ処理、<span class="tech-term">ストリーム処理<span class="tooltip">データが発生するたびにリアルタイムで処理する方式。バッチ処理（まとめて処理）の対義語</span></span>、データクレンジング</td>
+              </tr>
+              <tr>
+                <td><strong>4. 保存</strong></td>
+                <td>データを安全に蓄積する</td>
+                <td>届け先の郵便受けに届く</td>
+                <td><span class="tech-term">RDB<span class="tooltip">Relational Database。表形式でデータを管理するデータベース。Oracle、PostgreSQL、MySQLなどが代表的</span></span>、<span class="tech-term">NoSQL<span class="tooltip">Not Only SQL。表形式以外の方法でデータを格納するデータベース。大量データや柔軟な構造に強い</span></span>、クラウドストレージ</td>
+              </tr>
+              <tr>
+                <td><strong>5. 活用</strong></td>
+                <td>データから価値を引き出す</td>
+                <td>手紙を読んで行動する</td>
+                <td><span class="tech-term">BI<span class="tooltip">Business Intelligence。蓄積されたデータをグラフや表にして経営判断に活用する仕組み</span></span>ツール、ダッシュボード、AI/機械学習</td>
+              </tr>
+              <tr>
+                <td><strong>6. 廃棄</strong></td>
+                <td>不要になったデータを安全に消す</td>
+                <td>古い手紙をシュレッダー</td>
+                <td>データ保持ポリシー、<span class="tech-term">アーカイブ<span class="tooltip">すぐには使わないが保存義務があるデータを、低コストのストレージに移して保管すること</span></span>、安全消去</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">ポイント</p>
+            <p>お客様の案件を考えるとき、<strong>「このデータはどのステージの話をしているんだろう？」</strong>と意識するクセをつけましょう。「データを集めたい」のか「集めたデータを分析したい」のかで、必要な技術も費用もまったく違ってきます。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>業界別：データの旅の実例</h2>
+
+        <p>では、実際の業界ではどんなデータがどんな旅をしているのでしょうか？お客様との会話で役立つ3つの例を見てみましょう。</p>
+
+        <h3>小売業：購買データの旅</h3>
+        <p><strong>生成</strong>：お客様がレジでバーコードをスキャン → <strong>収集</strong>：POSデータが本部サーバーに集約 → <strong>処理</strong>：日次バッチで売上集計 → <strong>保存</strong>：データウェアハウスに蓄積 → <strong>活用</strong>：BIツールで売れ筋分析、需要予測で仕入れ最適化 → <strong>廃棄</strong>：法定保存期間経過後にアーカイブ</p>
+
+        <h3>製造業：IoTセンサーデータの旅</h3>
+        <p><strong>生成</strong>：工場の機械に取り付けたセンサーが温度・振動を計測 → <strong>収集</strong>：IoTゲートウェイ経由でクラウドに送信 → <strong>処理</strong>：リアルタイムで異常値を検知 → <strong>保存</strong>：時系列データベースに蓄積 → <strong>活用</strong>：故障予兆の検知、保守計画の最適化 → <strong>廃棄</strong>：一定期間後に詳細データを削除し、集計結果のみ保持</p>
+
+        <h3>金融業：取引データの旅</h3>
+        <p><strong>生成</strong>：顧客がネットバンキングで振込操作 → <strong>収集</strong>：リアルタイムで基幹システムへ → <strong>処理</strong>：即時の残高更新と不正検知チェック → <strong>保存</strong>：高信頼性のRDBに厳重保管 → <strong>活用</strong>：マネーロンダリング対策の分析、顧客の資産運用提案 → <strong>廃棄</strong>：法規制に基づき10年以上保存した後にアーカイブ</p>
+      </section>
+
+      <section>
+        <h2>営業が知っておくべき各ステージの技術キーワード</h2>
+
+        <p>すべてを深く理解する必要はありません。<strong>「この言葉が出てきたら、データの旅のどのステージの話だな」</strong>とピンとくるレベルで十分です。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>ステージ</th>
+                <th>よく出るキーワード</th>
+                <th>お客様の言い方（例）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>生成</strong></td>
+                <td>フォーム入力、スキャン、センサー、ログ</td>
+                <td>「店舗のデータを取りたい」</td>
+              </tr>
+              <tr>
+                <td><strong>収集</strong></td>
+                <td>API連携、データ連携、インポート、ETL</td>
+                <td>「各拠点のデータを本部に集めたい」</td>
+              </tr>
+              <tr>
+                <td><strong>処理</strong></td>
+                <td>バッチ、リアルタイム、変換、クレンジング</td>
+                <td>「データをきれいにして使えるようにしたい」</td>
+              </tr>
+              <tr>
+                <td><strong>保存</strong></td>
+                <td>DB、ストレージ、データレイク、バックアップ</td>
+                <td>「安全にデータを保管したい」</td>
+              </tr>
+              <tr>
+                <td><strong>活用</strong></td>
+                <td>BI、ダッシュボード、AI、レポート</td>
+                <td>「データを見える化したい」</td>
+              </tr>
+              <tr>
+                <td><strong>廃棄</strong></td>
+                <td>保持ポリシー、アーカイブ、GDPR対応</td>
+                <td>「古いデータの扱いに困っている」</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==================== -->
+      <!-- 営業の現場コラム -->
+      <!-- ==================== -->
+      <div class="column-sales">
+        <p class="column-title">営業の現場では...</p>
+        <p>お客様がDX推進を検討中で「うちもデータ活用をやりたい」と言ったとき、「何のデータを、どう集めて、どう使いたいですか？」とライフサイクルに沿って質問すると、漠然とした要望を具体的な要件に落とし込めます。「データを見える化したい」は<strong>活用ステージ</strong>の話ですが、実はその前に<strong>収集と処理</strong>の仕組みが必要——こうした全体像を押さえておくと、適切な規模感と予算感で提案できるようになります。</p>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 開発チームの視点コラム -->
+      <!-- ==================== -->
+      <div class="column-dev">
+        <p class="column-title">開発チームの視点</p>
+        <p>開発チームは、データのライフサイクル全体を考えてアーキテクチャを設計します。とくに重要なのが<strong>「データ量の見積もり」</strong>と<strong>「処理のリアルタイム性」</strong>。営業さんからよくある質問で助かるのが「1日にどのくらいのデータが発生しますか？」「リアルタイムで見たいですか、翌日でもOKですか？」——この2つの情報だけで、アーキテクチャの方向性がかなり絞り込めます。逆に、この情報がないと見積もりが大幅にブレてしまうんです。</p>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 章末クイズ -->
+      <!-- ==================== -->
+      <h2>理解度チェック</h2>
+
+      <!-- Quiz 1 -->
+      <div class="quiz-card" data-answer="B" data-phase="phase1" data-topic="data-lifecycle">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q1</div>
+          <h4>データのライフサイクル</h4>
+        </div>
+        <p class="quiz-question">お客様が「各店舗の売上データを本部で一括管理したい」と言っています。これはデータのライフサイクルのどのステージに関する要望ですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>生成</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>収集</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>活用</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>廃棄</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback">
+          <p class="feedback-title"></p>
+        </div>
+        <div class="quiz-explanation">
+          <p>「各拠点のデータを本部に集める」は、データの<strong>収集</strong>ステージの話です。分散したデータを集約する仕組み（API連携やETLツール）が必要になります。データの生成（各店舗でのPOSデータ記録）はすでに行われている前提ですね。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- Quiz 2 -->
+      <div class="quiz-card" data-answer="C" data-phase="phase1" data-topic="data-lifecycle">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q2</div>
+          <h4>ETLとは</h4>
+        </div>
+        <p class="quiz-question">ETL（Extract, Transform, Load）は、データの旅のどの段階で主に使われる技術ですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>生成と廃棄</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>活用のみ</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>収集と処理</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>保存のみ</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback">
+          <p class="feedback-title"></p>
+        </div>
+        <div class="quiz-explanation">
+          <p>ETLは「抽出（Extract）→ 変換（Transform）→ 読み込み（Load）」の略で、データを別のシステムから取り出し、必要な形に変換して、保存先に格納する処理です。つまり、<strong>収集</strong>と<strong>処理</strong>にまたがる技術です。データ活用基盤の提案では頻出するキーワードですよ。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- Quiz 3 -->
+      <div class="quiz-card" data-answer="A" data-phase="phase1" data-topic="data-lifecycle">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q3</div>
+          <h4>見積もりに効く質問</h4>
+        </div>
+        <p class="quiz-question">データ活用の案件で、開発チームが「見積もりに必要」としてとくに重視する情報はどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>1日のデータ量と、リアルタイム性の要否</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>お客様の社長の名前と年齢</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>競合他社が使っているツール名</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>お客様のオフィスの所在地</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback">
+          <p class="feedback-title"></p>
+        </div>
+        <div class="quiz-explanation">
+          <p>開発チームがアーキテクチャを検討する際、<strong>データ量</strong>と<strong>リアルタイム性</strong>は最も重要な判断材料です。「1日に数百件のデータで翌日見られればOK」と「1秒間に数万件のデータをリアルタイムで処理したい」では、必要な技術もコストもまったく異なります。この2つを聞いてくれる営業さんは、開発チームから「わかってるな！」と信頼されますよ。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- ==================== -->
+      <!-- フクロウ先生の振り返り -->
+      <!-- ==================== -->
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の振り返り</p>
+          <p>データの旅路、全体像がつかめましたか？大切なのは、お客様の話を聞いたとき「それはデータの旅のどのステージの話だろう？」とイメージできること。次のトピックでは、その旅を支える「アーキテクチャパターン」を学びます。モノリスやマイクロサービスなど、名前だけは聞いたことがあるかも？身近なたとえで整理していきましょう！</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <a href="01-what-is-architecture.html" class="btn btn-outline">← 前のトピック</a>
+        <a href="03-architecture-patterns.html" class="btn btn-primary">次のトピック：アーキテクチャパターン比較 →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>学習の進捗は自動保存されます 🦉</p>
+      <p>アーキテクチャ学習ランド &copy; 2025</p>
+    </div>
+  </footer>
+
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>
+    ProgressManager.initScrollTracking('phase1', 'data-lifecycle');
+  </script>
+</body>
+</html>

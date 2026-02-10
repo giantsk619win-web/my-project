@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4-2. 見積もりの読み方 | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .estimate-block {
+      background: #fff;
+      border: 2px solid #e0d8cf;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .estimate-block h4 {
+      margin: 0 0 0.75rem;
+      font-size: 1rem;
+      color: var(--phase4-color);
+    }
+    .estimate-bar {
+      display: flex;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 2.5rem;
+      margin: 1rem 0;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .estimate-bar > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0.5rem;
+      white-space: nowrap;
+    }
+    .bar-dev { background: var(--phase4-color); flex: 6; }
+    .bar-mgmt { background: #7e57c2; flex: 2; }
+    .bar-buffer { background: #ef5350; flex: 2; }
+
+    .rate-table td:nth-child(2),
+    .rate-table td:nth-child(3) { text-align: right; }
+
+    .check-item {
+      background: #fff;
+      border: 1px solid #e0d8cf;
+      border-radius: 8px;
+      padding: 1rem 1rem 1rem 3.5rem;
+      margin-bottom: 0.75rem;
+      position: relative;
+      line-height: 1.7;
+    }
+    .check-item::before {
+      content: attr(data-num);
+      position: absolute;
+      left: 0.75rem;
+      top: 1rem;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--phase4-color);
+      color: #fff;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .check-item strong { display: block; margin-bottom: 0.2rem; }
+
+    .script-box {
+      background: #f9f6f2;
+      border-left: 4px solid var(--phase4-color);
+      padding: 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+    }
+    .script-box .speaker {
+      font-weight: 700;
+      color: var(--phase4-color);
+      margin-bottom: 0.25rem;
+    }
+    .script-box p { margin: 0.5rem 0 0; line-height: 1.8; }
+
+    .feel-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .feel-item {
+      background: #fff;
+      border: 1px solid #e0d8cf;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    .feel-item h5 {
+      color: var(--phase4-color);
+      margin: 0 0 0.5rem;
+      font-size: 0.95rem;
+    }
+    .feel-item p { margin: 0; font-size: 0.9rem; line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .feel-card { grid-template-columns: 1fr; }
+      .estimate-bar { font-size: 0.7rem; }
+    }
+  </style>
+</head>
+<body data-phase="4">
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo"><span class="owl-icon">🦉</span><span>アーキテクチャ学習ランド</span></a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav><ul class="nav-links">
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../phase1/index.html">Phase 1</a></li>
+        <li><a href="../phase2/index.html">Phase 2</a></li>
+        <li><a href="../phase3/index.html">Phase 3</a></li>
+        <li><a href="index.html" class="active">Phase 4</a></li>
+        <li><a href="../phase5/index.html">Phase 5</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <main class="topic-page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span class="separator">/</span>
+        <a href="index.html">Phase 4</a>
+        <span class="separator">/</span>
+        <span class="current">4-2. 見積もりの読み方</span>
+      </nav>
+
+      <h1>4-2. 見積もりの読み方</h1>
+
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生より</p>
+          <p>開発チームから見積もりが出てきたとき、「高い」「安い」しか言えないのはもったいない。見積もりの<strong>構造</strong>を理解すれば、「どこにコストがかかっているか」「どこを調整できるか」が見えてきます。お客様に根拠を持って説明できる営業を目指しましょう！</p>
+        </div>
+      </div>
+
+      <!-- セクション1: 人月の概念 -->
+      <section class="content-section">
+        <h2>「人月」とは何か</h2>
+        <p><span class="tech-term">人月（にんげつ）<span class="tooltip">1人のエンジニアが1ヶ月（約20営業日）フルタイムで働く作業量の単位</span></span>は、IT業界で最も広く使われる工数の単位です。</p>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">重要ポイント</p>
+            <p><strong>「3人月」は「3人で1ヶ月」でも「1人で3ヶ月」でもありません。</strong>あくまで「作業量の大きさ」を表す単位です。3人月の作業を3人でやれば1ヶ月ですが、実際にはコミュニケーションコストなどで1ヶ月より長くかかることが多いです。「人月の神話」と呼ばれる古典的な法則ですね。</p>
+          </div>
+        </div>
+
+        <p>関連する単位：</p>
+        <ul>
+          <li><strong>人日（にんにち）</strong>：1人が1日で行う作業量。1人月 ≒ 20人日</li>
+          <li><strong>人時（にんじ）</strong>：1人が1時間で行う作業量。1人日 ≒ 8人時</li>
+          <li><strong>ステップ数</strong>：プログラムの行数。参考情報として出ることがある</li>
+        </ul>
+      </section>
+
+      <!-- セクション2: 見積もり構造 -->
+      <section class="content-section">
+        <h2>工数見積もりの構造</h2>
+        <p>見積もりは大きく3つの要素で構成されます。</p>
+
+        <div class="estimate-block">
+          <h4>見積もり構造のイメージ（例：合計10人月の場合）</h4>
+          <div class="estimate-bar">
+            <div class="bar-dev">開発工数 6人月</div>
+            <div class="bar-mgmt">管理 2人月</div>
+            <div class="bar-buffer">バッファ 2人月</div>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); text-align: center;">合計：10人月 × 単価 ＝ 見積もり金額</p>
+        </div>
+
+        <div class="comparison-table">
+          <table>
+            <thead>
+              <tr>
+                <th>要素</th>
+                <th>内容</th>
+                <th>全体に占める割合</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>開発工数</strong></td>
+                <td>要件定義・設計・実装・テストなど、直接的な開発作業</td>
+                <td>50〜70%</td>
+              </tr>
+              <tr>
+                <td><strong>管理工数</strong></td>
+                <td>プロジェクト管理、会議、レビュー、品質管理</td>
+                <td>15〜25%</td>
+              </tr>
+              <tr>
+                <td><strong>バッファ（リスク予備）</strong></td>
+                <td>仕様変更、技術的リスク、想定外の作業に対する予備</td>
+                <td>10〜20%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="column-sales">
+          <h4>営業が知っておくべきポイント</h4>
+          <p>お客様から「バッファを削って安くして」と言われることがあります。しかしバッファは「余分なコスト」ではなく、<strong>プロジェクトを予定通りに完了させるための保険</strong>です。バッファを削ると、仕様変更が発生した瞬間に追加費用が発生し、かえってコストが膨らみます。</p>
+        </div>
+      </section>
+
+      <!-- セクション3: 単価テーブル -->
+      <section class="content-section">
+        <h2>単価テーブルの見方</h2>
+        <p>見積もりの「金額」は「工数 × 単価」で算出されます。単価は役割（ロール）によって異なります。</p>
+
+        <div class="comparison-table rate-table">
+          <table>
+            <thead>
+              <tr>
+                <th>ロール</th>
+                <th>単価レンジ（月額）</th>
+                <th>主な業務</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>PM（プロジェクトマネージャー）</strong></td>
+                <td>120〜200万円</td>
+                <td>プロジェクト全体の管理・推進</td>
+              </tr>
+              <tr>
+                <td><strong>SE（システムエンジニア）</strong></td>
+                <td>80〜150万円</td>
+                <td>要件定義・設計・テスト設計</td>
+              </tr>
+              <tr>
+                <td><strong>PG（プログラマー）</strong></td>
+                <td>60〜100万円</td>
+                <td>実装・単体テスト</td>
+              </tr>
+              <tr>
+                <td><strong>テスター</strong></td>
+                <td>40〜70万円</td>
+                <td>テスト実施・不具合報告</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-trivia">
+          <div class="owl-box-content">
+            <p class="owl-box-title">豆知識</p>
+            <p>単価は経験年数やスキルだけでなく、<strong>技術の希少性</strong>でも変わります。例えばクラウドアーキテクトやセキュリティスペシャリストは需要に対して供給が少ないため、SE単価よりも高くなることがあります。また、地域差もあり、東京と地方では15〜30%の差があることも。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- セクション4: 見積もりが高いと感じた時 -->
+      <section class="content-section">
+        <h2>見積もりが高いと感じた時に確認すべき5つのポイント</h2>
+
+        <div class="check-item" data-num="1">
+          <strong>スコープ（対象範囲）は適切か？</strong>
+          必要のない機能が含まれていないか。「Phase 1でMVP（最小限の機能）を出して、Phase 2で追加する」というスコープ調整ができないか確認しましょう。
+        </div>
+
+        <div class="check-item" data-num="2">
+          <strong>ロール構成は妥当か？</strong>
+          PM 2名体制になっていないか、テスト工程にSEが多すぎないかなど、各ロールのアサイン量を確認。必要以上に上位ロールが多いと単価が上がります。
+        </div>
+
+        <div class="check-item" data-num="3">
+          <strong>非機能要件のレベルは合っているか？</strong>
+          可用性99.99%と99.9%では構成が大きく変わり、コストも倍以上違うことがあります。お客様の本当に必要なレベルと合っているか確認しましょう。（<a href="../phase2/01-non-functional-requirements.html">Phase 2-1参照</a>）
+        </div>
+
+        <div class="check-item" data-num="4">
+          <strong>既製品（パッケージ/SaaS）で代替できる部分はないか？</strong>
+          全てをスクラッチ開発する前提になっていないか確認。認証、メール送信、帳票など、既製品で十分な部分は積極的に活用しましょう。
+        </div>
+
+        <div class="check-item" data-num="5">
+          <strong>バッファの根拠は明確か？</strong>
+          「一律20%」のバッファなのか、具体的なリスク（技術難易度、外部連携の不確実性等）に基づいたバッファなのかを確認。根拠のあるバッファは削ってはいけません。
+        </div>
+      </section>
+
+      <!-- セクション5: 説明テンプレート -->
+      <section class="content-section">
+        <h2>見積もり根拠をお客様に説明するテンプレート</h2>
+
+        <div class="script-box">
+          <p class="speaker">営業：</p>
+          <p>「今回のお見積もりは合計<strong>○○人月、金額にして○○万円</strong>です。内訳をご説明します。</p>
+          <p>まず開発工数が○○人月。これは要件定義から本番リリースまでの直接的な作業工数です。内訳は、要件定義に○人月、設計に○人月、実装に○人月、テストに○人月を見込んでいます。</p>
+          <p>次にプロジェクト管理工数が○人月。PMがプロジェクト全体を管理し、御社との定例会議や品質管理を行います。</p>
+          <p>最後にリスクバッファを○人月取っています。これは外部システム連携の不確実性と、仕様の詳細化に伴う追加作業を想定したものです。</p>
+          <p>コスト削減の方向性としては、<strong>スコープの見直し</strong>（機能のフェーズ分け）が最も効果的です。ご相談させてください。」</p>
+        </div>
+      </section>
+
+      <!-- セクション6: 機能追加の肌感覚 -->
+      <section class="content-section">
+        <h2>「機能追加するとどれくらい変わるか」の肌感覚</h2>
+        <p>お客様から「この機能を追加したらどれくらい増えますか？」と聞かれたときの、ざっくりした目安です。</p>
+
+        <div class="feel-card">
+          <div class="feel-item">
+            <h5>画面の追加（1画面）</h5>
+            <p>CRUD画面で<strong>0.5〜2人月</strong>程度。複雑なロジックや他画面との連携がある場合は倍以上になることも。</p>
+          </div>
+          <div class="feel-item">
+            <h5>帳票の追加（1帳票）</h5>
+            <p><strong>0.5〜1.5人月</strong>程度。レイアウトの複雑さ、データの加工ロジックによって変動。</p>
+          </div>
+          <div class="feel-item">
+            <h5>外部API連携の追加</h5>
+            <p><strong>1〜3人月</strong>程度。連携先のAPI仕様の安定度、エラーハンドリングの要件で大きく変わる。</p>
+          </div>
+          <div class="feel-item">
+            <h5>認証機能の追加</h5>
+            <p>SSO連携で<strong>2〜5人月</strong>、独自認証で<strong>1〜3人月</strong>。セキュリティ要件が高いほど工数増。</p>
+          </div>
+        </div>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">重要ポイント</p>
+            <p>上記はあくまで「肌感覚」です。お客様に正確な数字を伝えるのは必ず開発チームの見積もりを経てから。ただし「追加すると結構かかりますよ」「軽い追加なので大きく変わらないはずです」という<strong>温度感を即座に伝えられる</strong>だけでも、お客様の信頼度が変わります。</p>
+          </div>
+        </div>
+
+        <div class="column-dev">
+          <h4>開発チームの視点</h4>
+          <p>営業が見積もりの構造を理解していると、「なぜこの金額なのか」をお客様に一次説明してくれるため、技術者が同席しなくても済むケースが増えます。また、「この機能を削ったら○人月くらい減りますか？」という建設的な相談ができ、見積もり調整がスムーズになります。</p>
+        </div>
+      </section>
+
+      <!-- 確認クイズ -->
+      <section class="content-section">
+        <h2>確認クイズ</h2>
+
+        <div class="quiz-card" data-phase="phase4" data-topic="reading-estimates" data-quiz="1">
+          <p class="quiz-question">Q1. 「5人月の作業を5人でやれば1ヶ月で終わる」——この考え方の問題点は？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">5人月は5人に分けられない</button>
+            <button class="quiz-option" data-correct="true">コミュニケーションコストが増えて1ヶ月では終わらない</button>
+            <button class="quiz-option" data-correct="false">5人の単価合計が変わる</button>
+            <button class="quiz-option" data-correct="false">問題はない、正しい考え方</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">人数を増やすとコミュニケーションコストが急増します。これは「人月の神話（ブルックスの法則）」として知られ、「遅れているプロジェクトに人を追加するとさらに遅れる」という教訓です。</p>
+        </div>
+
+        <div class="quiz-card" data-phase="phase4" data-topic="reading-estimates" data-quiz="2">
+          <p class="quiz-question">Q2. 見積もりのバッファを削ることのリスクは？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">特にリスクはない</button>
+            <button class="quiz-option" data-correct="false">品質が下がる</button>
+            <button class="quiz-option" data-correct="true">仕様変更発生時に即座に追加費用が発生する</button>
+            <button class="quiz-option" data-correct="false">開発期間が短くなる</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">バッファはプロジェクトの保険です。削ると、少しの仕様変更や想定外の事態で追加見積もりが必要となり、お客様との信頼関係にも影響します。</p>
+        </div>
+
+        <div class="quiz-card" data-phase="phase4" data-topic="reading-estimates" data-quiz="3">
+          <p class="quiz-question">Q3. 見積もりコスト削減で最も効果的な方法は？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">単価の安いベンダーに変える</button>
+            <button class="quiz-option" data-correct="false">バッファを全て削除する</button>
+            <button class="quiz-option" data-correct="true">スコープ（対象範囲）を見直す</button>
+            <button class="quiz-option" data-correct="false">テスト工程を省略する</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">スコープの見直し（機能のフェーズ分け）が最も効果的かつ安全なコスト削減方法です。「全部一度に作る」のではなく「まず必要最低限を作り、段階的に拡張する」アプローチが有効です。</p>
+        </div>
+      </section>
+
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生のまとめ</p>
+          <p>見積もりの「読み方」がわかると、お客様と開発チームの間に立つ営業として一段上のレベルに行けます。大切なのは<strong>「高い/安い」ではなく「なぜこの金額なのか」を理解すること</strong>。次は技術用語ブリッジ辞典で、開発チームの言葉をマスターしましょう！</p>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <a href="01-dev-process.html" class="page-nav-prev">
+          <span class="page-nav-label">前のトピック</span>
+          <span class="page-nav-title">4-1. 開発プロセス入門</span>
+        </a>
+        <a href="03-tech-dictionary.html" class="page-nav-next">
+          <span class="page-nav-label">次のトピック</span>
+          <span class="page-nav-title">4-3. 技術用語ブリッジ辞典</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>学習の進捗は自動保存されます 🦉</p><p>アーキテクチャ学習ランド &copy; 2025</p></div></footer>
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ProgressManager.initScrollTracking('phase4', 'reading-estimates');
+    });
+  </script>
+</body>
+</html>

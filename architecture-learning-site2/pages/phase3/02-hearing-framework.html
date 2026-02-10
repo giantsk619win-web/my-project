@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3-2. 課題ヒアリングフレームワーク | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .hearing-category { margin-bottom: var(--space-2xl); }
+    .hearing-category h3 { color: var(--phase3-color); border-bottom: 2px solid var(--phase3-color); padding-bottom: var(--space-sm); margin-bottom: var(--space-lg); }
+    .hearing-item { background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-lg); margin-bottom: var(--space-md); }
+    .hearing-item .q-number { display: inline-block; background: var(--phase3-color); color: white; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-size: var(--font-size-sm); font-weight: 700; margin-right: var(--space-sm); }
+    .hearing-item .question { font-weight: 700; font-size: var(--font-size-base); margin-bottom: var(--space-sm); }
+    .hearing-item .tech-insight { background: var(--phase3-bg); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); font-size: var(--font-size-sm); margin-top: var(--space-sm); }
+    .hearing-item .tech-insight strong { color: var(--phase3-color); }
+    .print-sheet { background: var(--color-white); border: 2px dashed var(--color-border); border-radius: var(--radius-lg); padding: var(--space-xl); margin: var(--space-xl) 0; }
+    .print-sheet h3 { text-align: center; margin-bottom: var(--space-lg); }
+    .print-row { display: grid; grid-template-columns: 2fr 3fr; gap: 1px; border: 1px solid var(--color-border); margin-bottom: -1px; }
+    .print-row:first-of-type .print-cell { font-weight: 700; background: var(--color-primary); color: white; }
+    .print-cell { padding: var(--space-sm) var(--space-md); border: 1px solid var(--color-border); font-size: var(--font-size-sm); min-height: 40px; }
+    @media print { .site-header, .site-footer, .breadcrumb, .owl-box, .column-sales, .column-dev, .quiz-card, .btn { display: none !important; } .print-sheet { border: 2px solid #000; page-break-inside: avoid; } }
+  </style>
+</head>
+<body data-phase="3">
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo"><span class="owl-icon">🦉</span><span>アーキテクチャ学習ランド</span></a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav><ul class="nav-links">
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../phase1/index.html">Phase 1</a></li>
+        <li><a href="../phase2/index.html">Phase 2</a></li>
+        <li><a href="index.html" class="active">Phase 3</a></li>
+        <li><a href="../phase4/index.html">Phase 4</a></li>
+        <li><a href="../phase5/index.html">Phase 5</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <main class="phase-page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a><span class="separator">/</span>
+        <a href="index.html">Phase 3</a><span class="separator">/</span>
+        <span class="current">3-2. 課題ヒアリングフレームワーク</span>
+      </nav>
+
+      <div class="phase-header">
+        <h1><span class="phase-icon">🗺️</span>3-2. 課題ヒアリングフレームワーク</h1>
+      </div>
+
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の導入</p>
+          <p>「技術のことはわからないから、技術的な質問ができない」——よく聞く悩みです。でもね、実は<strong>技術的な質問をしなくても、技術要件は引き出せる</strong>んです。コツは「お客様のビジネスの言葉」で質問すること。今日は、そんなヒアリングの秘訣を20の質問テンプレートで身につけましょう！</p>
+        </div>
+      </div>
+
+      <section>
+        <h2>ヒアリング質問テンプレート20問</h2>
+        <p>4つのカテゴリに分けた20の質問です。各質問の下に、<strong>お客様の回答から読み取れる技術要件</strong>を示しています。</p>
+
+        <!-- カテゴリ1 -->
+        <div class="hearing-category">
+          <h3>カテゴリA：現状把握（今を知る）</h3>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">1</span>現在のシステムは何年前に導入されたものですか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>レガシー度合い。5年以上ならEOL対応リスク、10年以上ならモダナイゼーション案件の可能性。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">2</span>そのシステムを日常的に使っているのは何人くらいですか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>同時接続ユーザー数。スケーラビリティ設計の基礎データ。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">3</span>一番忙しい時期や時間帯はいつですか？通常と比べてどのくらい増えますか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>ピーク倍率。オートスケーリングの必要性判断。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">4</span>システムが止まったら、業務にどの程度影響がありますか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>可用性要件（SLAレベル）。ビジネスインパクトからRTO/RPOを逆算。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">5</span>今のシステムで一番困っていることは何ですか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>最優先の課題特定。パフォーマンス問題か、機能不足か、運用負荷か。</div>
+          </div>
+        </div>
+
+        <!-- カテゴリ2 -->
+        <div class="hearing-category">
+          <h3>カテゴリB：課題特定（困りごとを深掘り）</h3>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">6</span>そのデータは「今すぐ」見たいですか？それとも「翌日」でも大丈夫ですか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>リアルタイム処理 vs バッチ処理の判断。アーキパターン選定の分岐点。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">7</span>他のシステムとデータを連携する必要はありますか？どのシステムとですか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>API連携/データ連携の要否と範囲。連携先のシステム制約も把握。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">8</span>社外の人（取引先、顧客）もこのシステムを使いますか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>インターネット公開の要否。セキュリティレベル、認証方式の方向性。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">9</span>スマートフォンやタブレットからも使いたいですか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>レスポンシブWeb or ネイティブアプリの判断。モバイルBFFの要否。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">10</span>今の作業の中で「手作業」でやっていて負担が大きい部分はどこですか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>自動化・RPA・ワークフローシステムの要否と優先度。</div>
+          </div>
+        </div>
+
+        <!-- カテゴリ3 -->
+        <div class="hearing-category">
+          <h3>カテゴリC：要件整理（何が必要かを明確にする）</h3>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">11</span>3年後、5年後にこのシステムの利用者やデータ量はどうなりそうですか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>スケーラビリティ設計方針。将来を見据えたアーキ選定。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">12</span>新しい機能を追加する頻度はどのくらいになりそうですか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>変更容易性。モノリスかマイクロサービスかの判断材料。CI/CDの要否。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">13</span>このシステムで扱うデータの中に、個人情報や機密情報はありますか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>セキュリティレベル。暗号化要件、アクセス制御、監査ログの要否。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">14</span>画面が表示されるまでに何秒くらいなら許容できますか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>パフォーマンス要件。レスポンスタイム目標値の設定。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">15</span>システムの利用は日本国内だけですか？海外からのアクセスもありますか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>マルチリージョン/CDNの要否。データ保管場所の法的制約（GDPR等）。</div>
+          </div>
+        </div>
+
+        <!-- カテゴリ4 -->
+        <div class="hearing-category">
+          <h3>カテゴリD：制約確認（できないことを把握する）</h3>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">16</span>ご予算はどのくらいの規模感をお考えですか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>アーキの複雑さの上限。クラウド vs オンプレの判断にも影響。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">17</span>いつまでに稼働開始したいですか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>開発手法の選択（ウォーターフォール vs アジャイル）。段階リリースの要否。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">18</span>社内にシステムを運用・管理できる担当者はいらっしゃいますか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>運用体制。マネージドサービスの採用度合い。SaaS/PaaSの活用レベル。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">19</span>「これだけは使い続けたい」という既存のシステムやツールはありますか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>既存システム連携の制約。移行戦略の方向性。API連携の要否。</div>
+          </div>
+
+          <div class="hearing-item">
+            <p class="question"><span class="q-number">20</span>セキュリティやコンプライアンスで守るべき基準やルールはありますか？</p>
+            <div class="tech-insight"><strong>→ 技術要件：</strong>準拠すべき規制（FISC、ISMAP等）。セキュリティ設計の前提条件。</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ヒアリングシート -->
+      <section>
+        <h2>ヒアリングシートテンプレート</h2>
+        <p>以下のシートは印刷して商談で使えます（ブラウザの印刷機能で印刷できます）。</p>
+
+        <div class="print-sheet">
+          <h3>アーキテクチャ要件ヒアリングシート</h3>
+          <p style="text-align: center; font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-lg);">日付：＿＿＿＿年＿＿月＿＿日　顧客名：＿＿＿＿＿＿＿＿　担当：＿＿＿＿＿＿</p>
+
+          <div class="print-row"><div class="print-cell">ヒアリング項目</div><div class="print-cell">お客様の回答</div></div>
+          <div class="print-row"><div class="print-cell">現行システムの導入時期</div><div class="print-cell">&nbsp;</div></div>
+          <div class="print-row"><div class="print-cell">利用ユーザー数（通常/ピーク）</div><div class="print-cell">&nbsp;</div></div>
+          <div class="print-row"><div class="print-cell">システム停止時の業務影響</div><div class="print-cell">&nbsp;</div></div>
+          <div class="print-row"><div class="print-cell">リアルタイム性の要否</div><div class="print-cell">&nbsp;</div></div>
+          <div class="print-row"><div class="print-cell">連携先システム</div><div class="print-cell">&nbsp;</div></div>
+          <div class="print-row"><div class="print-cell">外部公開の有無</div><div class="print-cell">&nbsp;</div></div>
+          <div class="print-row"><div class="print-cell">将来の拡張見込み（3〜5年）</div><div class="print-cell">&nbsp;</div></div>
+          <div class="print-row"><div class="print-cell">個人情報・機密情報の有無</div><div class="print-cell">&nbsp;</div></div>
+          <div class="print-row"><div class="print-cell">予算規模感</div><div class="print-cell">&nbsp;</div></div>
+          <div class="print-row"><div class="print-cell">希望稼働時期</div><div class="print-cell">&nbsp;</div></div>
+          <div class="print-row"><div class="print-cell">社内運用体制の有無</div><div class="print-cell">&nbsp;</div></div>
+          <div class="print-row"><div class="print-cell">既存システムの制約</div><div class="print-cell">&nbsp;</div></div>
+          <div class="print-row"><div class="print-cell">準拠すべきセキュリティ基準</div><div class="print-cell">&nbsp;</div></div>
+        </div>
+      </section>
+
+      <div class="column-sales">
+        <p class="column-title">営業の現場では...</p>
+        <p>20問すべてを聞く必要はありません。商談の流れに合わせて<strong>重要な5〜8問を選んで聞く</strong>のが現実的です。ポイントは「カテゴリAの現状把握」から入って、自然にBの課題深掘りへ。いきなり予算や納期（カテゴリD）から聞くと身構えられるので、最後に確認する流れがスムーズです。</p>
+      </div>
+
+      <div class="column-dev">
+        <p class="column-title">開発チームの視点</p>
+        <p>営業さんがこのフレームワークでヒアリングしてきた情報は、開発チームにとって<strong>宝の山</strong>です。とくに「同時ユーザー数」「ピーク倍率」「リアルタイム性」「セキュリティ要件」の4つが揃っていれば、初期のアーキテクチャ案をすぐに作成できます。完璧でなくていい。「おおよそ100人くらい」でも十分。<strong>数字があるだけで設計の精度が格段に上がる</strong>んです。</p>
+      </div>
+
+      <h2>理解度チェック</h2>
+
+      <div class="quiz-card" data-answer="C" data-phase="phase3" data-topic="hearing-framework">
+        <div class="quiz-card-header"><div class="quiz-icon">Q1</div><h4>ヒアリングの優先順位</h4></div>
+        <p class="quiz-question">初回ヒアリングで最初に聞くべきカテゴリはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>予算（カテゴリD：制約確認）</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>技術スタック（カテゴリC：要件整理）</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>現行システムの状況（カテゴリA：現状把握）</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>セキュリティ基準（カテゴリD：制約確認）</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>まず<strong>現状把握</strong>から入るのが基本。今のシステムや業務の状況を理解してから、課題を深掘りし、要件を整理し、最後に制約を確認する流れがスムーズです。いきなり予算やセキュリティの話をすると、お客様が身構えてしまいます。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="quiz-card" data-answer="B" data-phase="phase3" data-topic="hearing-framework">
+        <div class="quiz-card-header"><div class="quiz-icon">Q2</div><h4>技術要件の引き出し方</h4></div>
+        <p class="quiz-question">「そのデータは今すぐ見たいですか、翌日でもいいですか？」この質問で判断できる技術要件は？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>セキュリティレベル</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>リアルタイム処理 vs バッチ処理</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>クラウド vs オンプレミス</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>プログラミング言語の選択</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>「今すぐ」ならリアルタイム処理、「翌日でOK」ならバッチ処理。この判断はアーキテクチャパターンの選定に大きく影響します。技術的な用語を使わずに、ビジネスの言葉で技術要件を引き出すテクニックです。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="quiz-card" data-answer="A" data-phase="phase3" data-topic="hearing-framework">
+        <div class="quiz-card-header"><div class="quiz-icon">Q3</div><h4>開発チームが最も欲しい情報</h4></div>
+        <p class="quiz-question">開発チームがアーキテクチャ検討のために、営業からとくに欲しい4つの情報の組み合わせとして正しいものは？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>同時ユーザー数、ピーク倍率、リアルタイム性、セキュリティ要件</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>お客様の売上高、社員数、設立年、資本金</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>希望するUI色、フォント、ロゴ、アイコン</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>競合他社のシステム名、費用、納期、ベンダー名</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>開発チームがアーキテクチャを検討するのに最も必要なのは「<strong>同時ユーザー数</strong>」「<strong>ピーク倍率</strong>」「<strong>リアルタイム性</strong>」「<strong>セキュリティ要件</strong>」の4つ。これが揃えば初期アーキテクチャ案の作成に着手できます。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の振り返り</p>
+          <p>ヒアリングフレームワーク、実戦で使える武器が増えましたね！「技術の質問をせずに技術要件を引き出す」——これは営業だからこそできる高度なスキル。次はいよいよ、ヒアリング結果からアーキテクチャを選定する「ディシジョンツリー」に挑戦しましょう！</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <a href="01-industry-dx-map.html" class="btn btn-outline">← 前のトピック</a>
+        <a href="03-decision-tree.html" class="btn btn-primary">次のトピック：アーキ選定ディシジョンツリー →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>学習の進捗は自動保存されます 🦉</p><p>アーキテクチャ学習ランド &copy; 2025</p></div></footer>
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>ProgressManager.initScrollTracking('phase3', 'hearing-framework');</script>
+</body>
+</html>

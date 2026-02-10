@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1-4. クラウドの基礎 | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body data-phase="1">
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo">
+        <span class="owl-icon">🦉</span>
+        <span>アーキテクチャ学習ランド</span>
+      </a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html">ホーム</a></li>
+          <li><a href="index.html" class="active">Phase 1</a></li>
+          <li><a href="../phase2/index.html">Phase 2</a></li>
+          <li><a href="../phase3/index.html">Phase 3</a></li>
+          <li><a href="../phase4/index.html">Phase 4</a></li>
+          <li><a href="../phase5/index.html">Phase 5</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="phase-page">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span class="separator">/</span>
+        <a href="index.html">Phase 1</a>
+        <span class="separator">/</span>
+        <span class="current">1-4. クラウドの基礎</span>
+      </nav>
+
+      <div class="phase-header">
+        <h1><span class="phase-icon">🌱</span>1-4. クラウドの基礎</h1>
+      </div>
+
+      <!-- ==================== -->
+      <!-- フクロウ先生の導入 -->
+      <!-- ==================== -->
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の導入</p>
+          <p>「うちもそろそろクラウドに移行したい」——お客様からこう言われたこと、ありませんか？でも「クラウド」と一言で言っても、その中身はさまざま。今日は、クラウドの基礎をレストランのたとえで楽しく学んでいきましょう。食事をするにも「外食」「ミールキット」「食材を買って自炊」と選択肢がありますよね。クラウドにも同じような選択肢があるんです！</p>
+        </div>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 本文解説 -->
+      <!-- ==================== -->
+      <section>
+        <h2>SaaS / PaaS / IaaS — レストランのたとえ</h2>
+
+        <p>クラウドサービスは、<strong>「どこまで自分でやるか」</strong>によって3つに分類されます。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>分類</th>
+                <th>レストランのたとえ</th>
+                <th>自分でやること</th>
+                <th>お任せする部分</th>
+                <th>代表例</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><span class="tech-term">SaaS<span class="tooltip">Software as a Service。完成したソフトウェアをインターネット経由で利用するサービス形態</span></span></strong></td>
+                <td>外食（レストランで食べる）</td>
+                <td>食べるだけ（使うだけ）</td>
+                <td>調理、食材、キッチン、建物すべて</td>
+                <td>Microsoft 365、Salesforce、Google Workspace</td>
+              </tr>
+              <tr>
+                <td><strong><span class="tech-term">PaaS<span class="tooltip">Platform as a Service。アプリを動かす基盤（OS、ミドルウェア等）をクラウドで提供するサービス形態</span></span></strong></td>
+                <td>ミールキット（キッチン付き貸しスペース）</td>
+                <td>調理（アプリ開発）</td>
+                <td>キッチン設備、建物（OS、ミドルウェア、インフラ）</td>
+                <td>AWS Elastic Beanstalk、Azure App Service、Heroku</td>
+              </tr>
+              <tr>
+                <td><strong><span class="tech-term">IaaS<span class="tooltip">Infrastructure as a Service。サーバー、ネットワーク、ストレージなどのインフラをクラウドで提供するサービス形態</span></span></strong></td>
+                <td>食材を買って自炊（キッチンだけ借りる）</td>
+                <td>調理＋キッチン管理（アプリ＋OS設定）</td>
+                <td>建物（サーバー機器、ネットワーク物理設備）</td>
+                <td>AWS EC2、Azure Virtual Machines、GCE</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">ポイント</p>
+            <p>選ぶ基準は<strong>「自由度」と「手間」のトレードオフ</strong>です。SaaSは手間ゼロだけどカスタマイズの自由度は低い。IaaSは自由度が高いけど運用の手間がかかる。お客様の「やりたいこと」と「運用できる体制」を聞けば、どれが合うか見えてきます。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>3大クラウドベンダーの特徴</h2>
+
+        <p>クラウドの話をするとき、必ず出てくるのが<strong>AWS、Azure、GCP</strong>の3大ベンダーです。営業的に押さえておきたいポイントを整理しましょう。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>ベンダー</th>
+                <th>シェア</th>
+                <th>強み</th>
+                <th>営業的な勘所</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>AWS</strong>（Amazon）</td>
+                <td>世界シェア1位（約30%）</td>
+                <td>サービスの種類が最多、エンジニア人材が豊富、事例が多い</td>
+                <td>「迷ったらAWS」と言われるほどの安定感。お客様のIT部門にAWS経験者がいることが多い</td>
+              </tr>
+              <tr>
+                <td><strong>Azure</strong>（Microsoft）</td>
+                <td>世界シェア2位（約25%）</td>
+                <td>Microsoft製品との親和性、エンタープライズ実績、Active Directory連携</td>
+                <td>お客様がMicrosoft 365を使っているなら有力候補。日本の大企業での採用が増加中</td>
+              </tr>
+              <tr>
+                <td><strong>GCP</strong>（Google）</td>
+                <td>世界シェア3位（約10%）</td>
+                <td>データ分析・AI/ML、BigQueryの圧倒的性能、コンテナ技術</td>
+                <td>データ活用やAIを重視するお客様に刺さりやすい。分析基盤の案件では有力候補</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-trivia">
+          <div class="owl-box-content">
+            <p class="owl-box-title">豆知識</p>
+            <p>日本市場に限ると、AWSとAzureがほぼ拮抗しています。お客様がすでに使っているクラウドがあるなら、まずはそれに合わせるのがスムーズ。複数のクラウドを併用する<span class="tech-term">マルチクラウド<span class="tooltip">複数のクラウドベンダーのサービスを組み合わせて利用する戦略。ベンダーロックイン対策になる</span></span>戦略を取る企業も増えています。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>オンプレミス vs クラウド vs ハイブリッド</h2>
+
+        <p>クラウド以前は、自社でサーバーを持つ<span class="tech-term">オンプレミス<span class="tooltip">自社の建物内にサーバーやネットワーク機器を設置して運用する方式。「自社設置型」とも呼ばれる</span></span>が主流でした。今でもオンプレミスには利点があり、多くの企業は両方を組み合わせた<span class="tech-term">ハイブリッドクラウド<span class="tooltip">オンプレミスとクラウドを組み合わせて利用する構成。それぞれの利点を活かせる</span></span>を採用しています。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>比較項目</th>
+                <th>オンプレミス</th>
+                <th>クラウド</th>
+                <th>ハイブリッド</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>初期費用</strong></td>
+                <td>高い（サーバー購入）</td>
+                <td>低い（従量課金）</td>
+                <td>中程度</td>
+              </tr>
+              <tr>
+                <td><strong>運用費用</strong></td>
+                <td>人件費＋電気代＋保守費</td>
+                <td>利用料（使った分）</td>
+                <td>両方のコストが発生</td>
+              </tr>
+              <tr>
+                <td><strong>拡張性</strong></td>
+                <td>機器の追加購入が必要（数週間〜）</td>
+                <td>数分で拡張可能</td>
+                <td>クラウド側で柔軟に対応</td>
+              </tr>
+              <tr>
+                <td><strong>セキュリティ</strong></td>
+                <td>自社で完全管理（物理的に隔離）</td>
+                <td>ベンダーの対策＋自社の設定管理</td>
+                <td>用途に応じて使い分け可能</td>
+              </tr>
+              <tr>
+                <td><strong>適したケース</strong></td>
+                <td>法規制で外部保管不可、超低遅延が必要</td>
+                <td>変動するワークロード、グローバル展開</td>
+                <td>段階的なクラウド移行、特定データの社内保管</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>お客様が「クラウドに移行したい」と言ったら</h2>
+
+        <p>この一言を聞いたとき、すぐに見積もりを出すのではなく、まず以下を確認しましょう。</p>
+
+        <ol>
+          <li><strong>「何を」移行したいのか？</strong>——全部？一部？新しいシステムだけ？</li>
+          <li><strong>「なぜ」移行したいのか？</strong>——コスト削減？拡張性？BCP対策？</li>
+          <li><strong>「いつまでに」移行したいのか？</strong>——既存システムの保守期限は？</li>
+          <li><strong>現在のインフラ状況は？</strong>——オンプレのサーバーは何台？OSは？</li>
+          <li><strong>データの制約は？</strong>——個人情報や機密データをクラウドに置けるか？法規制は？</li>
+        </ol>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">ポイント</p>
+            <p>お客様の「クラウドに移行したい」は、多くの場合<strong>「コストを下げたい」「運用を楽にしたい」が本音</strong>です。クラウド移行そのものが目的ではなく手段であることを念頭に、「何を解決したいのか」を引き出すのが営業の腕の見せどころです。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== -->
+      <!-- 営業の現場コラム -->
+      <!-- ==================== -->
+      <div class="column-sales">
+        <p class="column-title">営業の現場では...</p>
+        <p>お客様がクラウドに不安を感じている場合、「セキュリティが心配」「データが外に出るのは...」という声をよく聞きます。こんなとき、「実はメガバンクもクラウドを採用しています。クラウドベンダーのセキュリティ対策は、一般企業の自社対策を上回ることも多いんです」と具体的な事例で説明できると安心感を与えられます。ただし、業界の法規制（金融庁のガイドラインなど）は必ず確認しましょう。</p>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 開発チームの視点コラム -->
+      <!-- ==================== -->
+      <div class="column-dev">
+        <p class="column-title">開発チームの視点</p>
+        <p>開発チームにとって、クラウド選定で重要なのは<strong>「既存スキル」と「エコシステム」</strong>です。チームにAWS経験者が多いのにGCPを選ぶと学習コストがかかります。また、「クラウドにすればコストが下がる」とは限りません。常時稼働する基幹システムはオンプレの方が安いこともあります。営業さんにお願いしたいのは、<strong>お客様のIT部門が今何を使っているか</strong>を聞いてくること。これだけで技術選定がかなりスムーズになります。</p>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 章末クイズ -->
+      <!-- ==================== -->
+      <h2>理解度チェック</h2>
+
+      <!-- Quiz 1 -->
+      <div class="quiz-card" data-answer="B" data-phase="phase1" data-topic="cloud-basics">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q1</div>
+          <h4>SaaS / PaaS / IaaS</h4>
+        </div>
+        <p class="quiz-question">レストランのたとえで、「キッチン付き貸しスペースで自分で調理する」に相当するクラウドサービスはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>SaaS</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>PaaS</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>IaaS</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>オンプレミス</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback">
+          <p class="feedback-title"></p>
+        </div>
+        <div class="quiz-explanation">
+          <p><strong>PaaS</strong>は「キッチン付き貸しスペース（ミールキット）」にあたります。OS やミドルウェアなどの基盤（キッチン設備）はクラウドベンダーが用意し、利用者はアプリケーションの開発（調理）に集中できます。SaaSは外食（使うだけ）、IaaSは食材を買って自炊（インフラから自分で管理）です。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- Quiz 2 -->
+      <div class="quiz-card" data-answer="D" data-phase="phase1" data-topic="cloud-basics">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q2</div>
+          <h4>クラウドベンダーの選び方</h4>
+        </div>
+        <p class="quiz-question">お客様が社内でMicrosoft 365を全社導入しています。クラウド基盤として最も親和性が高いのはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>AWS（AWSの方がシェアが高いから）</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>GCP（Googleのサービスだから）</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>Oracle Cloud（データベースが強いから）</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>Azure（Microsoft製品との連携が強みだから）</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback">
+          <p class="feedback-title"></p>
+        </div>
+        <div class="quiz-explanation">
+          <p>Microsoft 365を導入済みのお客様には、同じMicrosoftの<strong>Azure</strong>が最も親和性が高くなります。Active Directory（ユーザー管理）の連携やシングルサインオンがスムーズに実現できるためです。もちろん他のクラウドでも連携は可能ですが、<strong>既存のIT環境との親和性</strong>はベンダー選定の重要なポイントです。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- Quiz 3 -->
+      <div class="quiz-card" data-answer="C" data-phase="phase1" data-topic="cloud-basics">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q3</div>
+          <h4>クラウド移行のヒアリング</h4>
+        </div>
+        <p class="quiz-question">お客様が「クラウドに移行したい」と言ったとき、最初に確認すべきことはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>AWSとAzureのどちらにするか決めてもらう</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>すぐに移行スケジュールを提案する</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>移行の目的（なぜ？）と対象範囲（何を？）を確認する</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>クラウドの料金表を見せる</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback">
+          <p class="feedback-title"></p>
+        </div>
+        <div class="quiz-explanation">
+          <p>ベンダーやスケジュールの話の前に、まず<strong>「なぜ移行したいのか」「何を移行したいのか」</strong>を確認することが大切です。コスト削減が目的なのか、拡張性が目的なのかで最適な方法はまったく変わります。目的と範囲が明確になれば、SEへの引き継ぎもスムーズに進みますよ。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- ==================== -->
+      <!-- フクロウ先生の振り返り -->
+      <!-- ==================== -->
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の振り返り</p>
+          <p>クラウドの基礎、バッチリですね！SaaS/PaaS/IaaSの違い、3大ベンダーの特徴、そしてお客様に聞くべきことが整理できたと思います。クラウドの話が出たときに「なるほど、それならAzureが合いそうですね」とサラッと言える営業は、お客様からの信頼が違いますよ。次は最後のトピック、「API・システム連携」。異なるシステムをつなぐ「通訳者」の話です！</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <a href="03-architecture-patterns.html" class="btn btn-outline">← 前のトピック</a>
+        <a href="05-api-integration.html" class="btn btn-primary">次のトピック：API・システム連携の基礎 →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>学習の進捗は自動保存されます 🦉</p>
+      <p>アーキテクチャ学習ランド &copy; 2025</p>
+    </div>
+  </footer>
+
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>
+    ProgressManager.initScrollTracking('phase1', 'cloud-basics');
+  </script>
+</body>
+</html>

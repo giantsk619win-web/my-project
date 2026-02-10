@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1-3. アーキテクチャパターン比較 | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body data-phase="1">
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo">
+        <span class="owl-icon">🦉</span>
+        <span>アーキテクチャ学習ランド</span>
+      </a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html">ホーム</a></li>
+          <li><a href="index.html" class="active">Phase 1</a></li>
+          <li><a href="../phase2/index.html">Phase 2</a></li>
+          <li><a href="../phase3/index.html">Phase 3</a></li>
+          <li><a href="../phase4/index.html">Phase 4</a></li>
+          <li><a href="../phase5/index.html">Phase 5</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="phase-page">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span class="separator">/</span>
+        <a href="index.html">Phase 1</a>
+        <span class="separator">/</span>
+        <span class="current">1-3. アーキテクチャパターン比較</span>
+      </nav>
+
+      <div class="phase-header">
+        <h1><span class="phase-icon">🌱</span>1-3. アーキテクチャパターン比較</h1>
+      </div>
+
+      <!-- ==================== -->
+      <!-- フクロウ先生の導入 -->
+      <!-- ==================== -->
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の導入</p>
+          <p>「モノリス」「マイクロサービス」「サーバーレス」——こんな言葉を開発チームとの打ち合わせで耳にしたことはありませんか？これらは<strong>アーキテクチャパターン</strong>と呼ばれる、システムの「設計スタイル」です。住まいに一軒家、マンション、シェアハウスがあるように、システムにも目的に合った設計スタイルがあります。今日は、代表的な5つのパターンを「住まい」のたとえで比較していきましょう！</p>
+        </div>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 本文解説 -->
+      <!-- ==================== -->
+      <section>
+        <h2>5つの代表的なアーキテクチャパターン</h2>
+
+        <h3>1. モノリス（一枚岩）型 — 一軒家</h3>
+        <p><span class="tech-term">モノリス<span class="tooltip">1つの大きなプログラムとしてシステム全体を構築する方式。シンプルだが、大規模になると変更が難しくなる</span></span>は、すべての機能が1つのアプリケーションにまとまった構成です。</p>
+        <p>一軒家のように、すべてが1つの建物に収まっています。リビングもキッチンも寝室も全部つながっている。小さな家なら快適ですが、家族が増えて増築を重ねると、リフォームが大変になります。</p>
+        <ul>
+          <li><strong>メリット</strong>：構造がシンプル、開発の初速が速い、テストしやすい</li>
+          <li><strong>デメリット</strong>：大規模化すると変更が困難、1箇所の障害が全体に波及しやすい</li>
+          <li><strong>向いているケース</strong>：中小規模の業務システム、スタートアップの初期プロダクト</li>
+        </ul>
+
+        <h3>2. 3層アーキテクチャ — 3階建てのビル</h3>
+        <p><span class="tech-term">3層アーキテクチャ<span class="tooltip">画面（プレゼンテーション層）、業務処理（ビジネスロジック層）、データ管理（データ層）の3つに役割を分離した設計</span></span>は、SIer案件でもっとも馴染み深いパターンです。</p>
+        <p>3階建てのビルで、各フロアに明確な役割があるイメージです。1階が受付（画面）、2階がオフィス（業務処理）、3階が書庫（データ）。各フロアは独立しているので、受付のレイアウトを変えても書庫に影響はありません。</p>
+        <ul>
+          <li><strong>メリット</strong>：役割分離が明確、企業システムの実績が豊富、保守しやすい</li>
+          <li><strong>デメリット</strong>：層の間の依存関係が複雑になりやすい、大量アクセスへの対応に工夫が必要</li>
+          <li><strong>向いているケース</strong>：企業の基幹業務システム、社内ポータル</li>
+        </ul>
+
+        <h3>3. マイクロサービス — マンション</h3>
+        <p><span class="tech-term">マイクロサービス<span class="tooltip">システムを小さな独立したサービスの集合として構築する方式。各サービスが独立して開発・デプロイ可能</span></span>は、大きなシステムを小さな独立したサービスに分割する構成です。</p>
+        <p>マンションの各部屋が独立した住居であるように、各サービスが独自に動きます。1部屋をリフォームしても隣の部屋には影響しない。ただし、管理組合（サービス間の調整）が必要です。</p>
+        <ul>
+          <li><strong>メリット</strong>：独立してデプロイ可能、技術選択の自由度が高い、スケーリングしやすい</li>
+          <li><strong>デメリット</strong>：運用の複雑さが増す、チーム間の連携コスト、トータルの初期費用が高い</li>
+          <li><strong>向いているケース</strong>：大規模Webサービス、複数チームでの並行開発、ECサイト</li>
+        </ul>
+
+        <h3>4. サーバーレス — ホテル暮らし</h3>
+        <p><span class="tech-term">サーバーレス<span class="tooltip">サーバーの管理をクラウド事業者に任せ、コード（関数）だけを書いて実行する方式。使った分だけ課金される</span></span>は、サーバーを自分で管理せず、クラウドに「関数」を預けて必要なときだけ動かす構成です。</p>
+        <p>ホテル暮らしなら、掃除も修理も全部ホテル側がやってくれます。使った日数分だけ払えばOK。ただし、部屋のレイアウトを自由に変えることはできません。</p>
+        <ul>
+          <li><strong>メリット</strong>：インフラ管理不要、使った分だけの課金、スケーリングが自動</li>
+          <li><strong>デメリット</strong>：実行時間の制限、特定のクラウドへの依存（<span class="tech-term">ベンダーロックイン<span class="tooltip">特定のクラウドベンダーの技術に依存し、他のベンダーへの移行が困難になること</span></span>）、デバッグが難しい</li>
+          <li><strong>向いているケース</strong>：イベント処理、バッチ処理、アクセスが不定期なシステム</li>
+        </ul>
+
+        <h3>5. イベント駆動 — メッセージボード型シェアハウス</h3>
+        <p><span class="tech-term">イベント駆動アーキテクチャ<span class="tooltip">「何かが起きた」という出来事（イベント）をきっかけにシステムが連鎖的に動く設計方式</span></span>は、「何かが起きたら（イベント）、それに反応して次のアクションが動く」という構成です。</p>
+        <p>シェアハウスの掲示板に「ゴミ出しお願い」と貼り紙をすると、見た人が対応するイメージ。直接誰かに頼むのではなく、「お知らせ」を出して反応を待つスタイルです。</p>
+        <ul>
+          <li><strong>メリット</strong>：システム間の結合が緩い、リアルタイム処理に強い、拡張しやすい</li>
+          <li><strong>デメリット</strong>：処理の流れを追いにくい、デバッグが複雑、設計の難易度が高い</li>
+          <li><strong>向いているケース</strong>：IoTデータ処理、リアルタイム通知、大規模データパイプライン</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>パターン比較表</h2>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>パターン</th>
+                <th>複雑さ</th>
+                <th>初期コスト</th>
+                <th>拡張性</th>
+                <th>適した規模</th>
+                <th>たとえ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>モノリス</strong></td>
+                <td>低い</td>
+                <td>低い</td>
+                <td>限定的</td>
+                <td>小〜中規模</td>
+                <td>一軒家</td>
+              </tr>
+              <tr>
+                <td><strong>3層</strong></td>
+                <td>中程度</td>
+                <td>中程度</td>
+                <td>中程度</td>
+                <td>中〜大規模</td>
+                <td>3階建てビル</td>
+              </tr>
+              <tr>
+                <td><strong>マイクロサービス</strong></td>
+                <td>高い</td>
+                <td>高い</td>
+                <td>高い</td>
+                <td>大規模</td>
+                <td>マンション</td>
+              </tr>
+              <tr>
+                <td><strong>サーバーレス</strong></td>
+                <td>中程度</td>
+                <td>低い</td>
+                <td>自動</td>
+                <td>小〜中規模</td>
+                <td>ホテル</td>
+              </tr>
+              <tr>
+                <td><strong>イベント駆動</strong></td>
+                <td>高い</td>
+                <td>中〜高</td>
+                <td>高い</td>
+                <td>中〜大規模</td>
+                <td>掲示板型シェアハウス</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">ポイント</p>
+            <p>実際のプロジェクトでは、<strong>1つのパターンだけを使うとは限りません</strong>。たとえば「基幹システムは3層アーキテクチャで、フロントのWebサイトはサーバーレス」のように組み合わせることも多いです。大切なのは「お客様の要件に対して、なぜこのパターンを選んだのか」を説明できること。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>お客様の要件から、パターンを想像してみよう</h2>
+
+        <p>お客様の発言を聞いたとき、どのパターンが候補になるか、直感を鍛えましょう。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>お客様の発言</th>
+                <th>まず想起すべきパターン</th>
+                <th>理由</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>「小さく始めて、まずはMVPで検証したい」</td>
+                <td>モノリス or サーバーレス</td>
+                <td>初速が速く、初期コストが低い</td>
+              </tr>
+              <tr>
+                <td>「既存の基幹システムを段階的に刷新したい」</td>
+                <td>3層 → マイクロサービスへの段階移行</td>
+                <td>リスクを抑えながら現代化できる</td>
+              </tr>
+              <tr>
+                <td>「セール時にアクセスが100倍になる」</td>
+                <td>マイクロサービス + サーバーレス</td>
+                <td>部分的なスケーリングが可能</td>
+              </tr>
+              <tr>
+                <td>「IoTセンサーからのデータをリアルタイムで処理したい」</td>
+                <td>イベント駆動</td>
+                <td>大量のイベントを非同期で処理できる</td>
+              </tr>
+              <tr>
+                <td>「社内の勤怠管理システムを作りたい」</td>
+                <td>モノリス or 3層</td>
+                <td>規模が限定的で、安定性重視</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==================== -->
+      <!-- 営業の現場コラム -->
+      <!-- ==================== -->
+      <div class="column-sales">
+        <p class="column-title">営業の現場では...</p>
+        <p>提案コンペでライバル会社が「マイクロサービスで最先端のアーキテクチャです！」と提案してきたら、焦る必要はありません。<strong>「なぜその構成なのか」を説明できるかどうか</strong>が勝負です。「御社の現在の開発チーム規模と運用体制を考えると、まずはモノリスで素早くリリースし、将来的にマイクロサービスへ移行する段階的アプローチが最適と考えます」——こうした根拠のある提案は、流行り言葉を並べるだけの提案に必ず勝てます。</p>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 開発チームの視点コラム -->
+      <!-- ==================== -->
+      <div class="column-dev">
+        <p class="column-title">開発チームの視点</p>
+        <p>開発チームが最も困るのは、「とにかくマイクロサービスで」と技術先行で要件が降りてくるケース。マイクロサービスは運用コストが高く、小規模チームには向かないこともあります。営業さんに知っておいてほしいのは、<strong>「どのパターンにもトレードオフがある」</strong>ということ。お客様の要件（規模、予算、チーム体制、将来構想）を正確に伝えてもらえれば、開発チームは最適なパターンを選定できます。</p>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 章末クイズ -->
+      <!-- ==================== -->
+      <h2>理解度チェック</h2>
+
+      <!-- Quiz 1 -->
+      <div class="quiz-card" data-answer="B" data-phase="phase1" data-topic="architecture-patterns">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q1</div>
+          <h4>モノリスの特徴</h4>
+        </div>
+        <p class="quiz-question">モノリスアーキテクチャの特徴として正しいものはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>各機能が独立したサービスとして動作する</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>すべての機能が1つのアプリケーションにまとまっている</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>サーバーの管理が不要で、使った分だけ課金される</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>イベントをきっかけにシステムが連鎖的に動く</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback">
+          <p class="feedback-title"></p>
+        </div>
+        <div class="quiz-explanation">
+          <p>モノリス（一枚岩）は、すべての機能が1つのアプリケーションにまとまった構成です。一軒家のたとえで、シンプルで開発の初速が速い反面、大規模化すると変更が難しくなります。Aはマイクロサービス、Cはサーバーレス、Dはイベント駆動の特徴です。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- Quiz 2 -->
+      <div class="quiz-card" data-answer="C" data-phase="phase1" data-topic="architecture-patterns">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q2</div>
+          <h4>パターンの選び方</h4>
+        </div>
+        <p class="quiz-question">お客様が「セール時にアクセスが通常の100倍になる」と言っています。最も適切なアーキテクチャの方向性はどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>モノリスで巨大なサーバーを1台用意する</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>3層アーキテクチャで社内LANのみに限定する</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>マイクロサービスやサーバーレスで必要な部分だけスケーリングする</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>アクセスが増える時間帯はシステムを停止する</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback">
+          <p class="feedback-title"></p>
+        </div>
+        <div class="quiz-explanation">
+          <p>アクセスの急増に対応するには、<strong>部分的にスケーリングできる</strong>アーキテクチャが適しています。マイクロサービスなら負荷の高いサービスだけ増強でき、サーバーレスなら自動でスケーリングされます。1台のサーバーを大きくする（スケールアップ）には限界があり、コスト効率も悪くなります。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- Quiz 3 -->
+      <div class="quiz-card" data-answer="A" data-phase="phase1" data-topic="architecture-patterns">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q3</div>
+          <h4>ベンダーロックイン</h4>
+        </div>
+        <p class="quiz-question">「ベンダーロックイン」のリスクが特に高いアーキテクチャパターンはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>サーバーレス</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>モノリス</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>3層アーキテクチャ</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>すべてのパターンで同じ</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback">
+          <p class="feedback-title"></p>
+        </div>
+        <div class="quiz-explanation">
+          <p>サーバーレスは特定のクラウドベンダーのサービス（AWS Lambda、Azure Functionsなど）に強く依存するため、<strong>ベンダーロックイン</strong>のリスクが最も高くなります。別のクラウドに移行しようとすると、大幅な作り直しが必要になることも。お客様が将来のクラウド移行を気にしている場合は、この点を伝えることが大切です。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- ==================== -->
+      <!-- フクロウ先生の振り返り -->
+      <!-- ==================== -->
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の振り返り</p>
+          <p>5つのアーキテクチャパターン、それぞれの個性が見えてきましたか？「一軒家」から「ホテル」まで、住まい選びと同じで<strong>正解は人（要件）によって変わる</strong>のがポイント。お客様の話を聞いて「このケースはマンション型（マイクロサービス）かな？」とイメージできれば上出来です！次はクラウドの基礎。IaaS/PaaS/SaaSの違いをレストランで学びましょう！</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <a href="02-data-lifecycle.html" class="btn btn-outline">← 前のトピック</a>
+        <a href="04-cloud-basics.html" class="btn btn-primary">次のトピック：クラウドの基礎 →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>学習の進捗は自動保存されます 🦉</p>
+      <p>アーキテクチャ学習ランド &copy; 2025</p>
+    </div>
+  </footer>
+
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>
+    ProgressManager.initScrollTracking('phase1', 'architecture-patterns');
+  </script>
+</body>
+</html>

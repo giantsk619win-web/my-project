@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4-1. 開発プロセス入門 | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .process-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin: 1.5rem 0;
+    }
+    .process-step {
+      background: var(--phase4-color);
+      color: #fff;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-align: center;
+      min-width: 90px;
+    }
+    .process-arrow { color: var(--phase4-color); font-size: 1.3rem; font-weight: 700; }
+    .sprint-cycle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+      padding: 1.5rem;
+      background: #f5f0ff;
+      border: 2px dashed var(--phase4-color);
+      border-radius: 12px;
+      position: relative;
+    }
+    .sprint-cycle::after {
+      content: '🔁 繰り返し（2〜4週間サイクル）';
+      position: absolute;
+      bottom: -1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--phase4-color);
+      color: #fff;
+      padding: 0.2rem 0.8rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .sprint-step {
+      background: #fff;
+      border: 2px solid var(--phase4-color);
+      color: var(--phase4-color);
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+    .deliverable-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .deliverable-item {
+      background: #fff;
+      border: 1px solid #e0d8cf;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .deliverable-phase {
+      background: var(--phase4-color);
+      color: #fff;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .script-box {
+      background: #f9f6f2;
+      border-left: 4px solid var(--phase4-color);
+      padding: 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+    }
+    .script-box .speaker {
+      font-weight: 700;
+      color: var(--phase4-color);
+      margin-bottom: 0.25rem;
+    }
+    .script-box p { margin: 0.5rem 0 0; line-height: 1.8; }
+  </style>
+</head>
+<body data-phase="4">
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo"><span class="owl-icon">🦉</span><span>アーキテクチャ学習ランド</span></a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav><ul class="nav-links">
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../phase1/index.html">Phase 1</a></li>
+        <li><a href="../phase2/index.html">Phase 2</a></li>
+        <li><a href="../phase3/index.html">Phase 3</a></li>
+        <li><a href="index.html" class="active">Phase 4</a></li>
+        <li><a href="../phase5/index.html">Phase 5</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <main class="topic-page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span class="separator">/</span>
+        <a href="index.html">Phase 4</a>
+        <span class="separator">/</span>
+        <span class="current">4-1. 開発プロセス入門</span>
+      </nav>
+
+      <h1>4-1. 開発プロセス入門</h1>
+
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生より</p>
+          <p>開発チームと話すとき、「ウォーターフォール」「アジャイル」「スプリント」などの言葉が飛び交います。これらは<strong>ソフトウェアの作り方のスタイル</strong>のこと。家の建て方に「設計図を完璧にしてから建てる」方法と「住みながら少しずつ増築する」方法があるように、ソフトウェアにも複数の作り方があるのです。</p>
+        </div>
+      </div>
+
+      <!-- セクション1: ウォーターフォール -->
+      <section class="content-section">
+        <h2>ウォーターフォール開発</h2>
+        <p>「水が上から下に流れるように」工程を順番に進めていく開発手法です。日本のSI業界では最もポピュラーな手法で、大規模な基幹システム開発でよく使われます。</p>
+
+        <h3>開発の流れ</h3>
+        <div class="process-flow">
+          <div class="process-step">要件定義</div>
+          <span class="process-arrow">→</span>
+          <div class="process-step">基本設計</div>
+          <span class="process-arrow">→</span>
+          <div class="process-step">詳細設計</div>
+          <span class="process-arrow">→</span>
+          <div class="process-step">実装</div>
+          <span class="process-arrow">→</span>
+          <div class="process-step">テスト</div>
+          <span class="process-arrow">→</span>
+          <div class="process-step">リリース</div>
+        </div>
+
+        <h3>各フェーズの成果物とお客様の関わり方</h3>
+        <div class="comparison-table">
+          <table>
+            <thead>
+              <tr>
+                <th>フェーズ</th>
+                <th>主な成果物</th>
+                <th>お客様の関わり方</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>要件定義</strong></td>
+                <td>要件定義書、画面一覧、機能一覧</td>
+                <td>最も深く関与。要望を伝え、成果物を承認</td>
+              </tr>
+              <tr>
+                <td><strong>基本設計</strong></td>
+                <td>基本設計書、画面設計書、DB設計書</td>
+                <td>レビュー参加。画面イメージを確認</td>
+              </tr>
+              <tr>
+                <td><strong>詳細設計</strong></td>
+                <td>詳細設計書、IF仕様書</td>
+                <td>基本的にお任せ（技術的な内容）</td>
+              </tr>
+              <tr>
+                <td><strong>実装</strong></td>
+                <td>ソースコード、単体テスト</td>
+                <td>進捗報告を受ける程度</td>
+              </tr>
+              <tr>
+                <td><strong>テスト</strong></td>
+                <td>テスト仕様書、テスト結果報告書</td>
+                <td>UAT（受入テスト）に参加</td>
+              </tr>
+              <tr>
+                <td><strong>リリース</strong></td>
+                <td>リリース手順書、運用マニュアル</td>
+                <td>本番確認、運用引き継ぎ</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">重要ポイント</p>
+            <p>ウォーターフォールでは<strong>「要件定義」が最重要</strong>です。ここで決めた内容が後工程すべてのベースになります。営業としては、お客様の要望をしっかり引き出し、「要件定義完了＝仕様確定」であることをお客様に理解いただくことが重要です。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- セクション2: アジャイル/スクラム -->
+      <section class="content-section">
+        <h2>アジャイル/スクラム開発</h2>
+        <p>短い期間（<span class="tech-term">スプリント<span class="tooltip">通常2〜4週間の開発サイクル。1スプリントごとに動くソフトウェアを作る</span></span>）で「計画→開発→レビュー」を繰り返す手法です。変化に強く、お客様のフィードバックを素早く反映できます。</p>
+
+        <h3>スクラムの基本サイクル</h3>
+        <div class="sprint-cycle">
+          <div class="sprint-step">スプリント<br>プランニング</div>
+          <span class="process-arrow">→</span>
+          <div class="sprint-step">デイリー<br>スタンドアップ</div>
+          <span class="process-arrow">→</span>
+          <div class="sprint-step">開発<br>（2〜4週間）</div>
+          <span class="process-arrow">→</span>
+          <div class="sprint-step">スプリント<br>レビュー</div>
+          <span class="process-arrow">→</span>
+          <div class="sprint-step">ふりかえり</div>
+        </div>
+
+        <h3 style="margin-top: 2rem;">主要な用語</h3>
+        <div class="comparison-table">
+          <table>
+            <thead>
+              <tr>
+                <th>用語</th>
+                <th>意味</th>
+                <th>営業的な理解</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>プロダクトバックログ</strong></td>
+                <td>やりたいこと（機能）の優先順位付きリスト</td>
+                <td>お客様の「やりたいことリスト」。優先順位をお客様と一緒に決める</td>
+              </tr>
+              <tr>
+                <td><strong>スプリントプランニング</strong></td>
+                <td>次のスプリントで何を作るか計画する会議</td>
+                <td>「次の2週間で何ができるか」を決める場</td>
+              </tr>
+              <tr>
+                <td><strong>デイリースタンドアップ</strong></td>
+                <td>毎日15分の進捗共有ミーティング</td>
+                <td>チームの健康状態がわかる。問題の早期発見につながる</td>
+              </tr>
+              <tr>
+                <td><strong>スプリントレビュー</strong></td>
+                <td>作ったものをお客様に見せてフィードバックをもらう</td>
+                <td>お客様が実物を見て「違う」と言えるタイミング</td>
+              </tr>
+              <tr>
+                <td><strong>ベロシティ</strong></td>
+                <td>1スプリントでチームがこなせる作業量</td>
+                <td>チームの「速度」。安定すると完成時期の予測が可能に</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- セクション3: 比較と判断基準 -->
+      <section class="content-section">
+        <h2>どちらを提案すべきか？ 5つの判断基準</h2>
+        <p>お客様にどちらの開発手法を提案すべきかは、以下の5つの観点で判断します。</p>
+
+        <div class="comparison-table">
+          <table>
+            <thead>
+              <tr>
+                <th>判断基準</th>
+                <th>ウォーターフォール向き</th>
+                <th>アジャイル向き</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>要件の確定度</strong></td>
+                <td>要件が明確で変わりにくい</td>
+                <td>要件が曖昧、探索的</td>
+              </tr>
+              <tr>
+                <td><strong>変更頻度</strong></td>
+                <td>仕様変更は少ない見込み</td>
+                <td>頻繁な方針変更がありえる</td>
+              </tr>
+              <tr>
+                <td><strong>リリース速度</strong></td>
+                <td>一括リリースでOK（半年〜1年）</td>
+                <td>早期に部分リリースしたい</td>
+              </tr>
+              <tr>
+                <td><strong>お客様の巻き込み度</strong></td>
+                <td>要件定義後はお任せしたい</td>
+                <td>継続的にレビューに参加できる</td>
+              </tr>
+              <tr>
+                <td><strong>契約形態</strong></td>
+                <td>一括請負契約が多い</td>
+                <td>準委任契約（ラボ型）が多い</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="column-sales">
+          <h4>営業が知っておくべき「契約のポイント」</h4>
+          <p>ウォーターフォールは<strong>一括請負</strong>（成果物に対して支払い）が一般的。アジャイルは<strong>準委任</strong>（作業時間に対して支払い）が一般的です。お客様が「アジャイルでやりたいが一括請負契約で」と言うと矛盾が生じます。この違いを理解していると、契約トラブルを防げます。</p>
+        </div>
+
+        <div class="owl-box owl-trivia">
+          <div class="owl-box-content">
+            <p class="owl-box-title">豆知識</p>
+            <p>実は「ウォーターフォールとアジャイルのハイブリッド」も増えています。要件定義と基本設計はウォーターフォール的にしっかり行い、実装以降はスプリントで回す——という進め方です。完全にどちらかに寄せる必要はありません。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- セクション4: お客様への説明セリフ -->
+      <section class="content-section">
+        <h2>お客様に開発プロセスを説明するシーン</h2>
+        <p>実際にお客様に説明する場面を想定した、セリフ例です。</p>
+
+        <h3>シーン1：ウォーターフォールを提案する場合</h3>
+        <div class="script-box">
+          <p class="speaker">営業：</p>
+          <p>「御社のご要件は業務フローが明確で、法規制対応もありますので、<strong>ウォーターフォール型</strong>で進めることをお勧めします。最初にしっかり要件を固めて、設計→開発→テストと順番に進めます。各フェーズの終わりに成果物をご確認いただけるので、『今どこまで進んでいるか』が明確です。全体のスケジュールと費用も最初にお出しできます。」</p>
+        </div>
+
+        <h3>シーン2：アジャイルを提案する場合</h3>
+        <div class="script-box">
+          <p class="speaker">営業：</p>
+          <p>「今回は新規サービスで、ユーザーの反応を見ながら方向性を調整したいとのことですので、<strong>アジャイル型</strong>をお勧めします。2週間ごとに動くものをお見せして、フィードバックを反映できます。『作ってみたら思ったのと違った』というリスクを最小化できるのが最大のメリットです。ただし、お客様にも2週間ごとのレビュー会議にご参加いただく必要があります。」</p>
+        </div>
+
+        <h3>シーン3：お客様が「アジャイルで安くしたい」と言った場合</h3>
+        <div class="script-box">
+          <p class="speaker">営業：</p>
+          <p>「アジャイル＝安い、というわけではないのです。アジャイルの良さは<strong>『変化に対応しやすい』こと</strong>であって、『工数が少ない』ということではありません。むしろ、お客様にもレビューのお時間を定期的にいただく必要があります。コスト削減が最優先でしたら、要件をしっかり固めてウォーターフォールで進める方が、結果的にコストを抑えやすい場合もあります。」</p>
+        </div>
+
+        <div class="column-dev">
+          <h4>開発チームの視点</h4>
+          <p>営業が開発プロセスの違いを正しく理解してくれていると、「お客様がアジャイルを誤解している」ケースを事前に防げます。特に「アジャイル＝安い」「アジャイル＝仕様変更し放題」という誤解は多いので、営業がフィルターになってくれると助かります。</p>
+        </div>
+      </section>
+
+      <!-- 確認クイズ -->
+      <section class="content-section">
+        <h2>確認クイズ</h2>
+
+        <div class="quiz-card" data-phase="phase4" data-topic="dev-process" data-quiz="1">
+          <p class="quiz-question">Q1. ウォーターフォール開発で最も重要なフェーズは？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">実装</button>
+            <button class="quiz-option" data-correct="true">要件定義</button>
+            <button class="quiz-option" data-correct="false">テスト</button>
+            <button class="quiz-option" data-correct="false">基本設計</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">要件定義で決めた内容が後工程すべてのベースになるため、最も重要です。ここでの漏れや誤解は後工程ほど修正コストが大きくなります。</p>
+        </div>
+
+        <div class="quiz-card" data-phase="phase4" data-topic="dev-process" data-quiz="2">
+          <p class="quiz-question">Q2. アジャイル開発で一般的な契約形態は？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">一括請負契約</button>
+            <button class="quiz-option" data-correct="true">準委任契約（ラボ型）</button>
+            <button class="quiz-option" data-correct="false">成果報酬型契約</button>
+            <button class="quiz-option" data-correct="false">ライセンス契約</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">アジャイルは要件が変化することを前提とするため、成果物ではなく作業時間に対して支払う準委任契約が適しています。</p>
+        </div>
+
+        <div class="quiz-card" data-phase="phase4" data-topic="dev-process" data-quiz="3">
+          <p class="quiz-question">Q3. 「お客様が要件定義後は開発を任せたい」と言った場合、どちらが向いている？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="true">ウォーターフォール</button>
+            <button class="quiz-option" data-correct="false">アジャイル</button>
+            <button class="quiz-option" data-correct="false">どちらでも同じ</button>
+            <button class="quiz-option" data-correct="false">どちらも不向き</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">アジャイルではお客様の継続的な参加が必要です。「お任せしたい」場合はウォーターフォールが適しています。5つの判断基準の「お客様の巻き込み度」で判断できます。</p>
+        </div>
+      </section>
+
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生のまとめ</p>
+          <p>開発プロセスの違いがわかると、お客様との会話の幅がぐっと広がります。大切なのは「どちらが優れているか」ではなく、<strong>お客様の状況に合わせて適切な手法を選べること</strong>。次は見積もりの読み方を学んで、「金額の根拠を説明できる営業」を目指しましょう！</p>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <a href="index.html" class="page-nav-prev">
+          <span class="page-nav-label">Phase 4 トップ</span>
+          <span class="page-nav-title">旅の仲間と話す</span>
+        </a>
+        <a href="02-reading-estimates.html" class="page-nav-next">
+          <span class="page-nav-label">次のトピック</span>
+          <span class="page-nav-title">4-2. 見積もりの読み方</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>学習の進捗は自動保存されます 🦉</p><p>アーキテクチャ学習ランド &copy; 2025</p></div></footer>
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ProgressManager.initScrollTracking('phase4', 'dev-process');
+    });
+  </script>
+</body>
+</html>

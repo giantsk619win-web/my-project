@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2-4. セキュリティ | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body data-phase="2">
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo"><span class="owl-icon">🦉</span><span>アーキテクチャ学習ランド</span></a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav><ul class="nav-links">
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../phase1/index.html">Phase 1</a></li>
+        <li><a href="index.html" class="active">Phase 2</a></li>
+        <li><a href="../phase3/index.html">Phase 3</a></li>
+        <li><a href="../phase4/index.html">Phase 4</a></li>
+        <li><a href="../phase5/index.html">Phase 5</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <main class="phase-page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a><span class="separator">/</span>
+        <a href="index.html">Phase 2</a><span class="separator">/</span>
+        <span class="current">2-4. セキュリティ</span>
+      </nav>
+
+      <div class="phase-header">
+        <h1><span class="phase-icon">🛡️</span>2-4. セキュリティ</h1>
+      </div>
+
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の導入</p>
+          <p>お客様から「セキュリティは大丈夫ですか？」——この質問が来ない商談はほぼありません。でも「大丈夫です」と答えるだけでは信頼は得られない。セキュリティの基本概念を知っていれば、具体的に「こういう対策をします」と説明できます。今日はオフィスの入退室管理をたとえに、システムのセキュリティを学んでいきましょう！</p>
+        </div>
+      </div>
+
+      <section>
+        <h2>ゼロトラスト——「社員証だけでは入れないオフィス」</h2>
+
+        <p>昔のセキュリティは「城と堀」の考え方。社内ネットワークに入れば安全、外は危険。でも今は<span class="tech-term">ゼロトラスト<span class="tooltip">「何も信頼しない」を前提としたセキュリティモデル。社内外を問わず、すべてのアクセスを検証する考え方</span></span>の時代。</p>
+
+        <p>たとえると、昔のオフィスは「正面玄関で社員証を見せればどこでも自由に出入り」。ゼロトラストのオフィスは「各フロアでも各部屋でも毎回認証が必要。しかも入る理由まで確認される」。信頼しないけど、<strong>毎回ちゃんと確認する</strong>のがゼロトラストです。</p>
+
+        <div class="owl-box owl-trivia">
+          <div class="owl-box-content">
+            <p class="owl-box-title">豆知識</p>
+            <p>リモートワークの普及で、「社内ネットワーク＝安全」という前提が崩れました。自宅やカフェからアクセスする時代に「城と堀」は通用しない。これがゼロトラストが急速に普及した背景です。提案書に「ゼロトラストアーキテクチャ」と書けると、セキュリティ意識の高さをアピールできます。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>認証と認可——「あなたは誰？」と「何ができる？」</h2>
+
+        <p>セキュリティの基本中の基本、<span class="tech-term">認証<span class="tooltip">Authentication。「あなたは誰ですか？」を確認すること。ID/パスワード、指紋認証、顔認証など</span></span>と<span class="tech-term">認可<span class="tooltip">Authorization。「あなたは何をしていいですか？」を決めること。管理者は全操作OK、一般ユーザーは閲覧のみなど</span></span>の違いです。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>概念</th>
+                <th>質問</th>
+                <th>オフィスのたとえ</th>
+                <th>システムの例</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>認証</strong>（Authentication）</td>
+                <td>あなたは誰？</td>
+                <td>社員証で本人確認</td>
+                <td>ID/パスワード、多要素認証、SSO</td>
+              </tr>
+              <tr>
+                <td><strong>認可</strong>（Authorization）</td>
+                <td>何ができる？</td>
+                <td>一般社員は3階まで、役員は全フロアOK</td>
+                <td>ロールベースのアクセス制御、権限設定</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><span class="tech-term">多要素認証<span class="tooltip">MFA（Multi-Factor Authentication）。パスワードに加えて、スマホの認証アプリや指紋など、複数の要素で本人確認する仕組み</span></span>（MFA）は「パスワード＋スマホの認証コード」のように、<strong>2つ以上の方法で本人確認する</strong>仕組み。今やビジネスシステムでは必須レベルの対策です。</p>
+      </section>
+
+      <section>
+        <h2>暗号化の基本——「通信」と「保管」の2つの鍵</h2>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>種類</th>
+                <th>守るもの</th>
+                <th>たとえ</th>
+                <th>代表技術</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><span class="tech-term">通信の暗号化<span class="tooltip">データの送受信中に第三者に中身を見られないようにする技術。HTTPS（SSL/TLS）が代表的</span></span></strong></td>
+                <td>通信経路上のデータ</td>
+                <td>手紙を鍵付きの箱で送る</td>
+                <td>HTTPS（SSL/TLS）、VPN</td>
+              </tr>
+              <tr>
+                <td><strong><span class="tech-term">保管データの暗号化<span class="tooltip">データベースやストレージに保存されたデータを暗号化する技術。物理的にディスクを盗まれてもデータは読めない</span></span></strong></td>
+                <td>保存されているデータ</td>
+                <td>金庫にしまう</td>
+                <td>AES暗号化、KMS（鍵管理サービス）</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">ポイント</p>
+            <p>お客様には「データは<strong>送るときも保存するときも</strong>暗号化します」と説明できると安心感が大きいです。「HTTPSで通信は暗号化、データベースもAES256で暗号化。さらに暗号鍵はKMSで厳格に管理します」——具体的な技術名を出せると信頼度アップ。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>お客様がセキュリティを心配された時の会話テンプレート</h2>
+
+        <p>以下のような流れで会話を進めると、お客様の不安を解消しつつ、要件を具体化できます。</p>
+
+        <ol>
+          <li><strong>共感する</strong>：「セキュリティへのご関心、非常に重要です」</li>
+          <li><strong>具体化する</strong>：「特にどのような点が気になりますか？（情報漏洩？不正アクセス？災害対策？）」</li>
+          <li><strong>対策を示す</strong>：「当社の標準構成では、通信暗号化・多要素認証・WAFを組み込んでいます」</li>
+          <li><strong>基準を確認する</strong>：「社内のセキュリティポリシーや、準拠すべき基準（ISMS等）はありますか？」</li>
+          <li><strong>次のアクションへ</strong>：「詳細なセキュリティ要件は、要件定義フェーズでセキュリティ専門チームと一緒に詰めさせてください」</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>業界別セキュリティ要件の厳しさ</h2>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>業界</th>
+                <th>厳しさ</th>
+                <th>主な規制・基準</th>
+                <th>営業が注意すべきポイント</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>金融</strong></td>
+                <td>非常に高い</td>
+                <td>FISC安全対策基準、PCI DSS</td>
+                <td>金融庁ガイドラインへの準拠が必須。クラウド利用に制約がある場合も</td>
+              </tr>
+              <tr>
+                <td><strong>公共・官公庁</strong></td>
+                <td>非常に高い</td>
+                <td>ISMAP、政府統一基準</td>
+                <td>ISMAPに登録されたクラウドサービスのみ利用可能なケースが多い</td>
+              </tr>
+              <tr>
+                <td><strong>医療</strong></td>
+                <td>高い</td>
+                <td>医療情報システムの安全管理ガイドライン</td>
+                <td>患者データの取り扱いに厳格なルール。匿名化処理が必要な場合も</td>
+              </tr>
+              <tr>
+                <td><strong>製造</strong></td>
+                <td>中〜高</td>
+                <td>ISMS（ISO 27001）</td>
+                <td>工場のOTセキュリティ（制御系）も考慮が必要</td>
+              </tr>
+              <tr>
+                <td><strong>小売・サービス</strong></td>
+                <td>中程度</td>
+                <td>個人情報保護法、PCI DSS（カード決済）</td>
+                <td>EC サイトの場合はPCI DSS準拠が必要</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 営業コラム -->
+      <div class="column-sales">
+        <p class="column-title">営業の現場では...</p>
+        <p>セキュリティの話題でお客様の信頼を得るコツは、<strong>「具体的な対策名を出す」</strong>こと。「セキュリティは万全です」ではなく「多要素認証、通信暗号化、WAFによるWeb防御を標準で組み込みます」と言えるだけで印象が全然違います。また、お客様の<strong>業界の規制</strong>を事前に調べておくと「御社は金融業ですので、FISC基準への準拠も考慮した構成をご提案します」とアピールできます。</p>
+      </div>
+
+      <!-- 開発チームコラム -->
+      <div class="column-dev">
+        <p class="column-title">開発チームの視点</p>
+        <p>開発チームにとって、セキュリティ設計は「後付けでは間に合わない」もの。とくに営業さんから早期に知りたいのは：(1) お客様の<strong>業界と適用される規制</strong>、(2) <strong>扱うデータの種類</strong>（個人情報、カード情報、機密情報など）、(3) お客様の<strong>既存セキュリティポリシー</strong>の有無。これらがわかると、アーキテクチャの段階で適切なセキュリティ対策を組み込めます。</p>
+      </div>
+
+      <!-- クイズ -->
+      <h2>理解度チェック</h2>
+
+      <div class="quiz-card" data-answer="B" data-phase="phase2" data-topic="security">
+        <div class="quiz-card-header"><div class="quiz-icon">Q1</div><h4>認証と認可</h4></div>
+        <p class="quiz-question">「ログインした社員が、自部門のデータのみ閲覧可能」という制御は何に該当しますか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>認証</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>認可</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>暗号化</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>ゼロトラスト</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>「ログインした社員」が認証（あなたは誰？）、「自部門のデータのみ閲覧可能」が<strong>認可</strong>（何ができる？）です。認可はロールや権限に基づいて、アクセスできる範囲を制御します。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="quiz-card" data-answer="D" data-phase="phase2" data-topic="security">
+        <div class="quiz-card-header"><div class="quiz-icon">Q2</div><h4>ゼロトラスト</h4></div>
+        <p class="quiz-question">ゼロトラストの考え方として最も正しいものはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>社内ネットワークからのアクセスはすべて安全とみなす</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>パスワードを設定しなくてもよい</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>インターネットとの接続を完全に遮断する</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>社内外を問わず、すべてのアクセスを検証する</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>ゼロトラストは「何も信頼しない」を前提に、<strong>社内外を問わずすべてのアクセスを毎回検証</strong>する考え方です。「社内＝安全」という旧来の前提を捨て、常に認証・認可を行います。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="quiz-card" data-answer="A" data-phase="phase2" data-topic="security">
+        <div class="quiz-card-header"><div class="quiz-icon">Q3</div><h4>業界別セキュリティ</h4></div>
+        <p class="quiz-question">金融業界のシステムで準拠が求められる主な基準はどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>FISC安全対策基準</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>ISMAP</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>GDPR</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>JIS規格</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>金融業界では<strong>FISC安全対策基準</strong>が最も重要な準拠基準です。ISMAPは政府・官公庁向けのクラウドサービス認定制度、GDPRはEUの個人データ保護規則。お客様の業界に応じた規制を把握しておくことが、信頼ある提案につながります。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- 振り返り -->
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の振り返り</p>
+          <p>セキュリティは奥が深い分野ですが、営業として押さえるべきポイントは限られています。「認証と認可の違い」「暗号化の2種類」「業界ごとの規制」——この3つを知っているだけで、お客様からの信頼度が格段にアップしますよ。次は「パフォーマンス」。レジのたとえでシステムの速さの設計を学びましょう！</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <a href="03-scalability.html" class="btn btn-outline">← 前のトピック</a>
+        <a href="05-performance.html" class="btn btn-primary">次のトピック：パフォーマンス →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>学習の進捗は自動保存されます 🦉</p><p>アーキテクチャ学習ランド &copy; 2025</p></div></footer>
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>ProgressManager.initScrollTracking('phase2', 'security');</script>
+</body>
+</html>

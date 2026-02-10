@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4-4. アーキレビュー参加ガイド | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .check-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .check-item {
+      background: #fff;
+      border: 1px solid #e0d8cf;
+      border-radius: 8px;
+      padding: 1rem 1rem 1rem 3.2rem;
+      position: relative;
+      line-height: 1.7;
+    }
+    .check-item::before {
+      content: attr(data-num);
+      position: absolute;
+      left: 0.7rem;
+      top: 0.9rem;
+      width: 1.8rem;
+      height: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--phase4-color);
+      color: #fff;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+    .check-item strong { display: block; margin-bottom: 0.2rem; font-size: 0.95rem; }
+
+    .question-list {
+      counter-reset: q-counter;
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+    .question-list li {
+      counter-increment: q-counter;
+      padding: 0.75rem 1rem 0.75rem 3rem;
+      margin-bottom: 0.5rem;
+      background: #f9f6f2;
+      border-radius: 8px;
+      position: relative;
+      line-height: 1.7;
+    }
+    .question-list li::before {
+      content: "Q" counter(q-counter);
+      position: absolute;
+      left: 0.6rem;
+      top: 0.75rem;
+      font-weight: 700;
+      color: var(--phase4-color);
+      font-size: 0.85rem;
+    }
+
+    .minutes-template {
+      background: #fff;
+      border: 2px solid var(--phase4-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .minutes-template h4 {
+      text-align: center;
+      color: var(--phase4-color);
+      margin: 0 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px dashed #e0d8cf;
+    }
+    .minutes-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+    .minutes-label {
+      font-weight: 700;
+      color: var(--text-primary);
+      background: var(--bg-light);
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+    }
+    .minutes-value {
+      padding: 0.4rem 0.6rem;
+      border-bottom: 1px dashed #ccc;
+      color: var(--text-secondary);
+    }
+    .minutes-section {
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid #e0d8cf;
+    }
+    .minutes-section h5 {
+      font-size: 0.9rem;
+      color: var(--phase4-color);
+      margin: 0 0 0.5rem;
+    }
+    .minutes-section ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .report-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .report-point {
+      background: #fff;
+      border-left: 4px solid var(--phase4-color);
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+    }
+    .report-point h5 {
+      margin: 0 0 0.25rem;
+      font-size: 0.9rem;
+      color: var(--phase4-color);
+    }
+    .report-point p { margin: 0; font-size: 0.9rem; line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .check-grid, .report-points { grid-template-columns: 1fr; }
+      .minutes-row { grid-template-columns: 110px 1fr; }
+    }
+
+    @media print {
+      .minutes-template {
+        border: 1px solid #000;
+        page-break-inside: avoid;
+      }
+      .site-header, .site-footer, .owl-box, .quiz-card, .page-nav, .breadcrumb { display: none; }
+    }
+  </style>
+</head>
+<body data-phase="4">
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo"><span class="owl-icon">🦉</span><span>アーキテクチャ学習ランド</span></a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav><ul class="nav-links">
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../phase1/index.html">Phase 1</a></li>
+        <li><a href="../phase2/index.html">Phase 2</a></li>
+        <li><a href="../phase3/index.html">Phase 3</a></li>
+        <li><a href="index.html" class="active">Phase 4</a></li>
+        <li><a href="../phase5/index.html">Phase 5</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <main class="topic-page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span class="separator">/</span>
+        <a href="index.html">Phase 4</a>
+        <span class="separator">/</span>
+        <span class="current">4-4. アーキレビュー参加ガイド</span>
+      </nav>
+
+      <h1>4-4. アーキレビュー参加ガイド</h1>
+
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生より</p>
+          <p>アーキテクチャレビュー会議は「どんな構成でシステムを作るか」を決める重要な場です。営業が参加するのは珍しいかもしれませんが、<strong>参加して理解できる営業は圧倒的に強い</strong>。全部わからなくてもOK、確認すべきポイントと「聞いていい質問」を知っていれば十分です！</p>
+        </div>
+      </div>
+
+      <!-- セクション1: アーキレビューとは -->
+      <section class="content-section">
+        <h2>アーキレビュー会議とは</h2>
+        <p>アーキテクチャレビュー会議は、システムの全体設計（アーキテクチャ）が適切かどうかを複数の視点で確認する場です。</p>
+
+        <div class="comparison-table">
+          <table>
+            <thead>
+              <tr>
+                <th>項目</th>
+                <th>内容</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>何を決めるか</strong></td>
+                <td>システムの全体構成、技術選定、インフラ構成、セキュリティ方針</td>
+              </tr>
+              <tr>
+                <td><strong>参加者</strong></td>
+                <td>アーキテクト、PM、リードエンジニア、（営業、お客様）</td>
+              </tr>
+              <tr>
+                <td><strong>使う資料</strong></td>
+                <td>構成図、技術選定理由書、非機能要件定義書</td>
+              </tr>
+              <tr>
+                <td><strong>頻度</strong></td>
+                <td>プロジェクト初期に1〜3回、大きな方針変更時に随時</td>
+              </tr>
+              <tr>
+                <td><strong>営業の役割</strong></td>
+                <td>顧客要件との整合確認、コスト・スケジュールへの影響把握</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">重要ポイント</p>
+            <p>アーキレビューでの決定は<strong>プロジェクト全体のコスト・スケジュール・品質</strong>に直結します。「後で構成を変えたい」は非常にコストがかかるため、この段階で営業視点のチェックを入れることが重要です。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- セクション2: 10の確認観点 -->
+      <section class="content-section">
+        <h2>営業として確認すべき10の観点</h2>
+        <p>レビュー中にすべてを確認する必要はありません。事前に構成図を見て、気になるポイントを2〜3個準備しておくのがコツです。</p>
+
+        <div class="check-grid">
+          <div class="check-item" data-num="1">
+            <strong>コストへの影響</strong>
+            この構成で見積もりに収まるか？想定外のライセンス費用やクラウド利用料はないか？
+          </div>
+          <div class="check-item" data-num="2">
+            <strong>スケジュールへの影響</strong>
+            この構成の構築・テストは期間内に終わるか？技術的に未経験の部分はないか？
+          </div>
+          <div class="check-item" data-num="3">
+            <strong>顧客要件との整合</strong>
+            お客様が求めている機能・性能を、この構成で実現できるか？
+          </div>
+          <div class="check-item" data-num="4">
+            <strong>非機能要件の充足</strong>
+            可用性・性能・セキュリティの要件を満たす構成になっているか？（<a href="../phase2/index.html">Phase 2参照</a>）
+          </div>
+          <div class="check-item" data-num="5">
+            <strong>運用保守の容易さ</strong>
+            リリース後の運用は複雑すぎないか？運用チームのスキルレベルに合っているか？
+          </div>
+          <div class="check-item" data-num="6">
+            <strong>将来の拡張性</strong>
+            お客様が言及している将来計画（機能追加、ユーザー増加）に対応できる構成か？
+          </div>
+          <div class="check-item" data-num="7">
+            <strong>既存システムとの整合</strong>
+            現行システムとの連携に問題はないか？移行計画は現実的か？
+          </div>
+          <div class="check-item" data-num="8">
+            <strong>ベンダーロックイン</strong>
+            特定のクラウドベンダーや製品に過度に依存していないか？将来の乗り換えは可能か？
+          </div>
+          <div class="check-item" data-num="9">
+            <strong>チームのスキルセット</strong>
+            この構成を構築・運用できる技術者がチームにいるか？採用・教育が必要か？
+          </div>
+          <div class="check-item" data-num="10">
+            <strong>お客様への説明容易性</strong>
+            この構成をお客様に分かりやすく説明できるか？過度に複雑になっていないか？
+          </div>
+        </div>
+
+        <div class="column-sales">
+          <h4>営業の視点が光る場面</h4>
+          <p>技術者はつい「技術的に最善の構成」を追求しがちですが、営業が「お客様の予算感」や「社内のIT人材レベル」を考慮した発言をすると、<strong>現実的で実行可能な構成</strong>に落ち着きます。例えば「お客様の運用チームは3名でK8s経験なしですが、この構成は運用可能でしょうか？」という発言は非常に価値があります。</p>
+        </div>
+      </section>
+
+      <!-- セクション3: 聞いていい質問リスト -->
+      <section class="content-section">
+        <h2>「技術的にわからなくても聞いていい質問」10個</h2>
+        <p>レビュー会議で営業が質問すると「場違いかな…」と不安になるかもしれません。でも以下の質問は、技術者が喜ぶ「良い質問」です。</p>
+
+        <ol class="question-list">
+          <li><strong>「この構成で、一番リスクが高い部分はどこですか？」</strong><br>技術者が見逃しがちなリスクの再確認を促す。</li>
+          <li><strong>「この部分が止まったら、お客様にはどんな影響がありますか？」</strong><br>障害影響の具体化。お客様視点の確認。</li>
+          <li><strong>「想定しているアクセス数の根拠はどこから来ていますか？」</strong><br>性能設計の前提条件の妥当性確認。</li>
+          <li><strong>「この技術/サービスを選んだ理由と、他の選択肢はありましたか？」</strong><br>選定理由の明確化。お客様への説明材料になる。</li>
+          <li><strong>「運用フェーズで、日常的に必要な作業はどのくらいありますか？」</strong><br>運用コストの見積もり根拠の確認。</li>
+          <li><strong>「お客様の将来計画（○○）に対応するには、この構成で十分ですか？」</strong><br>お客様の中長期計画との整合性確認。営業だからこそ知っている情報。</li>
+          <li><strong>「この構成図を、お客様に説明するとしたらどう説明しますか？」</strong><br>技術者に「平易な説明」を考えてもらう良いきっかけ。</li>
+          <li><strong>「追加費用が発生しそうなポイントはありますか？」</strong><br>見積もりに含まれていない隠れコストの洗い出し。</li>
+          <li><strong>「セキュリティ面で、お客様に説明すべきポイントは何ですか？」</strong><br>セキュリティ対策の確認とお客様報告材料の準備。</li>
+          <li><strong>「もし予算を20%削るとしたら、どこを調整しますか？」</strong><br>コスト調整の選択肢を事前に把握しておく。</li>
+        </ol>
+
+        <div class="owl-box owl-trivia">
+          <div class="owl-box-content">
+            <p class="owl-box-title">豆知識</p>
+            <p>実は、上の質問は<strong>優秀なPMやアーキテクトが聞く質問と同じ</strong>です。「お客様視点」「コスト視点」「リスク視点」から質問できる営業は、技術チームからも「頼りになる」と評価されます。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- セクション4: 議事録テンプレート -->
+      <section class="content-section">
+        <h2>議事録テンプレート（営業視点）</h2>
+        <p>レビュー会議に参加したら、以下のテンプレートで記録しましょう。技術的な詳細を全て書く必要はなく、<strong>営業として知っておくべきポイント</strong>に絞ります。印刷して持参するのもおすすめです。</p>
+
+        <div class="minutes-template">
+          <h4>アーキレビュー議事録（営業用）</h4>
+          <div class="minutes-row">
+            <div class="minutes-label">会議日時</div>
+            <div class="minutes-value">____年__月__日（_）__:__ 〜 __:__</div>
+          </div>
+          <div class="minutes-row">
+            <div class="minutes-label">プロジェクト名</div>
+            <div class="minutes-value">_________________________</div>
+          </div>
+          <div class="minutes-row">
+            <div class="minutes-label">参加者</div>
+            <div class="minutes-value">_________________________</div>
+          </div>
+          <div class="minutes-row">
+            <div class="minutes-label">レビュー対象</div>
+            <div class="minutes-value">□ 全体構成 □ インフラ □ セキュリティ □ その他（　　）</div>
+          </div>
+
+          <div class="minutes-section">
+            <h5>1. 決定事項（お客様に影響するもの）</h5>
+            <ul>
+              <li>コストに影響する決定：_________________________</li>
+              <li>スケジュールに影響する決定：_________________________</li>
+              <li>機能・性能に影響する決定：_________________________</li>
+            </ul>
+          </div>
+
+          <div class="minutes-section">
+            <h5>2. リスク・懸念事項</h5>
+            <ul>
+              <li>技術的リスク：_________________________</li>
+              <li>コストリスク：_________________________</li>
+              <li>スケジュールリスク：_________________________</li>
+            </ul>
+          </div>
+
+          <div class="minutes-section">
+            <h5>3. お客様への報告事項</h5>
+            <ul>
+              <li>お客様に確認が必要な事項：_________________________</li>
+              <li>お客様に共有すべき決定事項：_________________________</li>
+              <li>次回までのお客様側タスク：_________________________</li>
+            </ul>
+          </div>
+
+          <div class="minutes-section">
+            <h5>4. 次のアクション</h5>
+            <ul>
+              <li>営業の宿題：_________________________（期限：__/__）</li>
+              <li>開発チームの宿題：_________________________（期限：__/__）</li>
+              <li>次回レビュー予定：__月__日</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="column-dev">
+          <h4>開発チームの視点</h4>
+          <p>営業が議事録を取ってくれると、開発チームは技術的な議論に集中できます。特に「お客様に確認が必要な事項」を営業がまとめてくれると、確認事項の漏れが減り、プロジェクトの進行がスムーズになります。</p>
+        </div>
+      </section>
+
+      <!-- セクション5: レビュー後の報告 -->
+      <section class="content-section">
+        <h2>レビュー後にお客様に報告する際のポイント</h2>
+        <p>レビュー会議の内容をお客様に報告するとき、技術的な詳細を全て伝える必要はありません。以下の4つの観点でまとめましょう。</p>
+
+        <div class="report-points">
+          <div class="report-point">
+            <h5>コストへの影響</h5>
+            <p>「当初見積もりの範囲内で収まります」or「○○の構成変更により、約○○万円の増額が見込まれます」</p>
+          </div>
+          <div class="report-point">
+            <h5>スケジュールへの影響</h5>
+            <p>「予定通り進行可能です」or「○○の調査に追加で○週間必要です」</p>
+          </div>
+          <div class="report-point">
+            <h5>ご要件との整合</h5>
+            <p>「ご要望の○○は問題なく実現可能です」or「○○については代替案をご提案します」</p>
+          </div>
+          <div class="report-point">
+            <h5>ご確認いただきたい事項</h5>
+            <p>「○○について、御社のご方針をお聞かせいただけますか？」</p>
+          </div>
+        </div>
+
+        <div class="owl-box owl-encourage">
+          <div class="owl-box-content">
+            <p class="owl-box-title">コツ</p>
+            <p>お客様への報告では「技術的にこうなりました」ではなく<strong>「お客様にとってどういう影響があるか」</strong>に翻訳して伝えましょう。「AWS Lambda を採用することになりました」ではなく「使った分だけ課金される仕組みを採用したので、閑散期のコストが抑えられます」と伝えるイメージです。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 確認クイズ -->
+      <section class="content-section">
+        <h2>確認クイズ</h2>
+
+        <div class="quiz-card" data-phase="phase4" data-topic="review-guide" data-quiz="1">
+          <p class="quiz-question">Q1. アーキレビュー会議における営業の最も重要な役割は？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">技術的な問題点を指摘する</button>
+            <button class="quiz-option" data-correct="true">顧客要件・コスト・スケジュールとの整合を確認する</button>
+            <button class="quiz-option" data-correct="false">議事録を詳細に記録する</button>
+            <button class="quiz-option" data-correct="false">最新技術の採用を提案する</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">営業の強みは「お客様の要望」「予算」「スケジュール」を最もよく知っていること。技術的な正しさは技術チームに任せ、営業はビジネス視点でのチェックを行うのが最も価値ある貢献です。</p>
+        </div>
+
+        <div class="quiz-card" data-phase="phase4" data-topic="review-guide" data-quiz="2">
+          <p class="quiz-question">Q2. レビュー会議で「この技術を選んだ理由と他の選択肢」を聞く意味は？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">技術者の知識を試すため</button>
+            <button class="quiz-option" data-correct="false">別の技術に変更させるため</button>
+            <button class="quiz-option" data-correct="true">選定理由を明確にし、お客様への説明材料にするため</button>
+            <button class="quiz-option" data-correct="false">会議を長引かせるため</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">技術選定の理由を知っておくと、お客様から「なぜこの技術なのか」と聞かれた際に根拠を持って回答できます。また、比較検討した上での判断であることが伝わり、提案の信頼性が増します。</p>
+        </div>
+
+        <div class="quiz-card" data-phase="phase4" data-topic="review-guide" data-quiz="3">
+          <p class="quiz-question">Q3. お客様への報告で最も適切な伝え方は？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">「AWS Lambdaを採用し、API Gatewayを前段に配置します」</button>
+            <button class="quiz-option" data-correct="true">「使った分だけ課金される仕組みで、閑散期のコストが抑えられます」</button>
+            <button class="quiz-option" data-correct="false">「技術的な詳細は開発チームから直接説明してもらいます」</button>
+            <button class="quiz-option" data-correct="false">「専門的な内容なのでお任せください」</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">お客様は技術名ではなく「自分たちにとってどんなメリットがあるか」を知りたいのです。技術的な判断をお客様のメリットに翻訳して伝えるのが営業の腕の見せどころです。</p>
+        </div>
+      </section>
+
+      <!-- Phase4→Phase5ブリッジメッセージ -->
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生のまとめ — Phase 4 完了！</p>
+          <p>Phase 4、お疲れさまでした！開発プロセス、見積もり、技術用語、レビュー会議——<strong>開発チームと「同じ言葉」で話すための力</strong>が身についたはずです。</p>
+          <p style="margin-top: 0.75rem;">🦉✨ ここまでの知識があればもう<strong>「アーキが語れる営業」</strong>だよ！最後は実践練習。実際のお客様シナリオで全部使ってみよう。失敗しても大丈夫、ここは練習の場だからね！</p>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <a href="03-tech-dictionary.html" class="page-nav-prev">
+          <span class="page-nav-label">前のトピック</span>
+          <span class="page-nav-title">4-3. 技術用語ブリッジ辞典</span>
+        </a>
+        <a href="../phase5/index.html" class="page-nav-next">
+          <span class="page-nav-label">次のフェーズ</span>
+          <span class="page-nav-title">Phase 5: 旅の案内人になる</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>学習の進捗は自動保存されます 🦉</p><p>アーキテクチャ学習ランド &copy; 2025</p></div></footer>
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ProgressManager.initScrollTracking('phase4', 'review-guide');
+    });
+  </script>
+</body>
+</html>

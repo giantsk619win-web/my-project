@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1-1. システムアーキテクチャとは何か | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body data-phase="1">
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo">
+        <span class="owl-icon">🦉</span>
+        <span>アーキテクチャ学習ランド</span>
+      </a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html">ホーム</a></li>
+          <li><a href="index.html" class="active">Phase 1</a></li>
+          <li><a href="../phase2/index.html">Phase 2</a></li>
+          <li><a href="../phase3/index.html">Phase 3</a></li>
+          <li><a href="../phase4/index.html">Phase 4</a></li>
+          <li><a href="../phase5/index.html">Phase 5</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="phase-page">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span class="separator">/</span>
+        <a href="index.html">Phase 1</a>
+        <span class="separator">/</span>
+        <span class="current">1-1. システムアーキテクチャとは何か</span>
+      </nav>
+
+      <!-- Phase Header -->
+      <div class="phase-header">
+        <h1><span class="phase-icon">🌱</span>1-1. システムアーキテクチャとは何か</h1>
+      </div>
+
+      <!-- ==================== -->
+      <!-- フクロウ先生の導入 -->
+      <!-- ==================== -->
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の導入</p>
+          <p>「アーキテクチャって、よく聞くけど結局何なの？」——大丈夫、その疑問から始めましょう。家を建てるとき、いきなりレンガを積む人はいませんよね。まず設計図を描いて、どんな間取りにするか、水道や電気をどう通すかを決めます。システムアーキテクチャもまったく同じ。<strong>「ITシステムの設計図」</strong>のことなんです。そしてね、この設計図が読める営業と読めない営業では、提案の質がまるで違うんですよ。</p>
+        </div>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 本文解説 -->
+      <!-- ==================== -->
+      <section>
+        <h2>なぜSIer営業がアーキテクチャを理解すべきなのか</h2>
+
+        <p>SIer営業の仕事は、お客様の課題を聞いて最適なITソリューションを提案すること。でも「何を作るか」だけでなく<strong>「どう作るか」</strong>を理解していないと、こんな困ったことが起きます。</p>
+
+        <h3>知ってる営業 vs 知らない営業：3つの商談シーン</h3>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>商談シーン</th>
+                <th>アーキを知らない営業</th>
+                <th>アーキを知ってる営業</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>見積もり依頼を受けたとき</strong></td>
+                <td>「持ち帰ってSEに聞きます」で終わり。追加の質問もできず、何往復もやりとりが発生</td>
+                <td>「御社の想定ユーザー数と可用性要件を伺えますか？構成によって費用感が変わりますので」とその場で深掘りできる</td>
+              </tr>
+              <tr>
+                <td><strong>コンペで競合と比較されたとき</strong></td>
+                <td>「うちの方が安いです」と価格勝負するしかない</td>
+                <td>「当社の提案はマイクロサービス構成で、将来の機能追加にも柔軟に対応できます」と技術的な差別化ができる</td>
+              </tr>
+              <tr>
+                <td><strong>顧客から技術的な質問をされたとき</strong></td>
+                <td>「すみません、技術のことは担当SEに...」と信頼を失う</td>
+                <td>「クラウドネイティブな構成で、コスト最適化も考慮しています。詳細は設計フェーズで詰めましょう」と会話が続く</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">ポイント</p>
+            <p>アーキテクチャの知識は「技術者になる」ためではなく、<strong>「お客様との会話の質を上げる」</strong>ためのもの。全部を深く理解する必要はなく、「何を聞くべきか」「どこに注意すべきか」がわかればOKです。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>アーキテクチャ ＝ 「建物の設計図」</h2>
+
+        <p>もう少し「建物の設計図」のたとえを深掘りしてみましょう。</p>
+
+        <p>マンションを建てるとき、設計図には以下のようなことが書かれています。</p>
+
+        <ul>
+          <li><strong>間取り</strong>：部屋の数と配置 → システムでは<span class="tech-term">コンポーネント<span class="tooltip">システムを構成する部品や機能のまとまりのこと。ログイン機能、検索機能など</span></span>の配置</li>
+          <li><strong>構造（骨組み）</strong>：鉄骨か木造か → システムでは<span class="tech-term">技術スタック<span class="tooltip">システムを構築するために選択したプログラミング言語、フレームワーク、ツールの組み合わせ</span></span>の選択</li>
+          <li><strong>配管・電気</strong>：水道管や配線の経路 → システムではデータの流れや通信経路</li>
+          <li><strong>耐震設計</strong>：地震への備え → システムでは障害対策や<span class="tech-term">冗長化<span class="tooltip">同じ機能を持つ部品を複数用意し、1つが壊れても他で代替できるようにすること</span></span></li>
+        </ul>
+
+        <p>建物の設計図が「住みやすさ」「安全性」「コスト」を左右するように、システムアーキテクチャは<strong>「使いやすさ」「安定性」「開発コスト」</strong>を左右します。</p>
+      </section>
+
+      <section>
+        <h2>アーキテクチャの3つの層</h2>
+
+        <p>システムアーキテクチャは、大きく3つの層（レイヤー）で捉えると理解しやすくなります。レストランにたとえてみましょう。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>層</th>
+                <th>役割</th>
+                <th>レストランのたとえ</th>
+                <th>具体例</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><span class="tech-term">アプリケーション層<span class="tooltip">ユーザーが直接触れる画面や、ビジネスロジック（業務ルール）を処理する部分</span></span></strong></td>
+                <td>ユーザーが触れる画面・業務処理</td>
+                <td>ホールスタッフとメニュー表</td>
+                <td>Webアプリ、モバイルアプリ、業務ロジック</td>
+              </tr>
+              <tr>
+                <td><strong><span class="tech-term">データ層<span class="tooltip">データベースやファイルストレージなど、情報を保存・管理する部分</span></span></strong></td>
+                <td>データの保存と管理</td>
+                <td>食材の倉庫と冷蔵庫</td>
+                <td>データベース、ファイルストレージ、キャッシュ</td>
+              </tr>
+              <tr>
+                <td><strong><span class="tech-term">インフラ層<span class="tooltip">サーバー、ネットワーク、OSなど、システムを動かす土台となる部分</span></span></strong></td>
+                <td>システムを動かす土台</td>
+                <td>建物・厨房設備・電気ガス水道</td>
+                <td>サーバー、ネットワーク、OS、クラウド基盤</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-trivia">
+          <div class="owl-box-content">
+            <p class="owl-box-title">豆知識</p>
+            <p>提案書でよく見る「システム構成図」は、この3つの層を図にしたもの。上にアプリケーション層、真ん中にデータ層、下にインフラ層を配置するのが定番のレイアウトです。この配置を知っているだけで、構成図がグッと読みやすくなりますよ。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>「良いアーキテクチャ」とは？</h2>
+
+        <p>「良い設計図」があるように、「良いアーキテクチャ」にも特徴があります。ただし、<strong>万能な正解は存在しません</strong>。お客様の要件に合っているかどうかがすべてです。</p>
+
+        <p>とはいえ、一般的に評価されるポイントはあります。</p>
+
+        <ul>
+          <li><strong>シンプルさ</strong>：必要以上に複雑でないこと（過剰設計はコスト増の元）</li>
+          <li><strong>拡張性</strong>：将来の変更や追加がしやすいこと</li>
+          <li><strong>信頼性</strong>：障害が起きても影響範囲が限定されること</li>
+          <li><strong>コスト効率</strong>：要件に見合った適切な投資であること</li>
+        </ul>
+
+        <p>営業としてお客様に提案するとき、「なぜこの構成がお客様に最適なのか」を説明できると、信頼度が格段にアップします。</p>
+      </section>
+
+      <!-- ==================== -->
+      <!-- 営業の現場コラム -->
+      <!-- ==================== -->
+      <div class="column-sales">
+        <p class="column-title">営業の現場では...</p>
+        <p>お客様から「うちのシステムをリニューアルしたい」と相談されたとき、まず確認すべきは<strong>「現在のアーキテクチャ」</strong>です。「今のシステムはオンプレミスですか？クラウドですか？」「WebアプリですかC/Sですか？」——こうした質問ができるだけで、SEへの引き継ぎがスムーズになり、初回ヒアリングの質が飛躍的に上がります。アーキテクチャの知識は、最初の商談から活きるのです。</p>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 開発チームの視点コラム -->
+      <!-- ==================== -->
+      <div class="column-dev">
+        <p class="column-title">開発チームの視点</p>
+        <p>開発チームにとって、アーキテクチャは「プロジェクトの成否を左右する最重要決定」です。アーキテクチャの決定は後から変えるのが非常に難しいため、要件定義の段階でしっかり詰める必要があります。営業さんが「お客様の将来構想」や「予算制約」「運用体制」などの情報を早い段階で持ってきてくれると、最適なアーキテクチャを選定しやすくなります。技術の詳細はわからなくても、<strong>「お客様の本当のニーズ」を翻訳してくれる営業</strong>は開発チームにとって本当にありがたい存在です。</p>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 章末クイズ -->
+      <!-- ==================== -->
+      <h2>理解度チェック</h2>
+
+      <!-- Quiz 1 -->
+      <div class="quiz-card" data-answer="C" data-phase="phase1" data-topic="what-is-architecture">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q1</div>
+          <h4>システムアーキテクチャとは？</h4>
+        </div>
+        <p class="quiz-question">システムアーキテクチャを最も適切に表現しているのはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>プログラミング言語の書き方のルール</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>サーバーの購入費用を計算する手法</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>システム全体の構造や構成要素の配置を決める設計方針</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>テストを行うための手順書</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback">
+          <p class="feedback-title"></p>
+        </div>
+        <div class="quiz-explanation">
+          <p>アーキテクチャは「建物の設計図」にあたるもので、システム全体の構造、構成要素の配置、データの流れなどを決める設計方針です。個々のコードの書き方やコスト計算とは異なり、もっと大きな視点での「どう作るか」の設計図です。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- Quiz 2 -->
+      <div class="quiz-card" data-answer="B" data-phase="phase1" data-topic="what-is-architecture">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q2</div>
+          <h4>アーキテクチャの3つの層</h4>
+        </div>
+        <p class="quiz-question">アーキテクチャの「データ層」に該当するものはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>ユーザーが操作するWebブラウザの画面</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>顧客情報を保存しているデータベース</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>システムが動いているサーバーのハードウェア</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>開発チームが使うプロジェクト管理ツール</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback">
+          <p class="feedback-title"></p>
+        </div>
+        <div class="quiz-explanation">
+          <p>データ層は「食材の倉庫と冷蔵庫」にあたる部分で、データベースやファイルストレージなど、情報を保存・管理する部分です。Aはアプリケーション層、Cはインフラ層に該当します。Dはシステムアーキテクチャの構成要素ではありません。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- Quiz 3 -->
+      <div class="quiz-card" data-answer="D" data-phase="phase1" data-topic="what-is-architecture">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q3</div>
+          <h4>営業にとってのアーキテクチャ知識</h4>
+        </div>
+        <p class="quiz-question">SIer営業がアーキテクチャを理解するメリットとして、最も適切なものはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>自分でプログラミングできるようになる</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>SEの仕事を代わりにできるようになる</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>お客様に技術用語を使って難しい説明ができる</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>お客様との会話の質が上がり、初回ヒアリングから的確な情報を引き出せる</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback">
+          <p class="feedback-title"></p>
+        </div>
+        <div class="quiz-explanation">
+          <p>営業がアーキテクチャを学ぶ目的は、技術者になることではなく「お客様との会話の質を上げる」ことです。アーキの基礎がわかれば、適切な質問ができ、SEへの引き継ぎもスムーズになります。難しい技術用語でお客様を圧倒するのは逆効果ですよ。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- ==================== -->
+      <!-- フクロウ先生の振り返り + 次のトピックへ -->
+      <!-- ==================== -->
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の振り返り</p>
+          <p>お疲れさまでした！アーキテクチャは「ITシステムの設計図」であること、そしてそれを知っている営業が商談でどう活躍できるか、イメージがつかめましたか？完璧に覚えなくても大丈夫。大切なのは「アーキテクチャという視点を持つこと」そのものです。次は、データがどのように生まれて旅をしていくのか——「データのライフサイクル」を見ていきましょう！</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <a href="index.html" class="btn btn-outline">← Phase 1 トップへ</a>
+        <a href="02-data-lifecycle.html" class="btn btn-primary">次のトピック：データのライフサイクル →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>学習の進捗は自動保存されます 🦉</p>
+      <p>アーキテクチャ学習ランド &copy; 2025</p>
+    </div>
+  </footer>
+
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>
+    ProgressManager.initScrollTracking('phase1', 'what-is-architecture');
+  </script>
+</body>
+</html>

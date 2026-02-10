@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5-3. ケーススタディ：地方銀行API基盤 | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .cs-memo { background: #fffef5; border: 2px solid #e6d9a8; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+    .cs-memo-title { font-weight: 700; color: #8b7a2e; margin-bottom: 1rem; font-size: 1rem; }
+    .cs-memo-speaker { font-weight: 700; color: #5d4e0f; margin-top: 1rem; }
+    .cs-memo p { line-height: 1.8; margin: 0.25rem 0; }
+    .cs-task { background: #fff; border: 2px solid var(--phase5-color); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+    .cs-task h3 { color: var(--phase5-color); margin: 0 0 0.5rem; font-size: 1.05rem; }
+    .cs-task p { margin: 0 0 1rem; font-size: 0.95rem; color: var(--text-secondary); }
+    .cs-hint-btn, .cs-answer-btn { padding: 0.5rem 1.2rem; border: 2px solid var(--phase5-color); border-radius: 8px; background: #fff; color: var(--phase5-color); font-weight: 700; font-size: 0.9rem; cursor: pointer; margin-right: 0.5rem; margin-bottom: 0.5rem; font-family: inherit; transition: all 0.2s; }
+    .cs-hint-btn:hover { background: #fff5f5; }
+    .cs-answer-btn { background: var(--phase5-color); color: #fff; }
+    .cs-answer-btn:hover { opacity: 0.9; }
+    .cs-hint { display: none; margin-top: 1rem; padding: 0.75rem 1rem; background: #fff8f0; border-left: 4px solid #ffa726; border-radius: 0 8px 8px 0; font-size: 0.9rem; line-height: 1.7; }
+    .cs-hint.visible { display: block; }
+    .cs-answer { display: none; margin-top: 1rem; padding: 1.25rem; background: #f0f9f0; border: 2px solid #4caf50; border-radius: 12px; line-height: 1.8; }
+    .cs-answer.visible { display: block; }
+    .cs-answer h4 { color: #2e7d32; margin: 0 0 0.5rem; }
+    .cs-answer ul { margin: 0.5rem 0; padding-left: 1.2rem; }
+    .cs-info-table { font-size: 0.9rem; margin: 1rem 0; }
+    .cs-info-table td { padding: 0.4rem 0.75rem; }
+    .cs-info-table td:first-child { font-weight: 700; white-space: nowrap; }
+  </style>
+</head>
+<body data-phase="5">
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo"><span class="owl-icon">🦉</span><span>アーキテクチャ学習ランド</span></a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav><ul class="nav-links">
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../phase1/index.html">Phase 1</a></li>
+        <li><a href="../phase2/index.html">Phase 2</a></li>
+        <li><a href="../phase3/index.html">Phase 3</a></li>
+        <li><a href="../phase4/index.html">Phase 4</a></li>
+        <li><a href="index.html" class="active">Phase 5</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <main class="topic-page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a><span class="separator">/</span>
+        <a href="index.html">Phase 5</a><span class="separator">/</span>
+        <span class="current">5-3. ケーススタディ：地方銀行API基盤</span>
+      </nav>
+
+      <h1>5-3. ケーススタディ：地方銀行のAPI基盤</h1>
+
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生より</p>
+          <p>金融業界は<strong>セキュリティと可用性の要件が最も厳しい</strong>業界の一つです。「止まってはいけない」「漏れてはいけない」の両方が求められる難易度の高いケースに挑戦しましょう！</p>
+        </div>
+      </div>
+
+      <section class="content-section">
+        <h2>お客様情報</h2>
+        <table class="cs-info-table">
+          <tr><td>企業名</td><td>みどり銀行（仮称）</td></tr>
+          <tr><td>業種</td><td>地方銀行（第一地銀）</td></tr>
+          <tr><td>預金残高</td><td>約3兆円</td></tr>
+          <tr><td>店舗数</td><td>県内80支店</td></tr>
+          <tr><td>IT体制</td><td>システム部30名、子会社にIT運用会社あり</td></tr>
+          <tr><td>予算感</td><td>2〜3億円（3年計画）</td></tr>
+        </table>
+      </section>
+
+      <section class="content-section">
+        <h2>ヒアリングメモ</h2>
+        <div class="cs-memo">
+          <p class="cs-memo-title">初回ヒアリング議事メモ（システム部 鈴木部長）</p>
+
+          <p class="cs-memo-speaker">鈴木部長：</p>
+          <p>「銀行法改正でオープンAPIの対応が求められています。フィンテック企業と連携して、家計簿アプリや会計ソフトから当行の口座情報を参照できるようにしたいんです。将来的には振込APIも公開したい。」</p>
+
+          <p class="cs-memo-speaker">鈴木部長：</p>
+          <p>「当然ですが、セキュリティは最優先です。金融庁のガイドラインに準拠する必要があります。APIを公開するということは外部からのアクセスを受けるわけで、不正アクセスや情報漏洩は絶対に許されません。」</p>
+
+          <p class="cs-memo-speaker">鈴木部長：</p>
+          <p>「既存の勘定系システムはメインフレームで動いています。これは当面変えられません。APIはこのメインフレームの前に"窓口"として配置するイメージです。勘定系の処理能力には限りがあるので、APIからのアクセスが殺到して勘定系が落ちるようなことは絶対に避けたい。」</p>
+
+          <p class="cs-memo-speaker">鈴木部長：</p>
+          <p>「可用性は99.99%を求めています。営業時間中はもちろん、ATMやネットバンキングの時間帯も含めてです。年に1回の計画停止以外は動いていてほしい。」</p>
+        </div>
+      </section>
+
+      <!-- 課題1 -->
+      <section class="content-section">
+        <div class="cs-task" id="task1">
+          <h3>課題1：推奨アーキパターンは？</h3>
+          <p>メインフレームの勘定系を活かしつつ、外部にAPIを公開するアーキテクチャを考えてください。</p>
+          <button class="cs-hint-btn" onclick="showHint('task1', 1)">ヒント 1</button>
+          <button class="cs-hint-btn" onclick="showHint('task1', 2)">ヒント 2</button>
+          <button class="cs-answer-btn" onclick="showAnswer('task1')">模範解答を見る</button>
+          <div class="cs-hint" id="task1-hint1">勘定系（メインフレーム）は変えられない。その前に「API層」を置く。Phase 3のディシジョンツリーでは「既存システム連携が密」かつ「データ一貫性が厳密」。</div>
+          <div class="cs-hint" id="task1-hint2">API Gateway パターンを思い出しましょう。外部→API Gateway→API管理層→勘定系。また、勘定系を守るために「流量制御」が重要です。</div>
+          <div class="cs-answer" id="task1-answer">
+            <h4>模範解答</h4>
+            <p><strong>推奨：API Gateway ＋ 3層アーキテクチャ（トランザクション強化）＋ メインフレーム連携</strong></p>
+            <ul>
+              <li><strong>API Gateway層</strong>：外部フィンテック企業からのリクエストを受け付け。認証（OAuth 2.0）、流量制御（Rate Limiting）、リクエスト検証を行う</li>
+              <li><strong>API管理層</strong>：ビジネスロジックを持つAPIサーバー群。勘定系のデータを外部向けに変換。冗長構成（複数台＋LB）</li>
+              <li><strong>連携層</strong>：メインフレームとのインターフェース。MQ（メッセージキュー）を介した疎結合。勘定系への負荷を制御するためのキュー＋スロットリング</li>
+              <li><strong>勘定系</strong>：既存メインフレーム（変更なし）</li>
+            </ul>
+            <p><strong>選定理由</strong>：勘定系を変えずにAPI公開するには「前段に独立したAPI層を置く」のが鉄板パターン。メッセージキューで疎結合にすることで、API層の負荷が勘定系に直接伝わらない。金融のデータ一貫性要件はRDBの厳密なトランザクションで担保。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 課題2 -->
+      <section class="content-section">
+        <div class="cs-task" id="task2">
+          <h3>課題2：注意すべき非機能要件は？</h3>
+          <p>金融特有の非機能要件を3つ挙げ、対応策を考えてください。</p>
+          <button class="cs-hint-btn" onclick="showHint('task2', 1)">ヒント 1</button>
+          <button class="cs-hint-btn" onclick="showHint('task2', 2)">ヒント 2</button>
+          <button class="cs-answer-btn" onclick="showAnswer('task2')">模範解答を見る</button>
+          <div class="cs-hint" id="task2-hint1">鈴木部長の発言から：(1) セキュリティ＝最優先、(2) 可用性99.99%、(3) 勘定系への負荷制御。Phase 2を横断して考えましょう。</div>
+          <div class="cs-hint" id="task2-hint2">金融庁ガイドライン準拠、APIのレート制限、監査ログ（いつ誰がどのAPIを叩いたか）も金融では必須です。</div>
+          <div class="cs-answer" id="task2-answer">
+            <h4>模範解答</h4>
+            <p><strong>1. セキュリティ（金融庁ガイドライン準拠）</strong></p>
+            <ul>
+              <li>OAuth 2.0 / OpenID Connectによるフィンテック企業の認証・認可</li>
+              <li>全通信のTLS暗号化＋相互認証（mTLS）</li>
+              <li>WAFによるAPI攻撃の防御</li>
+              <li>全APIアクセスの監査ログ記録（最低7年保存）</li>
+              <li>年1回のペネトレーションテスト実施</li>
+            </ul>
+            <p><strong>2. 可用性（99.99% = 年間52分以内のダウンタイム）</strong></p>
+            <ul>
+              <li>API層の複数AZ冗長構成（Active-Active）</li>
+              <li>DB は同期レプリケーション＋自動フェイルオーバー</li>
+              <li>DR環境を別リージョン（大阪等）に構築</li>
+              <li>計画停止はローリングアップデートで無停止化</li>
+            </ul>
+            <p><strong>3. パフォーマンス（勘定系保護）</strong></p>
+            <ul>
+              <li>API Gatewayでフィンテック企業ごとにレート制限（例：100リクエスト/秒）</li>
+              <li>メッセージキューによる勘定系への非同期連携</li>
+              <li>参照系APIはキャッシュ活用（残高照会等は数秒のキャッシュ）</li>
+              <li>サーキットブレーカーパターン（勘定系障害時にAPI側で自動遮断）</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 課題3 -->
+      <section class="content-section">
+        <div class="cs-task" id="task3">
+          <h3>課題3：開発チームに確認すべきことは？</h3>
+          <p>金融システム特有のリスクを踏まえ、開発チームへの確認質問を考えてください。</p>
+          <button class="cs-hint-btn" onclick="showHint('task3', 1)">ヒント 1</button>
+          <button class="cs-answer-btn" onclick="showAnswer('task3')">模範解答を見る</button>
+          <div class="cs-hint" id="task3-hint1">金融では「規制対応」「監査対応」「メインフレーム連携の実績」が特に重要です。Phase 4のレビューガイドの質問リストを参考に。</div>
+          <div class="cs-answer" id="task3-answer">
+            <h4>模範解答：確認すべき質問例</h4>
+            <ul>
+              <li><strong>「メインフレーム（勘定系）とのAPI連携の開発実績はありますか？」</strong>→ メインフレーム連携は特殊スキル。実績がないと大幅なリスク</li>
+              <li><strong>「金融庁のAPIガイドラインへの準拠は、設計のどの段階で検証しますか？」</strong>→ 規制対応は後回しにすると手戻りが大きい</li>
+              <li><strong>「可用性99.99%を達成するための構成で、見積もりへの影響はどの程度ですか？」</strong>→ 99.9%と99.99%では構成とコストが大きく変わる</li>
+              <li><strong>「振込APIの公開時、勘定系へのトランザクション整合性はどう担保しますか？」</strong>→ 参照系と更新系では難易度が全く異なる</li>
+              <li><strong>「ペネトレーションテストは外部の専門機関に依頼する想定ですか？費用は？」</strong>→ 金融向けペンテストは高額。見積もりに含まれているか確認</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生のまとめ</p>
+          <p>金融案件のキーワードは<strong>「守り」と「規制」</strong>。セキュリティ・可用性・監査対応は妥協できません。一方で「既存資産（メインフレーム）を活かしつつ新しいAPIを公開する」という攻めの側面もあります。次はスケーラビリティが鍵の小売ケースです！</p>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <a href="02-case-study-manufacturing.html" class="page-nav-prev">
+          <span class="page-nav-label">前のトピック</span>
+          <span class="page-nav-title">5-2. ケーススタディ：製造業IoT基盤</span>
+        </a>
+        <a href="04-case-study-retail.html" class="page-nav-next">
+          <span class="page-nav-label">次のトピック</span>
+          <span class="page-nav-title">5-4. ケーススタディ：小売オムニチャネル</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>学習の進捗は自動保存されます 🦉</p><p>アーキテクチャ学習ランド &copy; 2025</p></div></footer>
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>
+    ProgressManager.initScrollTracking('phase5', 'case-study-banking');
+    function showHint(taskId, num) { document.getElementById(taskId + '-hint' + num).classList.add('visible'); }
+    function showAnswer(taskId) { document.getElementById(taskId + '-answer').classList.add('visible'); }
+  </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+/* ========================================
+   アーキテクチャ学習ランド - レスポンシブ
+   ======================================== */
+
+/* --- Tablet (max-width: 1024px) --- */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 var(--space-lg);
+  }
+
+  .hero h1 {
+    font-size: var(--font-size-3xl);
+  }
+
+  .phase-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+}
+
+/* --- Mobile (max-width: 768px) --- */
+@media (max-width: 768px) {
+  :root {
+    --space-xl: 1.5rem;
+    --space-2xl: 2rem;
+    --space-3xl: 2.5rem;
+  }
+
+  /* Navigation */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-primary-dark);
+    flex-direction: column;
+    padding: var(--space-md);
+    gap: var(--space-xs);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  /* Hero */
+  .hero {
+    padding: var(--space-2xl) 0;
+  }
+
+  .hero-owl {
+    font-size: 3rem;
+  }
+
+  .hero h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .hero .subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .hero-message {
+    padding: var(--space-md);
+    font-size: var(--font-size-sm);
+  }
+
+  /* Phase cards - single column */
+  .phase-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .phase-card {
+    padding: var(--space-lg);
+  }
+
+  /* Topic cards - single column */
+  .topic-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Phase header */
+  .phase-header h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  /* Owl box */
+  .owl-box {
+    padding: var(--space-md);
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Columns */
+  .column-sales,
+  .column-dev {
+    padding: var(--space-md);
+  }
+
+  /* Comparison table - horizontal scroll */
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: var(--space-xl) 0;
+  }
+
+  .comparison-table {
+    min-width: 500px;
+    margin: 0;
+  }
+
+  /* Quiz */
+  .quiz-card {
+    padding: var(--space-lg);
+  }
+
+  /* Tooltip on mobile - below instead of above */
+  .tech-term .tooltip {
+    bottom: auto;
+    top: calc(100% + 8px);
+    left: 0;
+    transform: none;
+    max-width: 240px;
+  }
+
+  .tech-term .tooltip::after {
+    top: auto;
+    bottom: 100%;
+    border-top-color: transparent;
+    border-bottom-color: var(--color-text);
+    left: 16px;
+    transform: none;
+  }
+
+  /* Overall progress */
+  .overall-progress {
+    margin-top: calc(-1 * var(--space-md));
+    padding: var(--space-lg);
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    font-size: 0.8rem;
+  }
+}
+
+/* --- Small mobile (max-width: 480px) --- */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero .subtitle {
+    font-size: var(--font-size-sm);
+  }
+
+  .phase-card-icon {
+    font-size: 2rem;
+  }
+
+  .site-logo span:last-child {
+    display: none;
+  }
+}

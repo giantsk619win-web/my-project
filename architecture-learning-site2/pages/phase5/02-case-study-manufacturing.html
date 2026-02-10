@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5-2. ケーススタディ：製造業IoT基盤 | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .cs-memo {
+      background: #fffef5;
+      border: 2px solid #e6d9a8;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      font-family: inherit;
+    }
+    .cs-memo-title { font-weight: 700; color: #8b7a2e; margin-bottom: 1rem; font-size: 1rem; }
+    .cs-memo-speaker { font-weight: 700; color: #5d4e0f; margin-top: 1rem; }
+    .cs-memo p { line-height: 1.8; margin: 0.25rem 0; }
+    .cs-task {
+      background: #fff;
+      border: 2px solid var(--phase5-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .cs-task h3 { color: var(--phase5-color); margin: 0 0 0.5rem; font-size: 1.05rem; }
+    .cs-task p { margin: 0 0 1rem; font-size: 0.95rem; color: var(--text-secondary); }
+    .cs-hint-btn, .cs-answer-btn {
+      padding: 0.5rem 1.2rem;
+      border: 2px solid var(--phase5-color);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--phase5-color);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .cs-hint-btn:hover { background: #fff5f5; }
+    .cs-answer-btn { background: var(--phase5-color); color: #fff; }
+    .cs-answer-btn:hover { opacity: 0.9; }
+    .cs-hint {
+      display: none;
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      background: #fff8f0;
+      border-left: 4px solid #ffa726;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .cs-hint.visible { display: block; }
+    .cs-answer {
+      display: none;
+      margin-top: 1rem;
+      padding: 1.25rem;
+      background: #f0f9f0;
+      border: 2px solid #4caf50;
+      border-radius: 12px;
+      line-height: 1.8;
+    }
+    .cs-answer.visible { display: block; }
+    .cs-answer h4 { color: #2e7d32; margin: 0 0 0.5rem; }
+    .cs-answer ul { margin: 0.5rem 0; padding-left: 1.2rem; }
+    .cs-info-table { font-size: 0.9rem; margin: 1rem 0; }
+    .cs-info-table td { padding: 0.4rem 0.75rem; }
+    .cs-info-table td:first-child { font-weight: 700; white-space: nowrap; }
+  </style>
+</head>
+<body data-phase="5">
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo"><span class="owl-icon">🦉</span><span>アーキテクチャ学習ランド</span></a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav><ul class="nav-links">
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../phase1/index.html">Phase 1</a></li>
+        <li><a href="../phase2/index.html">Phase 2</a></li>
+        <li><a href="../phase3/index.html">Phase 3</a></li>
+        <li><a href="../phase4/index.html">Phase 4</a></li>
+        <li><a href="index.html" class="active">Phase 5</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <main class="topic-page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a><span class="separator">/</span>
+        <a href="index.html">Phase 5</a><span class="separator">/</span>
+        <span class="current">5-2. ケーススタディ：製造業IoT基盤</span>
+      </nav>
+
+      <h1>5-2. ケーススタディ：中堅製造業のIoT基盤</h1>
+
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生より</p>
+          <p>ここからは実際のお客様シナリオです。ヒアリングメモを読み、自分なりの提案を考えてみましょう。「ヒント」で段階的にガイドし、「模範解答」で答え合わせできます。大事なのは<strong>自分で考えること</strong>！</p>
+        </div>
+      </div>
+
+      <!-- お客様情報 -->
+      <section class="content-section">
+        <h2>お客様情報</h2>
+        <table class="cs-info-table">
+          <tr><td>企業名</td><td>サクラ精工株式会社（仮称）</td></tr>
+          <tr><td>業種</td><td>自動車部品メーカー</td></tr>
+          <tr><td>従業員数</td><td>約500名</td></tr>
+          <tr><td>工場</td><td>国内2拠点（愛知本社工場、三重第二工場）</td></tr>
+          <tr><td>IT体制</td><td>情シス3名（課長＋メンバー2名）、開発は全て外注</td></tr>
+          <tr><td>予算感</td><td>初年度3,000〜5,000万円</td></tr>
+        </table>
+      </section>
+
+      <!-- ヒアリングメモ -->
+      <section class="content-section">
+        <h2>ヒアリングメモ</h2>
+        <div class="cs-memo">
+          <p class="cs-memo-title">初回ヒアリング議事メモ（情シス 田中課長）</p>
+
+          <p class="cs-memo-speaker">田中課長：</p>
+          <p>「うちの工場、設備の突発故障が月に2〜3回あって、その度にラインが止まるんですよ。1回止まると復旧に半日、損失は数百万円。これをなんとかしたいんです。」</p>
+
+          <p class="cs-memo-speaker">田中課長：</p>
+          <p>「今の設備は、古いものだとPLC（制御装置）にセンサーがついてるんですが、データは手書きで記録してるんです。新しい設備にはデジタルのセンサーがついてます。全部で設備台数は両工場合わせて約200台ですね。」</p>
+
+          <p class="cs-memo-speaker">田中課長：</p>
+          <p>「最終的にはダッシュボードで設備の状態をリアルタイムで見れるようにしたい。あと、AIで故障予測もやりたいんですが、まずはデータを集めるところからですよね。経営層は"3ヶ月で何か見せてくれ"って言ってます。」</p>
+
+          <p class="cs-memo-speaker">田中課長：</p>
+          <p>「あ、あとセキュリティは気にしてます。工場の制御系ネットワークとインターネットは分けておきたい。それと、うちの情シスはクラウド経験があまりないので、運用が複雑すぎると困ります。」</p>
+        </div>
+      </section>
+
+      <!-- 課題1 -->
+      <section class="content-section">
+        <div class="cs-task" id="task1">
+          <h3>課題1：推奨アーキパターンは？</h3>
+          <p>このお客様に対して、どのようなアーキテクチャを提案しますか？フェーズ分けも含めて考えてみましょう。</p>
+          <button class="cs-hint-btn" onclick="showHint('task1', 1)">ヒント 1</button>
+          <button class="cs-hint-btn" onclick="showHint('task1', 2)">ヒント 2</button>
+          <button class="cs-answer-btn" onclick="showAnswer('task1')">模範解答を見る</button>
+          <div class="cs-hint" id="task1-hint1">IoTデータの流れを考えましょう：センサー → データ収集 → 蓄積 → 分析 → 可視化。Phase 1のデータライフサイクルを思い出して。</div>
+          <div class="cs-hint" id="task1-hint2">「3ヶ月で何か見せてくれ」→ Phase分けが必要。Phase 3のディシジョンツリーでは「リアルタイム性」と「同時接続数」から考え始めましたね。</div>
+          <div class="cs-answer" id="task1-answer">
+            <h4>模範解答</h4>
+            <p><strong>推奨：イベント駆動 ＋ データ分析基盤（2フェーズ構成）</strong></p>
+            <p><strong>フェーズ1（3ヶ月）</strong>：まず新しい設備（デジタルセンサー付き）からデータを収集し、ダッシュボードで可視化。</p>
+            <ul>
+              <li>IoTゲートウェイで工場のセンサーデータを収集</li>
+              <li>メッセージキュー（Kafka/IoT Hub）でクラウドに送信</li>
+              <li>データレイク（S3等）に蓄積</li>
+              <li>BIツールでダッシュボード表示</li>
+            </ul>
+            <p><strong>フェーズ2（6ヶ月〜）</strong>：古い設備へのセンサー後付け、AIによる故障予測モデル構築。</p>
+            <ul>
+              <li>レトロフィットセンサーの取り付け</li>
+              <li>機械学習モデルの構築・学習</li>
+              <li>アラート通知システムの構築</li>
+            </ul>
+            <p><strong>選定理由</strong>：200台の設備からのデータを非同期で収集するにはイベント駆動が適切。リアルタイム性はダッシュボード表示レベル（数秒〜数十秒の遅延は許容）。PaaS/マネージドサービスを活用し、情シス3名でも運用可能な構成にする。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 課題2 -->
+      <section class="content-section">
+        <div class="cs-task" id="task2">
+          <h3>課題2：注意すべき非機能要件は？</h3>
+          <p>このシステムで特に重要な非機能要件を3つ挙げ、それぞれの理由と対応策を考えてください。</p>
+          <button class="cs-hint-btn" onclick="showHint('task2', 1)">ヒント 1</button>
+          <button class="cs-hint-btn" onclick="showHint('task2', 2)">ヒント 2</button>
+          <button class="cs-answer-btn" onclick="showAnswer('task2')">模範解答を見る</button>
+          <div class="cs-hint" id="task2-hint1">田中課長が「セキュリティ」「運用の簡易さ」を明確に要望しています。もう1つ、設備の故障検知に直結する要件は？</div>
+          <div class="cs-hint" id="task2-hint2">Phase 2を振り返ると：可用性（データが欠損しないか）、セキュリティ（OT/ITネットワーク分離）、運用保守性（情シス3名で回せるか）が浮かびます。</div>
+          <div class="cs-answer" id="task2-answer">
+            <h4>模範解答</h4>
+            <p><strong>1. セキュリティ（最重要）</strong></p>
+            <ul>
+              <li>理由：制御系ネットワーク（OT）と情報系ネットワーク（IT）の分離は必須。工場の設備が外部からの攻撃にさらされると生産停止のリスク</li>
+              <li>対応策：OT/IT間にDMZ（非武装地帯）を設置。IoTゲートウェイで一方向通信（工場→クラウド）を原則とする</li>
+            </ul>
+            <p><strong>2. 可用性（データ欠損防止）</strong></p>
+            <ul>
+              <li>理由：故障予測にはデータの連続性が重要。センサーデータが欠損すると異常検知の精度が下がる</li>
+              <li>対応策：エッジ（工場側）にバッファを持たせ、ネットワーク障害時もローカルにデータを保持。復旧後に再送信</li>
+            </ul>
+            <p><strong>3. 運用保守性</strong></p>
+            <ul>
+              <li>理由：情シス3名でクラウド未経験。複雑な構成は運用できない</li>
+              <li>対応策：PaaS/マネージドサービスを最大限活用し、サーバー管理を排除。監視・アラートも自動化</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 課題3 -->
+      <section class="content-section">
+        <div class="cs-task" id="task3">
+          <h3>課題3：開発チームに確認すべきことは？</h3>
+          <p>アーキレビューで開発チームに確認すべき質問を3つ以上考えてください。</p>
+          <button class="cs-hint-btn" onclick="showHint('task3', 1)">ヒント 1</button>
+          <button class="cs-answer-btn" onclick="showAnswer('task3')">模範解答を見る</button>
+          <div class="cs-hint" id="task3-hint1">Phase 4のレビュー参加ガイドで学んだ「聞いていい質問」を思い出してみましょう。特にコスト・スケジュール・リスクの観点で。</div>
+          <div class="cs-answer" id="task3-answer">
+            <h4>模範解答：確認すべき質問例</h4>
+            <ul>
+              <li><strong>「古い設備（PLCのみ）からのデータ収集は技術的に可能ですか？追加ハードウェアが必要な場合のコストは？」</strong>→ フェーズ2のスコープとコストに直結</li>
+              <li><strong>「IoTゲートウェイのネットワーク障害時、データの一時保存と再送信の仕組みは実現可能ですか？」</strong>→ データ欠損防止の技術的実現性</li>
+              <li><strong>「3ヶ月でフェーズ1（データ収集+ダッシュボード）は本当に実現可能ですか？最もリスクが高い工程は？」</strong>→ 経営層の期待値と現実のギャップ確認</li>
+              <li><strong>「OT/IT分離の実績はありますか？セキュリティ設計のレビューを外部専門家に依頼する必要は？」</strong>→ セキュリティの専門性確認</li>
+              <li><strong>「運用フェーズで情シス3名が必要な日常作業はどの程度ありますか？」</strong>→ お客様の運用負荷の事前確認</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生のまとめ</p>
+          <p>製造業IoT案件のポイントは「OT/IT分離」「フェーズ分け」「運用の簡易さ」です。お客様の「3ヶ月で成果を見せたい」という声に応えつつ、無理のないスコープで信頼を勝ち取ることが大切。次は金融業界の厳しいセキュリティ要件に挑戦しましょう！</p>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <a href="01-comprehensive-quiz.html" class="page-nav-prev">
+          <span class="page-nav-label">前のトピック</span>
+          <span class="page-nav-title">5-1. 総合理解度クイズ</span>
+        </a>
+        <a href="03-case-study-banking.html" class="page-nav-next">
+          <span class="page-nav-label">次のトピック</span>
+          <span class="page-nav-title">5-3. ケーススタディ：地方銀行API基盤</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>学習の進捗は自動保存されます 🦉</p><p>アーキテクチャ学習ランド &copy; 2025</p></div></footer>
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>
+    ProgressManager.initScrollTracking('phase5', 'case-study-manufacturing');
+    function showHint(taskId, num) {
+      document.getElementById(taskId + '-hint' + num).classList.add('visible');
+    }
+    function showAnswer(taskId) {
+      document.getElementById(taskId + '-answer').classList.add('visible');
+    }
+  </script>
+</body>
+</html>

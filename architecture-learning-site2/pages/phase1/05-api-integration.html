@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1-5. API・システム連携の基礎 | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body data-phase="1">
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo">
+        <span class="owl-icon">🦉</span>
+        <span>アーキテクチャ学習ランド</span>
+      </a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html">ホーム</a></li>
+          <li><a href="index.html" class="active">Phase 1</a></li>
+          <li><a href="../phase2/index.html">Phase 2</a></li>
+          <li><a href="../phase3/index.html">Phase 3</a></li>
+          <li><a href="../phase4/index.html">Phase 4</a></li>
+          <li><a href="../phase5/index.html">Phase 5</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="phase-page">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span class="separator">/</span>
+        <a href="index.html">Phase 1</a>
+        <span class="separator">/</span>
+        <span class="current">1-5. API・システム連携の基礎</span>
+      </nav>
+
+      <div class="phase-header">
+        <h1><span class="phase-icon">🌱</span>1-5. API・システム連携の基礎</h1>
+      </div>
+
+      <!-- ==================== -->
+      <!-- フクロウ先生の導入 -->
+      <!-- ==================== -->
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の導入</p>
+          <p>企業のシステムは1つだけで完結することはほとんどありません。販売管理システム、在庫管理システム、会計システム...これらがバラバラに動いていたら大変ですよね。「基幹システムとWebサイトをつなぎたい」「SaaSと自社システムを連携させたい」——こんな要望は日常茶飯事。今日学ぶのは、異なるシステム同士をつなぐ<strong>「通訳者」</strong>の役割を果たす<span class="tech-term">API<span class="tooltip">Application Programming Interface。異なるシステム同士がデータをやり取りするための「窓口」の仕組み</span></span>とシステム連携の基礎です。</p>
+        </div>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 本文解説 -->
+      <!-- ==================== -->
+      <section>
+        <h2>APIとは？——「システムの通訳者」</h2>
+
+        <p>たとえば、あなたが海外旅行に行ったとします。言葉が通じない国で、レストランで注文するには通訳が必要ですよね。APIはまさにこの<strong>「通訳者」</strong>の役割。異なる言葉（データ形式）を話すシステム同士の間に立って、お互いのやり取りを仲介します。</p>
+
+        <p>もっと身近な例で言えば、<strong>コンセント</strong>もAPIの一種と考えられます。</p>
+        <ul>
+          <li>どのメーカーの家電でも、コンセントの形状（＝APIの仕様）が統一されているから差せる</li>
+          <li>電気の流れ方（＝データ形式）が決まっているから、正しく動く</li>
+          <li>掃除機もテレビもスマホ充電器も、同じコンセントで使える（＝異なるシステムが連携できる）</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>3つの主な連携方式</h2>
+
+        <p>システムをつなぐ方法は大きく3つ。それぞれ、通信の仕方が異なります。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>連携方式</th>
+                <th>たとえ</th>
+                <th>仕組み</th>
+                <th>タイミング</th>
+                <th>代表技術</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><span class="tech-term">REST API<span class="tooltip">Webの仕組み（HTTP）を使ったAPI。URLにリクエストを送ると、JSON形式でデータが返ってくる。現在最も普及している方式</span></span></strong></td>
+                <td>電話（すぐ返事がもらえる）</td>
+                <td>システムAがシステムBに「データちょうだい」とリクエストし、すぐに返事が返る</td>
+                <td>リアルタイム</td>
+                <td>HTTP/HTTPS、JSON、RESTful API</td>
+              </tr>
+              <tr>
+                <td><strong><span class="tech-term">メッセージキュー<span class="tooltip">システム間でメッセージを一時的に保管して順番に届ける仕組み。郵便受けのように、受け手の都合に合わせて取り出せる</span></span></strong></td>
+                <td>郵便（後で届く、確実に届く）</td>
+                <td>システムAが「メッセージ」を箱に入れ、システムBが都合のいいときに取り出す</td>
+                <td>非同期（少し遅れる）</td>
+                <td>Amazon SQS、RabbitMQ、Apache Kafka</td>
+              </tr>
+              <tr>
+                <td><strong><span class="tech-term">ファイル連携<span class="tooltip">CSVやExcelなどのファイルをシステム間で受け渡しする最も古典的な連携方式。単純だが手動作業が入りやすい</span></span></strong></td>
+                <td>回覧板（まとめて渡す）</td>
+                <td>システムAがCSV等のファイルを出力し、システムBがそのファイルを取り込む</td>
+                <td>バッチ（定期的にまとめて）</td>
+                <td>CSV/Excel、SFTP、共有フォルダ</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">ポイント</p>
+            <p>どの方式を選ぶかは<strong>「リアルタイム性」と「信頼性」と「コスト」</strong>のバランスで決まります。「今すぐデータがほしい」ならAPI連携、「確実に届いてほしいが多少遅れてもいい」ならメッセージキュー、「1日1回の一括更新でいい」ならファイル連携が基本的な選択肢です。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>連携パターンの使い分け</h2>
+
+        <p>お客様から具体的な要望を聞いたとき、どの連携方式が適しているかの判断基準を整理しましょう。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>お客様の要望</th>
+                <th>適した方式</th>
+                <th>理由</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>「ECサイトの注文が入ったら、即座に在庫システムに反映したい」</td>
+                <td>REST API</td>
+                <td>リアルタイムでの在庫反映が必要。注文 → 在庫減の即時連携</td>
+              </tr>
+              <tr>
+                <td>「注文が増えてもシステムが落ちないようにしたい」</td>
+                <td>メッセージキュー</td>
+                <td>大量の注文を一時的にキューに溜めて、処理側が自分のペースで処理できる</td>
+              </tr>
+              <tr>
+                <td>「毎晩、販売データを会計システムに取り込みたい」</td>
+                <td>ファイル連携</td>
+                <td>日次のバッチ処理で十分。シンプルで既存システムとの相性が良い</td>
+              </tr>
+              <tr>
+                <td>「SalesforceのデータをBIツールで分析したい」</td>
+                <td>REST API + バッチ</td>
+                <td>SalesforceのAPIでデータを取得し、定期的にBIツールに連携</td>
+              </tr>
+              <tr>
+                <td>「基幹システムとWebをつなぎたい」</td>
+                <td>状況による</td>
+                <td>リアルタイム性の要否と既存システムの制約で判断。次の表を参照</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>「基幹システムとWebをつなぎたい」と言われたら</h2>
+
+        <p>この要望はSIer営業が頻繁に受けるもの。いくつかの選択肢を知っておきましょう。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>アプローチ</th>
+                <th>概要</th>
+                <th>向いているケース</th>
+                <th>注意点</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>API公開</strong></td>
+                <td>基幹システムにAPIの「窓口」を作り、Webから呼び出す</td>
+                <td>基幹システムがモダンで、API対応が可能な場合</td>
+                <td>基幹システムの改修が必要。性能への影響に注意</td>
+              </tr>
+              <tr>
+                <td><strong>連携ミドルウェア</strong></td>
+                <td><span class="tech-term">ESB<span class="tooltip">Enterprise Service Bus。複数のシステム間の連携を一元管理する仕組み。交通整理の信号機のような役割</span></span>やiPaaSなどの仲介役を置く</td>
+                <td>複数システム間の複雑な連携が必要な場合</td>
+                <td>導入コストが高い。運用の人材が必要</td>
+              </tr>
+              <tr>
+                <td><strong>データ同期</strong></td>
+                <td>基幹のデータを別のDBにコピーし、Webはコピー側を参照</td>
+                <td>基幹システムに手を加えられない（レガシー）場合</td>
+                <td>データの鮮度（リアルタイムではない）に注意</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-trivia">
+          <div class="owl-box-content">
+            <p class="owl-box-title">豆知識</p>
+            <p>最近よく聞く「<span class="tech-term">iPaaS<span class="tooltip">integration Platform as a Service。クラウド上でシステム連携を簡単に構築できるサービス。プログラミング不要（ノーコード）で連携を設定できるものも多い</span></span>」は、クラウド上でノーコード/ローコードでシステム連携を作れるサービス。MuleSoftやMicrosoft Power Automate、Zapierなどが有名です。小〜中規模の連携案件では有力な選択肢ですよ。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== -->
+      <!-- 営業の現場コラム -->
+      <!-- ==================== -->
+      <div class="column-sales">
+        <p class="column-title">営業の現場では...</p>
+        <p>お客様から「システム連携したい」と言われたとき、まず確認すべきは<strong>「何と何を、どのくらいの速さで、どの方向に」つなぎたいのか</strong>です。「受発注システムとECサイトを、注文発生時にリアルタイムで連携したい」と具体化できれば、SEは「ならREST APIで、こういう構成で...」とすぐに検討に入れます。逆に「なんか連携したい」だけだと、SEも困ってしまいます。連携の要件を具体化する力は、提案のスピードに直結しますよ。</p>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 開発チームの視点コラム -->
+      <!-- ==================== -->
+      <div class="column-dev">
+        <p class="column-title">開発チームの視点</p>
+        <p>システム連携の設計で開発チームが最も気にするのは<strong>「エラー時の挙動」</strong>です。連携先のシステムが落ちていたらどうする？データが途中で消えたら？こうした「異常系」の設計がコスト全体の半分を占めることもあります。営業さんにお願いしたいのは、<strong>「連携が失敗したとき、業務としてどう対応するか」</strong>もお客様に確認してくること。「手動で再投入する」のか「自動リトライでいい」のかで、設計の複雑さもコストも大きく変わります。</p>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 章末クイズ -->
+      <!-- ==================== -->
+      <h2>理解度チェック</h2>
+
+      <!-- Quiz 1 -->
+      <div class="quiz-card" data-answer="A" data-phase="phase1" data-topic="api-integration">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q1</div>
+          <h4>APIとは</h4>
+        </div>
+        <p class="quiz-question">APIの役割を最も適切に表しているものはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>異なるシステム間でデータをやり取りするための「窓口」</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>データを暗号化して安全に保管する仕組み</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>サーバーのCPU使用率を監視するツール</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>プログラミング言語の一種</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback">
+          <p class="feedback-title"></p>
+        </div>
+        <div class="quiz-explanation">
+          <p>APIは「Application Programming Interface」の略で、異なるシステム同士がデータをやり取りするための「窓口」です。通訳者やコンセントにたとえられるように、統一された仕組みを通じて多様なシステムが連携できるようにします。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- Quiz 2 -->
+      <div class="quiz-card" data-answer="B" data-phase="phase1" data-topic="api-integration">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q2</div>
+          <h4>連携方式の選び方</h4>
+        </div>
+        <p class="quiz-question">「大量の注文が一度に来てもシステムを落としたくない」という要件に最も適した連携方式はどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>REST API（直接呼び出し）</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>メッセージキュー</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>ファイル連携（CSV出力→取り込み）</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>手動でデータを入力する</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback">
+          <p class="feedback-title"></p>
+        </div>
+        <div class="quiz-explanation">
+          <p><strong>メッセージキュー</strong>は「郵便受け」のように、大量のメッセージを一時的に溜めて、処理側が自分のペースで順番に取り出すことができます。急激なアクセス増でもキューがバッファとなり、後続のシステムが過負荷で落ちることを防げます。REST APIの直接呼び出しでは、大量リクエストが一気に押し寄せると処理しきれない可能性があります。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- Quiz 3 -->
+      <div class="quiz-card" data-answer="D" data-phase="phase1" data-topic="api-integration">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q3</div>
+          <h4>連携の要件確認</h4>
+        </div>
+        <p class="quiz-question">お客様に「システム連携したい」と言われたとき、最初に確認すべきことはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>使うプログラミング言語</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>サーバーのスペック</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>APIの技術仕様書</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>何と何を、どのくらいの速さで、どの方向につなぎたいか</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback">
+          <p class="feedback-title"></p>
+        </div>
+        <div class="quiz-explanation">
+          <p>技術的な詳細（言語、スペック、仕様書）はSEが検討するものです。営業がまず確認すべきは、<strong>ビジネス要件</strong>——「何と何を」「どのくらいの速さで」「どの方向に」連携したいのか。これが明確になれば、SEはすぐに適切な方式を検討できます。プログラミング言語やサーバースペックは、方式が決まった後の話です。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- ==================== -->
+      <!-- フクロウ先生の振り返り -->
+      <!-- ==================== -->
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の振り返り</p>
+          <p>API連携の3つの方式——電話（REST API）、郵便（メッセージキュー）、回覧板（ファイル連携）。それぞれの特徴と使い分けがわかりましたね。システム連携は提案の「つなぎ目」になる部分で、ここの要件をしっかり押さえると、開発チームからの信頼度がグッと上がります。</p>
+        </div>
+      </div>
+
+      <!-- ==================== -->
+      <!-- Phase 1 完了 → Phase 2 ブリッジ -->
+      <!-- ==================== -->
+      <div class="owl-box owl-point" style="background: linear-gradient(135deg, #fff8e1, #e8f5e9); border-left-color: var(--color-accent);">
+        <div class="owl-box-content">
+          <p class="owl-box-title" style="color: var(--color-accent); font-size: 1.1rem;">🦉 Phase 1 完了おめでとう！</p>
+          <p>データの旅の全体像が見えてきたね！アーキテクチャの設計図、データの一生、パターンの選び方、クラウドの基礎、そしてシステム連携の方法——ここまでの知識だけでも、お客様との会話の質がずいぶん変わるはず。</p>
+          <p style="margin-top: 1rem;">でもね、旅には<strong>安全対策</strong>も必要なんだ。旅行に保険なしで行く人はいないよね？ Phase 2では、システムの「保険」にあたる<strong>非機能要件</strong>——可用性、パフォーマンス、セキュリティを学んでいこう！お客様に「安心して任せられる」と思ってもらえる営業を目指そう！</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <a href="04-cloud-basics.html" class="btn btn-outline">← 前のトピック</a>
+        <a href="../phase2/index.html" class="btn btn-primary" style="background: var(--phase2-color);">Phase 2: 旅の安全を守る へ進む →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>学習の進捗は自動保存されます 🦉</p>
+      <p>アーキテクチャ学習ランド &copy; 2025</p>
+    </div>
+  </footer>
+
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>
+    ProgressManager.initScrollTracking('phase1', 'api-integration');
+  </script>
+</body>
+</html>

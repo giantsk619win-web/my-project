@@ -1,0 +1,385 @@
+/* ========================================
+   アーキテクチャ学習ランド - UIコンポーネント
+   ======================================== */
+
+/* --- フクロウ吹き出しボックス --- */
+.owl-box {
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-xl) 0;
+  position: relative;
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+.owl-box::before {
+  content: '🦉';
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.owl-box-content {
+  flex: 1;
+}
+
+.owl-box-content .owl-box-title {
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.owl-box-content p {
+  font-size: var(--font-size-base);
+  line-height: 1.8;
+}
+
+/* Variant: intro (導入) */
+.owl-box.owl-intro {
+  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+  border-left: 4px solid var(--phase1-color);
+}
+
+.owl-box.owl-intro .owl-box-title {
+  color: var(--phase1-color);
+}
+
+/* Variant: point (ポイント) */
+.owl-box.owl-point {
+  background: linear-gradient(135deg, #fff8e1, #fff3e0);
+  border-left: 4px solid var(--color-accent);
+}
+
+.owl-box.owl-point .owl-box-title {
+  color: var(--color-accent);
+}
+
+/* Variant: encourage (励まし) */
+.owl-box.owl-encourage {
+  background: linear-gradient(135deg, #e3f2fd, #e8eaf6);
+  border-left: 4px solid var(--phase2-color);
+}
+
+.owl-box.owl-encourage .owl-box-title {
+  color: var(--phase2-color);
+}
+
+/* Variant: trivia (豆知識) */
+.owl-box.owl-trivia {
+  background: linear-gradient(135deg, #f3e5f5, #fce4ec);
+  border-left: 4px solid var(--phase4-color);
+}
+
+.owl-box.owl-trivia .owl-box-title {
+  color: var(--phase4-color);
+}
+
+/* --- 営業の現場コラム --- */
+.column-sales {
+  background: var(--sales-bg);
+  border-left: 4px solid var(--sales-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-xl) 0;
+}
+
+.column-sales .column-title {
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  color: var(--sales-border);
+  margin-bottom: var(--space-sm);
+}
+
+.column-sales .column-title::before {
+  content: '🏢 ';
+}
+
+.column-sales p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  line-height: 1.8;
+}
+
+/* --- 開発チームの視点コラム --- */
+.column-dev {
+  background: var(--dev-bg);
+  border-left: 4px solid var(--dev-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-xl) 0;
+}
+
+.column-dev .column-title {
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  color: var(--dev-border);
+  margin-bottom: var(--space-sm);
+}
+
+.column-dev .column-title::before {
+  content: '💻 ';
+}
+
+.column-dev p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  line-height: 1.8;
+}
+
+/* --- 技術用語ハイライト --- */
+.tech-term {
+  background: #e8f5e9;
+  color: var(--color-primary);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  cursor: help;
+  position: relative;
+  border-bottom: 1px dashed var(--color-primary);
+  white-space: nowrap;
+}
+
+.tech-term .tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-text);
+  color: var(--color-white);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  line-height: 1.5;
+  white-space: normal;
+  width: max-content;
+  max-width: 280px;
+  z-index: 50;
+  pointer-events: none;
+  transition: opacity var(--transition-fast), visibility var(--transition-fast);
+  box-shadow: var(--shadow-md);
+}
+
+.tech-term .tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--color-text);
+}
+
+.tech-term:hover .tooltip,
+.tech-term:focus .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* --- クイズカード --- */
+.quiz-card {
+  background: var(--color-white);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin: var(--space-xl) 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.quiz-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.quiz-card-header .quiz-icon {
+  background: var(--color-accent);
+  color: var(--color-white);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+}
+
+.quiz-card-header h4 {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.quiz-question {
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  margin-bottom: var(--space-lg);
+  line-height: 1.8;
+}
+
+.quiz-options {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.quiz-option {
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.quiz-option:hover {
+  border-color: var(--color-primary);
+  background: var(--phase1-bg);
+}
+
+.quiz-option.selected {
+  border-color: var(--color-primary);
+  background: var(--phase1-bg);
+  font-weight: 500;
+}
+
+.quiz-option.correct {
+  border-color: var(--phase1-color);
+  background: var(--phase1-bg);
+}
+
+.quiz-option.incorrect {
+  border-color: var(--phase5-color);
+  background: var(--phase5-bg);
+}
+
+.quiz-option .option-label {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-bg-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+}
+
+.quiz-feedback {
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-md);
+  display: none;
+}
+
+.quiz-feedback.show {
+  display: block;
+}
+
+.quiz-feedback.correct {
+  background: var(--phase1-bg);
+  border: 1px solid var(--phase1-color);
+  color: var(--phase1-color);
+}
+
+.quiz-feedback.incorrect {
+  background: var(--phase5-bg);
+  border: 1px solid var(--phase5-color);
+  color: var(--phase5-color);
+}
+
+.quiz-feedback .feedback-title {
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+}
+
+.quiz-explanation {
+  margin-top: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-bg-warm);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  line-height: 1.8;
+  display: none;
+}
+
+.quiz-explanation.show {
+  display: block;
+}
+
+.quiz-btn {
+  margin-top: var(--space-md);
+}
+
+/* --- 比較表 --- */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-xl) 0;
+  font-size: var(--font-size-sm);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.comparison-table thead th {
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--space-md) var(--space-lg);
+  text-align: left;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+}
+
+.comparison-table tbody td {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+.comparison-table tbody tr:nth-child(even) {
+  background: var(--color-bg-warm);
+}
+
+.comparison-table tbody tr:nth-child(odd) {
+  background: var(--color-white);
+}
+
+.comparison-table tbody tr:hover {
+  background: #e8f5e9;
+}
+
+.comparison-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* --- Reset Progress Button --- */
+.reset-progress {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.reset-progress:hover {
+  border-color: var(--phase5-color);
+  color: var(--phase5-color);
+}

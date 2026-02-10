@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3-3. アーキ選定ディシジョンツリー | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    /* ディシジョンツリー専用スタイル */
+    .dt-history {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: var(--bg-light);
+      border-radius: 8px;
+      border-left: 4px solid var(--phase3-color);
+    }
+    .dt-history-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+    }
+    .dt-history-step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--phase3-color);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+    .dt-history-q { color: var(--text-secondary); }
+    .dt-history-a { font-weight: 600; color: var(--text-primary); }
+
+    .dt-question-card {
+      background: #fff;
+      border: 2px solid var(--phase3-color);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .dt-step-badge {
+      display: inline-block;
+      background: var(--phase3-color);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.25rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .dt-question-text {
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .dt-question-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    .dt-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .dt-option-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: var(--bg-light);
+      border: 2px solid #e0d8cf;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+    }
+    .dt-option-btn:hover {
+      border-color: var(--phase3-color);
+      background: #fff8f0;
+      transform: translateX(4px);
+    }
+    .dt-option-icon {
+      color: var(--phase3-color);
+      flex-shrink: 0;
+    }
+
+    .dt-back-btn, .dt-reset-btn {
+      padding: 0.6rem 1.2rem;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .dt-back-btn:hover { border-color: var(--text-secondary); }
+    .dt-reset-btn {
+      border-color: var(--phase3-color);
+      color: var(--phase3-color);
+      font-weight: 600;
+    }
+    .dt-reset-btn:hover {
+      background: var(--phase3-color);
+      color: #fff;
+    }
+    .dt-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* 結果カード */
+    .dt-result-card {
+      background: #fff;
+      border: 2px solid var(--phase3-color);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .dt-result-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .dt-result-icon {
+      font-size: 2.5rem;
+    }
+    .dt-result-label {
+      font-size: 0.85rem;
+      color: var(--phase3-color);
+      font-weight: 700;
+    }
+    .dt-result-pattern {
+      font-size: 1.4rem;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    .dt-result-summary {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e0d8cf;
+    }
+    .dt-result-reason {
+      background: #fdf8f0;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+    .dt-result-reason h4 { margin: 0 0 0.5rem; font-size: 1rem; }
+    .dt-result-reason p { margin: 0; font-size: 0.95rem; line-height: 1.7; }
+
+    .dt-result-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .dt-result-strengths, .dt-result-weaknesses {
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .dt-result-strengths { background: #f0f9f0; }
+    .dt-result-weaknesses { background: #fff5f0; }
+    .dt-result-strengths h4, .dt-result-weaknesses h4 {
+      margin: 0 0 0.5rem;
+      font-size: 0.95rem;
+    }
+    .dt-result-strengths ul, .dt-result-weaknesses ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .dt-result-usecases { margin-top: 0.5rem; }
+    .dt-result-usecases h4 { margin: 0 0 0.75rem; font-size: 0.95rem; }
+    .dt-usecase-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .dt-usecase-tag {
+      background: var(--bg-light);
+      border: 1px solid #e0d8cf;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .dt-result-columns { grid-template-columns: 1fr; }
+      .dt-question-text { font-size: 1.1rem; }
+      .dt-result-pattern { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body data-phase="3">
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo"><span class="owl-icon">🦉</span><span>アーキテクチャ学習ランド</span></a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav><ul class="nav-links">
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../phase1/index.html">Phase 1</a></li>
+        <li><a href="../phase2/index.html">Phase 2</a></li>
+        <li><a href="index.html" class="active">Phase 3</a></li>
+        <li><a href="../phase4/index.html">Phase 4</a></li>
+        <li><a href="../phase5/index.html">Phase 5</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <main class="topic-page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span class="separator">/</span>
+        <a href="index.html">Phase 3</a>
+        <span class="separator">/</span>
+        <span class="current">3-3. アーキ選定ディシジョンツリー</span>
+      </nav>
+
+      <h1>3-3. アーキ選定ディシジョンツリー</h1>
+
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生より</p>
+          <p>「お客様の要件を聞いて、どのアーキテクチャが合うかを判断する」——これが提案力の核心です。ここでは<strong>5つの質問に答えるだけ</strong>で、推奨アーキテクチャにたどり着くインタラクティブなツリーを体験しましょう。何度でもやり直して、判断の感覚を身につけてくださいね！</p>
+        </div>
+      </div>
+
+      <!-- セクション1: ディシジョンツリーの考え方 -->
+      <section class="content-section">
+        <h2>なぜ「判断の型」が必要なのか</h2>
+        <p>アーキテクチャ選定に「唯一の正解」はありません。しかし、<strong>判断の型（フレームワーク）</strong>を持っていると、選定理由を論理的に説明できるようになります。お客様に「なぜこの構成なのか」を根拠を持って説明できることが、信頼される営業の条件です。</p>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">重要ポイント</p>
+            <p>ディシジョンツリーは「正解を出す機械」ではなく「考える順番のガイド」です。実際の提案では、このツリーの結果をベースに、お客様固有の事情（予算・期間・チームスキル等）を加味して最終判断します。</p>
+          </div>
+        </div>
+
+        <h3>5つの判断軸</h3>
+        <p>このディシジョンツリーでは、以下の5つの観点で段階的に判断していきます。</p>
+
+        <div class="comparison-table">
+          <table>
+            <thead>
+              <tr>
+                <th>判断軸</th>
+                <th>なぜ重要か</th>
+                <th>お客様への質問例</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>リアルタイム性</strong></td>
+                <td>アーキテクチャの根幹を決める最重要要素</td>
+                <td>「データの反映はリアルタイムが必要ですか？」</td>
+              </tr>
+              <tr>
+                <td><strong>同時接続数</strong></td>
+                <td>スケール要件を左右する</td>
+                <td>「ピーク時に何人くらいが同時に使いますか？」</td>
+              </tr>
+              <tr>
+                <td><strong>データ一貫性</strong></td>
+                <td>DB設計とトランザクション方式を決める</td>
+                <td>「金額や在庫の数値は常に正確でなければなりませんか？」</td>
+              </tr>
+              <tr>
+                <td><strong>既存システム連携</strong></td>
+                <td>移行リスクと制約条件を左右する</td>
+                <td>「現在お使いのシステムとデータをやり取りする必要はありますか？」</td>
+              </tr>
+              <tr>
+                <td><strong>スケール方向</strong></td>
+                <td>運用コストと技術選択に影響する</td>
+                <td>「特定の機能だけアクセスが集中することはありますか？」</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- セクション2: インタラクティブツリー -->
+      <section class="content-section">
+        <h2>インタラクティブ・ディシジョンツリー</h2>
+        <p>質問に答えて、推奨アーキテクチャを見つけましょう。回答履歴が上部に表示されるので、どんな判断を経たかが一目でわかります。</p>
+
+        <div id="decision-tree-container" style="margin: 1.5rem 0;"></div>
+      </section>
+
+      <!-- セクション3: パターン一覧サマリー -->
+      <section class="content-section">
+        <h2>主要パターン早見表</h2>
+        <p>ディシジョンツリーで出てくる主要なアーキテクチャパターンを一覧で比較します。</p>
+
+        <div class="comparison-table">
+          <table>
+            <thead>
+              <tr>
+                <th>パターン</th>
+                <th>規模感</th>
+                <th>コスト</th>
+                <th>運用の複雑さ</th>
+                <th>向いているケース</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>モノリス</strong></td>
+                <td>小規模</td>
+                <td>低</td>
+                <td>低</td>
+                <td>社内システム、PoC</td>
+              </tr>
+              <tr>
+                <td><strong>3層アーキテクチャ</strong></td>
+                <td>小〜中規模</td>
+                <td>低〜中</td>
+                <td>低〜中</td>
+                <td>業務アプリ全般</td>
+              </tr>
+              <tr>
+                <td><strong>マイクロサービス</strong></td>
+                <td>中〜大規模</td>
+                <td>中〜高</td>
+                <td>高</td>
+                <td>ECサイト、SaaS</td>
+              </tr>
+              <tr>
+                <td><strong>サーバーレス</strong></td>
+                <td>中規模</td>
+                <td>従量課金</td>
+                <td>低</td>
+                <td>API、バッチ処理</td>
+              </tr>
+              <tr>
+                <td><strong>イベント駆動</strong></td>
+                <td>中〜大規模</td>
+                <td>中〜高</td>
+                <td>高</td>
+                <td>リアルタイム処理</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="column-sales">
+          <h4>営業トーク例</h4>
+          <p>「お客様のご要件を整理しますと、リアルタイム性は不要で、同時利用者は500名程度、データの正確性が重要とのことですので、<strong>3層アーキテクチャをベースにRDBMSを活用した構成</strong>をご提案させていただきます。実績も豊富で、安定した運用が見込めます。」</p>
+        </div>
+
+        <div class="column-dev">
+          <h4>開発チームの視点</h4>
+          <p>営業が「ディシジョンツリーでこのパターンが合いそうです」と共有してくれると、開発チームは初期設計をすぐに始められます。選定理由が明確だと、技術選定の議論も建設的になります。</p>
+        </div>
+      </section>
+
+      <!-- セクション4: 複合パターン -->
+      <section class="content-section">
+        <h2>実際は「複合パターン」になることが多い</h2>
+        <p>ディシジョンツリーでは1つのパターンに行き着きますが、実際のシステムは<strong>複数のパターンを組み合わせる</strong>ことが多いです。</p>
+
+        <div class="owl-box owl-trivia">
+          <div class="owl-box-content">
+            <p class="owl-box-title">豆知識</p>
+            <p>例えばAmazonは、商品カタログはマイクロサービス、注文処理はイベント駆動、レコメンドはサーバーレスと、機能ごとに最適なパターンを使い分けています。これを<strong>ポリグロットアーキテクチャ</strong>と呼びます。ただし中小規模のプロジェクトでは、1つのパターンで統一した方が運用コストを抑えられます。</p>
+          </div>
+        </div>
+
+        <h3>よくある組み合わせパターン</h3>
+        <ul>
+          <li><strong>3層 ＋ メッセージキュー</strong>：基本は3層だが、重い処理は非同期化（例：帳票生成、メール送信）</li>
+          <li><strong>マイクロサービス ＋ BFF</strong>：バックエンドはマイクロサービス、フロントとの接点はBFF（Backend for Frontend）で集約</li>
+          <li><strong>モノリス ＋ サーバーレス</strong>：メインはモノリスだが、画像処理やバッチ処理だけサーバーレスに切り出し</li>
+          <li><strong>イベント駆動 ＋ CQRS</strong>：書き込みはイベント駆動、読み取りは専用のリードモデルで高速化</li>
+        </ul>
+      </section>
+
+      <!-- 確認クイズ -->
+      <section class="content-section">
+        <h2>確認クイズ</h2>
+
+        <div class="quiz-card" data-phase="phase3" data-topic="decision-tree" data-quiz="1">
+          <p class="quiz-question">Q1. 同時接続100人程度の社内業務システムで、既存の基幹システムとデータ連携が必要な場合、最も適切なアーキテクチャは？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">マイクロサービス</button>
+            <button class="quiz-option" data-correct="true">モノリス</button>
+            <button class="quiz-option" data-correct="false">サーバーレス</button>
+            <button class="quiz-option" data-correct="false">イベント駆動</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">小規模かつ既存システムとの密結合が必要な場合、モノリスが最もシンプルで確実な選択です。過剰な分散化はコストと複雑さを増すだけです。</p>
+        </div>
+
+        <div class="quiz-card" data-phase="phase3" data-topic="decision-tree" data-quiz="2">
+          <p class="quiz-question">Q2. 大規模ECサイトで、商品閲覧は軽いが注文処理時にアクセスが集中する場合、どの判断軸が最も重要になる？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">リアルタイム性</button>
+            <button class="quiz-option" data-correct="false">データ一貫性</button>
+            <button class="quiz-option" data-correct="true">スケール方向（機能単位の独立スケール）</button>
+            <button class="quiz-option" data-correct="false">既存システム連携</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">特定機能（注文処理）にアクセスが集中する場合、「機能単位で独立してスケールできるか」が最重要です。これはマイクロサービスの典型的なユースケースです。</p>
+        </div>
+
+        <div class="quiz-card" data-phase="phase3" data-topic="decision-tree" data-quiz="3">
+          <p class="quiz-question">Q3. 「ポリグロットアーキテクチャ」とは何を指す？</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-correct="false">複数のプログラミング言語を使うこと</button>
+            <button class="quiz-option" data-correct="false">複数のクラウドベンダーを使い分けること</button>
+            <button class="quiz-option" data-correct="true">機能ごとに最適なアーキテクチャパターンを組み合わせること</button>
+            <button class="quiz-option" data-correct="false">1つのパターンを複数のプロジェクトに適用すること</button>
+          </div>
+          <div class="quiz-feedback"></div>
+          <p class="quiz-explanation">ポリグロットアーキテクチャとは、機能ごとに最適なアーキテクチャパターンを使い分ける考え方です。大規模サービスでは一般的ですが、運用の複雑さとのトレードオフがあります。</p>
+        </div>
+      </section>
+
+      <!-- フクロウ先生のまとめ -->
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生のまとめ</p>
+          <p>ディシジョンツリーを何度か体験しましたか？大切なのは「正解を暗記する」ことではなく、<strong>「なぜその選択になるのか」の理由を説明できること</strong>です。お客様に「なるほど、そういう理由で提案してくれてるんですね」と思ってもらえたら大成功。次は構成図の読み方を学んで、提案書を読み解く力もつけましょう！</p>
+        </div>
+      </div>
+
+      <!-- ページナビゲーション -->
+      <div class="page-nav">
+        <a href="02-hearing-framework.html" class="page-nav-prev">
+          <span class="page-nav-label">前のトピック</span>
+          <span class="page-nav-title">3-2. 課題ヒアリングフレームワーク</span>
+        </a>
+        <a href="04-reading-diagrams.html" class="page-nav-next">
+          <span class="page-nav-label">次のトピック</span>
+          <span class="page-nav-title">3-4. 構成図の読み方・描き方</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>学習の進捗は自動保存されます 🦉</p><p>アーキテクチャ学習ランド &copy; 2025</p></div></footer>
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script src="../../js/decision-tree.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      DecisionTree.init('decision-tree-container');
+      ProgressManager.initScrollTracking('phase3', 'decision-tree');
+    });
+  </script>
+</body>
+</html>

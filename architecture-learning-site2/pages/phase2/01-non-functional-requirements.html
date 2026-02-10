@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2-1. 非機能要件とは何か | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body data-phase="2">
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo">
+        <span class="owl-icon">🦉</span>
+        <span>アーキテクチャ学習ランド</span>
+      </a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html">ホーム</a></li>
+          <li><a href="../phase1/index.html">Phase 1</a></li>
+          <li><a href="index.html" class="active">Phase 2</a></li>
+          <li><a href="../phase3/index.html">Phase 3</a></li>
+          <li><a href="../phase4/index.html">Phase 4</a></li>
+          <li><a href="../phase5/index.html">Phase 5</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="phase-page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a>
+        <span class="separator">/</span>
+        <a href="index.html">Phase 2</a>
+        <span class="separator">/</span>
+        <span class="current">2-1. 非機能要件とは何か</span>
+      </nav>
+
+      <div class="phase-header">
+        <h1><span class="phase-icon">🛡️</span>2-1. 非機能要件とは何か</h1>
+      </div>
+
+      <!-- ==================== -->
+      <!-- フクロウ先生の導入 -->
+      <!-- ==================== -->
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の導入</p>
+          <p>家を建てるとき、「3LDKで、リビングは20畳で、キッチンは対面式で...」と間取りを考えますよね。これが<strong>機能要件</strong>。でも「耐震等級3」「断熱性能UA値0.46以下」「防犯カメラ付き」——これらを忘れたら、住み始めてから大変なことになります。これが<strong>非機能要件</strong>。システムでも同じことが起きるんです。そして、営業が最も見落としやすいのがこの非機能要件なんですよ。</p>
+        </div>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 本文解説 -->
+      <!-- ==================== -->
+      <section>
+        <h2>機能要件と非機能要件の違い</h2>
+
+        <p>お客様の要望は大きく2つに分かれます。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>種類</th>
+                <th>家で言うと</th>
+                <th>システムで言うと</th>
+                <th>お客様の言い方</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><span class="tech-term">機能要件<span class="tooltip">システムが「何をできるか」を定義するもの。ログイン機能、検索機能、注文機能など、ユーザーが直接使う機能のこと</span></span></strong></td>
+                <td>間取り、部屋数、キッチンの形</td>
+                <td>ログイン、検索、注文、帳票出力</td>
+                <td>「こういう機能がほしい」</td>
+              </tr>
+              <tr>
+                <td><strong><span class="tech-term">非機能要件<span class="tooltip">システムが「どのように動くか」を定義するもの。速度、安定性、安全性など、機能以外の品質に関する要件</span></span></strong></td>
+                <td>耐震性、断熱性、防犯、メンテ性</td>
+                <td>可用性、性能、セキュリティ、運用性</td>
+                <td>「落ちないでほしい」「速くしてほしい」</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">ポイント</p>
+            <p>機能要件は「<strong>何ができるか</strong>」、非機能要件は「<strong>どのくらいうまく動くか</strong>」。お客様は機能の話はたくさんしてくれますが、非機能の話は聞かれなければ出てこないことが多いんです。だからこそ、<strong>営業から聞き出す力</strong>が重要になります。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>非機能要件を知らないとどうなるか？——3つの失敗シナリオ</h2>
+
+        <h3>失敗シナリオ 1：「セール初日にシステムダウン」</h3>
+        <p>あるECサイトのリニューアル案件。機能は完璧に作ったのに、<strong>アクセス集中への対策（スケーラビリティ）</strong>を見積もりに含めていなかった。オープンセール初日、通常の50倍のアクセスが集中してシステムがダウン。売上損失は数千万円、お客様からの信頼は地に落ちました。</p>
+
+        <h3>失敗シナリオ 2：「バックアップ未設定で全データ消失」</h3>
+        <p>社内システムの開発案件。要件定義で<strong>バックアップと復旧の方針（可用性）</strong>が議論されないまま進行。サーバー障害でデータベースが破損し、3年分の業務データが消失。「バックアップは当然あるものと思っていた」——お客様も営業もSEも、全員が「誰かがやっているはず」と思い込んでいました。</p>
+
+        <h3>失敗シナリオ 3：「遅すぎて誰も使わないシステム」</h3>
+        <p>基幹システムのWeb化案件。機能は旧システムと同等にしたが、<strong>パフォーマンス要件</strong>を定義しなかった。画面遷移に毎回10秒かかるシステムが完成。現場からは「前のシステムの方がマシだった」と大不評。作り直しで追加コストが発生しました。</p>
+
+        <div class="owl-box owl-encourage">
+          <div class="owl-box-content">
+            <p class="owl-box-title">励まし</p>
+            <p>怖い話が続きましたが、安心してください。これらの失敗は、<strong>非機能要件を意識するだけで防げます</strong>。すべてを技術的に理解する必要はありません。「この観点、確認しましたか？」と聞けるだけで十分です。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>非機能要件の全体マップ</h2>
+
+        <p>非機能要件にはさまざまな種類がありますが、営業として押さえるべき主要なものを「家」にたとえて整理しましょう。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>非機能要件</th>
+                <th>家のたとえ</th>
+                <th>システムでの意味</th>
+                <th>Phase 2 で学ぶ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>可用性</strong></td>
+                <td>耐震性（地震でも倒れない）</td>
+                <td>障害が起きてもサービスが止まらない</td>
+                <td>2-2</td>
+              </tr>
+              <tr>
+                <td><strong>スケーラビリティ</strong></td>
+                <td>増築のしやすさ</td>
+                <td>利用者が増えても対応できる</td>
+                <td>2-3</td>
+              </tr>
+              <tr>
+                <td><strong>セキュリティ</strong></td>
+                <td>防犯設備（鍵・カメラ・警備）</td>
+                <td>不正アクセスや情報漏洩を防ぐ</td>
+                <td>2-4</td>
+              </tr>
+              <tr>
+                <td><strong>パフォーマンス</strong></td>
+                <td>動線の良さ（スムーズに移動できる）</td>
+                <td>画面表示や処理が速い</td>
+                <td>2-5</td>
+              </tr>
+              <tr>
+                <td><strong>運用性</strong></td>
+                <td>メンテナンスのしやすさ</td>
+                <td>監視、バックアップ、更新が容易</td>
+                <td>2-6</td>
+              </tr>
+              <tr>
+                <td><strong>コスト効率</strong></td>
+                <td>維持費（光熱費・修繕費）</td>
+                <td>初期費用とランニングコストのバランス</td>
+                <td>2-6</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>非機能要件が提案金額に与えるインパクト</h2>
+
+        <p>営業として最も知っておくべきこと——<strong>非機能要件のレベルを上げると、コストは「足し算」ではなく「掛け算」で増える</strong>ということです。</p>
+
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th><span class="tech-term">SLA<span class="tooltip">Service Level Agreement。サービス品質の保証レベルを数値で定めた合意。稼働率99.9%保証、応答時間3秒以内など</span></span>（稼働率）</th>
+                <th>年間ダウンタイム</th>
+                <th>必要な対策</th>
+                <th>コスト目安（基準比）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>99%</strong></td>
+                <td>約3.65日</td>
+                <td>基本的な構成</td>
+                <td>1倍（基準）</td>
+              </tr>
+              <tr>
+                <td><strong>99.9%</strong></td>
+                <td>約8.8時間</td>
+                <td>冗長化、監視</td>
+                <td>約2〜3倍</td>
+              </tr>
+              <tr>
+                <td><strong>99.99%</strong></td>
+                <td>約52分</td>
+                <td>マルチAZ、自動フェイルオーバー</td>
+                <td>約5〜10倍</td>
+              </tr>
+              <tr>
+                <td><strong>99.999%</strong></td>
+                <td>約5.3分</td>
+                <td>マルチリージョン、完全冗長</td>
+                <td>約20倍以上</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="owl-box owl-point">
+          <div class="owl-box-content">
+            <p class="owl-box-title">ポイント</p>
+            <p>お客様が「絶対に止まらないシステムがほしい」と言ったとき、それが99.9%（年間8.8時間の停止は許容）なのか99.999%（年間5分しか停止できない）なのかで、<strong>コストが20倍も変わる</strong>可能性があります。営業の仕事は、お客様の本当のニーズを引き出して、最適なレベルを一緒に決めること。「止まらない」の定義を具体化するのが、提案の第一歩です。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== -->
+      <!-- 営業の現場コラム -->
+      <!-- ==================== -->
+      <div class="column-sales">
+        <p class="column-title">営業の現場では...</p>
+        <p>提案のRFP（提案依頼書）を受け取ったとき、<strong>非機能要件の記載が曖昧</strong>なケースは非常に多いです。「安定したシステム」「セキュリティに配慮」とだけ書かれていたら、それは非機能要件が未定義ということ。こんなときこそ営業の出番です。「安定とは具体的にどのレベルですか？」「セキュリティ監査の基準はありますか？」——こうした質問を投げることで、後工程でのトラブルを未然に防ぎ、正確な見積もりにつなげられます。</p>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 開発チームの視点コラム -->
+      <!-- ==================== -->
+      <div class="column-dev">
+        <p class="column-title">開発チームの視点</p>
+        <p>開発チームが最も困るのは「非機能要件が後から追加される」ケース。「やっぱり99.99%の可用性が必要だった」と後から言われると、アーキテクチャの根本から作り直しになることがあります。<strong>非機能要件は建物の基礎工事</strong>。後から耐震等級を上げるのは、壁紙を張り替えるのとは比較にならないコストがかかります。営業さんが早い段階で非機能要件をヒアリングしてくれると、手戻りのない正確な提案ができます。</p>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 章末クイズ -->
+      <!-- ==================== -->
+      <h2>理解度チェック</h2>
+
+      <div class="quiz-card" data-answer="B" data-phase="phase2" data-topic="non-functional-requirements">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q1</div>
+          <h4>機能要件と非機能要件</h4>
+        </div>
+        <p class="quiz-question">以下のうち、「非機能要件」に該当するものはどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>ユーザーがログインできること</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>画面表示が3秒以内であること</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>商品を検索できること</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>帳票をPDF出力できること</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation">
+          <p>「画面表示が3秒以内」は、機能そのものではなく<strong>品質の基準</strong>を定めています。これが非機能要件です。ログイン、検索、PDF出力は「何ができるか」を定めた機能要件ですね。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="quiz-card" data-answer="C" data-phase="phase2" data-topic="non-functional-requirements">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q2</div>
+          <h4>SLAとコスト</h4>
+        </div>
+        <p class="quiz-question">SLA（稼働率）を99.9%から99.99%に上げると、一般的にコストはどう変化しますか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>ほとんど変わらない（数%増程度）</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>約1.5倍になる</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>約2〜5倍以上になることがある</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>クラウドなら無料で上げられる</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation">
+          <p>SLAを1桁上げる（9を1つ増やす）と、必要な技術的対策が大幅に増え、コストは<strong>掛け算的に増加</strong>します。99.9%→99.99%では、マルチAZ構成や自動フェイルオーバーが必要になり、コストは2〜5倍以上になることが一般的です。お客様に「9を1つ追加するとコストが倍以上変わります」と説明できると、適切なレベル設定の議論ができます。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="quiz-card" data-answer="A" data-phase="phase2" data-topic="non-functional-requirements">
+        <div class="quiz-card-header">
+          <div class="quiz-icon">Q3</div>
+          <h4>非機能要件の確認タイミング</h4>
+        </div>
+        <p class="quiz-question">非機能要件を確認する最適なタイミングはいつですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A">
+            <span class="option-label">A</span>
+            <span>初回ヒアリングや要件定義の早い段階</span>
+          </li>
+          <li class="quiz-option" data-option="B">
+            <span class="option-label">B</span>
+            <span>開発がほぼ完了した後のテスト時</span>
+          </li>
+          <li class="quiz-option" data-option="C">
+            <span class="option-label">C</span>
+            <span>システムの本番稼働開始後</span>
+          </li>
+          <li class="quiz-option" data-option="D">
+            <span class="option-label">D</span>
+            <span>お客様からクレームが来た時</span>
+          </li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation">
+          <p>非機能要件は<strong>建物の基礎工事</strong>にあたります。後から変更するのは非常にコストがかかるため、<strong>早い段階で確認する</strong>のが鉄則です。要件定義の段階で非機能要件を押さえておけば、正確な見積もりができ、後工程でのトラブルを防げます。</p>
+        </div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <!-- ==================== -->
+      <!-- 振り返り + 次トピック -->
+      <!-- ==================== -->
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の振り返り</p>
+          <p>非機能要件の全体像、つかめましたか？大切なのは「非機能要件という視点があることを知る」こと。これだけで、提案の質が格段に変わります。次からは、各非機能要件を1つずつ深掘りしていきます。まずは「可用性」——システムが止まらない仕組みから学びましょう！</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <a href="index.html" class="btn btn-outline">← Phase 2 トップへ</a>
+        <a href="02-availability.html" class="btn btn-primary">次のトピック：可用性 →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>学習の進捗は自動保存されます 🦉</p>
+      <p>アーキテクチャ学習ランド &copy; 2025</p>
+    </div>
+  </footer>
+
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>ProgressManager.initScrollTracking('phase2', 'non-functional-requirements');</script>
+</body>
+</html>

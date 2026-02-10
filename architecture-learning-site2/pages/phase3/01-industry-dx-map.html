@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3-1. 業界別DX課題マップ | アーキテクチャ学習ランド</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .industry-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--color-border); margin-bottom: 0; flex-wrap: wrap; }
+    .industry-tab { padding: var(--space-sm) var(--space-lg); border: 2px solid var(--color-border); border-bottom: none; border-radius: var(--radius-md) var(--radius-md) 0 0; background: var(--color-bg-warm); cursor: pointer; font-family: var(--font-family); font-size: var(--font-size-sm); font-weight: 700; color: var(--color-text-light); transition: all var(--transition-fast); margin-bottom: -2px; }
+    .industry-tab:hover { background: var(--color-white); color: var(--color-text); }
+    .industry-tab.active { background: var(--color-white); color: var(--phase3-color); border-color: var(--phase3-color); border-bottom-color: var(--color-white); }
+    .industry-panel { display: none; border: 2px solid var(--phase3-color); border-top: none; border-radius: 0 0 var(--radius-md) var(--radius-md); padding: var(--space-xl); background: var(--color-white); }
+    .industry-panel.active { display: block; }
+    .dx-challenge { background: var(--color-bg); border-radius: var(--radius-md); padding: var(--space-lg); margin-bottom: var(--space-md); border-left: 4px solid var(--phase3-color); }
+    .dx-challenge h4 { color: var(--phase3-color); margin-bottom: var(--space-sm); font-size: var(--font-size-base); }
+    .dx-challenge .customer-voice { background: var(--phase3-bg); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); margin: var(--space-sm) 0; font-style: italic; font-size: var(--font-size-sm); }
+    .dx-challenge .arch-direction { font-size: var(--font-size-sm); color: var(--color-text-light); margin-top: var(--space-sm); }
+    .dx-challenge .arch-direction strong { color: var(--phase3-color); }
+  </style>
+</head>
+<body data-phase="3">
+  <header class="site-header">
+    <div class="container">
+      <a href="../../index.html" class="site-logo"><span class="owl-icon">🦉</span><span>アーキテクチャ学習ランド</span></a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav><ul class="nav-links">
+        <li><a href="../../index.html">ホーム</a></li>
+        <li><a href="../phase1/index.html">Phase 1</a></li>
+        <li><a href="../phase2/index.html">Phase 2</a></li>
+        <li><a href="index.html" class="active">Phase 3</a></li>
+        <li><a href="../phase4/index.html">Phase 4</a></li>
+        <li><a href="../phase5/index.html">Phase 5</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <main class="phase-page">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../index.html">ホーム</a><span class="separator">/</span>
+        <a href="index.html">Phase 3</a><span class="separator">/</span>
+        <span class="current">3-1. 業界別DX課題マップ</span>
+      </nav>
+
+      <div class="phase-header">
+        <h1><span class="phase-icon">🗺️</span>3-1. 業界別DX課題マップ</h1>
+      </div>
+
+      <div class="owl-box owl-intro">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の導入</p>
+          <p>お客様の業界によって、DXの課題はまったく違います。製造業の「工場を止めたくない」と金融の「リアルタイム決済を実現したい」では、必要なアーキテクチャも異なる。今日は4つの主要業界のDX課題を整理して、「この業界のお客様が来たら、こんな提案の方向性がある」という<strong>引き出し</strong>を増やしていきましょう！</p>
+        </div>
+      </div>
+
+      <section>
+        <h2>業界を選んでDX課題を確認しよう</h2>
+        <p>以下のタブをクリックして、各業界のDX課題と対応するアーキテクチャの方向性を確認しましょう。</p>
+
+        <!-- タブUI -->
+        <div class="industry-tabs" role="tablist">
+          <button class="industry-tab active" role="tab" aria-selected="true" data-tab="manufacturing">🏭 製造業</button>
+          <button class="industry-tab" role="tab" aria-selected="false" data-tab="finance">🏦 金融</button>
+          <button class="industry-tab" role="tab" aria-selected="false" data-tab="retail">🛒 小売</button>
+          <button class="industry-tab" role="tab" aria-selected="false" data-tab="public">🏛️ 公共</button>
+        </div>
+
+        <!-- 製造業パネル -->
+        <div class="industry-panel active" id="panel-manufacturing" role="tabpanel">
+          <h3>🏭 製造業のDX課題</h3>
+
+          <div class="dx-challenge">
+            <h4>1. 予知保全（Predictive Maintenance）</h4>
+            <div class="customer-voice">「機械が突然壊れて生産ラインが止まるのが一番困る。壊れる前にわかれば...」</div>
+            <p class="arch-direction">→ <strong>IoT + イベント駆動 + AI/ML基盤</strong>：センサーデータをリアルタイム収集し、異常パターンを機械学習で検知。ストリーム処理基盤（Apache Kafka等）が核になる。</p>
+          </div>
+
+          <div class="dx-challenge">
+            <h4>2. スマートファクトリー</h4>
+            <div class="customer-voice">「工場の状況をリアルタイムに見える化したい。人の勘に頼る運用を変えたい」</div>
+            <p class="arch-direction">→ <strong>エッジコンピューティング + クラウドダッシュボード</strong>：工場内のデータはエッジで即時処理し、集約データをクラウドに送って可視化。ハイブリッドクラウド構成。</p>
+          </div>
+
+          <div class="dx-challenge">
+            <h4>3. サプライチェーン最適化</h4>
+            <div class="customer-voice">「在庫を持ちすぎず、かつ欠品もなくしたい。取引先ともデータ連携したい」</div>
+            <p class="arch-direction">→ <strong>API連携基盤 + データ分析基盤</strong>：取引先とのデータ連携をAPI/EDIで実現。需要予測にBI/AIを活用。マイクロサービスで段階的に構築。</p>
+          </div>
+
+          <div class="dx-challenge">
+            <h4>4. 品質管理の自動化</h4>
+            <div class="customer-voice">「検品を目視でやっていて、見逃しや属人化が課題」</div>
+            <p class="arch-direction">→ <strong>画像認識AI + エッジ処理</strong>：カメラ映像をAIでリアルタイム解析。エッジデバイスで推論処理し、結果をクラウドに集約。</p>
+          </div>
+        </div>
+
+        <!-- 金融パネル -->
+        <div class="industry-panel" id="panel-finance" role="tabpanel">
+          <h3>🏦 金融業のDX課題</h3>
+
+          <div class="dx-challenge">
+            <h4>1. オープンバンキング</h4>
+            <div class="customer-voice">「フィンテック企業と連携して新しいサービスを作りたい。でも基幹システムは触れない...」</div>
+            <p class="arch-direction">→ <strong>API Gateway + マイクロサービス</strong>：基幹システムの前にAPIレイヤーを設け、外部連携を安全に実現。既存資産を活かしながらオープン化。</p>
+          </div>
+
+          <div class="dx-challenge">
+            <h4>2. AML/KYC自動化</h4>
+            <div class="customer-voice">「マネーロンダリング対策の審査に人手がかかりすぎる。規制も年々厳しくなる」</div>
+            <p class="arch-direction">→ <strong>ルールエンジン + AI/ML + イベント駆動</strong>：取引データをリアルタイムで監視し、不審なパターンをAIが検知。規制変更に対応しやすいルールエンジンが鍵。</p>
+          </div>
+
+          <div class="dx-challenge">
+            <h4>3. リアルタイム決済</h4>
+            <div class="customer-voice">「送金が翌営業日ではなく、即時で完了するようにしたい」</div>
+            <p class="arch-direction">→ <strong>イベント駆動 + 高可用性アーキテクチャ</strong>：CQRS/Event Sourcingパターン。99.999%の可用性が求められ、マルチリージョン構成が必須。</p>
+          </div>
+
+          <div class="dx-challenge">
+            <h4>4. デジタルバンキング</h4>
+            <div class="customer-voice">「スマホアプリで残高照会から融資申し込みまで完結させたい」</div>
+            <p class="arch-direction">→ <strong>モバイルBFF + マイクロサービス + クラウドネイティブ</strong>：モバイル向けのAPIを最適化するBFFパターン。セキュリティ最重視のクラウド構成。</p>
+          </div>
+        </div>
+
+        <!-- 小売パネル -->
+        <div class="industry-panel" id="panel-retail" role="tabpanel">
+          <h3>🛒 小売業のDX課題</h3>
+
+          <div class="dx-challenge">
+            <h4>1. オムニチャネル</h4>
+            <div class="customer-voice">「ECと店舗の在庫を統合したい。店舗で在庫切れでもECから取り寄せとか」</div>
+            <p class="arch-direction">→ <strong>マイクロサービス + API連携 + リアルタイムデータ同期</strong>：在庫管理を一元化するAPI基盤。EC/店舗POS/物流をイベント駆動で連携。</p>
+          </div>
+
+          <div class="dx-challenge">
+            <h4>2. 需要予測</h4>
+            <div class="customer-voice">「食品の廃棄ロスを減らしたい。天気や曜日で仕入れ量を最適化できないか」</div>
+            <p class="arch-direction">→ <strong>データ分析基盤 + AI/ML</strong>：POS/天気/イベント情報を統合するデータレイク。機械学習で需要予測モデルを構築。バッチ+リアルタイムのラムダアーキテクチャ。</p>
+          </div>
+
+          <div class="dx-challenge">
+            <h4>3. パーソナライゼーション</h4>
+            <div class="customer-voice">「お客様一人ひとりに合った商品をレコメンドしたい。メールもOne to Oneにしたい」</div>
+            <p class="arch-direction">→ <strong>CDP + レコメンドエンジン + サーバーレス</strong>：顧客データプラットフォームで行動データを統合。リアルタイムのレコメンドAPIはサーバーレスで柔軟にスケール。</p>
+          </div>
+
+          <div class="dx-challenge">
+            <h4>4. キャッシュレス・決済多様化</h4>
+            <div class="customer-voice">「QRコード決済も電子マネーも対応したい。でもPOSシステムは古い...」</div>
+            <p class="arch-direction">→ <strong>決済ゲートウェイ + API連携</strong>：既存POSと新決済手段の間にゲートウェイを配置。段階的に決済手段を追加できる疎結合な設計。</p>
+          </div>
+        </div>
+
+        <!-- 公共パネル -->
+        <div class="industry-panel" id="panel-public" role="tabpanel">
+          <h3>🏛️ 公共・官公庁のDX課題</h3>
+
+          <div class="dx-challenge">
+            <h4>1. 市民サービスDX</h4>
+            <div class="customer-voice">「住民がわざわざ役所に来なくても手続きできるようにしたい」</div>
+            <p class="arch-direction">→ <strong>Webポータル + 電子認証 + API連携</strong>：マイナンバーカードによる本人認証。各課のシステムをAPI連携で統合。アクセシビリティ対応が必須。</p>
+          </div>
+
+          <div class="dx-challenge">
+            <h4>2. データ連携基盤</h4>
+            <div class="customer-voice">「部署ごとにバラバラのシステムでデータが共有できない」</div>
+            <p class="arch-direction">→ <strong>データ連携基盤（iPaaS）+ マスタデータ管理</strong>：部署横断のデータ連携をAPIで実現。データ標準化とマスタ管理が成功の鍵。ISMAPクラウドの利用が前提。</p>
+          </div>
+
+          <div class="dx-challenge">
+            <h4>3. マイナンバー連携</h4>
+            <div class="customer-voice">「マイナンバーとの連携が必要になったが、セキュリティ面が心配」</div>
+            <p class="arch-direction">→ <strong>ゼロトラスト + 暗号化 + 監査ログ</strong>：最高レベルのセキュリティ設計が必須。データ暗号化、アクセス制御、操作履歴の完全記録。ISMAP準拠のクラウド利用。</p>
+          </div>
+
+          <div class="dx-challenge">
+            <h4>4. 防災・危機管理DX</h4>
+            <div class="customer-voice">「災害時に迅速に情報を発信・共有できる仕組みがほしい」</div>
+            <p class="arch-direction">→ <strong>高可用性 + マルチリージョン + プッシュ通知基盤</strong>：災害時にも止まらない99.99%以上の可用性。全国どこからでもアクセス可能な分散構成。</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="owl-box owl-point">
+        <div class="owl-box-content">
+          <p class="owl-box-title">ポイント</p>
+          <p>業界ごとの「典型的な課題」と「アーキの方向性」を引き出しとして持っておくと、初回の商談から<strong>「御社の業界ではこうしたケースが多いですが...」</strong>と切り出せます。お客様は「この営業は業界をわかっている」と感じ、信頼感が大きくアップします。</p>
+        </div>
+      </div>
+
+      <!-- 営業コラム -->
+      <div class="column-sales">
+        <p class="column-title">営業の現場では...</p>
+        <p>業界別のDX課題を知っているだけで、新規顧客への<strong>「仮説提案」</strong>ができます。「製造業のお客様なので、予知保全やスマートファクトリーのニーズがあるかもしれない」——こうした仮説を持って初回訪問に臨むと、ヒアリングの質が格段に上がります。もちろん、仮説はあくまで仮説。決めつけるのではなく「御社ではいかがですか？」と確認するのがポイントです。</p>
+      </div>
+
+      <!-- 開発チームコラム -->
+      <div class="column-dev">
+        <p class="column-title">開発チームの視点</p>
+        <p>営業さんが「製造業のお客様で、予知保全をやりたいらしい」と持ってきてくれると、開発チームは「IoTデータのストリーム処理とML基盤が要るな」とすぐに構成案の検討に入れます。逆に「DXをやりたいらしい」だけだと、何から手をつけていいかわからない。<strong>業界 × 課題 × 方向性</strong>の3点セットで情報をもらえると、提案書作成のスピードが全然違います。</p>
+      </div>
+
+      <!-- クイズ -->
+      <h2>理解度チェック</h2>
+
+      <div class="quiz-card" data-answer="B" data-phase="phase3" data-topic="industry-dx-map">
+        <div class="quiz-card-header"><div class="quiz-icon">Q1</div><h4>製造業のDX</h4></div>
+        <p class="quiz-question">製造業の「予知保全」で中核となるアーキテクチャ要素はどれですか？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>モノリスアーキテクチャとバッチ処理</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>IoTセンサー + ストリーム処理 + AI/ML</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>Webポータルとメール配信</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>ファイル連携とCSV出力</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>予知保全は「壊れる前に異常を検知する」仕組み。IoTセンサーでデータを収集し、ストリーム処理でリアルタイムに分析、AI/MLで異常パターンを学習して予測します。バッチ処理やCSV連携ではリアルタイム性が足りません。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="quiz-card" data-answer="A" data-phase="phase3" data-topic="industry-dx-map">
+        <div class="quiz-card-header"><div class="quiz-icon">Q2</div><h4>金融業のアーキ</h4></div>
+        <p class="quiz-question">金融業で「基幹システムを触れないが、フィンテック連携したい」場合のアプローチは？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>基幹システムの前にAPI Gatewayを配置する</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>基幹システムを全面作り直す</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>フィンテック連携をあきらめる</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>CSVファイルで手動連携する</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p>基幹システムに手を入れられない場合、前にAPI Gatewayを配置して外部連携の窓口を作るのが定石です。基幹システムの全面作り直しはリスクもコストも巨大。APIレイヤーで安全にオープン化するのがオープンバンキングの基本アプローチです。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="quiz-card" data-answer="D" data-phase="phase3" data-topic="industry-dx-map">
+        <div class="quiz-card-header"><div class="quiz-icon">Q3</div><h4>公共のクラウド</h4></div>
+        <p class="quiz-question">公共・官公庁のシステムでクラウドを利用する際に重要な認定制度は？</p>
+        <ul class="quiz-options">
+          <li class="quiz-option" data-option="A"><span class="option-label">A</span><span>PCI DSS</span></li>
+          <li class="quiz-option" data-option="B"><span class="option-label">B</span><span>GDPR</span></li>
+          <li class="quiz-option" data-option="C"><span class="option-label">C</span><span>SOC 2</span></li>
+          <li class="quiz-option" data-option="D"><span class="option-label">D</span><span>ISMAP</span></li>
+        </ul>
+        <div class="quiz-feedback"><p class="feedback-title"></p></div>
+        <div class="quiz-explanation"><p><strong>ISMAP</strong>（Information system Security Management and Assessment Program）は、政府機関がクラウドサービスを調達する際に参照する認定制度です。ISMAPに登録されたクラウドサービスのみ利用可能なケースが多く、公共案件では必ず確認が必要です。</p></div>
+        <button class="btn btn-outline quiz-retry" style="display: none;">もう一度挑戦する</button>
+      </div>
+
+      <div class="owl-box owl-encourage">
+        <div class="owl-box-content">
+          <p class="owl-box-title">フクロウ先生の振り返り</p>
+          <p>4業界のDX課題マップ、引き出しが増えましたね！次は、お客様との実際の会話で「技術的な質問をせずに技術要件を引き出す」ヒアリングフレームワークを学びます。これは営業スキルの核心ですよ！</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <a href="index.html" class="btn btn-outline">← Phase 3 トップへ</a>
+        <a href="02-hearing-framework.html" class="btn btn-primary">次のトピック：課題ヒアリングフレームワーク →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>学習の進捗は自動保存されます 🦉</p><p>アーキテクチャ学習ランド &copy; 2025</p></div></footer>
+  <script src="../../js/progress.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>
+    ProgressManager.initScrollTracking('phase3', 'industry-dx-map');
+    // Tab switching
+    document.querySelectorAll('.industry-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.industry-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+        document.querySelectorAll('.industry-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

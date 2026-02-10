@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アーキテクチャ学習ランド 〜データの旅〜</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="site-logo">
+        <span class="owl-icon">🦉</span>
+        <span>アーキテクチャ学習ランド</span>
+      </a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">ホーム</a></li>
+          <li><a href="pages/phase1/index.html">Phase 1</a></li>
+          <li><a href="pages/phase2/index.html">Phase 2</a></li>
+          <li><a href="pages/phase3/index.html">Phase 3</a></li>
+          <li><a href="pages/phase4/index.html">Phase 4</a></li>
+          <li><a href="pages/phase5/index.html">Phase 5</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <span class="hero-owl">🦉</span>
+      <h1>アーキテクチャ学習ランド</h1>
+      <p class="subtitle">データの旅 〜生まれてから価値を届けるまで〜</p>
+      <div class="hero-message">
+        <p>ようこそ、未来の「データの旅の案内人」さん。<br>
+        私はフクロウ先生。これからあなたと一緒に、データがビジネス価値を届けるまでの旅路を学んでいきましょう。<br>
+        難しそうに見えるアーキテクチャも、一歩ずつ進めば必ずわかるようになります。さあ、旅を始めましょう！</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="section">
+    <div class="container">
+      <!-- Overall Progress -->
+      <div class="overall-progress">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <h2>🗺️ 全体の学習進捗</h2>
+          <button class="reset-progress" title="進捗をリセット">リセット</button>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" style="width: 0%;" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <p class="progress-label">0 / 25 トピック完了（0%）</p>
+      </div>
+
+      <!-- Phase Cards -->
+      <div class="phase-grid">
+        <!-- Phase 1 -->
+        <div class="phase-card" data-phase="1">
+          <span class="phase-card-icon">🌱</span>
+          <span class="phase-card-label">Phase 1</span>
+          <h3>データの旅 - 基礎編</h3>
+          <p>アーキテクチャの基礎知識を学びます。クライアント・サーバーの仕組みから、クラウドの基本まで。データの旅を理解するための第一歩です。</p>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+          <p class="progress-label">0 / 5 完了（0%）</p>
+          <a href="pages/phase1/index.html" class="btn btn-primary btn-block">学習を始める →</a>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="phase-card" data-phase="2">
+          <span class="phase-card-icon">🛡️</span>
+          <span class="phase-card-label">Phase 2</span>
+          <h3>旅の安全を守る</h3>
+          <p>非機能要件を理解します。可用性・パフォーマンス・セキュリティなど、システムを安全に動かし続けるために大切な考え方を身につけます。</p>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+          <p class="progress-label">0 / 5 完了（0%）</p>
+          <a href="pages/phase2/index.html" class="btn btn-primary btn-block">学習を始める →</a>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="phase-card" data-phase="3">
+          <span class="phase-card-icon">🗺️</span>
+          <span class="phase-card-label">Phase 3</span>
+          <h3>旅のルートを設計する</h3>
+          <p>顧客の課題をもとに、最適なアーキテクチャを選定する力を養います。提案に活かせる実践的な設計思考を学びましょう。</p>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+          <p class="progress-label">0 / 5 完了（0%）</p>
+          <a href="pages/phase3/index.html" class="btn btn-primary btn-block">学習を始める →</a>
+        </div>
+
+        <!-- Phase 4 -->
+        <div class="phase-card" data-phase="4">
+          <span class="phase-card-icon">🤝</span>
+          <span class="phase-card-label">Phase 4</span>
+          <h3>旅の仲間と話す</h3>
+          <p>開発部門との協議力を高めます。技術的な会話を理解し、営業と開発をつなぐ「翻訳者」としての力を身につけましょう。</p>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+          <p class="progress-label">0 / 5 完了（0%）</p>
+          <a href="pages/phase4/index.html" class="btn btn-primary btn-block">学習を始める →</a>
+        </div>
+
+        <!-- Phase 5 -->
+        <div class="phase-card" data-phase="5">
+          <span class="phase-card-icon">🏆</span>
+          <span class="phase-card-label">Phase 5</span>
+          <h3>旅の案内人になる</h3>
+          <p>ケーススタディとロールプレイで実践力を鍛えます。学んだ知識を総動員して、「データの旅の案内人」として活躍しましょう。</p>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+          <p class="progress-label">0 / 5 完了（0%）</p>
+          <a href="pages/phase5/index.html" class="btn btn-primary btn-block">学習を始める →</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>学習の進捗は自動保存されます 🦉</p>
+      <p>アーキテクチャ学習ランド &copy; 2025</p>
+    </div>
+  </footer>
+
+  <script src="js/progress.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
