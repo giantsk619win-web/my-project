@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>信託銀行とは | トラストナビ</title>
+  <meta name="description" content="銀行と信託銀行の違い、信託の基本概念、法的基盤を段階的に学びます。">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <div id="site-header"></div>
+
+  <!-- パンくずリスト -->
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <a href="../index.html">トップ</a>
+    <span class="breadcrumb-sep" aria-hidden="true">›</span>
+    <span class="breadcrumb-current" aria-current="page">信託銀行とは</span>
+  </nav>
+
+  <main class="main-content" role="main">
+
+    <!-- セクションヘッダー -->
+    <div class="section-page-header" style="--section-color: var(--color-overview);">
+      <div id="section-parrot"></div>
+      <div>
+        <h1>信託銀行とは</h1>
+        <p class="section-subtitle">銀行と信託銀行の違いを理解し、信託の世界への第一歩を踏み出そう</p>
+      </div>
+    </div>
+
+    <!-- セクション進捗 -->
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 32px;">
+      <span class="text-sm" style="font-weight: 600; color: var(--color-text-light);">このセクションの進捗</span>
+      <div class="progress-bar" style="flex: 1;">
+        <div class="progress-fill section-progress-fill" style="width: 0%"></div>
+      </div>
+      <span class="section-progress-text text-sm" style="font-weight: 700; color: var(--color-accent);">0%</span>
+    </div>
+
+    <!-- ========================================
+         レベル1：銀行と信託銀行の違い
+         ======================================== -->
+    <article class="level-block" data-level="1">
+      <div class="level-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="level-badge" aria-hidden="true">Lv.1</div>
+        <div>
+          <h2>銀行と信託銀行の違い</h2>
+          <span class="level-desc">基礎知識 ～ まずは全体像をつかもう</span>
+        </div>
+        <div class="level-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-content">
+
+          <!-- オウムの導入 -->
+          <div class="parrot-guide">
+            <div class="parrot-character" id="lv1-parrot"></div>
+            <div class="parrot-message">
+              <p><strong>トラストンのひとこと</strong></p>
+              <p>「信託銀行って何？普通の銀行と何が違うの？」――
+                新人なら誰でも最初に感じる疑問だよね。まずはここからしっかり押さえよう！</p>
+            </div>
+          </div>
+
+          <h3>普通の銀行の業務範囲</h3>
+          <p>普通の銀行（都市銀行・地方銀行など）は、大きく<strong>3つの業務</strong>を行っています。
+            これらは「銀行の三大業務」と呼ばれ、銀行業の基本です。</p>
+
+          <div class="diagram-box">
+            <div class="diagram-title">銀行の三大業務</div>
+            <div class="trust-flow">
+              <div class="trust-flow-node">
+                預金業務
+                <span class="node-sub">お金を預かる</span>
+              </div>
+              <div class="trust-flow-node">
+                貸出業務
+                <span class="node-sub">お金を貸す</span>
+              </div>
+              <div class="trust-flow-node">
+                為替業務
+                <span class="node-sub">お金を送る</span>
+              </div>
+            </div>
+          </div>
+
+          <h3>信託銀行の3つの業務</h3>
+          <p>信託銀行は、普通の銀行が行う<strong>銀行業務</strong>に加えて、
+            <span class="term" data-tooltip="委託者が受託者に財産の管理・処分を託し、受益者のために運用する仕組み">信託業務</span>と
+            <strong>併営業務</strong>を行うことができます。
+            つまり、信託銀行は「銀行業務 ＋ α」の幅広いサービスを提供できる特別な金融機関です。</p>
+
+          <div class="compare-table-wrapper">
+            <table class="compare-table" aria-label="銀行と信託銀行の業務比較">
+              <thead>
+                <tr>
+                  <th>業務の種類</th>
+                  <th>普通の銀行</th>
+                  <th>信託銀行</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>銀行業務（預金・貸出・為替）</td>
+                  <td>⭕ できる</td>
+                  <td>⭕ できる</td>
+                </tr>
+                <tr>
+                  <td class="highlight-cell">信託業務</td>
+                  <td>❌ できない</td>
+                  <td class="highlight-cell">⭕ できる</td>
+                </tr>
+                <tr>
+                  <td class="highlight-cell">併営業務（遺言・不動産・証券代行など）</td>
+                  <td>❌ できない</td>
+                  <td class="highlight-cell">⭕ できる</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>「信託」の基本概念</h3>
+          <p>「信託」とは、一言でいうと<strong>「財産を信頼できる人に託して、管理・運用してもらう仕組み」</strong>です。
+            3人の登場人物がいます。</p>
+
+          <div class="diagram-box">
+            <div class="diagram-title">信託の基本的な仕組み</div>
+            <div class="trust-flow">
+              <div class="trust-flow-node" style="background: #FFF3E0; border-color: #E67E22;">
+                <span class="term" data-tooltip="自分の財産を信託する人。信託を設定する側。">委託者</span>
+                <span class="node-sub">財産を託す人</span>
+              </div>
+              <div class="trust-flow-arrow">→</div>
+              <div class="trust-flow-node" style="background: #E8F0F8; border-color: #2D5F8A;">
+                <span class="term" data-tooltip="委託者から財産を託され、信託の目的に従って管理・処分する人（＝信託銀行）。">受託者</span>
+                <span class="node-sub">財産を管理する人<br>（信託銀行）</span>
+              </div>
+              <div class="trust-flow-arrow">→</div>
+              <div class="trust-flow-node" style="background: #E8F8F0; border-color: #27AE60;">
+                <span class="term" data-tooltip="信託による利益を受ける人。委託者自身がなることも多い。">受益者</span>
+                <span class="node-sub">利益を受ける人</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-box tip">
+            <div class="info-box-title">💡 ポイント</div>
+            <p>委託者＝受益者（自分で自分のために信託する）のケースは<strong>「自益信託」</strong>と呼ばれ、
+              最も一般的なパターンです。一方、委託者≠受益者のケースは<strong>「他益信託」</strong>と呼ばれます。</p>
+          </div>
+
+          <button class="complete-level-btn" type="button">このレベルを学習完了にする</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================
+         レベル2：信託の法的基盤
+         ======================================== -->
+    <article class="level-block" data-level="2">
+      <div class="level-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="level-badge" aria-hidden="true">Lv.2</div>
+        <div>
+          <h2>信託の法的基盤</h2>
+          <span class="level-desc">中級知識 ～ 法律の枠組みを理解しよう</span>
+        </div>
+        <div class="level-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-content">
+
+          <div class="parrot-guide">
+            <div class="parrot-character" id="lv2-parrot"></div>
+            <div class="parrot-message">
+              <p><strong>トラストンのひとこと</strong></p>
+              <p>信託に関わる法律は主に3つ。「信託法」「信託業法」「兼営法」だよ。
+                これらの違いをしっかり押さえておくと、上司との会話でも一目置かれるはず！</p>
+            </div>
+          </div>
+
+          <h3>信託法と信託業法の違い</h3>
+          <p>信託に関わる法律は複数ありますが、まず押さえるべきは以下の2つです。</p>
+
+          <div class="compare-table-wrapper">
+            <table class="compare-table" aria-label="信託法と信託業法の比較">
+              <thead>
+                <tr>
+                  <th>項目</th>
+                  <th>信託法</th>
+                  <th>信託業法</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>制定年</strong></td>
+                  <td>2006年（全面改正）</td>
+                  <td>2004年（全面改正）</td>
+                </tr>
+                <tr>
+                  <td><strong>目的</strong></td>
+                  <td>信託の基本的なルールを定める（私法）</td>
+                  <td>信託業を営む者を規制する（業法）</td>
+                </tr>
+                <tr>
+                  <td><strong>対象</strong></td>
+                  <td>信託に関わるすべての人</td>
+                  <td>信託業を営む会社（信託会社等）</td>
+                </tr>
+                <tr>
+                  <td><strong>主な内容</strong></td>
+                  <td>信託の成立要件、受託者の義務、信託財産の独立性など</td>
+                  <td>免許制度、業務規制、検査・監督など</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box note">
+            <div class="info-box-title">📝 整理のコツ</div>
+            <p>「<strong>信託法</strong>」はルールブック（どんな信託ができるか）、
+              「<strong>信託業法</strong>」はライセンス規制（誰が信託業をやっていいか）と覚えると分かりやすいよ。</p>
+          </div>
+
+          <h3>信託銀行の免許制度</h3>
+          <p>信託業を営むには、内閣総理大臣の<strong>免許</strong>または<strong>登録</strong>が必要です。
+            信託銀行は、銀行としての免許に加えて、信託業務の認可を受けた特別な存在です。</p>
+
+          <ul>
+            <li><strong>免許制</strong>：信託会社（運用型）は内閣総理大臣の免許が必要</li>
+            <li><strong>登録制</strong>：信託会社（管理型）は内閣総理大臣の登録が必要</li>
+            <li><strong>認可制</strong>：銀行が信託業務を兼営するには、内閣総理大臣の認可が必要</li>
+          </ul>
+
+          <h3>兼営法（金融機関の信託業務の兼営等に関する法律）</h3>
+          <p><span class="term" data-tooltip="正式名称は「金融機関の信託業務の兼営等に関する法律」。銀行が信託業務を行うための法律。">兼営法</span>は、
+            銀行などの金融機関が信託業務を「兼営」するための法律です。
+            信託銀行はこの法律に基づき、銀行業務と信託業務の両方を行えます。</p>
+
+          <div class="diagram-box">
+            <div class="diagram-title">信託銀行の法的根拠</div>
+            <div class="trust-flow">
+              <div class="trust-flow-node">
+                銀行法
+                <span class="node-sub">銀行業務の根拠</span>
+              </div>
+              <div class="trust-flow-arrow">＋</div>
+              <div class="trust-flow-node" style="background: var(--color-accent-lighter); border-color: var(--color-accent);">
+                兼営法
+                <span class="node-sub">信託業務の兼営認可</span>
+              </div>
+              <div class="trust-flow-arrow">＝</div>
+              <div class="trust-flow-node" style="background: #E8F8F0; border-color: #27AE60;">
+                信託銀行
+                <span class="node-sub">両方の業務が可能</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="complete-level-btn" type="button">このレベルを学習完了にする</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================
+         レベル3：信託銀行の社会的役割
+         ======================================== -->
+    <article class="level-block" data-level="3">
+      <div class="level-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="level-badge" aria-hidden="true">Lv.3</div>
+        <div>
+          <h2>信託銀行の社会的役割</h2>
+          <span class="level-desc">上級知識 ～ プロとしての視点を身につけよう</span>
+        </div>
+        <div class="level-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-content">
+
+          <div class="parrot-guide">
+            <div class="parrot-character" id="lv3-parrot"></div>
+            <div class="parrot-message">
+              <p><strong>トラストンのひとこと</strong></p>
+              <p>ここまで来たらあと少し！信託銀行が社会でどんな役割を果たしているのか、
+                「受託者責任」や「倒産隔離」といったキーワードとともに理解しよう。</p>
+            </div>
+          </div>
+
+          <h3>受託者責任（フィデューシャリー・デューティー）</h3>
+          <p>信託銀行の最も重要な概念が<span class="term" data-tooltip="他者の信頼を受け、その利益のために行動する義務。受託者が負う高度な注意義務と忠実義務の総称。">受託者責任（フィデューシャリー・デューティー）</span>です。
+            お客さまの財産を預かる以上、その財産を<strong>お客さまの利益のため</strong>に、
+            善良なる管理者としての注意を持って管理・運用しなければなりません。</p>
+
+          <p>受託者責任は具体的に以下の義務で構成されます：</p>
+
+          <ul>
+            <li><strong><span class="term" data-tooltip="受託者が、善良なる管理者としての注意をもって信託事務を処理する義務。専門家として求められる高い注意基準。">善管注意義務</span></strong>
+              ― 専門家として高い注意を持って信託事務を処理する義務</li>
+            <li><strong><span class="term" data-tooltip="受託者が、受益者の利益のためにのみ行動し、自己の利益を図ってはならないという義務。">忠実義務</span></strong>
+              ― 受益者の利益のためだけに行動する義務（自己取引の禁止等）</li>
+            <li><strong><span class="term" data-tooltip="受託者が、信託財産を自己の固有財産や他の信託財産と分けて管理する義務。">分別管理義務</span></strong>
+              ― 信託財産を自己の財産や他の信託財産と分けて管理する義務</li>
+          </ul>
+
+          <h3>信託財産の独立性（倒産隔離機能）</h3>
+          <p>信託の最大の特徴の一つが<strong>「倒産隔離機能」</strong>です。</p>
+
+          <div class="info-box tip">
+            <div class="info-box-title">💡 倒産隔離とは？</div>
+            <p>信託された財産は、受託者（信託銀行）の<strong>固有財産とは完全に分離</strong>されます。
+              つまり、万が一信託銀行が倒産しても、お客さまの<span class="term" data-tooltip="委託者が受託者に信託した財産。受託者の固有財産とは区別され、独立性が保たれる。">信託財産</span>は
+              保護されます。これが「倒産隔離（bankruptcy remoteness）」と呼ばれる信託の強力な機能です。</p>
+          </div>
+
+          <div class="diagram-box">
+            <div class="diagram-title">倒産隔離のイメージ</div>
+            <div style="text-align: center; padding: 16px;">
+              <div style="display: inline-flex; gap: 32px; align-items: center; flex-wrap: wrap; justify-content: center;">
+                <div style="border: 3px solid var(--color-error); border-radius: 12px; padding: 16px 24px; text-align: center;">
+                  <div style="font-weight: 700; color: var(--color-error); margin-bottom: 4px;">信託銀行の固有財産</div>
+                  <div style="font-size: 0.85rem; color: var(--color-text-muted);">倒産時に債権者へ</div>
+                </div>
+                <div style="font-size: 2rem; color: var(--color-text-muted);">≠</div>
+                <div style="border: 3px solid var(--color-success); border-radius: 12px; padding: 16px 24px; text-align: center;">
+                  <div style="font-weight: 700; color: var(--color-success); margin-bottom: 4px;">信託財産</div>
+                  <div style="font-size: 0.85rem; color: var(--color-text-muted);">守られる！✓</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3>信託銀行が社会インフラとして果たす機能</h3>
+          <p>信託銀行は、単なる金融機関ではなく、以下のような<strong>社会インフラ</strong>としての機能を担っています。</p>
+
+          <ol>
+            <li><strong>資産承継インフラ</strong> ― 遺言信託・遺産整理を通じた円滑な相続の実現</li>
+            <li><strong>年金インフラ</strong> ― 企業年金の受託・運用を通じた国民の老後資産形成</li>
+            <li><strong>資本市場インフラ</strong> ― 証券代行やカストディを通じた株式市場の運営支援</li>
+            <li><strong>不動産市場インフラ</strong> ― 不動産信託やREITを通じた不動産市場の活性化</li>
+            <li><strong>資産運用インフラ</strong> ― 投資信託の受託を通じた「貯蓄から投資へ」の推進</li>
+          </ol>
+
+          <div class="info-box success">
+            <div class="info-box-title">🎉 このレベルのまとめ</div>
+            <p>信託銀行は<span class="term" data-tooltip="受託者が受益者の利益のために行動する義務の対価として受け取る報酬。">信託報酬</span>を得る対価として、
+              高い受託者責任を負いながら、社会全体の資産管理・運用を支えるインフラの役割を果たしています。
+              この「信頼」こそが、信託銀行のビジネスの根幹です。</p>
+          </div>
+
+          <button class="complete-level-btn" type="button">このレベルを学習完了にする</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================
+         用語集
+         ======================================== -->
+    <section aria-label="用語集" class="mt-xl">
+      <h2 style="font-size: var(--font-size-2xl); font-weight: 900; color: var(--color-primary); margin-bottom: var(--space-lg);">
+        📖 このセクションの用語集
+      </h2>
+      <div class="glossary">
+        <div class="glossary-item">
+          <div class="glossary-term">善管注意義務</div>
+          <div class="glossary-reading">ぜんかんちゅういぎむ</div>
+          <div class="glossary-definition">受託者が、善良なる管理者としての注意をもって信託事務を処理する義務。プロとして求められる高い注意基準。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">忠実義務</div>
+          <div class="glossary-reading">ちゅうじつぎむ</div>
+          <div class="glossary-definition">受託者が受益者の利益のためにのみ行動し、自己の利益を図ってはならないという義務。利益相反行為の禁止が核心。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">分別管理義務</div>
+          <div class="glossary-reading">ぶんべつかんりぎむ</div>
+          <div class="glossary-definition">信託財産を受託者の固有財産や他の信託財産と分けて管理する義務。倒産隔離の実効性を担保する重要な義務。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">信託財産</div>
+          <div class="glossary-reading">しんたくざいさん</div>
+          <div class="glossary-definition">委託者が受託者に信託した財産。金銭、有価証券、不動産など多様な財産が対象となる。受託者の固有財産とは区別される。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">信託報酬</div>
+          <div class="glossary-reading">しんたくほうしゅう</div>
+          <div class="glossary-definition">受託者が信託事務を処理する対価として受け取る報酬。信託銀行の主要な収益源の一つ。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">受託者責任</div>
+          <div class="glossary-reading">じゅたくしゃせきにん</div>
+          <div class="glossary-definition">他者の信頼を受けて財産を管理する者が負う責任の総称。善管注意義務、忠実義務、分別管理義務などを含む。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">フィデューシャリー・デューティー</div>
+          <div class="glossary-reading">Fiduciary Duty</div>
+          <div class="glossary-definition">受託者責任の英語表現。近年は金融庁が「顧客本位の業務運営」として金融機関全般に求める広い概念としても使われる。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">兼営法</div>
+          <div class="glossary-reading">けんえいほう</div>
+          <div class="glossary-definition">「金融機関の信託業務の兼営等に関する法律」の略称。銀行等が信託業務を兼営するための認可制度を定める。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">信託業法</div>
+          <div class="glossary-reading">しんたくぎょうほう</div>
+          <div class="glossary-definition">信託業を営む者（信託会社等）を規制する業法。免許・登録制度、業務規制、監督規定などを定める。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">信託法</div>
+          <div class="glossary-reading">しんたくほう</div>
+          <div class="glossary-definition">信託の基本的なルール（成立要件、当事者の権利義務、信託の変更・終了など）を定める民事法。2006年に全面改正。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         実務ミニシーン
+         ======================================== -->
+    <section class="scene-block mt-xl" aria-label="実務ミニシーン">
+      <h2 class="scene-title">実務ミニシーン：上司からの質問</h2>
+
+      <div class="dialogue">
+        <!-- 上司の質問 -->
+        <div class="dialogue-row">
+          <div class="dialogue-avatar">👔</div>
+          <div class="speech-bubble">
+            <div class="speaker-name">山田先輩</div>
+            <p>新人のキミに質問だ。「信託って銀行と何が違うの？」と<br>
+              お客さまに聞かれたら、どう答える？</p>
+          </div>
+        </div>
+
+        <!-- オウムのヒント -->
+        <div class="dialogue-row right">
+          <div class="dialogue-avatar" id="scene-parrot-avatar"></div>
+          <div class="speech-bubble">
+            <div class="speaker-name">トラストン（ヒント）</div>
+            <p>ポイントは3つ！<br>
+              ①銀行の三大業務に加えて何ができるか<br>
+              ②「信託」の仕組みの本質<br>
+              ③信託銀行ならではの強み<br>
+              を押さえて答えよう！</p>
+          </div>
+        </div>
+
+        <!-- 選択肢 -->
+        <div class="dialogue-row">
+          <div class="dialogue-avatar">🙋</div>
+          <div class="speech-bubble" style="max-width: 85%;">
+            <div class="speaker-name">あなたの回答</div>
+            <p>以下から最も適切な回答を選んでください：</p>
+            <div class="scene-choices">
+              <button class="scene-choice-btn"
+                      data-correct="false"
+                      data-feedback="惜しい！預金の金利が高いかどうかは信託銀行の本質的な違いではないよ。もう少し「信託」そのものの仕組みに注目してみよう。">
+                普通の銀行より預金の金利が高いのが信託銀行です。
+              </button>
+              <button class="scene-choice-btn"
+                      data-correct="true"
+                      data-feedback="素晴らしい！完璧な回答だよ！銀行業務に加えて信託業務・併営業務ができること、財産を託して管理する仕組みであること、そして倒産隔離などの信託ならではの強みをバランスよく説明できているね。">
+                信託銀行は、預金・貸出・為替の銀行業務に加えて、お客さまの財産を信託という仕組みでお預かりし、管理・運用できる銀行です。
+                信託には倒産隔離という強力な保護機能もあり、遺言や不動産、年金など幅広い分野でお客さまをサポートできます。
+              </button>
+              <button class="scene-choice-btn"
+                      data-correct="false"
+                      data-feedback="投資信託の販売は普通の銀行でもできるんだ。信託銀行の違いは、自らが「受託者」として財産を管理・運用する点にあるよ。">
+                投資信託を販売できるのが信託銀行で、普通の銀行では投資信託は買えません。
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- フィードバック表示エリア -->
+      <div class="scene-feedback info-box" style="display: none; margin-top: 16px;">
+      </div>
+
+      <!-- オウムのリアクション -->
+      <div style="text-align: center; margin-top: 16px;">
+        <div class="parrot-reaction" id="scene-parrot-reaction"></div>
+      </div>
+    </section>
+
+    <!-- ページ内ナビゲーション -->
+    <nav class="section-nav" aria-label="セクション間ナビゲーション">
+      <a href="../index.html" class="btn btn-outline">← トップに戻る</a>
+      <a href="trust.html" class="btn btn-primary">次へ：信託・相続業務 →</a>
+    </nav>
+
+  </main>
+
+  <!-- フッター -->
+  <div id="site-footer"></div>
+
+  <script src="../js/common.js"></script>
+  <script>
+    // ヘッダー・フッター挿入
+    document.getElementById('site-header').innerHTML = HeaderTemplate.create('../');
+    document.getElementById('site-footer').innerHTML = FooterTemplate.create();
+
+    // オウムキャラ挿入
+    document.getElementById('section-parrot').innerHTML = ParrotSVG.create('normal', 64);
+    document.getElementById('lv1-parrot').innerHTML = ParrotSVG.create('normal', 64);
+    document.getElementById('lv2-parrot').innerHTML = ParrotSVG.create('thinking', 64);
+    document.getElementById('lv3-parrot').innerHTML = ParrotSVG.create('cheering', 64);
+    document.getElementById('scene-parrot-avatar').innerHTML = ParrotSVG.create('thinking', 48);
+    document.getElementById('scene-parrot-reaction').innerHTML = ParrotSVG.create('thinking', 60);
+
+    // アプリ初期化（セクションページモード）
+    document.addEventListener('DOMContentLoaded', () => {
+      App.init({ sectionId: 'overview' });
+    });
+  </script>
+</body>
+</html>

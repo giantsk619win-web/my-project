@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>信託・相続業務 | トラストナビ</title>
+  <meta name="description" content="信託の基本構造から信託商品体系、遺言信託・相続の実務フローまで段階的に学びます。">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <div id="site-header"></div>
+
+  <!-- パンくずリスト -->
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <a href="../index.html">トップ</a>
+    <span class="breadcrumb-sep" aria-hidden="true">›</span>
+    <span class="breadcrumb-current" aria-current="page">信託・相続業務</span>
+  </nav>
+
+  <main class="main-content" role="main">
+
+    <!-- セクションヘッダー -->
+    <div class="section-page-header" style="--section-color: var(--color-trust);">
+      <div id="section-parrot"></div>
+      <div>
+        <h1>信託・相続業務</h1>
+        <p class="section-subtitle">信託銀行の中核業務。お客さまの財産を「託される」プロになろう</p>
+      </div>
+    </div>
+
+    <!-- セクション進捗 -->
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 32px;">
+      <span class="text-sm" style="font-weight: 600; color: var(--color-text-light);">このセクションの進捗</span>
+      <div class="progress-bar" style="flex: 1;">
+        <div class="progress-fill section-progress-fill" style="width: 0%"></div>
+      </div>
+      <span class="section-progress-text text-sm" style="font-weight: 700; color: var(--color-accent);">0%</span>
+    </div>
+
+    <!-- ========================================
+         レベル1：信託の仕組み（基礎概念）
+         ======================================== -->
+    <article class="level-block" data-level="1">
+      <div class="level-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="level-badge" aria-hidden="true">Lv.1</div>
+        <div>
+          <h2>信託の仕組み（基礎概念）</h2>
+          <span class="level-desc">基礎知識 ～ 信託の構造を図で理解しよう</span>
+        </div>
+        <div class="level-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-content">
+
+          <div class="parrot-guide">
+            <div class="parrot-character" id="lv1-parrot"></div>
+            <div class="parrot-message">
+              <p><strong>トラストンのひとこと</strong></p>
+              <p>信託・相続業務は信託銀行の「看板業務」だよ！
+                まずは信託の三者構造をしっかり頭に入れよう。
+                この図がすべての信託商品の基本になるんだ。</p>
+            </div>
+          </div>
+
+          <h3>委託者・受託者・受益者の三者構造</h3>
+          <p>信託は<strong>3人の登場人物</strong>で成り立つ仕組みです。
+            この三者構造を理解することが、あらゆる信託商品を理解するための出発点になります。</p>
+
+          <!-- 三者構造のSVG図解 -->
+          <div class="diagram-box">
+            <div class="diagram-title">信託の三者構造</div>
+            <div style="text-align: center; padding: 8px 0;">
+              <svg viewBox="0 0 600 320" width="100%" style="max-width: 600px;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="信託の三者構造：委託者が受託者に財産を信託し、受託者が受益者に利益を交付する関係図">
+                <!-- 委託者 -->
+                <rect x="20" y="110" width="150" height="100" rx="16" fill="#FFF3E0" stroke="#E67E22" stroke-width="2"/>
+                <text x="95" y="148" text-anchor="middle" font-size="18" font-weight="700" fill="#E67E22">委託者</text>
+                <text x="95" y="172" text-anchor="middle" font-size="12" fill="#8A8A8A">財産を託す人</text>
+                <text x="95" y="192" text-anchor="middle" font-size="11" fill="#B0B0B0">（お客さま）</text>
+
+                <!-- 受託者 -->
+                <rect x="225" y="20" width="150" height="100" rx="16" fill="#E8F0F8" stroke="#2D5F8A" stroke-width="2"/>
+                <text x="300" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#1B3A5C">受託者</text>
+                <text x="300" y="82" text-anchor="middle" font-size="12" fill="#8A8A8A">財産を管理・運用</text>
+                <text x="300" y="102" text-anchor="middle" font-size="11" fill="#B0B0B0">（信託銀行）</text>
+
+                <!-- 受益者 -->
+                <rect x="430" y="110" width="150" height="100" rx="16" fill="#E8F8F0" stroke="#27AE60" stroke-width="2"/>
+                <text x="505" y="148" text-anchor="middle" font-size="18" font-weight="700" fill="#27AE60">受益者</text>
+                <text x="505" y="172" text-anchor="middle" font-size="12" fill="#8A8A8A">利益を受ける人</text>
+                <text x="505" y="192" text-anchor="middle" font-size="11" fill="#B0B0B0">（本人や家族）</text>
+
+                <!-- 信託財産ボックス -->
+                <rect x="225" y="200" width="150" height="70" rx="12" fill="#FFF8E7" stroke="#C6973F" stroke-width="2" stroke-dasharray="6,3"/>
+                <text x="300" y="232" text-anchor="middle" font-size="14" font-weight="700" fill="#9A7430">信託財産</text>
+                <text x="300" y="254" text-anchor="middle" font-size="11" fill="#B0B0B0">独立して保護される</text>
+
+                <!-- 矢印：委託者 → 受託者 -->
+                <path d="M170 130 Q220 60 225 70" fill="none" stroke="#E67E22" stroke-width="2.5" marker-end="url(#arrowOrange)"/>
+                <text x="175" y="78" font-size="11" fill="#E67E22" font-weight="600">①財産を信託</text>
+
+                <!-- 矢印：受託者 → 受益者 -->
+                <path d="M375 70 Q410 60 430 130" fill="none" stroke="#27AE60" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+                <text x="395" y="78" font-size="11" fill="#27AE60" font-weight="600">③利益を交付</text>
+
+                <!-- 矢印：受託者 → 信託財産 -->
+                <path d="M300 120 L300 198" fill="none" stroke="#2D5F8A" stroke-width="2" marker-end="url(#arrowBlue)"/>
+                <text x="310" y="168" font-size="11" fill="#2D5F8A" font-weight="600">②管理・運用</text>
+
+                <!-- 矢印のマーカー -->
+                <defs>
+                  <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#E67E22"/></marker>
+                  <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#27AE60"/></marker>
+                  <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="4" refY="8" orient="auto"><path d="M0,0 L4,8 L8,0" fill="#2D5F8A"/></marker>
+                </defs>
+              </svg>
+            </div>
+          </div>
+
+          <h3>自益信託と他益信託の違い</h3>
+          <p>信託は「誰が利益を受けるか」によって大きく2つに分かれます。</p>
+
+          <div class="compare-table-wrapper">
+            <table class="compare-table" aria-label="自益信託と他益信託の比較">
+              <thead>
+                <tr>
+                  <th>区分</th>
+                  <th>自益信託</th>
+                  <th>他益信託</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>受益者</strong></td>
+                  <td>委託者自身</td>
+                  <td>委託者以外の第三者</td>
+                </tr>
+                <tr>
+                  <td><strong>代表例</strong></td>
+                  <td>金銭信託、投資信託</td>
+                  <td>教育資金贈与信託、特定贈与信託</td>
+                </tr>
+                <tr>
+                  <td><strong>課税関係</strong></td>
+                  <td>信託設定時に課税なし</td>
+                  <td>贈与税の課題あり（非課税特例あり）</td>
+                </tr>
+                <tr>
+                  <td><strong>イメージ</strong></td>
+                  <td>自分のお金を自分のために運用</td>
+                  <td>孫や子のために財産を信託</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>信託財産の独立性</h3>
+          <p><span class="term" data-tooltip="委託者が受託者に信託した財産。受託者の固有財産とは区別され、独立性が保たれる。">信託財産</span>には
+            <strong>倒産隔離機能</strong>があり、以下の両方から保護されます。</p>
+
+          <div class="diagram-box">
+            <div class="diagram-title">信託財産の独立性（二重の保護）</div>
+            <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; padding: 16px 0;">
+              <div style="border: 3px solid var(--color-error); border-radius: 12px; padding: 16px 20px; text-align: center; min-width: 180px;">
+                <div style="font-weight: 700; color: var(--color-error);">委託者が倒産</div>
+                <div style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 4px;">→ 信託財産は<strong style="color: var(--color-success);">保護される</strong></div>
+                <div style="font-size: 0.8rem; color: var(--color-text-muted);">（委託者の債権者は差押え不可）</div>
+              </div>
+              <div style="border: 3px solid var(--color-error); border-radius: 12px; padding: 16px 20px; text-align: center; min-width: 180px;">
+                <div style="font-weight: 700; color: var(--color-error);">受託者が倒産</div>
+                <div style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 4px;">→ 信託財産は<strong style="color: var(--color-success);">保護される</strong></div>
+                <div style="font-size: 0.8rem; color: var(--color-text-muted);">（受託者の債権者も差押え不可）</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-box tip">
+            <div class="info-box-title">💡 ポイント</div>
+            <p>この「二重の倒産隔離」は、預金にはない信託独自の強みです。
+              預金は銀行が倒産すると預金保険の上限（1,000万円＋利息）までしか保護されませんが、
+              信託財産は金額にかかわらず保護されます。</p>
+          </div>
+
+          <h3>信託の設定方法（3つの方法）</h3>
+          <p>信託を設定するには、以下の3つの方法があります。</p>
+
+          <div class="compare-table-wrapper">
+            <table class="compare-table" aria-label="信託の3つの設定方法">
+              <thead>
+                <tr>
+                  <th>設定方法</th>
+                  <th>内容</th>
+                  <th>ポイント</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>契約信託</strong></td>
+                  <td>委託者と受託者が<strong>信託契約</strong>を締結</td>
+                  <td>最も一般的。信託銀行の商品のほとんどがこの方式</td>
+                </tr>
+                <tr>
+                  <td><strong><span class="term" data-tooltip="遺言によって信託を設定する方法。遺言者（委託者）の死亡により信託が効力を発生する。信託銀行の「遺言信託」サービスとは異なる法律上の概念。">遺言信託</span>（法律上）</strong></td>
+                  <td>遺言によって信託を設定（委託者の死亡で発効）</td>
+                  <td>法律上の「遺言信託」と商品名の「遺言信託」は別概念</td>
+                </tr>
+                <tr>
+                  <td><strong>自己信託</strong></td>
+                  <td>委託者が自ら受託者となる（公正証書等で意思表示）</td>
+                  <td>2006年改正信託法で導入。事業信託等で利用</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box warning">
+            <div class="info-box-title">⚠️ 注意：「遺言信託」の二重の意味</div>
+            <p>「遺言信託」には<strong>2つの意味</strong>があります。混同しないよう注意しましょう。<br>
+              ①<strong>法律上の遺言信託</strong>：遺言で信託を設定する方法（信託法3条2号）<br>
+              ②<strong>信託銀行の商品名「遺言信託」</strong>：遺言書作成サポート～保管～遺言執行までのサービス（レベル2で詳しく学びます）</p>
+          </div>
+
+          <button class="complete-level-btn" type="button">このレベルを学習完了にする</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================
+         レベル2：信託商品・サービス体系
+         ======================================== -->
+    <article class="level-block" data-level="2">
+      <div class="level-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="level-badge" aria-hidden="true">Lv.2</div>
+        <div>
+          <h2>信託商品・サービス体系</h2>
+          <span class="level-desc">中級知識 ～ 主要な信託商品を押さえよう</span>
+        </div>
+        <div class="level-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-content">
+
+          <div class="parrot-guide">
+            <div class="parrot-character" id="lv2-parrot"></div>
+            <div class="parrot-message">
+              <p><strong>トラストンのひとこと</strong></p>
+              <p>信託銀行にはたくさんの商品があるけど、大きく分けると
+                「お金を運用する信託」と「相続・贈与に使う信託」に分かれるよ。
+                各商品をクリックして詳しく見てみよう！</p>
+            </div>
+          </div>
+
+          <h3>金銭信託</h3>
+          <p>お客さまから<strong>金銭</strong>を信託財産として受け入れ、運用する商品群です。
+            運用の指図方法によって以下のように分類されます。</p>
+
+          <!-- 合同運用指定金銭信託 -->
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag">金銭信託</span>
+              <span style="flex:1;">合同運用指定金銭信託（合指金）</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p><span class="term" data-tooltip="複数の委託者の金銭をまとめて合同で運用する金銭信託。信託銀行が運用方法を指定される。実質的に預金に近い安全性の高い商品。">合同運用指定金銭信託</span>（略称：合指金、ごうしきん）は、
+                  複数のお客さまの資金を<strong>まとめて（合同で）運用</strong>する信託です。</p>
+                <ul>
+                  <li><strong>特徴</strong>：信託銀行が安全性の高い資産で運用。元本補てんの契約あり</li>
+                  <li><strong>イメージ</strong>：預金に近い安全性の高い運用商品</li>
+                  <li><strong>預金との違い</strong>：預金保険の対象外だが、元本補てん契約付きが一般的</li>
+                  <li><strong>代表例</strong>：貸付信託（※現在は新規募集停止）、ヒット（無利息型）</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 特定金銭信託 -->
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag">金銭信託</span>
+              <span style="flex:1;">特定金銭信託（特金）</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p><span class="term" data-tooltip="委託者が個別に運用方法を特定（指定）して信託する金銭信託。主に機関投資家が利用。投資顧問会社等が運用指図を行うことが多い。">特定金銭信託</span>（略称：特金、とっきん）は、
+                  お客さま（委託者）が<strong>運用方法を特定して</strong>信託する商品です。</p>
+                <ul>
+                  <li><strong>特徴</strong>：委託者（またはその指図する投資顧問）が個別銘柄を指定して運用</li>
+                  <li><strong>主な利用者</strong>：企業年金、機関投資家</li>
+                  <li><strong>受託者の役割</strong>：指図に従い売買を執行、有価証券の管理</li>
+                  <li><strong>元本保証</strong>：なし（運用リスクは委託者が負う）</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 指定金銭信託 -->
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag">金銭信託</span>
+              <span style="flex:1;">指定金銭信託</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p><span class="term" data-tooltip="委託者が運用方法の大枠（種類や範囲）を指定し、具体的な運用判断は受託者に委ねる金銭信託。特定金銭信託と合同運用指定金銭信託の中間的な形態。">指定金銭信託</span>は、
+                  委託者が運用方法の<strong>大枠（種類・範囲）を指定</strong>し、
+                  具体的な運用判断は受託者（信託銀行）に委ねる信託です。</p>
+                <ul>
+                  <li><strong>特徴</strong>：「株式で運用」「公社債で運用」など大枠を指定</li>
+                  <li><strong>特金との違い</strong>：個別銘柄の指定はしない（受託者に裁量あり）</li>
+                  <li><strong>活用例</strong>：企業の余裕資金の運用、ファンドトラスト</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-box note">
+            <div class="info-box-title">📝 金銭信託の分類まとめ</div>
+            <p><strong>運用の自由度</strong>で整理すると覚えやすいよ。<br>
+              合指金（信託銀行におまかせ）＜ 指定金銭信託（大枠を指定）＜ 特金（個別銘柄を指定）</p>
+          </div>
+
+          <h3>相続・贈与関連の信託サービス</h3>
+
+          <!-- 遺言信託 -->
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #E8F8F0; color: var(--color-trust);">相続</span>
+              <span style="flex:1;">遺言信託</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>信託銀行の「遺言信託」は、遺言に関する<strong>総合サービス</strong>の商品名です。
+                  法律上の「遺言信託」（遺言で信託を設定する方法）とは異なります。</p>
+                <ul>
+                  <li><strong>遺言書作成のサポート</strong>：相続の専門家がヒアリングし、遺言書案を作成</li>
+                  <li><strong><span class="term" data-tooltip="公証人が法律に基づいて作成する遺言書。証人2人の立会いが必要。紛失・改ざんリスクが低く、家庭裁判所の検認が不要。">公正証書遺言</span>の作成支援</strong>：公証役場での手続きをサポート</li>
+                  <li><strong>遺言書の保管</strong>：信託銀行が安全に保管（紛失・改ざんリスクなし）</li>
+                  <li><strong>定期的な照会</strong>：遺言内容の見直しが必要か定期確認</li>
+                  <li><strong><span class="term" data-tooltip="遺言の内容を実現するために必要な手続きを行う人。信託銀行が遺言執行者に指定されることが多い。">遺言執行</span></strong>：相続発生後、遺言の内容に沿って財産を分配</li>
+                </ul>
+                <div class="info-box tip" style="margin-top: 12px;">
+                  <div class="info-box-title">💡 なぜ信託銀行に頼む？</div>
+                  <p>個人の遺言執行者は病気・死亡のリスクがある。信託銀行は<strong>法人として永続的に</strong>遺言執行を担えるのが強み。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 遺産整理業務 -->
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #E8F8F0; color: var(--color-trust);">相続</span>
+              <span style="flex:1;">遺産整理業務</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>相続が発生した後に、遺産の調査から分配までを<strong>一括して代行</strong>するサービスです。
+                  遺言がない場合や、遺言はあるが信託銀行が執行者でない場合に利用されます。</p>
+                <ul>
+                  <li><strong>相続人の確定</strong>：戸籍の収集、<span class="term" data-tooltip="被相続人（亡くなった人）の財産を相続する権利を有する人。配偶者は常に相続人となり、子・親・兄弟姉妹が順位に応じて相続人となる。">法定相続人</span>の調査</li>
+                  <li><strong>財産の調査・評価</strong>：不動産、金融資産、負債等の全容を把握</li>
+                  <li><strong><span class="term" data-tooltip="共同相続人全員で遺産の分け方を話し合い、合意すること。全員の合意が必要で、一人でも反対すれば成立しない。">遺産分割協議</span>のサポート</strong>：相続人間の話し合いを支援</li>
+                  <li><strong>名義変更・分配手続き</strong>：不動産の登記変更、金融機関の解約・振替等</li>
+                  <li><strong>税務申告のサポート</strong>：税理士と連携して相続税申告を支援</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 教育資金贈与信託 -->
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #F4ECF7; color: var(--color-stock);">贈与</span>
+              <span style="flex:1;">教育資金贈与信託</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>祖父母等から孫等へ、教育資金を<strong>一括で贈与</strong>する際に利用する信託です。
+                  税制の特例により、贈与税が非課税になります。</p>
+                <ul>
+                  <li><strong>非課税枠</strong>：受益者1人あたり<strong>1,500万円</strong>まで（学校等以外は500万円まで）</li>
+                  <li><strong>対象</strong>：30歳未満の子・孫等（前年の所得が1,000万円以下）</li>
+                  <li><strong>使途</strong>：入学金、授業料、塾代、留学費用等の教育資金</li>
+                  <li><strong>仕組み</strong>：信託銀行に信託 → 領収書提出で払い出し → 30歳で終了</li>
+                  <li><strong>残額</strong>：30歳到達時の残額には贈与税が課税される</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 結婚・子育て支援信託 -->
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #F4ECF7; color: var(--color-stock);">贈与</span>
+              <span style="flex:1;">結婚・子育て支援信託</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>結婚や子育てにかかる費用を非課税で贈与できる信託です。</p>
+                <ul>
+                  <li><strong>非課税枠</strong>：受益者1人あたり<strong>1,000万円</strong>まで（結婚関連は300万円まで）</li>
+                  <li><strong>対象</strong>：18歳以上50歳未満の子・孫等</li>
+                  <li><strong>使途</strong>：結婚式費用、新居の家賃、妊娠・出産・育児費用等</li>
+                  <li><strong>仕組み</strong>：教育資金贈与信託と同様、領収書ベースで払い出し</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 特定贈与信託 -->
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #F4ECF7; color: var(--color-stock);">贈与</span>
+              <span style="flex:1;">特定贈与信託</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>特別障害者の方の生活の安定を図るための信託です。高い非課税枠が設定されています。</p>
+                <ul>
+                  <li><strong>非課税枠</strong>：特別障害者は<strong>6,000万円</strong>、特別障害者以外の特定障害者は<strong>3,000万円</strong></li>
+                  <li><strong>目的</strong>：障害のある方の将来の生活費を安定的に確保</li>
+                  <li><strong>仕組み</strong>：親族等が信託銀行に金銭等を信託 → 信託銀行が定期的に生活費等を交付</li>
+                  <li><strong>社会的意義</strong>：「親亡き後」問題への対応策として重要</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 後見制度支援信託 -->
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #FFF3E0; color: var(--color-realestate);">後見</span>
+              <span style="flex:1;">後見制度支援信託</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p><span class="term" data-tooltip="認知症等により判断能力が不十分な人の財産を、家庭裁判所が選任する後見人が管理する制度。成年後見・保佐・補助の3類型がある。">後見制度支援信託</span>は、
+                  成年後見制度を利用している方の財産を、信託銀行で安全に管理する仕組みです。</p>
+                <ul>
+                  <li><strong>目的</strong>：後見人による不正な財産流出を防止</li>
+                  <li><strong>仕組み</strong>：日常生活に必要な金額以外の財産を信託銀行に信託</li>
+                  <li><strong>払い戻し</strong>：家庭裁判所の指示書がなければ払い戻しできない</li>
+                  <li><strong>背景</strong>：後見人による財産の不正使用が社会問題化したことへの対応</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 家族信託・民事信託 -->
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #EBF5FB; color: var(--color-overview);">比較</span>
+              <span style="flex:1;">家族信託・民事信託との関係</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>近年話題の「家族信託（民事信託）」と、信託銀行の「商事信託」の違いを押さえましょう。</p>
+                <div class="compare-table-wrapper" style="margin-top: 12px;">
+                  <table class="compare-table" aria-label="民事信託と商事信託の比較">
+                    <thead>
+                      <tr>
+                        <th>項目</th>
+                        <th>家族信託（民事信託）</th>
+                        <th>信託銀行（商事信託）</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>受託者</strong></td>
+                        <td>家族（非営利）</td>
+                        <td>信託銀行（営利・免許制）</td>
+                      </tr>
+                      <tr>
+                        <td><strong>信託報酬</strong></td>
+                        <td>なし（無報酬が一般的）</td>
+                        <td>あり（<span class="term" data-tooltip="受託者が信託事務を処理する対価として受け取る報酬。設定時報酬、管理報酬、執行報酬などがある。">信託報酬</span>を収受）</td>
+                      </tr>
+                      <tr>
+                        <td><strong>監督</strong></td>
+                        <td>なし（家族間の信頼ベース）</td>
+                        <td>金融庁の監督あり</td>
+                      </tr>
+                      <tr>
+                        <td><strong>メリット</strong></td>
+                        <td>柔軟な設計、低コスト</td>
+                        <td>専門性・永続性・信頼性</td>
+                      </tr>
+                      <tr>
+                        <td><strong>リスク</strong></td>
+                        <td>受託者の能力・モラルに依存</td>
+                        <td>商品の範囲に限定される</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="info-box tip" style="margin-top: 12px;">
+                  <div class="info-box-title">💡 実務のポイント</div>
+                  <p>家族信託と商事信託は<strong>対立するものではなく、補完関係</strong>にあります。
+                    信託銀行の窓口で家族信託の相談を受けることも増えており、
+                    司法書士等と連携して対応するケースもあります。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="complete-level-btn" type="button">このレベルを学習完了にする</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================
+         レベル3：実務の流れ
+         ======================================== -->
+    <article class="level-block" data-level="3">
+      <div class="level-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="level-badge" aria-hidden="true">Lv.3</div>
+        <div>
+          <h2>実務の流れ</h2>
+          <span class="level-desc">上級知識 ～ 業務フローを頭に描けるようになろう</span>
+        </div>
+        <div class="level-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-content">
+
+          <div class="parrot-guide">
+            <div class="parrot-character" id="lv3-parrot"></div>
+            <div class="parrot-message">
+              <p><strong>トラストンのひとこと</strong></p>
+              <p>ここでは実際の業務の流れを「フロー図」で見ていくよ。
+                遺言信託と相続対応の2つのフローを押さえれば、先輩との会話でも自信が持てるはず！</p>
+            </div>
+          </div>
+
+          <h3>遺言信託の業務フロー</h3>
+          <p>遺言信託サービスは、大きく<strong>「生前の準備」</strong>と<strong>「相続発生後の執行」</strong>の2つのフェーズに分かれます。</p>
+
+          <div class="diagram-box">
+            <div class="diagram-title">遺言信託の業務フロー</div>
+            <div class="flow-steps">
+              <div class="flow-step">
+                <div class="flow-step-number">1</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">相談受付</div>
+                  <div class="flow-step-desc">お客さまが来店または担当者が訪問。相続に関するお悩みや希望をお伺いする。資産状況や家族構成の概要を確認。</div>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="flow-step-number">2</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">詳細ヒアリング</div>
+                  <div class="flow-step-desc">財産の全容（不動産、金融資産、負債等）を詳細に調査。家族関係・相続人を確認。お客さまの意向（誰に何を相続させたいか）を丁寧に聞き取り。</div>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="flow-step-number">3</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">遺言書案の作成</div>
+                  <div class="flow-step-desc">ヒアリング内容をもとに遺言書の原案を作成。<span class="term" data-tooltip="被相続人の財産のうち、一定の相続人に法律上保障された最低限の取り分。配偶者と子は法定相続分の1/2、直系尊属のみの場合は1/3。">遺留分</span>への配慮、税務面のアドバイスも行う。お客さまと複数回打ち合わせて内容を確定。</div>
+                </div>
+              </div>
+              <div class="flow-step" data-color="accent">
+                <div class="flow-step-number">4</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">公正証書遺言の作成</div>
+                  <div class="flow-step-desc">公証役場で<span class="term" data-tooltip="公証人が法律に基づいて作成する遺言書。証人2人の立会いが必要。紛失・改ざんリスクが低く、家庭裁判所の検認が不要。">公正証書遺言</span>を作成。信託銀行の担当者が証人として立会い。遺言執行者として信託銀行を指定。</div>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="flow-step-number">5</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">遺言書の保管</div>
+                  <div class="flow-step-desc">正本を信託銀行が厳重に保管。定期的にお客さまへ照会（年1回程度）し、家族構成や財産の変動があれば遺言内容の見直しを提案。</div>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="flow-step-number">6</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">相続発生の通知</div>
+                  <div class="flow-step-desc">お客さまの逝去を受け、信託銀行が遺言執行者として活動を開始。相続人へ遺言の内容を通知。</div>
+                </div>
+              </div>
+              <div class="flow-step" data-color="success">
+                <div class="flow-step-number">7</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">遺言執行</div>
+                  <div class="flow-step-desc">遺言の内容に従い、財産の名義変更、金融資産の解約・分配、不動産の登記変更等を実施。完了後、相続人へ業務完了報告書を提出。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3>相続発生時の対応フロー（遺産整理業務）</h3>
+          <p>遺言がない場合、または遺言信託を利用していない場合の相続対応フローです。</p>
+
+          <div class="diagram-box">
+            <div class="diagram-title">遺産整理業務のフロー</div>
+            <div class="flow-steps">
+              <div class="flow-step">
+                <div class="flow-step-number">1</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">死亡届の受領・業務開始</div>
+                  <div class="flow-step-desc">ご遺族からのご連絡を受け、遺産整理業務の委任契約を締結。必要書類（死亡診断書、戸籍謄本等）の収集を開始。</div>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="flow-step-number">2</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">相続人の確定</div>
+                  <div class="flow-step-desc">被相続人の出生から死亡までの連続した戸籍を取得し、<span class="term" data-tooltip="被相続人の財産を相続する権利を有する人。配偶者は常に相続人となり、子・親・兄弟姉妹が順位に応じて相続人となる。">法定相続人</span>を確定。相続関係説明図を作成。</div>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="flow-step-number">3</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">財産調査</div>
+                  <div class="flow-step-desc">不動産（登記簿確認、評価額算定）、金融資産（預金・有価証券の残高確認）、負債の調査を実施。相続財産目録を作成。</div>
+                </div>
+              </div>
+              <div class="flow-step" data-color="accent">
+                <div class="flow-step-number">4</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">遺産分割協議のサポート</div>
+                  <div class="flow-step-desc">相続人全員で遺産の分け方を協議。<span class="term" data-tooltip="共同相続人全員で遺産の分け方を話し合い、合意すること。全員の合意が必要で、一人でも反対すれば成立しない。">遺産分割協議</span>書の作成をサポート。<span class="term" data-tooltip="被相続人の財産のうち、一定の相続人に法律上保障された最低限の取り分。">遺留分</span>にも配慮した助言を行う。</div>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="flow-step-number">5</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">名義変更・分配手続き</div>
+                  <div class="flow-step-desc">遺産分割協議の結果に基づき、不動産の登記変更（司法書士と連携）、預金の解約・振替、有価証券の名義変更等を実施。</div>
+                </div>
+              </div>
+              <div class="flow-step" data-color="success">
+                <div class="flow-step-number">6</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">完了報告</div>
+                  <div class="flow-step-desc">全ての手続き完了後、相続人へ業務完了報告書を提出。相続税申告が必要な場合は税理士と連携してサポート。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3>信託報酬体系の考え方</h3>
+          <p>信託・相続業務の<span class="term" data-tooltip="受託者が信託事務を処理する対価として受け取る報酬。設定時報酬、管理報酬、執行報酬などがある。">信託報酬</span>は、
+            大きく<strong>3つのタイミング</strong>で発生します。</p>
+
+          <div class="compare-table-wrapper">
+            <table class="compare-table" aria-label="信託報酬の体系">
+              <thead>
+                <tr>
+                  <th>報酬の種類</th>
+                  <th>タイミング</th>
+                  <th>内容</th>
+                  <th>目安</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>設定時報酬</strong></td>
+                  <td>遺言書作成時</td>
+                  <td>遺言書案の作成、公正証書作成の支援</td>
+                  <td>数十万円程度</td>
+                </tr>
+                <tr>
+                  <td><strong>管理報酬</strong></td>
+                  <td>年1回（保管期間中）</td>
+                  <td>遺言書の保管、定期照会、見直し提案</td>
+                  <td>年数千円～数万円</td>
+                </tr>
+                <tr>
+                  <td><strong>執行報酬</strong></td>
+                  <td>相続発生後（執行完了時）</td>
+                  <td>遺言の執行（名義変更、分配等）の手続き一式</td>
+                  <td>相続財産の0.5%～2%程度</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box note">
+            <div class="info-box-title">📝 お客さまへの説明のポイント</div>
+            <p>報酬は「高い」と感じるお客さまも多いけど、<strong>専門家チームが長期間にわたって対応する</strong>ことの価値を
+              丁寧に説明することが大切だよ。個人の遺言執行者と比べた永続性・確実性が信託銀行の強み。</p>
+          </div>
+
+          <button class="complete-level-btn" type="button">このレベルを学習完了にする</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================
+         レベル4：用語マスター
+         ======================================== -->
+    <article class="level-block" data-level="4">
+      <div class="level-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="level-badge" aria-hidden="true">Lv.4</div>
+        <div>
+          <h2>用語マスター</h2>
+          <span class="level-desc">総仕上げ ～ 信託用語で会話できるようになろう</span>
+        </div>
+        <div class="level-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-content">
+
+          <div class="parrot-guide">
+            <div class="parrot-character" id="lv4-parrot"></div>
+            <div class="parrot-message">
+              <p><strong>トラストンのひとこと</strong></p>
+              <p>最後の仕上げ！ここに出てくる用語を一通り説明できるようになれば、
+                先輩と信託用語で会話できるレベルだよ。用語カードをチェックしていこう！</p>
+            </div>
+          </div>
+
+          <div class="glossary">
+            <div class="glossary-item">
+              <div class="glossary-term">信託財産</div>
+              <div class="glossary-reading">しんたくざいさん</div>
+              <div class="glossary-definition">委託者が受託者に信託した財産。金銭、有価証券、不動産など多様な資産が対象。受託者の固有財産とは分別管理される。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">信託報酬</div>
+              <div class="glossary-reading">しんたくほうしゅう</div>
+              <div class="glossary-definition">受託者が信託事務を処理する対価。設定時報酬、管理報酬、執行報酬などタイミングによって異なる体系がある。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">善管注意義務</div>
+              <div class="glossary-reading">ぜんかんちゅういぎむ</div>
+              <div class="glossary-definition">受託者が善良なる管理者としての注意をもって信託事務を処理する義務。専門家として高い注意基準が求められる。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">忠実義務</div>
+              <div class="glossary-reading">ちゅうじつぎむ</div>
+              <div class="glossary-definition">受託者が受益者の利益のためにのみ行動し、自己の利益を図ってはならない義務。利益相反取引の禁止が核心。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">公正証書遺言</div>
+              <div class="glossary-reading">こうせいしょうしょいごん</div>
+              <div class="glossary-definition">公証人が法律に基づき作成する遺言書。証人2人の立会いが必要。紛失・改ざんリスクが低く、家庭裁判所の検認が不要。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">自筆証書遺言</div>
+              <div class="glossary-reading">じひつしょうしょいごん</div>
+              <div class="glossary-definition">遺言者が全文を自筆で書く遺言書。手軽だが形式不備で無効になるリスクあり。法務局の保管制度が2020年に開始。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">遺言執行者</div>
+              <div class="glossary-reading">いごんしっこうしゃ</div>
+              <div class="glossary-definition">遺言の内容を実現するための手続き（名義変更、分配等）を行う人。遺言で指定するか、家庭裁判所が選任する。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">遺産分割協議</div>
+              <div class="glossary-reading">いさんぶんかつきょうぎ</div>
+              <div class="glossary-definition">共同相続人全員で遺産の分割方法を話し合い合意すること。全員の同意が必要で、合意内容を遺産分割協議書にまとめる。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">法定相続人</div>
+              <div class="glossary-reading">ほうていそうぞくにん</div>
+              <div class="glossary-definition">民法で定められた相続する権利を持つ人。配偶者は常に相続人、子（第1順位）・親（第2順位）・兄弟姉妹（第3順位）。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">遺留分</div>
+              <div class="glossary-reading">いりゅうぶん</div>
+              <div class="glossary-definition">一定の相続人に法律上保障された最低限の取り分。配偶者と子は法定相続分の1/2。兄弟姉妹には遺留分なし。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">指定金銭信託</div>
+              <div class="glossary-reading">していきんせんしんたく</div>
+              <div class="glossary-definition">委託者が運用方法の大枠（資産の種類・範囲）を指定し、具体的な運用判断は受託者に委ねる金銭信託。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">合同運用指定金銭信託</div>
+              <div class="glossary-reading">ごうどううんようしていきんせんしんたく</div>
+              <div class="glossary-definition">略称「合指金」。複数の委託者の金銭をまとめて合同で運用する信託。元本補てん契約付きが一般的で、預金に近い性質。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">特定金銭信託</div>
+              <div class="glossary-reading">とくていきんせんしんたく</div>
+              <div class="glossary-definition">略称「特金」。委託者が個別の運用方法を特定して信託。主に機関投資家が利用し、投資顧問が運用指図するケースが多い。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">信託受益権</div>
+              <div class="glossary-reading">しんたくじゅえきけん</div>
+              <div class="glossary-definition">受益者が信託から利益を受ける権利。原則として譲渡可能で、有価証券化することもできる。信託の柔軟性を支える重要な概念。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">信託の併合・分割</div>
+              <div class="glossary-reading">しんたくのへいごう・ぶんかつ</div>
+              <div class="glossary-definition">複数の信託を一つに統合（併合）したり、一つの信託を分けたり（分割）する手続き。2006年改正信託法で明文化。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">信託終了事由</div>
+              <div class="glossary-reading">しんたくしゅうりょうじゆう</div>
+              <div class="glossary-definition">信託が終了する原因。信託の目的達成、信託期間の満了、委託者・受益者の合意、受託者の任務終了で後任なし、等。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">信託管理人</div>
+              <div class="glossary-reading">しんたくかんりにん</div>
+              <div class="glossary-definition">受益者が現存しない場合（まだ生まれていない孫を受益者にする場合等）に、受益者のために権利行使する者。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">受益者代理人</div>
+              <div class="glossary-reading">じゅえきしゃだいりにん</div>
+              <div class="glossary-definition">受益者に代わって受益者の権利を行使する者。高齢の受益者や多数の受益者がいる場合に選任される。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">信託監督人</div>
+              <div class="glossary-reading">しんたくかんとくにん</div>
+              <div class="glossary-definition">受託者の信託事務処理を監視・監督する者。受益者の利益保護のために選任される。受益者自身が監督困難な場合に重要。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">後見制度支援信託</div>
+              <div class="glossary-reading">こうけんせいどしえんしんたく</div>
+              <div class="glossary-definition">成年後見制度利用者の財産を信託銀行で管理する仕組み。日常生活費以外は家庭裁判所の指示がなければ払い戻し不可。</div>
+            </div>
+          </div>
+
+          <button class="complete-level-btn" type="button">このレベルを学習完了にする</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================
+         実務ミニシーン
+         ======================================== -->
+    <section class="scene-block mt-xl" aria-label="実務ミニシーン">
+      <h2 class="scene-title">実務ミニシーン：相続相談のお客さま</h2>
+
+      <div class="dialogue">
+        <!-- 状況説明 -->
+        <div class="dialogue-row">
+          <div class="dialogue-avatar">👔</div>
+          <div class="speech-bubble">
+            <div class="speaker-name">山田先輩</div>
+            <p>こんなお客さまが来店されたよ。一緒に考えてみよう。</p>
+            <div class="info-box note" style="margin-top: 12px; margin-bottom: 0;">
+              <p><strong>お客さまの状況</strong><br>
+                70代男性。配偶者と子供3人。<br>
+                自宅（評価額5,000万円）と金融資産（8,000万円）。<br>
+                最近、認知症への不安を口にされている。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 質問1：商品候補 -->
+        <div class="dialogue-row right">
+          <div class="dialogue-avatar" id="scene-parrot-1"></div>
+          <div class="speech-bubble">
+            <div class="speaker-name">トラストン</div>
+            <p><strong>Question 1</strong>：このお客さまに、どの信託商品が候補になるかな？</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 選択肢1 -->
+      <div class="scene-choices" style="margin: 16px 0;">
+        <button class="scene-choice-btn"
+                data-correct="true"
+                data-feedback="<strong>正解！</strong>遺言信託で相続の準備をしつつ、認知症対策として後見制度支援信託を提案するのがベスト。さらに、お孫さんがいれば教育資金贈与信託で生前贈与も提案できるね。複数の商品を組み合わせた総合提案が信託銀行の強みだよ！">
+          遺言信託（相続準備） ＋ 後見制度支援信託（認知症対策） ＋ 教育資金贈与信託（孫がいれば）
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="特定金銭信託は主に機関投資家向けの商品で、個人の相続対策には使いません。お客さまのニーズは「相続準備」と「認知症対策」だから、それに合った商品を考えてみよう。">
+          特定金銭信託で資産運用を提案する
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="遺産整理業務は相続発生「後」のサービスだよ。このお客さまはまだお元気なので、「生前の準備」として遺言信託を提案するのが正しいアプローチ。認知症対策も忘れずに！">
+          遺産整理業務だけを案内する
+        </button>
+      </div>
+      <div class="scene-feedback info-box" style="display: none;"></div>
+
+      <!-- 質問2 -->
+      <div class="dialogue mt-lg">
+        <div class="dialogue-row right">
+          <div class="dialogue-avatar" id="scene-parrot-2"></div>
+          <div class="speech-bubble">
+            <div class="speaker-name">トラストン</div>
+            <p><strong>Question 2</strong>：遺言信託と遺産整理業務、どう使い分ける？</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-choices" style="margin: 16px 0;">
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="費用だけで判断するのは適切ではないよ。それぞれの目的とタイミングの違いを理解しよう。">
+          費用が安い方を勧める
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="true"
+                data-feedback="<strong>その通り！</strong>遺言信託は「生前の備え」、遺産整理業務は「事後の対応」。お客さまがお元気なうちに遺言信託で準備するのがベストだけど、遺言がないまま相続が発生した場合は遺産整理業務で対応する。両方の違いをお客さまに説明できることが大切だね。">
+          遺言信託は「生前の準備」（遺言書作成～保管～執行）。遺産整理業務は「相続発生後の対応」（財産調査～分配）。今回のお客さまにはまず遺言信託を提案し、万一の際は遺産整理でもサポートできると伝える。
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="どちらか一方だけという選択ではないよ。遺言信託で生前に準備し、遺言でカバーしきれない財産が出てきた場合は遺産整理業務で補完する、という関係なんだ。">
+          同じようなサービスなので、どちらでも良い
+        </button>
+      </div>
+      <div class="scene-feedback info-box" style="display: none;"></div>
+
+      <!-- 質問3 -->
+      <div class="dialogue mt-lg">
+        <div class="dialogue-row right">
+          <div class="dialogue-avatar" id="scene-parrot-3"></div>
+          <div class="speech-bubble">
+            <div class="speaker-name">トラストン</div>
+            <p><strong>Question 3</strong>：認知症対策として何を提案できる？</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-choices" style="margin: 16px 0;">
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="資産を現金化しても、認知症になれば本人が判断能力を失い、その現金も使えなくなってしまうよ。制度的な対策が必要だね。">
+          資産を全て現金化して銀行預金にする
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="家族信託は一つの選択肢だけど、信託銀行としてまず提案すべきは自行の商品である後見制度支援信託だよ。もちろん、お客さまのニーズによっては家族信託の情報提供も大切。</p>">
+          家族信託だけを勧める
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="true"
+                data-feedback="<strong>素晴らしい！</strong>後見制度支援信託で日常生活費以外の資産を保全しつつ、お元気なうちに遺言信託で相続の準備をする。任意後見制度の活用も視野に入れた総合的な提案ができれば完璧だね。お客さまの「認知症になったらどうしよう」という不安に寄り添うことが大切だよ。">
+          後見制度支援信託（日常生活費以外の財産を保全） ＋ お元気なうちに遺言信託で相続準備 ＋ 任意後見制度の活用も案内
+        </button>
+      </div>
+      <div class="scene-feedback info-box" style="display: none;"></div>
+
+      <!-- オウムのリアクション -->
+      <div style="text-align: center; margin-top: 16px;">
+        <div class="parrot-reaction" id="scene-parrot-reaction"></div>
+      </div>
+    </section>
+
+    <!-- セクションクイズ -->
+    <section class="level-block" id="section-quiz">
+      <h2>セクションクイズ</h2>
+      <p>信託・相続業務の理解度をチェックしよう！</p>
+      <div id="quiz-container-trust"></div>
+    </section>
+
+    <!-- ページ内ナビゲーション -->
+    <nav class="section-nav" aria-label="セクション間ナビゲーション">
+      <a href="overview.html" class="btn btn-outline">← 信託銀行とは</a>
+      <a href="stock.html" class="btn btn-primary">次へ：証券代行業務 →</a>
+    </nav>
+
+  </main>
+
+  <!-- フッター -->
+  <div id="site-footer"></div>
+
+  <script src="../quiz/quiz-data.js"></script>
+  <script src="../js/quiz.js"></script>
+  <script src="../js/common.js"></script>
+  <script>
+    // ヘッダー・フッター挿入
+    document.getElementById('site-header').innerHTML = HeaderTemplate.create('../');
+    document.getElementById('site-footer').innerHTML = FooterTemplate.create();
+
+    // オウムキャラ挿入
+    document.getElementById('section-parrot').innerHTML = ParrotSVG.create('normal', 64);
+    document.getElementById('lv1-parrot').innerHTML = ParrotSVG.create('normal', 64);
+    document.getElementById('lv2-parrot').innerHTML = ParrotSVG.create('thinking', 64);
+    document.getElementById('lv3-parrot').innerHTML = ParrotSVG.create('normal', 64);
+    document.getElementById('lv4-parrot').innerHTML = ParrotSVG.create('cheering', 64);
+    document.getElementById('scene-parrot-1').innerHTML = ParrotSVG.create('thinking', 48);
+    document.getElementById('scene-parrot-2').innerHTML = ParrotSVG.create('thinking', 48);
+    document.getElementById('scene-parrot-3').innerHTML = ParrotSVG.create('thinking', 48);
+    document.getElementById('scene-parrot-reaction').innerHTML = ParrotSVG.create('thinking', 60);
+
+    // アプリ初期化（セクションページモード）
+    document.addEventListener('DOMContentLoaded', () => {
+      App.init({ sectionId: 'trust' });
+
+      // クイズ初期化
+      QuizEngine.renderStartScreen('trust', 'quiz-container-trust');
+
+      // ミニシーンの複数質問対応（各scene-choicesブロックを独立して動作させる）
+      document.querySelectorAll('.scene-choices').forEach(choicesBlock => {
+        const feedback = choicesBlock.nextElementSibling;
+        const btns = choicesBlock.querySelectorAll('.scene-choice-btn');
+        const parrotReaction = document.getElementById('scene-parrot-reaction');
+
+        btns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            // この選択肢グループ内で既に正解済みならスキップ
+            if (choicesBlock.querySelector('.scene-choice-btn.correct')) return;
+            // 不正解アニメーション中ならスキップ
+            if (choicesBlock.querySelector('.scene-choice-btn.incorrect')) return;
+
+            const isCorrect = btn.dataset.correct === 'true';
+
+            if (isCorrect) {
+              btn.classList.add('correct');
+              if (feedback && feedback.classList.contains('scene-feedback')) {
+                feedback.innerHTML = btn.dataset.feedback;
+                feedback.className = 'scene-feedback info-box success';
+                feedback.style.display = 'block';
+              }
+              if (parrotReaction) parrotReaction.innerHTML = ParrotSVG.create('correct', 60);
+            } else {
+              btn.classList.add('incorrect');
+              if (feedback && feedback.classList.contains('scene-feedback')) {
+                feedback.innerHTML = btn.dataset.feedback;
+                feedback.className = 'scene-feedback info-box warning';
+                feedback.style.display = 'block';
+              }
+              if (parrotReaction) parrotReaction.innerHTML = ParrotSVG.create('incorrect', 60);
+              setTimeout(() => {
+                btn.classList.remove('incorrect');
+                if (feedback) feedback.style.display = 'none';
+                if (parrotReaction) parrotReaction.innerHTML = ParrotSVG.create('thinking', 60);
+              }, 2500);
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

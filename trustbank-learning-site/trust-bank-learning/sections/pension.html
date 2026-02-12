@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>年金・資産運用業務 | トラストナビ</title>
+  <meta name="description" content="企業年金（DB/DC）の受託、資産運用、年金ALMなど、信託銀行の年金・資産運用業務を体系的に学びます。">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <div id="site-header"></div>
+
+  <!-- パンくずリスト -->
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <a href="../index.html">トップ</a>
+    <span class="breadcrumb-sep" aria-hidden="true">›</span>
+    <span class="breadcrumb-current" aria-current="page">年金・資産運用業務</span>
+  </nav>
+
+  <main class="main-content" role="main">
+
+    <!-- セクションヘッダー -->
+    <div class="section-page-header" style="--section-color: var(--color-pension);">
+      <div id="section-parrot"></div>
+      <div>
+        <h1>年金・資産運用業務</h1>
+        <p class="section-subtitle">年金資産を守り育てる ― 受託者としての信頼と責任</p>
+      </div>
+    </div>
+
+    <!-- セクション進捗 -->
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 32px;">
+      <span class="text-sm" style="font-weight: 600; color: var(--color-text-light);">このセクションの進捗</span>
+      <div class="progress-bar" style="flex: 1;">
+        <div class="progress-fill section-progress-fill" style="width: 0%"></div>
+      </div>
+      <span class="section-progress-text text-sm" style="font-weight: 700; color: var(--color-accent);">0%</span>
+    </div>
+
+    <!-- ========================================
+         レベル1：企業年金と信託銀行
+         ======================================== -->
+    <article class="level-block" data-level="1">
+      <div class="level-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="level-badge" aria-hidden="true">Lv.1</div>
+        <div>
+          <h2>企業年金と信託銀行</h2>
+          <span class="level-desc">基礎知識 ～ 日本の年金制度における信託銀行の役割</span>
+        </div>
+        <div class="level-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-content">
+
+          <div class="parrot-guide">
+            <div class="parrot-character" id="lv1-parrot"></div>
+            <div class="parrot-message">
+              <p><strong>トラストンのひとこと</strong></p>
+              <p>年金って自分にはまだ先の話……と思うかもしれないけど、
+                信託銀行は何十兆円もの年金資産を預かっているんだ。
+                まずは日本の年金制度の全体像から押さえよう！</p>
+            </div>
+          </div>
+
+          <h3>日本の年金制度の全体像 ― 3階建て構造</h3>
+          <p>日本の年金制度は<strong>「3階建て」</strong>の構造になっています。
+            信託銀行が深く関わるのは、主に<strong>3階部分の企業年金</strong>です。</p>
+
+          <!-- 3階建て年金図 SVG -->
+          <div class="diagram-box">
+            <div class="diagram-title">日本の年金制度 ― 3階建て構造</div>
+            <div style="text-align: center; padding: 8px 0;">
+              <svg viewBox="0 0 620 370" width="100%" style="max-width: 620px;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="日本の年金制度の3階建て構造図：1階が国民年金、2階が厚生年金、3階が企業年金">
+                <!-- 3階：企業年金 -->
+                <rect x="160" y="30" width="300" height="80" rx="10" fill="#FDEDEC" stroke="#C0392B" stroke-width="2.5"/>
+                <text x="310" y="60" text-anchor="middle" font-size="16" font-weight="700" fill="#C0392B">3階：企業年金</text>
+                <text x="310" y="82" text-anchor="middle" font-size="11" fill="#8A8A8A">DB（確定給付）/ DC（確定拠出）/ 厚生年金基金</text>
+                <text x="310" y="98" text-anchor="middle" font-size="10" fill="#C0392B" font-weight="600">← 信託銀行が深く関与</text>
+
+                <!-- 2階：厚生年金 -->
+                <rect x="100" y="120" width="420" height="80" rx="10" fill="#EBF5FB" stroke="#2D5F8A" stroke-width="2"/>
+                <text x="310" y="152" text-anchor="middle" font-size="16" font-weight="700" fill="#1B3A5C">2階：厚生年金</text>
+                <text x="310" y="174" text-anchor="middle" font-size="11" fill="#8A8A8A">会社員・公務員が加入（労使折半で保険料を負担）</text>
+
+                <!-- 1階：国民年金 -->
+                <rect x="40" y="210" width="540" height="80" rx="10" fill="#E8F8F0" stroke="#27AE60" stroke-width="2"/>
+                <text x="310" y="242" text-anchor="middle" font-size="16" font-weight="700" fill="#27AE60">1階：国民年金（基礎年金）</text>
+                <text x="310" y="264" text-anchor="middle" font-size="11" fill="#8A8A8A">20歳以上60歳未満のすべての国民が加入</text>
+
+                <!-- 対象者ラベル -->
+                <text x="310" y="320" text-anchor="middle" font-size="12" fill="#666" font-weight="600">対象者</text>
+                <line x1="60" y1="330" x2="560" y2="330" stroke="#CCC" stroke-width="1"/>
+
+                <text x="130" y="352" text-anchor="middle" font-size="10" fill="#888">自営業者等</text>
+                <text x="310" y="352" text-anchor="middle" font-size="10" fill="#888">会社員・公務員</text>
+                <text x="490" y="352" text-anchor="middle" font-size="10" fill="#888">専業主婦(夫)等</text>
+
+                <!-- 矢印で幅を示す -->
+                <line x1="60" y1="336" x2="60" y2="344" stroke="#AAA" stroke-width="1"/>
+                <line x1="200" y1="336" x2="200" y2="344" stroke="#AAA" stroke-width="1"/>
+                <line x1="200" y1="336" x2="200" y2="344" stroke="#AAA" stroke-width="1"/>
+                <line x1="420" y1="336" x2="420" y2="344" stroke="#AAA" stroke-width="1"/>
+                <line x1="420" y1="336" x2="420" y2="344" stroke="#AAA" stroke-width="1"/>
+                <line x1="560" y1="336" x2="560" y2="344" stroke="#AAA" stroke-width="1"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="info-box tip">
+            <div class="info-box-title">💡 企業年金の3つのタイプ</div>
+            <p><strong>DB（確定給付企業年金）</strong>：将来の給付額が確定。企業が運用リスクを負う。<br>
+              <strong>DC（確定拠出年金）</strong>：毎月の掛金額が確定。従業員が運用リスクを負う。<br>
+              <strong>厚生年金基金</strong>：厚生年金の一部を代行運用（現在は新設不可、解散・移行が進む）。</p>
+          </div>
+
+          <h3>信託銀行の立ち位置 ― 年金資産の「受託機関」</h3>
+          <p>企業年金の資産は、企業が自分で保管するのではなく、
+            <strong>外部の受託機関</strong>に預けて管理・運用する仕組みになっています。
+            この受託機関の代表格が<strong>信託銀行</strong>です。</p>
+
+          <ul>
+            <li><strong><span class="term" data-tooltip="年金資産の保管・管理を行う機関。信託銀行や生命保険会社が該当。年金規約に基づき、資産を分別管理し、安全に保管する。">資産管理機関</span></strong>：年金資産を安全に保管・管理する役割</li>
+            <li><strong>運用機関</strong>：年金資産を実際に運用（株式・債券等に投資）する役割</li>
+            <li><strong>事務管理</strong>：加入者データ管理、年金・一時金の支払事務</li>
+          </ul>
+
+          <p>信託銀行は上記の<strong>すべての役割</strong>を担える数少ない機関です。</p>
+
+          <h3>受託者責任とプルーデントマン・ルール</h3>
+          <p>年金資産を預かる信託銀行は、加入者（従業員）のために
+            <strong>厳格な<span class="term" data-tooltip="年金資産の管理・運用を任された者（受託者）が負う法的義務。忠実義務（加入者の利益のためだけに行動する義務）と善管注意義務（専門家として適切に行動する義務）を含む。">受託者責任</span></strong>を負います。</p>
+
+          <div class="compare-table-wrapper">
+            <table class="compare-table" aria-label="受託者責任の2つの柱">
+              <thead>
+                <tr>
+                  <th>義務</th>
+                  <th>内容</th>
+                  <th>具体例</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>忠実義務</strong></td>
+                  <td>加入者の利益のためだけに行動する</td>
+                  <td>自己取引の禁止、利益相反の回避</td>
+                </tr>
+                <tr>
+                  <td><strong>善管注意義務</strong></td>
+                  <td>専門家として適切な注意を払う</td>
+                  <td>分散投資の実施、適切なモニタリング</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box note">
+            <div class="info-box-title">📝 プルーデントマン・ルールとは？</div>
+            <p><span class="term" data-tooltip="「思慮深い専門家（Prudent Man）」が同様の状況で行うであろう注意・技能・勤勉さをもって行動すべきという運用上の行動基準。米国ERISA法に由来。">プルーデントマン・ルール</span>は
+              「思慮深い専門家ならばどう行動するか」を基準とする考え方だよ。
+              個別の結果ではなく、<strong>意思決定のプロセスが適切だったか</strong>で判断される。
+              つまり、結果的に損失が出ても、プロセスが正しければ責任は問われない。
+              逆に利益が出てもプロセスが不適切ならNGなんだ。</p>
+          </div>
+
+          <button class="complete-level-btn" type="button">このレベルを学習完了にする</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================
+         レベル2：業務体系
+         ======================================== -->
+    <article class="level-block" data-level="2">
+      <div class="level-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="level-badge" aria-hidden="true">Lv.2</div>
+        <div>
+          <h2>業務体系</h2>
+          <span class="level-desc">中級知識 ～ DB・DC・資産運用の業務を詳しく理解しよう</span>
+        </div>
+        <div class="level-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-content">
+
+          <div class="parrot-guide">
+            <div class="parrot-character" id="lv2-parrot"></div>
+            <div class="parrot-message">
+              <p><strong>トラストンのひとこと</strong></p>
+              <p>年金業務は「DB」と「DC」の違いが超重要！
+                さらに資産運用の世界は奥が深いけど、
+                基本をしっかり押さえれば大丈夫だよ。</p>
+            </div>
+          </div>
+
+          <!-- ===== 1. 確定給付企業年金（DB）向け業務 ===== -->
+          <h3>確定給付企業年金（DB）向け業務</h3>
+          <p><span class="term" data-tooltip="Defined Benefit Plan の略。あらかじめ将来の給付額（年金額・一時金額）が決まっている企業年金制度。企業が運用リスクを負い、運用成績が悪化すると追加の掛金拠出が必要になる。">確定給付企業年金（DB）</span>は、
+            将来の給付額が約束された制度。信託銀行はDB制度の運営を幅広く支援します。</p>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #FDEDEC; color: var(--color-pension);">DB</span>
+              <span style="flex:1;">年金信託（年金資産の管理・運用）</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>企業が拠出した掛金を信託銀行が<strong>年金信託</strong>として受け入れ、
+                  運用・管理します。</p>
+                <ul>
+                  <li><strong><span class="term" data-tooltip="信託銀行が年金資産を自ら運用する口座。株式、債券、オルタナティブ等を信託銀行の判断で運用する。">特別勘定（特別口）</span></strong>：信託銀行が自ら運用判断を行う口座。国内株式、外国債券など資産クラス別に設定</li>
+                  <li><strong><span class="term" data-tooltip="信託銀行が一定の予定利率を保証する口座。運用成績に関わらず予定利率分の利息が付く（元本保証型）。">一般勘定（一般口）</span></strong>：信託銀行が一定の利回り（予定利率）を保証する口座。安全性重視</li>
+                  <li><strong><span class="term" data-tooltip="年金基金等が外部の運用機関（投資顧問会社等）を選定して運用を委託する形態。信託銀行は資産の保管・管理（カストディ）を担当する。">特定運用信託</span></strong>：外部の運用機関（投資顧問等）に運用を委託。信託銀行は資産の保管・管理を担当</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #FDEDEC; color: var(--color-pension);">DB</span>
+              <span style="flex:1;">年金数理サービス</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>DB制度では、将来の年金給付に必要な金額を数理的に計算し、
+                  適切な掛金を算出する必要があります。</p>
+                <ul>
+                  <li><strong><span class="term" data-tooltip="年金数理計算上、将来の年金給付を支払うために現時点で積み立てておくべき金額。退職率、死亡率、予定利率等の基礎率を用いて計算する。">数理債務</span></strong>の算定：将来の給付支払いに必要な現在の積立額を計算</li>
+                  <li><strong>財政検証</strong>：積立水準の健全性をチェック（<span class="term" data-tooltip="年金資産÷数理債務で計算される指標。100%であれば数理債務と同額の資産があることを意味する。100%を下回ると積立不足の状態。">積立比率</span>の確認）</li>
+                  <li><strong>掛金計算</strong>：積立不足がある場合の追加掛金額を算出</li>
+                  <li><strong><span class="term" data-tooltip="年金数理計算で用いる運用利回りの前提値。年金資産の運用によって達成が期待される利回り。掛金水準に大きく影響する。">予定利率</span></strong>の検証：運用環境の変化に応じた予定利率の妥当性を検証</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #FDEDEC; color: var(--color-pension);">DB</span>
+              <span style="flex:1;">年金ALM（資産・負債の総合管理）</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p><span class="term" data-tooltip="Asset Liability Management の略。年金の資産（運用資産）と負債（将来の給付債務）を総合的に管理する手法。資産側だけでなく、負債側の変動も考慮した最適な運用戦略を策定する。">年金ALM</span>（Asset Liability Management）は、
+                  年金の<strong>資産（運用資産）と負債（給付債務）を一体的に管理</strong>する手法です。</p>
+                <ul>
+                  <li><strong>負債の特性分析</strong>：年齢構成、退職予定、給付額の将来予測</li>
+                  <li><strong>効率的フロンティア分析</strong>：リスクとリターンの最適な組合せを探索</li>
+                  <li><strong>政策アセットミックスの策定</strong>：負債特性に合った資産配分比率の決定</li>
+                  <li><strong>ストレステスト</strong>：金融危機等のシナリオでの積立水準への影響を検証</li>
+                </ul>
+                <div class="info-box tip" style="margin-top: 12px;">
+                  <div class="info-box-title">💡 なぜALMが重要？</div>
+                  <p>資産だけ見て「株で大きく増やそう！」はNG。年金の<strong>負債（将来払う年金額）</strong>は
+                    金利が下がると膨らむ。資産と負債の両方を見て、バランスの取れた運用が必要なんだ。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== 2. 確定拠出年金（DC）関連業務 ===== -->
+          <h3>確定拠出年金（DC）関連業務</h3>
+          <p><span class="term" data-tooltip="Defined Contribution Plan の略。企業が毎月一定額の掛金を拠出し、従業員自身が運用商品を選んで運用する年金制度。給付額は運用成績によって変動する。">確定拠出年金（DC）</span>は、
+            従業員自身が運用する制度。信託銀行は制度運営を裏方で支えます。</p>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #EBF5FB; color: var(--color-overview);">DC</span>
+              <span style="flex:1;">運営管理機関としての役割</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>信託銀行はDC制度の<span class="term" data-tooltip="確定拠出年金法に基づき、DC制度の運営管理業務を行う機関。記録関連業務（レコードキーピング）と運用関連業務の2種類がある。">運営管理機関</span>として、
+                  以下の2つの業務を担います。</p>
+                <div class="compare-table-wrapper" style="margin-top: 12px;">
+                  <table class="compare-table" aria-label="運営管理機関の2つの業務">
+                    <thead>
+                      <tr>
+                        <th>業務</th>
+                        <th>内容</th>
+                        <th>具体例</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>記録関連業務</strong></td>
+                        <td>加入者の記録管理</td>
+                        <td>加入者データ管理、拠出記録、資産残高管理、給付裁定</td>
+                      </tr>
+                      <tr>
+                        <td><strong>運用関連業務</strong></td>
+                        <td>運用商品の選定・提示</td>
+                        <td>運用商品ラインナップの選定、運用商品の情報提供</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #EBF5FB; color: var(--color-overview);">DC</span>
+              <span style="flex:1;">投資教育支援</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>DC制度では<strong>従業員が自ら運用商品を選ぶ</strong>ため、
+                  企業には投資教育の実施が求められます（努力義務）。</p>
+                <ul>
+                  <li><strong>導入時教育</strong>：制度の仕組み、運用商品の特徴、リスクとリターンの関係</li>
+                  <li><strong>継続教育</strong>：定期的なセミナー開催、運用レポートの提供、Web教材の提供</li>
+                  <li><strong>ライフプランセミナー</strong>：退職前の従業員向けに受取方法（年金/一時金）の選択をサポート</li>
+                </ul>
+                <div class="info-box note" style="margin-top: 12px;">
+                  <div class="info-box-title">📝 なぜ投資教育が重要？</div>
+                  <p>DC制度では多くの加入者が元本確保型商品（定期預金等）に偏りがち。
+                    長期分散投資の重要性を伝え、<strong>適切なリスクテイク</strong>を促すのも信託銀行の大切な役割だよ。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #EBF5FB; color: var(--color-overview);">DC</span>
+              <span style="flex:1;">運用商品の選定・提示</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>運営管理機関は、加入者が選択する<strong>運用商品のラインナップ</strong>を選定します。</p>
+                <ul>
+                  <li><strong>元本確保型</strong>：定期預金、保険商品（元本保証あり、低リターン）</li>
+                  <li><strong>投資信託</strong>：国内株式型、外国株式型、バランス型、債券型等</li>
+                  <li><strong>ターゲットイヤー型</strong>：退職予定年に合わせて自動的に資産配分を調整</li>
+                </ul>
+                <p style="margin-top: 8px; font-size: var(--font-size-sm); color: var(--color-text-light);">
+                  ※ 2018年の法改正で、運用商品数の上限は<strong>35本以内</strong>と定められました。
+                  加入者が選びやすいよう、厳選して提示することが求められています。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== 3. 資産運用業務 ===== -->
+          <h3>資産運用業務</h3>
+          <p>信託銀行は年金資産だけでなく、投資信託の受託や自家運用など、
+            幅広い<strong>資産運用業務</strong>を担っています。</p>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #F4ECF7; color: var(--color-stock);">運用</span>
+              <span style="flex:1;">投資信託の受託</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>一般の投資家が購入する投資信託にも信託銀行が関わっています。</p>
+                <ul>
+                  <li><strong>委託者</strong>：運用会社（投信会社）が運用指図を行う</li>
+                  <li><strong>受託者</strong>：<strong>信託銀行</strong>が信託財産（投資家のお金）を保管・管理</li>
+                  <li><strong>販売会社</strong>：証券会社・銀行が投資家に販売</li>
+                </ul>
+                <p style="margin-top: 8px;">信託銀行は<strong><span class="term" data-tooltip="投資信託の受託者（信託銀行）が信託財産の管理・保管の対価として受け取る報酬。投資信託の運用管理費用の一部を構成する。">信託報酬</span></strong>を受け取り、
+                  投資家の資産を安全に保管する役割を担います。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #F4ECF7; color: var(--color-stock);">運用</span>
+              <span style="flex:1;">自家運用と委託運用の違い</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <div class="compare-table-wrapper">
+                  <table class="compare-table" aria-label="自家運用と委託運用の比較">
+                    <thead>
+                      <tr>
+                        <th>種類</th>
+                        <th>運用者</th>
+                        <th>特徴</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>自家運用</strong></td>
+                        <td>信託銀行自身</td>
+                        <td>信託銀行の運用部門が直接運用判断を行う。特別勘定での運用が中心</td>
+                      </tr>
+                      <tr>
+                        <td><strong>委託運用</strong></td>
+                        <td>外部の運用機関</td>
+                        <td>投資顧問会社等に運用を委託。信託銀行は資産の保管・管理（カストディ）を担当</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #F4ECF7; color: var(--color-stock);">運用</span>
+              <span style="flex:1;">パッシブ運用とアクティブ運用</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <div class="compare-table-wrapper">
+                  <table class="compare-table" aria-label="パッシブ運用とアクティブ運用の比較">
+                    <thead>
+                      <tr>
+                        <th>種類</th>
+                        <th>目標</th>
+                        <th>運用コスト</th>
+                        <th>特徴</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong><span class="term" data-tooltip="ベンチマーク（市場指数）と同等の収益を目指す運用手法。インデックスファンドが代表例。運用コストが低い。">パッシブ運用</span></strong></td>
+                        <td><span class="term" data-tooltip="運用成績を評価する際の基準となる市場指数。国内株式ならTOPIX、外国株式ならMSCI ACWI等が代表的。">ベンチマーク</span>に連動</td>
+                        <td>低い</td>
+                        <td>市場平均並みのリターン。<span class="term" data-tooltip="ポートフォリオのリターンがベンチマークからどれだけ乖離するかを示す指標（標準偏差で測定）。パッシブ運用では低いほど良い。">トラッキングエラー</span>を最小化</td>
+                      </tr>
+                      <tr>
+                        <td><strong><span class="term" data-tooltip="ベンチマーク（市場指数）を上回る収益（超過収益＝アルファ）を目指す運用手法。銘柄選択や資産配分の変更等で付加価値を追求する。">アクティブ運用</span></strong></td>
+                        <td>ベンチマークを上回る</td>
+                        <td>高い</td>
+                        <td>超過収益（アルファ）を追求。<span class="term" data-tooltip="超過収益をトラッキングエラーで除した指標。リスクあたりの超過収益を測定し、アクティブ運用の効率性を評価する。">インフォメーションレシオ</span>で効率性を評価</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="info-box tip" style="margin-top: 12px;">
+                  <div class="info-box-title">💡 年金運用のトレンド</div>
+                  <p>近年の年金運用では<strong>パッシブ運用の比率が増加</strong>傾向。
+                    コスト削減が求められる中、「コアはパッシブ、サテライトでアクティブ」
+                    という<strong>コア・サテライト戦略</strong>が主流になっているよ。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #F4ECF7; color: var(--color-stock);">運用</span>
+              <span style="flex:1;">ESG投資・スチュワードシップ活動</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p><span class="term" data-tooltip="Environment（環境）、Social（社会）、Governance（企業統治）の3要素を考慮した投資手法。長期的な企業価値向上とリスク低減を目指す。">ESG投資</span>は、
+                  環境・社会・ガバナンスの要素を投資判断に組み込む手法です。</p>
+                <ul>
+                  <li><strong>E（環境）</strong>：気候変動対応、CO2排出削減、再生可能エネルギー</li>
+                  <li><strong>S（社会）</strong>：人権、ダイバーシティ、サプライチェーン管理</li>
+                  <li><strong>G（ガバナンス）</strong>：取締役会の構成、役員報酬、株主還元方針</li>
+                </ul>
+                <p style="margin-top: 8px;">信託銀行は<span class="term" data-tooltip="機関投資家が投資先企業の企業価値向上や持続的成長を促すために、経営陣との対話（エンゲージメント）や議決権行使を通じて責任ある行動をとるための原則。金融庁が策定。">スチュワードシップ・コード</span>に基づき、
+                  投資先企業との<strong>対話（エンゲージメント）</strong>や
+                  <strong><span class="term" data-tooltip="株主総会で提出される議案に対して、機関投資家として賛否を表明すること。各社が独自の議決権行使基準（ガイドライン）を策定し、それに基づいて判断する。">議決権行使</span></strong>を通じて、
+                  投資先企業の持続的成長を促します。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== 4. 年金給付業務 ===== -->
+          <h3>年金給付業務</h3>
+          <p>年金制度の最終目的は、加入者に<strong>確実に給付を届ける</strong>こと。
+            信託銀行は給付の事務処理も担っています。</p>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #E8F8F0; color: #27AE60;">給付</span>
+              <span style="flex:1;">年金・一時金の支払事務</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>退職者への年金・一時金の支払いを正確に行います。</p>
+                <ul>
+                  <li><strong>年金支払い</strong>：毎月または隔月で退職者の口座に年金を振込</li>
+                  <li><strong>一時金支払い</strong>：退職時に一括で給付金を支払い</li>
+                  <li><strong>源泉徴収</strong>：年金・一時金に係る所得税の計算・控除・納付</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #E8F8F0; color: #27AE60;">給付</span>
+              <span style="flex:1;">裁定請求の処理</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>退職者が年金・一時金を受け取るための<strong>裁定請求</strong>を処理します。</p>
+                <ul>
+                  <li><strong>裁定請求の受付</strong>：退職者からの請求書類を受付・確認</li>
+                  <li><strong>受給権の確認</strong>：加入期間、給付額の計算、受給要件の確認</li>
+                  <li><strong>給付決定</strong>：請求内容に基づき給付額を決定し、支払いを開始</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <button class="complete-level-btn" type="button">このレベルを学習完了にする</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================
+         レベル3：実務の流れ
+         ======================================== -->
+    <article class="level-block" data-level="3">
+      <div class="level-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="level-badge" aria-hidden="true">Lv.3</div>
+        <div>
+          <h2>実務の流れ</h2>
+          <span class="level-desc">上級知識 ～ 運用の意思決定プロセスとDB制度の年間サイクル</span>
+        </div>
+        <div class="level-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-content">
+
+          <div class="parrot-guide">
+            <div class="parrot-character" id="lv3-parrot"></div>
+            <div class="parrot-message">
+              <p><strong>トラストンのひとこと</strong></p>
+              <p>年金運用は「一度決めて終わり」じゃない。
+                PDCAサイクルを回し続けることが大切なんだ。
+                実務のフローをしっかり押さえよう！</p>
+            </div>
+          </div>
+
+          <h3>年金資産運用の意思決定プロセス</h3>
+          <p>年金資産の運用は、以下の<strong>6つのステップ</strong>を
+            <strong>循環的に繰り返す</strong>ことで改善し続けます。</p>
+
+          <!-- 循環型フロー図 SVG -->
+          <div class="diagram-box">
+            <div class="diagram-title">年金資産運用の意思決定サイクル</div>
+            <div style="text-align: center; padding: 12px 0;">
+              <svg viewBox="0 0 500 460" width="100%" style="max-width: 500px;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="年金資産運用の意思決定サイクル：6つのステップが循環する図">
+                <!-- 中心の円 -->
+                <circle cx="250" cy="220" r="60" fill="#FDEDEC" stroke="#C0392B" stroke-width="2"/>
+                <text x="250" y="212" text-anchor="middle" font-size="12" font-weight="700" fill="#C0392B">PDCAサイクル</text>
+                <text x="250" y="230" text-anchor="middle" font-size="10" fill="#C0392B">（継続的改善）</text>
+
+                <!-- ステップ1：運用基本方針策定 -->
+                <rect x="175" y="10" width="150" height="56" rx="10" fill="#FDEDEC" stroke="#C0392B" stroke-width="2"/>
+                <text x="250" y="33" text-anchor="middle" font-size="11" font-weight="700" fill="#C0392B">①運用基本方針策定</text>
+                <text x="250" y="50" text-anchor="middle" font-size="9" fill="#888">運用目的・リスク許容度の明確化</text>
+
+                <!-- ステップ2：政策アセットミックス -->
+                <rect x="365" y="85" width="130" height="56" rx="10" fill="#EBF5FB" stroke="#2D5F8A" stroke-width="2"/>
+                <text x="430" y="106" text-anchor="middle" font-size="10" font-weight="700" fill="#1B3A5C">②政策アセット</text>
+                <text x="430" y="120" text-anchor="middle" font-size="10" font-weight="700" fill="#1B3A5C">ミックス決定</text>
+                <text x="430" y="134" text-anchor="middle" font-size="9" fill="#888">資産配分比率の決定</text>
+
+                <!-- ステップ3：運用機関選定 -->
+                <rect x="375" y="225" width="120" height="56" rx="10" fill="#E8F8F0" stroke="#27AE60" stroke-width="2"/>
+                <text x="435" y="248" text-anchor="middle" font-size="10" font-weight="700" fill="#27AE60">③運用機関選定</text>
+                <text x="435" y="265" text-anchor="middle" font-size="9" fill="#888">各資産の運用機関を選定</text>
+
+                <!-- ステップ4：運用 -->
+                <rect x="175" y="350" width="150" height="56" rx="10" fill="#FFF3E0" stroke="#E67E22" stroke-width="2"/>
+                <text x="250" y="373" text-anchor="middle" font-size="11" font-weight="700" fill="#E67E22">④運用実行</text>
+                <text x="250" y="390" text-anchor="middle" font-size="9" fill="#888">各運用機関が投資を実行</text>
+
+                <!-- ステップ5：モニタリング -->
+                <rect x="5" y="225" width="120" height="56" rx="10" fill="#F4ECF7" stroke="#8E44AD" stroke-width="2"/>
+                <text x="65" y="248" text-anchor="middle" font-size="10" font-weight="700" fill="#8E44AD">⑤モニタリング</text>
+                <text x="65" y="265" text-anchor="middle" font-size="9" fill="#888">運用成績の評価・検証</text>
+
+                <!-- ステップ6：リバランス -->
+                <rect x="5" y="85" width="120" height="56" rx="10" fill="#FFF8E7" stroke="#C6973F" stroke-width="2"/>
+                <text x="65" y="108" text-anchor="middle" font-size="10" font-weight="700" fill="#9A7430">⑥リバランス</text>
+                <text x="65" y="125" text-anchor="middle" font-size="9" fill="#888">資産配分の再調整</text>
+
+                <!-- 矢印（時計回り） -->
+                <path d="M325 42 Q360 50 370 88" fill="none" stroke="#999" stroke-width="1.8" marker-end="url(#aPen1)"/>
+                <path d="M460 141 Q470 190 460 223" fill="none" stroke="#999" stroke-width="1.8" marker-end="url(#aPen1)"/>
+                <path d="M400 281 Q370 330 325 356" fill="none" stroke="#999" stroke-width="1.8" marker-end="url(#aPen1)"/>
+                <path d="M175 383 Q130 390 100 281" fill="none" stroke="#999" stroke-width="1.8" marker-end="url(#aPen1)"/>
+                <path d="M45 225 Q30 180 40 141" fill="none" stroke="#999" stroke-width="1.8" marker-end="url(#aPen1)"/>
+                <path d="M100 85 Q140 50 175 38" fill="none" stroke="#999" stroke-width="1.8" marker-end="url(#aPen1)"/>
+
+                <defs>
+                  <marker id="aPen1" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#999"/></marker>
+                </defs>
+
+                <!-- 補足テキスト -->
+                <text x="250" y="450" text-anchor="middle" font-size="11" fill="#888">※ ⑤→⑥→①…と継続的にサイクルを回し続ける</text>
+              </svg>
+            </div>
+          </div>
+
+          <h3>DB制度の年間サイクル</h3>
+          <p>DB制度の運営は、<strong>毎年決まったスケジュール</strong>に沿って行われます。</p>
+
+          <div class="diagram-box">
+            <div class="diagram-title">DB制度の年間運営サイクル</div>
+            <div class="flow-steps">
+              <div class="flow-step">
+                <div class="flow-step-number">1</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">決算（毎年度末）</div>
+                  <div class="flow-step-desc">年金資産の時価評価。各運用機関の運用成績を確定。信託銀行は運用報告書を作成し、年金基金・企業に提出。</div>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="flow-step-number">2</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">財政検証</div>
+                  <div class="flow-step-desc">年金数理人が積立水準を検証。積立比率（＝年金資産÷数理債務）が100%を下回っていないか確認。積立不足がある場合は掛金の見直しが必要。</div>
+                </div>
+              </div>
+              <div class="flow-step" data-color="accent">
+                <div class="flow-step-number">3</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">掛金見直し</div>
+                  <div class="flow-step-desc">財政検証の結果に基づき、必要に応じて掛金率を見直し。企業の財務負担と制度の健全性のバランスを考慮。信託銀行はシミュレーションを提供。</div>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="flow-step-number">4</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">運用報告・運用機関評価</div>
+                  <div class="flow-step-desc">各運用機関の運用成績をベンチマークと比較して評価。信託銀行は総幹事として全体の運用状況を取りまとめ、改善提案を行う。</div>
+                </div>
+              </div>
+              <div class="flow-step" data-color="success">
+                <div class="flow-step-number">5</div>
+                <div class="flow-step-content">
+                  <div class="flow-step-title">ガバナンス委員会（代議員会等）</div>
+                  <div class="flow-step-desc">年金制度の運営方針を審議する委員会。運用実績の報告、資産配分の変更、運用機関の入替え等を決議。信託銀行は事務局として運営をサポート。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3>運用報告書の読み方</h3>
+          <p>信託銀行が作成する運用報告書の<strong>主要な項目</strong>を理解しましょう。</p>
+
+          <div class="compare-table-wrapper">
+            <table class="compare-table" aria-label="運用報告書の主要項目">
+              <thead>
+                <tr>
+                  <th>項目</th>
+                  <th>内容</th>
+                  <th>チェックポイント</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>資産残高</strong></td>
+                  <td>期末時点の年金資産総額</td>
+                  <td>前期比での増減、積立比率の変化</td>
+                </tr>
+                <tr>
+                  <td><strong>収益率</strong></td>
+                  <td>期間中の運用パフォーマンス</td>
+                  <td>ベンチマークとの比較（超過収益の有無）</td>
+                </tr>
+                <tr>
+                  <td><strong>資産配分状況</strong></td>
+                  <td>各資産クラスの構成比率</td>
+                  <td>政策アセットミックスからの乖離幅</td>
+                </tr>
+                <tr>
+                  <td><strong>運用機関別成績</strong></td>
+                  <td>各運用機関のパフォーマンス</td>
+                  <td>トラッキングエラー、インフォメーションレシオ</td>
+                </tr>
+                <tr>
+                  <td><strong>市場環境</strong></td>
+                  <td>金利・株価・為替等の動向</td>
+                  <td>運用成績の要因分析に活用</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box note">
+            <div class="info-box-title">📝 総幹事信託銀行の役割</div>
+            <p>複数の運用機関に分散して運用する場合、<strong>総幹事信託銀行</strong>が
+              全体の取りまとめ役を担う。各運用機関の成績を集計し、
+              資産配分全体のバランスを管理して、リバランスの提案も行うよ。</p>
+          </div>
+
+          <button class="complete-level-btn" type="button">このレベルを学習完了にする</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================
+         レベル4：用語マスター
+         ======================================== -->
+    <article class="level-block" data-level="4">
+      <div class="level-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="level-badge" aria-hidden="true">Lv.4</div>
+        <div>
+          <h2>用語マスター</h2>
+          <span class="level-desc">総仕上げ ～ 年金・資産運用の専門用語をマスターしよう</span>
+        </div>
+        <div class="level-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-content">
+
+          <div class="parrot-guide">
+            <div class="parrot-character" id="lv4-parrot"></div>
+            <div class="parrot-message">
+              <p><strong>トラストンのひとこと</strong></p>
+              <p>年金・資産運用の用語は「DB/DC」「パッシブ/アクティブ」のように
+                対になるものが多いよ。ペアで覚えると効率的！
+                特に政策アセットミックスとALMは年金営業の必須用語だよ。</p>
+            </div>
+          </div>
+
+          <div class="glossary">
+            <div class="glossary-item">
+              <div class="glossary-term">確定給付企業年金（DB）</div>
+              <div class="glossary-reading">かくていきゅうふきぎょうねんきん</div>
+              <div class="glossary-definition">Defined Benefit Plan。将来の給付額があらかじめ確定している企業年金制度。企業が運用リスクを負い、積立不足が生じると追加掛金が必要。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">確定拠出年金（DC）</div>
+              <div class="glossary-reading">かくていきょしゅつねんきん</div>
+              <div class="glossary-definition">Defined Contribution Plan。毎月の掛金額が確定し、従業員自身が運用商品を選択する年金制度。給付額は運用成績により変動。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">厚生年金基金</div>
+              <div class="glossary-reading">こうせいねんきんききん</div>
+              <div class="glossary-definition">厚生年金の一部（代行部分）を国に代わって運用し、さらに上乗せ給付を行う制度。現在は新設不可で、解散・他制度への移行が進行中。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">政策アセットミックス</div>
+              <div class="glossary-reading">せいさくあせっとみっくす</div>
+              <div class="glossary-definition">年金資産の長期的な目標資産配分比率。国内株式○%、外国債券○%等の形で設定。運用の基本方針に基づきALM分析等で決定する。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">受託者責任</div>
+              <div class="glossary-reading">じゅたくしゃせきにん</div>
+              <div class="glossary-definition">年金資産の管理・運用を任された者が負う法的義務。忠実義務（加入者の利益のためだけに行動）と善管注意義務（専門家としての適切な行動）を含む。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">プルーデントマン・ルール</div>
+              <div class="glossary-reading">ぷるーでんとまん・るーる</div>
+              <div class="glossary-definition">「思慮深い専門家」が同様の状況で行うであろう注意・技能・勤勉さをもって行動すべきとする行動基準。結果でなくプロセスで評価する。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">スチュワードシップ・コード</div>
+              <div class="glossary-reading">すちゅわーどしっぷ・こーど</div>
+              <div class="glossary-definition">機関投資家が投資先企業の企業価値向上のために、対話や議決権行使を通じて責任ある行動をとるための原則。金融庁が策定。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">パッシブ運用</div>
+              <div class="glossary-reading">ぱっしぶうんよう</div>
+              <div class="glossary-definition">ベンチマーク（市場指数）と同等のリターンを目指す運用手法。インデックスファンドが代表例。運用コストが低く、近年比率が増加傾向。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">アクティブ運用</div>
+              <div class="glossary-reading">あくてぃぶうんよう</div>
+              <div class="glossary-definition">ベンチマークを上回る超過収益（アルファ）を目指す運用手法。銘柄選択やセクター配分の変更等で付加価値を追求。運用コストはパッシブより高い。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">ベンチマーク</div>
+              <div class="glossary-reading">べんちまーく</div>
+              <div class="glossary-definition">運用成績を評価する際の基準となる市場指数。国内株式はTOPIX、外国株式はMSCI ACWI、国内債券はNOMURA-BPI総合等が代表的。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">トラッキングエラー</div>
+              <div class="glossary-reading">とらっきんぐえらー</div>
+              <div class="glossary-definition">ポートフォリオのリターンがベンチマークからどれだけ乖離するかの指標（標準偏差で測定）。パッシブ運用では低いほど優秀、アクティブ運用ではリスクの大きさを示す。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">インフォメーションレシオ</div>
+              <div class="glossary-reading">いんふぉめーしょんれしお</div>
+              <div class="glossary-definition">超過収益÷トラッキングエラーで算出。リスクあたりの超過収益を測定し、アクティブ運用の効率性を評価する指標。高いほど効率的な運用。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">信託報酬</div>
+              <div class="glossary-reading">しんたくほうしゅう</div>
+              <div class="glossary-definition">信託銀行が信託財産の管理・運用の対価として受け取る報酬。年金信託や投資信託の受託で発生する。運用残高に対する一定料率で設定される。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">特定運用信託</div>
+              <div class="glossary-reading">とくていうんようしんたく</div>
+              <div class="glossary-definition">年金基金等が外部の運用機関を指定し、信託銀行が資産の保管・管理を担当する信託。信託銀行自身は運用判断を行わない。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">一般勘定（一般口）</div>
+              <div class="glossary-reading">いっぱんかんじょう</div>
+              <div class="glossary-definition">信託銀行が一定の予定利率を保証する口座。年金資産の安全性を重視する部分に配分される。元本保証型だがリターンは限定的。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">特別勘定（特別口）</div>
+              <div class="glossary-reading">とくべつかんじょう</div>
+              <div class="glossary-definition">信託銀行が自ら運用判断を行う口座。国内株式、外国株式、外国債券等の資産クラス別に設定。運用成績は市場変動に連動する。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">年金ALM</div>
+              <div class="glossary-reading">ねんきんえーえるえむ</div>
+              <div class="glossary-definition">Asset Liability Management。年金の資産（運用資産）と負債（将来の給付債務）を総合的に管理する手法。負債特性を考慮した最適な資産配分を策定する。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">予定利率</div>
+              <div class="glossary-reading">よていりりつ</div>
+              <div class="glossary-definition">年金数理計算で用いる運用利回りの前提値。この利率で運用できれば積立不足は生じない。低く設定すると掛金が高くなり、高く設定するとリスクが増す。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">積立比率</div>
+              <div class="glossary-reading">つみたてひりつ</div>
+              <div class="glossary-definition">年金資産÷数理債務×100%。100%以上なら十分な積立、100%未満なら積立不足。財政検証で最も重要な指標の一つ。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">責任準備金</div>
+              <div class="glossary-reading">せきにんじゅんびきん</div>
+              <div class="glossary-definition">年金制度が将来の給付支払いのために積み立てておくべき最低限の金額。確定給付企業年金法で積立基準が定められている。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">数理債務</div>
+              <div class="glossary-reading">すうりさいむ</div>
+              <div class="glossary-definition">年金数理計算上、将来の給付支払いに必要な現時点の積立額。退職率、死亡率、予定利率等の基礎率を用いて計算される。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">運営管理機関</div>
+              <div class="glossary-reading">うんえいかんりきかん</div>
+              <div class="glossary-definition">確定拠出年金法に基づきDC制度の運営管理業務を行う機関。記録関連業務（加入者データ管理等）と運用関連業務（商品選定等）の2種類がある。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">資産管理機関</div>
+              <div class="glossary-reading">しさんかんりきかん</div>
+              <div class="glossary-definition">年金資産の保管・管理を行う機関。信託銀行や生命保険会社が該当。年金規約に基づき資産を分別管理し安全に保管する。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">ESG投資</div>
+              <div class="glossary-reading">いーえすじーとうし</div>
+              <div class="glossary-definition">Environment（環境）、Social（社会）、Governance（企業統治）の3要素を投資判断に組み込む手法。長期的な企業価値向上とリスク低減を目指す。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">議決権行使基準</div>
+              <div class="glossary-reading">ぎけつけんこうしきじゅん</div>
+              <div class="glossary-definition">機関投資家が株主総会の議案に対して賛否を判断する際の基準（ガイドライン）。取締役選任、報酬、買収防衛策等の議案類型ごとに基準を策定。</div>
+            </div>
+          </div>
+
+          <button class="complete-level-btn" type="button">このレベルを学習完了にする</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================
+         実務ミニシーン
+         ======================================== -->
+    <section class="scene-block mt-xl" aria-label="実務ミニシーン">
+      <h2 class="scene-title">実務ミニシーン：DB制度の積立不足への対応</h2>
+
+      <div class="dialogue">
+        <!-- 状況説明 -->
+        <div class="dialogue-row">
+          <div class="dialogue-avatar">👔</div>
+          <div class="speech-bubble">
+            <div class="speaker-name">鈴木部長（C社 人事部）</div>
+            <p>信託銀行さん、ちょっと相談に乗ってほしいのですが……</p>
+            <div class="info-box note" style="margin-top: 12px; margin-bottom: 0;">
+              <p><strong>状況</strong><br>
+                従業員2,000人のメーカーC社の人事部長が来訪。<br>
+                「DB制度の<strong>積立比率が80%まで低下</strong>した。<br>
+                掛金を増やすのは経営的に厳しい。<br>
+                運用の見直しで改善できないか？」</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 質問1 -->
+        <div class="dialogue-row right">
+          <div class="dialogue-avatar" id="scene-parrot-1"></div>
+          <div class="speech-bubble">
+            <div class="speaker-name">トラストン</div>
+            <p><strong>Question 1</strong>：まず現状を正確に把握するために、何を確認すべきかな？</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 選択肢1 -->
+      <div class="scene-choices" style="margin: 16px 0;">
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="いきなり株式を増やすのは危険だよ！積立比率が低下している原因を特定しないと、的外れな対策になってしまう。金利低下で負債が膨らんだのか、株安で資産が減ったのか、原因によって対策が全く違うんだ。">
+          すぐに株式比率を上げてリターンを狙う
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="true"
+                data-feedback="<strong>正解！</strong>まずは①<strong>積立比率低下の原因分析</strong>（資産サイドの問題か？負債サイドの問題か？）、②<strong>現在の政策アセットミックスと実際の資産配分の乖離</strong>、③<strong>各運用機関のパフォーマンス</strong>（ベンチマーク対比）、④<strong>制度の負債特性</strong>（年齢構成、退職予定者数等）を確認する必要があるね。データに基づいた分析がすべての出発点だよ。">
+          積立比率低下の原因（資産・負債の両面）、政策アセットミックスの乖離、各運用機関の成績を確認
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="DB制度からDCへの移行は一つの選択肢だけど、まずは現状分析が先だよ。積立不足の原因を把握しないまま制度変更を提案しても、説得力がないし、運用の見直しで改善できる可能性もある。段階的に考えよう。">
+          DB制度をやめてDCに移行する提案をする
+        </button>
+      </div>
+      <div class="scene-feedback info-box" style="display: none;"></div>
+
+      <!-- 質問2 -->
+      <div class="dialogue mt-lg">
+        <div class="dialogue-row right">
+          <div class="dialogue-avatar" id="scene-parrot-2"></div>
+          <div class="speech-bubble">
+            <div class="speaker-name">トラストン</div>
+            <p><strong>Question 2</strong>：分析の結果、「金利低下による負債の増加」と「国内株式の不振」が原因だった。運用面でのアプローチとして最も適切なのは？</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-choices" style="margin: 16px 0;">
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="全額を債券にすると確かにリスクは下がるけど、予定利率を達成できなくなる可能性が高い。そうなると積立不足がさらに拡大してしまうよ。リスクを下げつつも、必要なリターンを確保できるバランスが大切なんだ。">
+          リスクを最小化するため全額を債券に移す
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="海外株式に集中投資するのはリスクが偏りすぎ。積立比率が低い状況でさらにリスクを取ると、最悪の場合さらに悪化する。分散投資の原則を忘れずに。ALMの観点も踏まえた政策アセットミックスの見直しが先だよ。">
+          海外株式に集中投資して高リターンを狙う
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="true"
+                data-feedback="<strong>素晴らしい！</strong>ALMの観点から政策アセットミックスを再検討するのが正解。具体的には①<strong>LDI（負債連動型投資）</strong>の導入検討（超長期債券で金利リスクをヘッジ）、②<strong>オルタナティブ投資</strong>（不動産、インフラ等）によるリターン向上と分散効果、③<strong>不振の国内株式運用機関の入替え</strong>を提案する。リスクとリターンのバランスを取りながら、負債特性に合った運用戦略を組み立てることが大切だよ。">
+          ALM分析に基づき政策アセットミックスを再検討。LDI導入、オルタナティブ追加、不振の運用機関の入替えを提案
+        </button>
+      </div>
+      <div class="scene-feedback info-box" style="display: none;"></div>
+
+      <!-- 質問3 -->
+      <div class="dialogue mt-lg">
+        <div class="dialogue-row right">
+          <div class="dialogue-avatar" id="scene-parrot-3"></div>
+          <div class="speech-bubble">
+            <div class="speaker-name">トラストン</div>
+            <p><strong>Question 3</strong>：運用の見直しだけでは十分でない場合、制度面ではどんなアプローチが考えられる？</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-choices" style="margin: 16px 0;">
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="制度を廃止すると従業員の福利厚生に大きな影響が出るし、労使関係にもダメージ。まずは給付設計の見直しやハイブリッド化など、段階的な対策を検討すべきだよ。">
+          年金制度自体を廃止する
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="true"
+                data-feedback="<strong>その通り！</strong>制度面では段階的なアプローチが重要。①<strong>給付設計の見直し</strong>（ポイント制への移行、給付水準の調整）、②<strong>DBとDCのハイブリッド化</strong>（一部をDCに移行してリスクを分散）、③<strong>キャッシュバランスプラン</strong>への移行（金利連動型にして負債のリスクを軽減）。運用面と制度面の<strong>両輪</strong>で改善を図るのが信託銀行のコンサルティング力だよ！">
+          給付設計の見直し（ポイント制等）、DB/DCハイブリッド化、キャッシュバランスプラン導入を検討
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="掛金引上げは確かに正攻法だけど、問題文に「経営的に厳しい」とあるよね。クライアントの制約条件を無視した提案では信頼を失ってしまう。掛金を上げずに改善する方法を考えるのが信託銀行の腕の見せどころだよ。">
+          掛金を大幅に引き上げる
+        </button>
+      </div>
+      <div class="scene-feedback info-box" style="display: none;"></div>
+
+      <!-- オウムのリアクション -->
+      <div style="text-align: center; margin-top: 16px;">
+        <div class="parrot-reaction" id="scene-parrot-reaction"></div>
+      </div>
+    </section>
+
+    <!-- セクションクイズ -->
+    <section class="level-block" id="section-quiz">
+      <h2>セクションクイズ</h2>
+      <p>年金・資産運用業務の理解度をチェックしよう！</p>
+      <div id="quiz-container-pension"></div>
+    </section>
+
+    <!-- ページ内ナビゲーション -->
+    <nav class="section-nav" aria-label="セクション間ナビゲーション">
+      <a href="realestate.html" class="btn btn-outline">← 不動産業務</a>
+      <a href="custody.html" class="btn btn-primary">次へ：カストディ業務 →</a>
+    </nav>
+
+  </main>
+
+  <!-- フッター -->
+  <div id="site-footer"></div>
+
+  <script src="../quiz/quiz-data.js"></script>
+  <script src="../js/quiz.js"></script>
+  <script src="../js/common.js"></script>
+  <script>
+    // ヘッダー・フッター挿入
+    document.getElementById('site-header').innerHTML = HeaderTemplate.create('../');
+    document.getElementById('site-footer').innerHTML = FooterTemplate.create();
+
+    // オウムキャラ挿入
+    document.getElementById('section-parrot').innerHTML = ParrotSVG.create('normal', 64);
+    document.getElementById('lv1-parrot').innerHTML = ParrotSVG.create('normal', 64);
+    document.getElementById('lv2-parrot').innerHTML = ParrotSVG.create('thinking', 64);
+    document.getElementById('lv3-parrot').innerHTML = ParrotSVG.create('normal', 64);
+    document.getElementById('lv4-parrot').innerHTML = ParrotSVG.create('cheering', 64);
+    document.getElementById('scene-parrot-1').innerHTML = ParrotSVG.create('thinking', 48);
+    document.getElementById('scene-parrot-2').innerHTML = ParrotSVG.create('thinking', 48);
+    document.getElementById('scene-parrot-3').innerHTML = ParrotSVG.create('thinking', 48);
+    document.getElementById('scene-parrot-reaction').innerHTML = ParrotSVG.create('thinking', 60);
+
+    // アプリ初期化
+    document.addEventListener('DOMContentLoaded', () => {
+      App.init({ sectionId: 'pension' });
+
+      // クイズ初期化
+      QuizEngine.renderStartScreen('pension', 'quiz-container-pension');
+
+      // ミニシーンの複数質問対応
+      document.querySelectorAll('.scene-choices').forEach(choicesBlock => {
+        const feedback = choicesBlock.nextElementSibling;
+        const btns = choicesBlock.querySelectorAll('.scene-choice-btn');
+        const parrotReaction = document.getElementById('scene-parrot-reaction');
+
+        btns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (choicesBlock.querySelector('.scene-choice-btn.correct')) return;
+            if (choicesBlock.querySelector('.scene-choice-btn.incorrect')) return;
+
+            const isCorrect = btn.dataset.correct === 'true';
+
+            if (isCorrect) {
+              btn.classList.add('correct');
+              if (feedback && feedback.classList.contains('scene-feedback')) {
+                feedback.innerHTML = btn.dataset.feedback;
+                feedback.className = 'scene-feedback info-box success';
+                feedback.style.display = 'block';
+              }
+              if (parrotReaction) parrotReaction.innerHTML = ParrotSVG.create('correct', 60);
+            } else {
+              btn.classList.add('incorrect');
+              if (feedback && feedback.classList.contains('scene-feedback')) {
+                feedback.innerHTML = btn.dataset.feedback;
+                feedback.className = 'scene-feedback info-box warning';
+                feedback.style.display = 'block';
+              }
+              if (parrotReaction) parrotReaction.innerHTML = ParrotSVG.create('incorrect', 60);
+              setTimeout(() => {
+                btn.classList.remove('incorrect');
+                if (feedback) feedback.style.display = 'none';
+                if (parrotReaction) parrotReaction.innerHTML = ParrotSVG.create('thinking', 60);
+              }, 2500);
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

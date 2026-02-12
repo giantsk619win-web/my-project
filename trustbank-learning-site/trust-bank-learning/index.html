@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>トラストナビ ～信託銀行業務の道しるべ～</title>
+  <meta name="description" content="信託銀行の新入社員向け学習サイト。信託銀行の業務を体系的に学べます。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ヘッダー（JSで動的生成） -->
+  <div id="site-header"></div>
+
+  <main class="main-content" role="main">
+
+    <!-- ヒーローセクション -->
+    <section class="page-hero" aria-label="サイト紹介">
+      <div id="hero-parrot" style="margin-bottom: 16px;"></div>
+      <h1>トラストナビ</h1>
+      <p class="subtitle">信託銀行業務の道しるべ</p>
+      <p style="margin-top: 12px; font-size: 0.95rem; opacity: 0.85;">
+        信託銀行の業務を、ステップバイステップで楽しく学びましょう。<br>
+        案内役の<strong>トラストン</strong>と一緒に、信託のプロを目指そう！
+      </p>
+    </section>
+
+    <!-- 全体進捗 -->
+    <section class="progress-section" aria-label="学習進捗">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+        <span style="font-weight: 700; color: var(--color-primary);">あなたの学習進捗</span>
+        <span id="total-progress-text" style="font-weight: 700; color: var(--color-accent);">0%</span>
+      </div>
+      <div class="progress-bar progress-bar-lg" id="total-progress-bar">
+        <div class="progress-fill animated" style="width: 0%"></div>
+      </div>
+    </section>
+
+    <!-- オウムの案内メッセージ -->
+    <div class="parrot-guide" id="welcome-guide">
+      <div class="parrot-character" id="welcome-parrot"></div>
+      <div class="parrot-message">
+        <p><strong>トラストンだよ！</strong>信託銀行の世界へようこそ！</p>
+        <p>信託銀行は、普通の銀行とはちょっと違う特別な銀行なんだ。
+          預金や貸出だけじゃなく、お客さまの大切な財産を「託されて」管理する――
+          それが信託銀行の仕事だよ。</p>
+        <p>まずは下の「信託銀行とは」から始めてみよう！</p>
+      </div>
+    </div>
+
+    <!-- 業務全体マップ -->
+    <section aria-label="業務領域マップ">
+      <div class="map-center">
+        <h2 class="map-center-label">
+          🏦 信託銀行の業務マップ
+        </h2>
+      </div>
+
+      <div class="section-grid stagger-in">
+
+        <!-- 信託銀行とは -->
+        <a href="sections/overview.html" class="section-card" data-section="overview"
+           aria-label="信託銀行とは - 学習セクション">
+          <div class="card-icon">🏛️</div>
+          <h3>信託銀行とは</h3>
+          <p>銀行と信託銀行の違い、信託の基本概念、法的基盤を学びます。まずはここからスタート！</p>
+          <div class="card-progress">
+            <div class="progress-bar card-progress-bar" style="flex: 1;">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span class="card-quiz-badge" style="display:none;"></span>
+            <span class="card-progress-text">0%</span>
+          </div>
+        </a>
+
+        <!-- 信託・相続業務 -->
+        <a href="sections/trust.html" class="section-card" data-section="trust"
+           aria-label="信託・相続業務 - 学習セクション">
+          <div class="card-icon">📜</div>
+          <h3>信託・相続業務</h3>
+          <p>遺言信託、遺産整理、生前贈与信託など、信託銀行の中核となる信託・相続関連業務を学びます。</p>
+          <div class="card-progress">
+            <div class="progress-bar card-progress-bar" style="flex: 1;">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span class="card-quiz-badge" style="display:none;"></span>
+            <span class="card-progress-text">0%</span>
+          </div>
+        </a>
+
+        <!-- 証券代行業務 -->
+        <a href="sections/stock.html" class="section-card" data-section="stock"
+           aria-label="証券代行業務 - 学習セクション">
+          <div class="card-icon">📊</div>
+          <h3>証券代行業務</h3>
+          <p>株主名簿管理、配当金支払い、株主総会支援など、企業の株式関連事務を代行する業務を学びます。</p>
+          <div class="card-progress">
+            <div class="progress-bar card-progress-bar" style="flex: 1;">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span class="card-quiz-badge" style="display:none;"></span>
+            <span class="card-progress-text">0%</span>
+          </div>
+        </a>
+
+        <!-- 不動産業務 -->
+        <a href="sections/realestate.html" class="section-card" data-section="realestate"
+           aria-label="不動産業務 - 学習セクション">
+          <div class="card-icon">🏢</div>
+          <h3>不動産業務</h3>
+          <p>不動産の売買仲介、鑑定評価、不動産信託（REIT）など、信託銀行ならではの不動産業務を学びます。</p>
+          <div class="card-progress">
+            <div class="progress-bar card-progress-bar" style="flex: 1;">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span class="card-quiz-badge" style="display:none;"></span>
+            <span class="card-progress-text">0%</span>
+          </div>
+        </a>
+
+        <!-- 年金・資産運用業務 -->
+        <a href="sections/pension.html" class="section-card" data-section="pension"
+           aria-label="年金・資産運用業務 - 学習セクション">
+          <div class="card-icon">💰</div>
+          <h3>年金・資産運用業務</h3>
+          <p>企業年金の受託・運用、確定拠出年金（DC）、投資信託の運用など、資産運用に関する業務を学びます。</p>
+          <div class="card-progress">
+            <div class="progress-bar card-progress-bar" style="flex: 1;">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span class="card-quiz-badge" style="display:none;"></span>
+            <span class="card-progress-text">0%</span>
+          </div>
+        </a>
+
+        <!-- カストディ業務 -->
+        <a href="sections/custody.html" class="section-card" data-section="custody"
+           aria-label="カストディ業務 - 学習セクション">
+          <div class="card-icon">🔐</div>
+          <h3>カストディ業務</h3>
+          <p>有価証券の保管・管理、決済、議決権行使など、国内外の機関投資家向けの資産管理業務を学びます。</p>
+          <div class="card-progress">
+            <div class="progress-bar card-progress-bar" style="flex: 1;">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span class="card-quiz-badge" style="display:none;"></span>
+            <span class="card-progress-text">0%</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- 学習再開セクション -->
+    <section class="text-center mt-xl" id="resume-section" style="display: none;" aria-label="学習を再開する">
+    </section>
+
+    <!-- CTAセクション -->
+    <section class="text-center mt-xl" aria-label="学習を始める">
+      <div id="cta-parrot" style="margin-bottom: 16px;"></div>
+      <p style="font-size: var(--font-size-lg); font-weight: 500; margin-bottom: var(--space-lg); color: var(--color-text-light);">
+        準備はいい？まずは信託銀行の全体像をつかもう！
+      </p>
+      <a href="sections/overview.html" class="btn btn-accent btn-lg">
+        まずはここから → 信託銀行とは
+      </a>
+    </section>
+
+  </main>
+
+  <!-- フッター（JSで動的生成） -->
+  <div id="site-footer"></div>
+
+  <script src="js/common.js"></script>
+  <script>
+    // ヘッダー・フッター挿入
+    document.getElementById('site-header').innerHTML = HeaderTemplate.create('');
+    document.getElementById('site-footer').innerHTML = FooterTemplate.create();
+
+    // オウムキャラ挿入
+    document.getElementById('hero-parrot').innerHTML = ParrotSVG.create('cheering', 100);
+    document.getElementById('welcome-parrot').innerHTML = ParrotSVG.create('normal', 80);
+    document.getElementById('cta-parrot').innerHTML = ParrotSVG.create('cheering', 72);
+
+    // アプリ初期化（トップページモード）
+    document.addEventListener('DOMContentLoaded', () => {
+      App.init({ isTopPage: true });
+    });
+  </script>
+</body>
+</html>

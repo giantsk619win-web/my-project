@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カストディ業務 | トラストナビ</title>
+  <meta name="description" content="有価証券の保管・決済、基準価額算出、クロスボーダー取引など、信託銀行のカストディ業務を体系的に学びます。">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <div id="site-header"></div>
+
+  <!-- パンくずリスト -->
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <a href="../index.html">トップ</a>
+    <span class="breadcrumb-sep" aria-hidden="true">›</span>
+    <span class="breadcrumb-current" aria-current="page">カストディ業務</span>
+  </nav>
+
+  <main class="main-content" role="main">
+
+    <!-- セクションヘッダー -->
+    <div class="section-page-header" style="--section-color: var(--color-custody);">
+      <div id="section-parrot"></div>
+      <div>
+        <h1>カストディ業務</h1>
+        <p class="section-subtitle">有価証券の「金庫番」― グローバルな資産管理を支える</p>
+      </div>
+    </div>
+
+    <!-- セクション進捗 -->
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 32px;">
+      <span class="text-sm" style="font-weight: 600; color: var(--color-text-light);">このセクションの進捗</span>
+      <div class="progress-bar" style="flex: 1;">
+        <div class="progress-fill section-progress-fill" style="width: 0%"></div>
+      </div>
+      <span class="section-progress-text text-sm" style="font-weight: 700; color: var(--color-accent);">0%</span>
+    </div>
+
+    <!-- ========================================
+         レベル1：カストディの基礎
+         ======================================== -->
+    <article class="level-block" data-level="1">
+      <div class="level-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="level-badge" aria-hidden="true">Lv.1</div>
+        <div>
+          <h2>カストディの基礎</h2>
+          <span class="level-desc">基礎知識 ～ 有価証券の「金庫番」を理解しよう</span>
+        </div>
+        <div class="level-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-content">
+
+          <div class="parrot-guide">
+            <div class="parrot-character" id="lv1-parrot"></div>
+            <div class="parrot-message">
+              <p><strong>トラストンのひとこと</strong></p>
+              <p>カストディって聞き慣れない言葉かもしれないけど、
+                要は有価証券の「金庫番」のこと。
+                何兆円もの株式や債券を安全に預かって、
+                売買の決済も代行する――とっても重要な裏方仕事なんだ！</p>
+            </div>
+          </div>
+
+          <h3>カストディとは何か</h3>
+          <p><span class="term" data-tooltip="Custody（保管・管理）の意味。機関投資家等に代わり、有価証券の保管、受渡決済の代行、権利の管理などを一括して行うサービス。">カストディ</span>とは、
+            機関投資家（年金基金、投資信託の運用会社など）に代わって、
+            <strong>有価証券の保管・管理・決済を一括して代行するサービス</strong>です。</p>
+          <p>個人投資家が証券会社に口座を持つように、
+            機関投資家も膨大な量の有価証券を安全に管理するために
+            <strong><span class="term" data-tooltip="カストディサービスを提供する金融機関。信託銀行や大手グローバル銀行がこの役割を担う。有価証券の保管、決済代行、コーポレートアクション対応などを行う。">カストディアン</span></strong>（＝保管機関）を利用します。</p>
+
+          <div class="info-box tip">
+            <div class="info-box-title">💡 カストディアンの主な仕事</div>
+            <p><strong>保管</strong>：有価証券を安全に預かる<br>
+              <strong>決済</strong>：売買の受渡しを代行する<br>
+              <strong>権利管理</strong>：配当金の受領、株式分割への対応など<br>
+              <strong>報告</strong>：投資家に残高や取引の状況を報告する</p>
+          </div>
+
+          <h3>なぜ機関投資家にカストディアンが必要なのか</h3>
+          <p>機関投資家は何百、何千もの銘柄に投資しており、
+            投資先の国も多岐にわたります。これらをすべて自前で管理するのは
+            <strong>コスト・専門性・リスク管理</strong>の面で非現実的です。</p>
+          <ul>
+            <li><strong>規模の問題</strong>：数千銘柄、数十カ国に及ぶ投資を自力で管理するのは困難</li>
+            <li><strong>専門性の問題</strong>：各国の決済制度、税制、規制への対応には高度な知識が必要</li>
+            <li><strong>リスク管理</strong>：資産の分別管理により、万一の場合も投資家の資産が保全される</li>
+            <li><strong>コスト効率</strong>：専門機関に集約することでスケールメリットを享受</li>
+          </ul>
+
+          <h3>グローバルカストディアンとローカルカストディアン</h3>
+          <p>カストディの世界では、<strong>グローバルカストディアン</strong>と
+            <strong>ローカルカストディアン（サブカストディアン）</strong>という
+            2つの役割が連携して機能しています。</p>
+
+          <div class="compare-table-wrapper">
+            <table class="compare-table" aria-label="グローバルカストディアンとローカルカストディアンの比較">
+              <thead>
+                <tr>
+                  <th>種類</th>
+                  <th>役割</th>
+                  <th>具体例</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong><span class="term" data-tooltip="世界中の有価証券を一元的に管理するカストディアン。各国のサブカストディアンを通じて現地での保管・決済を行う。BNYメロン、ステート・ストリート、JPモルガン等が代表的。">グローバルカストディアン</span></strong></td>
+                  <td>世界中の資産を<strong>一元管理</strong>。各国のサブカストディアンを統括し、投資家に統合レポートを提供</td>
+                  <td>BNYメロン、ステート・ストリート、JPモルガン等</td>
+                </tr>
+                <tr>
+                  <td><strong><span class="term" data-tooltip="特定の国・地域において、有価証券の保管・決済を直接行うカストディアン。その国の証券集中保管機関（CSD）に口座を持ち、現地の決済制度に精通している。">サブカストディアン（ローカル）</span></strong></td>
+                  <td>各国で有価証券を<strong>直接保管・決済</strong>。現地のCSDに口座を持ち、現地の制度に精通</td>
+                  <td class="highlight-cell">日本では<strong>信託銀行</strong>が担うことが多い</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- グローバルカストディの仕組み SVG -->
+          <div class="diagram-box">
+            <div class="diagram-title">グローバルカストディの仕組み</div>
+            <div style="text-align: center; padding: 12px 0;">
+              <svg viewBox="0 0 560 300" width="100%" style="max-width: 560px;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="グローバルカストディの階層構造：投資家→グローバルカストディアン→各国のサブカストディアン→CSD">
+                <!-- 投資家 -->
+                <rect x="180" y="10" width="200" height="50" rx="10" fill="#EBF5FB" stroke="#2D5F8A" stroke-width="2"/>
+                <text x="280" y="32" text-anchor="middle" font-size="13" font-weight="700" fill="#1B3A5C">機関投資家</text>
+                <text x="280" y="48" text-anchor="middle" font-size="10" fill="#888">（年金基金・運用会社等）</text>
+
+                <!-- 矢印 -->
+                <path d="M280 60 L280 85" stroke="#999" stroke-width="1.8" marker-end="url(#aCust1)"/>
+
+                <!-- グローバルカストディアン -->
+                <rect x="130" y="88" width="300" height="50" rx="10" fill="#FFF8E7" stroke="#C6973F" stroke-width="2.5"/>
+                <text x="280" y="110" text-anchor="middle" font-size="13" font-weight="700" fill="#9A7430">グローバルカストディアン</text>
+                <text x="280" y="126" text-anchor="middle" font-size="10" fill="#888">世界中の資産を一元管理・統合報告</text>
+
+                <!-- 矢印3本 -->
+                <path d="M200 138 L120 175" stroke="#999" stroke-width="1.5" marker-end="url(#aCust1)"/>
+                <path d="M280 138 L280 175" stroke="#999" stroke-width="1.5" marker-end="url(#aCust1)"/>
+                <path d="M360 138 L440 175" stroke="#999" stroke-width="1.5" marker-end="url(#aCust1)"/>
+
+                <!-- サブカストディアン -->
+                <rect x="30" y="178" width="160" height="44" rx="8" fill="#E8F8F0" stroke="#16A085" stroke-width="2"/>
+                <text x="110" y="197" text-anchor="middle" font-size="11" font-weight="600" fill="#16A085">日本：信託銀行</text>
+                <text x="110" y="213" text-anchor="middle" font-size="9" fill="#888">サブカストディアン</text>
+
+                <rect x="200" y="178" width="160" height="44" rx="8" fill="#E8F8F0" stroke="#16A085" stroke-width="2"/>
+                <text x="280" y="197" text-anchor="middle" font-size="11" font-weight="600" fill="#16A085">米国：現地銀行</text>
+                <text x="280" y="213" text-anchor="middle" font-size="9" fill="#888">サブカストディアン</text>
+
+                <rect x="370" y="178" width="160" height="44" rx="8" fill="#E8F8F0" stroke="#16A085" stroke-width="2"/>
+                <text x="450" y="197" text-anchor="middle" font-size="11" font-weight="600" fill="#16A085">欧州：現地銀行</text>
+                <text x="450" y="213" text-anchor="middle" font-size="9" fill="#888">サブカストディアン</text>
+
+                <!-- 矢印：サブカスト→CSD -->
+                <path d="M110 222 L110 250" stroke="#999" stroke-width="1.2" marker-end="url(#aCust1)"/>
+                <path d="M280 222 L280 250" stroke="#999" stroke-width="1.2" marker-end="url(#aCust1)"/>
+                <path d="M450 222 L450 250" stroke="#999" stroke-width="1.2" marker-end="url(#aCust1)"/>
+
+                <!-- CSD -->
+                <rect x="50" y="253" width="120" height="32" rx="6" fill="#F4ECF7" stroke="#8E44AD" stroke-width="1.5"/>
+                <text x="110" y="274" text-anchor="middle" font-size="10" font-weight="600" fill="#8E44AD">JASDEC</text>
+
+                <rect x="220" y="253" width="120" height="32" rx="6" fill="#F4ECF7" stroke="#8E44AD" stroke-width="1.5"/>
+                <text x="280" y="274" text-anchor="middle" font-size="10" font-weight="600" fill="#8E44AD">DTC / DTCC</text>
+
+                <rect x="390" y="253" width="120" height="32" rx="6" fill="#F4ECF7" stroke="#8E44AD" stroke-width="1.5"/>
+                <text x="450" y="274" text-anchor="middle" font-size="10" font-weight="600" fill="#8E44AD">Euroclear等</text>
+
+                <defs>
+                  <marker id="aCust1" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#999"/></marker>
+                </defs>
+              </svg>
+            </div>
+          </div>
+
+          <h3>カストディ業務の歴史的背景</h3>
+          <p>かつて有価証券は<strong>紙の証券（実物券）</strong>として発行され、
+            金庫に物理的に保管されていました。1960年代の米国では
+            取引量の急増により事務処理が追いつかなくなる
+            <strong>「ペーパーワーク・クライシス」</strong>が発生。
+            これをきっかけに、<strong>証券のペーパーレス化（電子化）</strong>が進みました。</p>
+          <ul>
+            <li><strong>1960年代</strong>：米国でペーパーワーク・クライシス → 証券の電子化が始まる</li>
+            <li><strong>1970年代</strong>：各国で<span class="term" data-tooltip="Central Securities Depository（証券集中保管機関）。有価証券を集中的に保管・管理し、帳簿上の振替により決済を行う機関。日本ではJASDEC（証券保管振替機構）が該当。">CSD（証券集中保管機関）</span>が設立</li>
+            <li><strong>1990年代以降</strong>：グローバル投資の拡大 → グローバルカストディの需要が急増</li>
+            <li><strong>日本</strong>：2009年に株券電子化が完了し、すべての上場株式がペーパーレスに</li>
+          </ul>
+
+          <div class="info-box note">
+            <div class="info-box-title">📝 ペーパーレス時代のカストディ</div>
+            <p>紙の証券がなくなった現在、カストディアンの仕事は「物理的な保管」から
+              <strong>「電子的な記録管理」と「決済の仲介」</strong>へと進化したよ。
+              でも「投資家の資産を安全に守る」という本質は変わらないんだ。</p>
+          </div>
+
+          <button class="complete-level-btn" type="button">このレベルを学習完了にする</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================
+         レベル2：業務体系
+         ======================================== -->
+    <article class="level-block" data-level="2">
+      <div class="level-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="level-badge" aria-hidden="true">Lv.2</div>
+        <div>
+          <h2>業務体系</h2>
+          <span class="level-desc">中級知識 ～ 保管・決済・ファンドアドミから付加価値サービスまで</span>
+        </div>
+        <div class="level-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-content">
+
+          <div class="parrot-guide">
+            <div class="parrot-character" id="lv2-parrot"></div>
+            <div class="parrot-message">
+              <p><strong>トラストンのひとこと</strong></p>
+              <p>カストディ業務は「保管」だけじゃない！
+                決済の代行、基準価額の計算、証券の貸し借り……
+                幅広いサービスを一つずつ見ていこう。</p>
+            </div>
+          </div>
+
+          <!-- ===== 1. 資産管理・保管業務 ===== -->
+          <h3>資産管理・保管業務</h3>
+          <p>カストディ業務の中核は、有価証券の<strong>安全な保管</strong>と
+            <strong>正確な記録管理</strong>です。</p>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #E0F2F1; color: var(--color-custody);">保管</span>
+              <span style="flex:1;">有価証券の保管（国内・外国証券）</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>カストディアンは投資家から預かった有価証券を
+                  <strong>CSD（証券集中保管機関）</strong>の口座で管理します。</p>
+                <ul>
+                  <li><strong>国内株式</strong>：<span class="term" data-tooltip="Japan Securities Depository Center（証券保管振替機構）。日本の上場株式・社債等の振替制度を運営するCSD。2009年の株券電子化以降、すべての上場株式の記録管理を担う。">JASDEC（証券保管振替機構）</span>で帳簿上の振替により管理</li>
+                  <li><strong>国内債券</strong>：国債は日本銀行の振替決済制度、社債等はJASDECで管理</li>
+                  <li><strong>外国証券</strong>：各国のサブカストディアンを通じて現地のCSDで保管。残高照合を日次で実施</li>
+                </ul>
+                <div class="info-box tip" style="margin-top: 12px;">
+                  <div class="info-box-title">💡 分別管理の重要性</div>
+                  <p>投資家の資産はカストディアン自身の資産とは<strong>厳格に分離（分別管理）</strong>されているよ。
+                    仮にカストディアンが経営破綻しても、投資家の資産は保全される仕組みなんだ。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #E0F2F1; color: var(--color-custody);">決済</span>
+              <span style="flex:1;">受渡決済の代行（DVP決済の仕組み）</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>有価証券の売買が成立（約定）すると、一定期間後に
+                  <strong>証券の引渡しと代金の支払い</strong>を同時に行います。これが<strong>決済</strong>です。</p>
+                <p>カストディアンは投資家に代わってこの決済を代行します。</p>
+                <div class="compare-table-wrapper" style="margin-top: 12px;">
+                  <table class="compare-table" aria-label="DVP決済の仕組み">
+                    <thead>
+                      <tr>
+                        <th>用語</th>
+                        <th>意味</th>
+                        <th>ポイント</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong><span class="term" data-tooltip="Delivery Versus Payment（証券の引渡しと代金の支払いを同時に行う決済方式）。証券を渡したのに代金が払われない、または代金を払ったのに証券が渡されない、といったリスク（元本リスク）を排除する。">DVP決済</span></strong></td>
+                        <td>証券の引渡し（Delivery）と代金の支払い（Payment）を<strong>同時に</strong>行う</td>
+                        <td class="highlight-cell">元本リスクを排除する最も安全な方式</td>
+                      </tr>
+                      <tr>
+                        <td><strong><span class="term" data-tooltip="約定（取引の成立）から実際の決済（証券と代金の受渡し）が行われるまでの期間。T+1は約定日の翌営業日、T+2は約定日の2営業日後に決済されることを意味する。">T+1 / T+2</span></strong></td>
+                        <td>約定日（T）から決済日までの日数</td>
+                        <td>日本株はT+2、米国株はT+1</td>
+                      </tr>
+                      <tr>
+                        <td><strong><span class="term" data-tooltip="決済日に証券または代金の受渡しが完了しないこと。相手方の事情（在庫不足、資金不足等）や事務ミスにより発生する。フェイルが発生すると追加コストやリスクが生じる。">フェイル</span></strong></td>
+                        <td>決済日に受渡しが完了しないこと（決済未了）</td>
+                        <td>フェイル管理はカストディアンの重要業務</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #E0F2F1; color: var(--color-custody);">権利</span>
+              <span style="flex:1;">コーポレートアクション対応</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p><span class="term" data-tooltip="企業が行う株主に影響を与えるイベントの総称。株式分割、合併、配当金支払い、株主割当増資、公開買付け（TOB）などが含まれる。カストディアンは投資家に代わってこれらのイベントに対応する。">コーポレートアクション</span>とは、
+                  企業が行う株主に影響を与えるイベントのこと。
+                  カストディアンは投資家に代わって<strong>迅速かつ正確に対応</strong>します。</p>
+                <ul>
+                  <li><strong>配当金の受領</strong>：配当金を自動的に受領し、投資家の口座に入金</li>
+                  <li><strong>株式分割・併合</strong>：持株数の調整を正確に反映</li>
+                  <li><strong>合併・買収（M&A）</strong>：対価の受領、新株への交換手続き</li>
+                  <li><strong>株主割当増資</strong>：権利行使の期限管理、申込手続きの代行</li>
+                  <li><strong>公開買付け（TOB）</strong>：応募・不応募の判断を投資家から確認し手続き</li>
+                </ul>
+                <div class="info-box note" style="margin-top: 12px;">
+                  <div class="info-box-title">📝 海外のコーポレートアクションは要注意</div>
+                  <p>海外では各国の制度が異なるため、対応がとても複雑。
+                    期限管理、通貨換算、税務処理など、正確な事務処理が求められるんだ。
+                    特に<strong>「任意型」</strong>のイベント（応募するかどうか投資家が選ぶもの）は
+                    期限に注意が必要だよ。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== 2. 決済業務 ===== -->
+          <h3>決済業務</h3>
+          <p>カストディアンの根幹業務の一つが<strong>決済</strong>です。
+            国内と海外（クロスボーダー）では決済の流れが異なります。</p>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #EBF5FB; color: var(--color-overview);">国内</span>
+              <span style="flex:1;">国内決済の流れ</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <div class="diagram-box" style="margin-bottom: 0;">
+                  <div class="diagram-title">国内決済の基本フロー</div>
+                  <div class="flow-steps">
+                    <div class="flow-step">
+                      <div class="flow-step-number">1</div>
+                      <div class="flow-step-content">
+                        <div class="flow-step-title">約定（やくじょう）</div>
+                        <div class="flow-step-desc">運用会社（ファンドマネージャー）が市場で売買を成立させる。</div>
+                      </div>
+                    </div>
+                    <div class="flow-step">
+                      <div class="flow-step-number">2</div>
+                      <div class="flow-step-content">
+                        <div class="flow-step-title">照合</div>
+                        <div class="flow-step-desc">約定内容（銘柄・数量・価格・決済日等）をカストディアンと運用会社間で照合・確認。</div>
+                      </div>
+                    </div>
+                    <div class="flow-step" data-color="accent">
+                      <div class="flow-step-number">3</div>
+                      <div class="flow-step-content">
+                        <div class="flow-step-title">決済（DVP）</div>
+                        <div class="flow-step-desc">決済日にCSD（JASDEC等）を通じて証券の引渡しと代金の支払いを同時に実行。T+2（約定日の2営業日後）。</div>
+                      </div>
+                    </div>
+                    <div class="flow-step" data-color="success">
+                      <div class="flow-step-number">4</div>
+                      <div class="flow-step-content">
+                        <div class="flow-step-title">保管・記録</div>
+                        <div class="flow-step-desc">決済完了後、証券残高を更新し投資家への報告を行う。</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #FFF3E0; color: #E67E22;">海外</span>
+              <span style="flex:1;">クロスボーダー決済の流れ</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>海外の有価証券を取引する場合は、
+                  <strong><span class="term" data-tooltip="Society for Worldwide Interbank Financial Telecommunication。世界中の金融機関を結ぶ安全な通信ネットワーク。決済指図や支払い指示などのメッセージを標準化されたフォーマット（MT/MXメッセージ）でやり取りする。">SWIFT</span>ネットワーク</strong>を経由して
+                  サブカストディアンに指図を送り、現地で決済を行います。</p>
+                <div class="diagram-box" style="margin-bottom: 0;">
+                  <div class="diagram-title">クロスボーダー決済の流れ</div>
+                  <div class="flow-steps">
+                    <div class="flow-step">
+                      <div class="flow-step-number">1</div>
+                      <div class="flow-step-content">
+                        <div class="flow-step-title">運用会社が約定</div>
+                        <div class="flow-step-desc">海外市場で運用会社が売買を成立。約定内容をカストディアンに通知。</div>
+                      </div>
+                    </div>
+                    <div class="flow-step">
+                      <div class="flow-step-number">2</div>
+                      <div class="flow-step-content">
+                        <div class="flow-step-title">国内カストディアンが照合</div>
+                        <div class="flow-step-desc">約定内容を確認し、決済指図を作成。</div>
+                      </div>
+                    </div>
+                    <div class="flow-step" data-color="accent">
+                      <div class="flow-step-number">3</div>
+                      <div class="flow-step-content">
+                        <div class="flow-step-title">SWIFTで送信</div>
+                        <div class="flow-step-desc">決済指図をSWIFTネットワーク経由でサブカストディアンに送信。</div>
+                      </div>
+                    </div>
+                    <div class="flow-step">
+                      <div class="flow-step-number">4</div>
+                      <div class="flow-step-content">
+                        <div class="flow-step-title">サブカストディアンが現地決済</div>
+                        <div class="flow-step-desc">現地のCSD（DTC、Euroclear等）を通じてDVP決済を実行。</div>
+                      </div>
+                    </div>
+                    <div class="flow-step" data-color="success">
+                      <div class="flow-step-number">5</div>
+                      <div class="flow-step-content">
+                        <div class="flow-step-title">決済確認・報告</div>
+                        <div class="flow-step-desc">サブカストディアンから決済完了の報告（SWIFTメッセージ）を受領。残高を更新し投資家に報告。</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== 3. ファンドアドミニストレーション ===== -->
+          <h3>ファンドアドミニストレーション</h3>
+          <p><span class="term" data-tooltip="投資信託やファンドの運営に必要な事務管理業務の総称。基準価額（NAV）の算出、信託財産の時価評価、運用報告書の作成支援などを含む。">ファンドアドミニストレーション</span>は、
+            投資信託の運営を事務面で支えるカストディアンの重要な業務です。</p>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #F4ECF7; color: var(--color-stock);">NAV</span>
+              <span style="flex:1;">基準価額（NAV）の算出</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p><span class="term" data-tooltip="Net Asset Value（純資産価額）。投資信託の1口あたりの値段。信託財産の時価総額から負債を差し引き、受益権口数で割って算出する。毎営業日算出され、投資家の売買の基準となる。">基準価額（NAV）</span>は
+                  投資信託の「値段」に相当するもの。
+                  <strong>毎営業日算出</strong>され、投資家の売買の基準となります。</p>
+                <div class="info-box tip" style="margin-top: 12px;">
+                  <div class="info-box-title">💡 NAVの計算式</div>
+                  <p><strong>NAV ＝（信託財産の時価総額 − 負債）÷ 受益権口数</strong><br>
+                    例：信託財産100億円、負債1億円、口数990万口の場合<br>
+                    NAV ＝（100億 − 1億）÷ 990万 ＝ <strong>10,000円</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #F4ECF7; color: var(--color-stock);">評価</span>
+              <span style="flex:1;">信託財産の時価評価</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>NAV算出の前提として、信託財産に含まれるすべての資産を
+                  <strong>公正な時価で評価</strong>する必要があります。</p>
+                <ul>
+                  <li><strong>上場株式</strong>：市場終値を使用</li>
+                  <li><strong>債券</strong>：取引所の終値または業者間の気配値</li>
+                  <li><strong>外国証券</strong>：現地終値 × 当日の為替レートで円換算</li>
+                  <li><strong>デリバティブ</strong>：理論価格に基づく評価</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #F4ECF7; color: var(--color-stock);">報告</span>
+              <span style="flex:1;">運用報告書の作成支援</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p>運用会社が投資家に提供する<strong>運用報告書</strong>の作成に必要なデータを提供します。</p>
+                <ul>
+                  <li><strong>ポートフォリオ明細</strong>：保有銘柄、数量、時価の一覧</li>
+                  <li><strong>売買取引の記録</strong>：期間中の取引履歴</li>
+                  <li><strong>分配金・利息の受領記録</strong>：インカム収益の実績</li>
+                  <li><strong>費用の控除記録</strong>：信託報酬、監査費用等の控除実績</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== 4. 付加価値サービス ===== -->
+          <h3>付加価値サービス</h3>
+          <p>カストディアンは保管・決済にとどまらず、
+            投資家のニーズに応じた<strong>付加価値サービス</strong>を提供しています。</p>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #FFF8E7; color: #9A7430;">付加</span>
+              <span style="flex:1;">証券レンディング（有価証券の貸借取引）</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <p><span class="term" data-tooltip="Securities Lending。保有する有価証券を一定期間、借り手（証券会社等）に貸し出し、貸借料（フィー）を得る取引。カストディアンが仲介して、年金基金等の長期保有者の追加収益を生み出す。">証券レンディング</span>は、
+                  保有している有価証券を<strong>一定期間貸し出し、貸借料を得る</strong>取引です。</p>
+                <ul>
+                  <li><strong>貸し手</strong>：年金基金や投資信託など長期保有の投資家 → 保有証券の収益力を向上</li>
+                  <li><strong>借り手</strong>：証券会社やヘッジファンド → 空売りや決済用の証券を調達</li>
+                  <li><strong>カストディアンの役割</strong>：貸し手と借り手のマッチング、担保管理、リスク管理</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-panel">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-tag" style="background: #FFF8E7; color: #9A7430;">付加</span>
+              <span style="flex:1;">為替管理・パフォーマンス測定・議決権行使管理</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-inner">
+                <div class="compare-table-wrapper">
+                  <table class="compare-table" aria-label="その他の付加価値サービス">
+                    <thead>
+                      <tr>
+                        <th>サービス</th>
+                        <th>内容</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>為替管理</strong></td>
+                        <td>外国証券の売買・配当受領に伴う外貨の調達・換算。為替ヘッジの実行管理も対応</td>
+                      </tr>
+                      <tr>
+                        <td><strong>パフォーマンス測定</strong></td>
+                        <td>ポートフォリオの運用成績をベンチマークと比較して測定。要因分析（銘柄選択効果・資産配分効果等）も提供</td>
+                      </tr>
+                      <tr>
+                        <td><strong><span class="term" data-tooltip="Proxy Voting（議決権の代理行使）。機関投資家に代わって株主総会の議案に対する議決権行使を管理するサービス。各国の総会日程管理、議案分析、行使結果の報告を行う。">プロキシー・ボーティング</span></strong></td>
+                        <td>株主総会の議決権行使を管理。各国の総会日程管理、議案内容の通知、投資家の意向に基づく行使指図の代行</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="complete-level-btn" type="button">このレベルを学習完了にする</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================
+         レベル3：実務の流れ
+         ======================================== -->
+    <article class="level-block" data-level="3">
+      <div class="level-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="level-badge" aria-hidden="true">Lv.3</div>
+        <div>
+          <h2>実務の流れ</h2>
+          <span class="level-desc">上級知識 ～ NAV算出の日次サイクルとクロスボーダー決済フロー</span>
+        </div>
+        <div class="level-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-content">
+
+          <div class="parrot-guide">
+            <div class="parrot-character" id="lv3-parrot"></div>
+            <div class="parrot-message">
+              <p><strong>トラストンのひとこと</strong></p>
+              <p>カストディの実務は「時間との戦い」。
+                市場が閉まってからNAVを公表するまでの数時間、
+                そしてクロスボーダー決済では時差との闘い……
+                実務のリアルな流れを体感しよう！</p>
+            </div>
+          </div>
+
+          <!-- ===== 基準価額算出の日次サイクル ===== -->
+          <h3>投資信託の基準価額算出プロセス（日次サイクル）</h3>
+          <p>基準価額（NAV）は<strong>毎営業日</strong>、市場終了後に以下の流れで算出されます。
+            正確性と速報性が求められる、時間勝負のプロセスです。</p>
+
+          <div class="diagram-box">
+            <div class="diagram-title">NAV算出の日次サイクル</div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">15:00</div>
+                <div class="timeline-card">
+                  <div class="timeline-card-title">国内市場終了</div>
+                  <div class="timeline-card-desc">東証の取引が終了。国内株式の終値が確定する。</div>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">15:30頃</div>
+                <div class="timeline-card">
+                  <div class="timeline-card-title">時価データ取得</div>
+                  <div class="timeline-card-desc">株式・債券の終値、為替レート（対顧客レート）をデータベンダーから取得。外国証券は前日の現地終値を使用。</div>
+                </div>
+              </div>
+              <div class="timeline-item busy">
+                <div class="timeline-dot busy"></div>
+                <div class="timeline-date">16:00〜17:00 <span class="busy-badge high">繁忙</span></div>
+                <div class="timeline-card">
+                  <div class="timeline-card-title">NAV算出</div>
+                  <div class="timeline-card-desc">全保有資産の時価評価 → 未収利息・未払費用の計上 → 信託財産の純資産額を算出 → 受益権口数で除してNAVを確定。</div>
+                </div>
+              </div>
+              <div class="timeline-item highlight">
+                <div class="timeline-dot highlight"></div>
+                <div class="timeline-date">17:00〜18:00</div>
+                <div class="timeline-card">
+                  <div class="timeline-card-title">検証（ダブルチェック）</div>
+                  <div class="timeline-card-desc">算出されたNAVに異常がないか検証。前日比の変動率チェック、ベンチマークとの乖離チェック。異常があれば原因を調査・修正。</div>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">18:00〜19:00</div>
+                <div class="timeline-card">
+                  <div class="timeline-card-title">公表・配信</div>
+                  <div class="timeline-card-desc">確定したNAVを運用会社に報告。運用会社を通じて投資信託協会や販売会社に配信。翌日の新聞にも掲載。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-box tip">
+            <div class="info-box-title">💡 NAV算出ミスの影響</div>
+            <p>基準価額を間違えると、投資家が<strong>不適切な価格で売買</strong>してしまう。
+              影響を受けた投資家への補償が必要になることも。
+              だから<strong>ダブルチェック</strong>体制が非常に重要なんだ。</p>
+          </div>
+
+          <!-- ===== クロスボーダー取引の決済フロー ===== -->
+          <h3>クロスボーダー取引の決済フロー</h3>
+          <p>海外株式を購入する場合、複数の機関が連携して決済を完了させます。
+            以下は日本の運用会社が米国株式を購入するケースです。</p>
+
+          <!-- 左→右の矢印型フロー図 SVG -->
+          <div class="diagram-box">
+            <div class="diagram-title">クロスボーダー決済フロー（米国株購入の例）</div>
+            <div style="text-align: center; padding: 12px 0; overflow-x: auto;">
+              <svg viewBox="0 0 780 240" width="100%" style="max-width: 780px; min-width: 600px;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="クロスボーダー決済の流れ：運用会社→国内カストディアン→SWIFT→サブカストディアン→CSD→決済完了">
+                <!-- ステップ1：運用会社 -->
+                <rect x="10" y="50" width="110" height="70" rx="10" fill="#EBF5FB" stroke="#2D5F8A" stroke-width="2"/>
+                <text x="65" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#1B3A5C">運用会社</text>
+                <text x="65" y="95" text-anchor="middle" font-size="9" fill="#888">約定・指図</text>
+
+                <!-- 矢印1 -->
+                <line x1="120" y1="85" x2="145" y2="85" stroke="#16A085" stroke-width="2" marker-end="url(#aCross1)"/>
+
+                <!-- ステップ2：国内カストディアン -->
+                <rect x="148" y="50" width="120" height="70" rx="10" fill="#E0F2F1" stroke="#16A085" stroke-width="2.5"/>
+                <text x="208" y="75" text-anchor="middle" font-size="10" font-weight="700" fill="#16A085">国内カストディ</text>
+                <text x="208" y="90" text-anchor="middle" font-size="10" font-weight="700" fill="#16A085">アン</text>
+                <text x="208" y="107" text-anchor="middle" font-size="9" fill="#888">照合・指図作成</text>
+
+                <!-- 矢印2 -->
+                <line x1="268" y1="85" x2="293" y2="85" stroke="#16A085" stroke-width="2" marker-end="url(#aCross1)"/>
+
+                <!-- ステップ3：SWIFT -->
+                <rect x="296" y="50" width="100" height="70" rx="10" fill="#FFF8E7" stroke="#C6973F" stroke-width="2"/>
+                <text x="346" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#9A7430">SWIFT</text>
+                <text x="346" y="95" text-anchor="middle" font-size="9" fill="#888">メッセージ送信</text>
+
+                <!-- 矢印3 -->
+                <line x1="396" y1="85" x2="421" y2="85" stroke="#16A085" stroke-width="2" marker-end="url(#aCross1)"/>
+
+                <!-- ステップ4：サブカストディアン -->
+                <rect x="424" y="50" width="120" height="70" rx="10" fill="#E8F8F0" stroke="#27AE60" stroke-width="2"/>
+                <text x="484" y="75" text-anchor="middle" font-size="10" font-weight="700" fill="#27AE60">サブカストディ</text>
+                <text x="484" y="90" text-anchor="middle" font-size="10" font-weight="700" fill="#27AE60">アン（米国）</text>
+                <text x="484" y="107" text-anchor="middle" font-size="9" fill="#888">現地決済指図</text>
+
+                <!-- 矢印4 -->
+                <line x1="544" y1="85" x2="569" y2="85" stroke="#16A085" stroke-width="2" marker-end="url(#aCross1)"/>
+
+                <!-- ステップ5：CSD -->
+                <rect x="572" y="50" width="90" height="70" rx="10" fill="#F4ECF7" stroke="#8E44AD" stroke-width="2"/>
+                <text x="617" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#8E44AD">CSD</text>
+                <text x="617" y="95" text-anchor="middle" font-size="9" fill="#888">DTC / DTCC</text>
+
+                <!-- 矢印5 -->
+                <line x1="662" y1="85" x2="687" y2="85" stroke="#16A085" stroke-width="2" marker-end="url(#aCross1)"/>
+
+                <!-- ステップ6：決済完了 -->
+                <rect x="690" y="50" width="80" height="70" rx="10" fill="#FDEDEC" stroke="#C0392B" stroke-width="2"/>
+                <text x="730" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#C0392B">決済</text>
+                <text x="730" y="95" text-anchor="middle" font-size="11" font-weight="700" fill="#C0392B">完了</text>
+
+                <!-- 下段の説明 -->
+                <rect x="10" y="155" width="250" height="40" rx="8" fill="#F5F5F5" stroke="#DDD" stroke-width="1"/>
+                <text x="135" y="173" text-anchor="middle" font-size="10" fill="#1B3A5C" font-weight="600">🇯🇵 日本側</text>
+                <text x="135" y="188" text-anchor="middle" font-size="9" fill="#888">運用会社 → カストディアン</text>
+
+                <rect x="270" y="155" width="130" height="40" rx="8" fill="#FFF8E7" stroke="#C6973F" stroke-width="1"/>
+                <text x="335" y="173" text-anchor="middle" font-size="10" fill="#9A7430" font-weight="600">🌐 通信</text>
+                <text x="335" y="188" text-anchor="middle" font-size="9" fill="#888">SWIFT ネットワーク</text>
+
+                <rect x="420" y="155" width="350" height="40" rx="8" fill="#F5F5F5" stroke="#DDD" stroke-width="1"/>
+                <text x="595" y="173" text-anchor="middle" font-size="10" fill="#27AE60" font-weight="600">🇺🇸 米国側</text>
+                <text x="595" y="188" text-anchor="middle" font-size="9" fill="#888">サブカストディアン → CSD → 決済完了</text>
+
+                <!-- 時差の注記 -->
+                <text x="390" y="230" text-anchor="middle" font-size="10" fill="#999">※ 日本と米国の時差（約14時間）を考慮した決済スケジュール管理が必要</text>
+
+                <defs>
+                  <marker id="aCross1" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#16A085"/></marker>
+                </defs>
+              </svg>
+            </div>
+          </div>
+
+          <!-- ===== 決済の「T+」の概念 ===== -->
+          <h3>決済の「T+」の概念</h3>
+          <p><strong>T</strong>は「Trade date（約定日）」の頭文字。
+            「T+2」なら約定日の<strong>2営業日後</strong>に決済されることを意味します。</p>
+
+          <div class="compare-table-wrapper">
+            <table class="compare-table" aria-label="各国の決済サイクル">
+              <thead>
+                <tr>
+                  <th>市場</th>
+                  <th>対象</th>
+                  <th>決済サイクル</th>
+                  <th>備考</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>🇯🇵 日本</td>
+                  <td>株式</td>
+                  <td><strong>T+2</strong></td>
+                  <td>2019年にT+3から短縮</td>
+                </tr>
+                <tr>
+                  <td>🇺🇸 米国</td>
+                  <td>株式</td>
+                  <td class="highlight-cell"><strong>T+1</strong></td>
+                  <td>2024年にT+2から短縮</td>
+                </tr>
+                <tr>
+                  <td>🇪🇺 欧州</td>
+                  <td>株式</td>
+                  <td><strong>T+2</strong></td>
+                  <td>EU圏共通</td>
+                </tr>
+                <tr>
+                  <td>🇨🇳 中国</td>
+                  <td>A株</td>
+                  <td><strong>T+1</strong></td>
+                  <td>上海・深圳市場</td>
+                </tr>
+                <tr>
+                  <td>🇮🇳 インド</td>
+                  <td>株式</td>
+                  <td class="highlight-cell"><strong>T+1</strong></td>
+                  <td>2023年に完全移行</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-box note">
+            <div class="info-box-title">📝 決済サイクル短縮のトレンド</div>
+            <p>世界的に<strong>決済サイクルの短縮化（T+1化）</strong>が進んでいるよ。
+              決済日までの期間が短いほど、取引相手が破綻するリスク（カウンターパーティリスク）が低減される。
+              一方でカストディアンには<strong>より迅速な事務処理</strong>と
+              <strong><span class="term" data-tooltip="Straight Through Processing。取引の約定から決済までの一連のプロセスを、人手を介さず自動的に処理すること。事務効率の向上とミスの低減に寄与する。T+1化に伴い、STP率の向上が急務となっている。">STP（自動処理）</span>率の向上</strong>が求められるんだ。</p>
+          </div>
+
+          <button class="complete-level-btn" type="button">このレベルを学習完了にする</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================
+         レベル4：用語マスター
+         ======================================== -->
+    <article class="level-block" data-level="4">
+      <div class="level-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="level-badge" aria-hidden="true">Lv.4</div>
+        <div>
+          <h2>用語マスター</h2>
+          <span class="level-desc">総仕上げ ～ カストディの専門用語をマスターしよう</span>
+        </div>
+        <div class="level-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-content">
+
+          <div class="parrot-guide">
+            <div class="parrot-character" id="lv4-parrot"></div>
+            <div class="parrot-message">
+              <p><strong>トラストンのひとこと</strong></p>
+              <p>カストディ業務は英語の略語がたくさん出てくるよ。
+                DVP、SWIFT、CSD、NAV、STP……
+                アルファベットの意味を押さえれば怖くない！
+                ペアや関連語を意識して覚えよう。</p>
+            </div>
+          </div>
+
+          <div class="glossary">
+            <div class="glossary-item">
+              <div class="glossary-term">カストディアン</div>
+              <div class="glossary-reading">かすとでぃあん</div>
+              <div class="glossary-definition">Custodian。有価証券の保管・管理・決済代行を行う金融機関。信託銀行や大手グローバル銀行がこの役割を担う。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">サブカストディアン</div>
+              <div class="glossary-reading">さぶかすとでぃあん</div>
+              <div class="glossary-definition">Sub-Custodian。特定の国・地域で有価証券の保管・決済を直接行うカストディアン。現地のCSDに口座を持ち、現地制度に精通している。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">グローバルカストディアン</div>
+              <div class="glossary-reading">ぐろーばるかすとでぃあん</div>
+              <div class="glossary-definition">Global Custodian。世界中の有価証券を一元的に管理するカストディアン。各国のサブカストディアンを統括し、投資家に統合的なレポーティングを提供する。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">DVP決済</div>
+              <div class="glossary-reading">でぃー・ぶい・ぴー・けっさい</div>
+              <div class="glossary-definition">Delivery Versus Payment。証券の引渡しと代金の支払いを同時に行う決済方式。元本リスク（証券を渡したのに代金が払われない等）を排除する。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">SWIFT</div>
+              <div class="glossary-reading">すうぃふと</div>
+              <div class="glossary-definition">Society for Worldwide Interbank Financial Telecommunication。世界中の金融機関を結ぶ安全な通信ネットワーク。標準化されたメッセージフォーマット（MT/MX）で決済指図等をやり取りする。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">CSD</div>
+              <div class="glossary-reading">しー・えす・でぃー</div>
+              <div class="glossary-definition">Central Securities Depository（証券集中保管機関）。有価証券を集中的に保管・管理し、帳簿上の振替により決済を行う。日本ではJASDEC、米国ではDTC/DTCCが該当。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">NAV</div>
+              <div class="glossary-reading">えぬ・えー・ぶい</div>
+              <div class="glossary-definition">Net Asset Value（純資産価額）。投資信託の1口あたりの価値。（信託財産の時価総額 − 負債）÷ 受益権口数で算出。毎営業日公表される。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">基準価額</div>
+              <div class="glossary-reading">きじゅんかがく</div>
+              <div class="glossary-definition">投資信託のNAVを日本円で表したもの。1万口あたりの価額で表示されることが多い。投資家の売買はこの基準価額に基づいて行われる。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">ファンドアドミニストレーション</div>
+              <div class="glossary-reading">ふぁんど・あどみにすとれーしょん</div>
+              <div class="glossary-definition">Fund Administration。投資信託やファンドの運営に必要な事務管理業務の総称。NAV算出、時価評価、運用報告書作成支援、税務計算などを含む。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">証券レンディング</div>
+              <div class="glossary-reading">しょうけんれんでぃんぐ</div>
+              <div class="glossary-definition">Securities Lending。保有する有価証券を一定期間貸し出し、貸借料（フィー）を得る取引。カストディアンが仲介し、長期保有者の追加収益を生み出す。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">コーポレートアクション</div>
+              <div class="glossary-reading">こーぽれーと・あくしょん</div>
+              <div class="glossary-definition">Corporate Action。企業が行う株主に影響を与えるイベントの総称。配当金支払い、株式分割、合併、公開買付け等。カストディアンが投資家に代わり対応する。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">プロキシー・ボーティング</div>
+              <div class="glossary-reading">ぷろきしー・ぼーてぃんぐ</div>
+              <div class="glossary-definition">Proxy Voting（議決権の代理行使管理）。機関投資家の株主総会における議決権行使を管理するサービス。各国の総会日程管理、議案分析、行使結果の集計・報告を行う。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">トランスファーエージェント</div>
+              <div class="glossary-reading">とらんすふぁー・えーじぇんと</div>
+              <div class="glossary-definition">Transfer Agent。株主名簿の管理や株式の移転手続きを行う機関。日本では信託銀行が証券代行業務として担うケースが多い。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">約定</div>
+              <div class="glossary-reading">やくじょう</div>
+              <div class="glossary-definition">取引（売買）が成立すること。売り手と買い手が銘柄・数量・価格について合意した時点。約定日をT（Trade date）と表記する。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">受渡</div>
+              <div class="glossary-reading">うけわたし</div>
+              <div class="glossary-definition">約定に基づき、証券と代金を実際にやり取りすること。決済（Settlement）と同義。約定日から一定期間後（T+1、T+2等）に行われる。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">照合</div>
+              <div class="glossary-reading">しょうごう</div>
+              <div class="glossary-definition">約定内容（銘柄・数量・価格・決済日等）を取引当事者間で突き合わせて確認する作業。決済前に不一致を発見し、フェイルを未然に防ぐ。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">フェイル</div>
+              <div class="glossary-reading">ふぇいる</div>
+              <div class="glossary-definition">Fail（決済未了）。決済日に証券や代金の受渡しが完了しないこと。在庫不足、資金不足、事務ミス等が原因。フェイル率の管理はカストディアンの重要なKPI。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">T+1 / T+2</div>
+              <div class="glossary-reading">てぃー・ぷらす・わん / てぃー・ぷらす・つー</div>
+              <div class="glossary-definition">約定日（T）から決済日までの営業日数を表す。T+1は翌営業日決済、T+2は2営業日後決済。世界的にT+1への短縮化が進んでいる。</div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-term">STP</div>
+              <div class="glossary-reading">えす・てぃー・ぴー</div>
+              <div class="glossary-definition">Straight Through Processing。約定から決済までの一連のプロセスを人手を介さず自動処理すること。事務効率の向上、ミスの低減、T+1対応に不可欠。</div>
+            </div>
+          </div>
+
+          <button class="complete-level-btn" type="button">このレベルを学習完了にする</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========================================
+         実務ミニシーン
+         ======================================== -->
+    <section class="scene-block mt-xl" aria-label="実務ミニシーン">
+      <h2 class="scene-title">実務ミニシーン：新規海外ファンドのカストディ体制構築</h2>
+
+      <div class="dialogue">
+        <!-- 状況説明 -->
+        <div class="dialogue-row">
+          <div class="dialogue-avatar">👔</div>
+          <div class="speech-bubble">
+            <div class="speaker-name">田中マネージャー（A運用会社）</div>
+            <p>カストディアンさん、相談です。新しく海外株式に投資するファンドを設定することになりました。</p>
+            <div class="info-box note" style="margin-top: 12px; margin-bottom: 0;">
+              <p><strong>ファンドの概要</strong><br>
+                新規設定の海外株式ファンド。<br>
+                投資対象：<strong>米国・欧州・アジア新興国（中国、インド等）</strong>の株式。<br>
+                カストディアンとして何を準備してもらう必要がありますか？</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 質問1 -->
+        <div class="dialogue-row right">
+          <div class="dialogue-avatar" id="scene-parrot-1"></div>
+          <div class="speech-bubble">
+            <div class="speaker-name">トラストン</div>
+            <p><strong>Question 1</strong>：まず最初に確認・整備すべきことは何だろう？</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 選択肢1 -->
+      <div class="scene-choices" style="margin: 16px 0;">
+        <button class="scene-choice-btn"
+                data-correct="true"
+                data-feedback="<strong>正解！</strong>まず最初に確認すべきは①<strong>各国のサブカストディアン・ネットワーク</strong>の確認だよ。米国・欧州は既存のネットワークで対応可能か、アジア新興国（中国、インド等）は新たにサブカストディアンの選定が必要かを確認する。サブカストディアンなしには現地での保管・決済ができないから、これがすべての出発点なんだ。">
+          各国のサブカストディアン・ネットワークが対応可能か確認する
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="パフォーマンス測定は運用が始まってからの話だね。ファンド設定前にまず確認すべきは、投資対象国で有価証券を保管・決済できる体制が整っているかどうか。<strong>サブカストディアン・ネットワーク</strong>の確認が最優先だよ。">
+          パフォーマンス測定の基準を決める
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="証券レンディングは付加価値サービスで、ファンドの基本的な運営体制が整ってから検討する内容だね。まずは各国で<strong>保管・決済ができる体制</strong>を確認することが先決だよ。">
+          証券レンディングの契約を準備する
+        </button>
+      </div>
+      <div class="scene-feedback info-box" style="display: none;"></div>
+
+      <!-- 質問2 -->
+      <div class="dialogue mt-lg">
+        <div class="dialogue-row right">
+          <div class="dialogue-avatar" id="scene-parrot-2"></div>
+          <div class="speech-bubble">
+            <div class="speaker-name">トラストン</div>
+            <p><strong>Question 2</strong>：サブカストディアンの確認ができた。次に投資先の各国について確認すべき「決済制度」のポイントは？</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-choices" style="margin: 16px 0;">
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="取引手数料の比較も大事だけど、もっと根本的なことがある。各国の<strong>CSD（証券集中保管機関）の仕組みと決済サイクル（T+1なのかT+2なのか）</strong>を確認しないと、決済の事務フローが組めないよ。">
+          各国の証券取引所の取引手数料を比較する
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="true"
+                data-feedback="<strong>その通り！</strong>各国の決済制度の確認ポイントは①<strong>CSD（証券集中保管機関）</strong>：米国はDTC、欧州はEuroclear/Clearstream、インドはCDSL/NSDL等、②<strong>決済サイクル</strong>：米国T+1、欧州T+2、インドT+1、中国T+1と国によって異なる、③<strong>プレファンディングの有無</strong>：新興国では決済前に資金を用意する必要がある場合も。決済制度の違いを正確に把握することがフェイル防止の第一歩だよ。">
+          各国のCSD（証券集中保管機関）と決済サイクル（T+1/T+2等）を確認する
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="株主総会の対応は投資を始めてからの話で、今の段階ではもっと基本的なインフラの確認が必要だよ。各国の<strong>CSDと決済サイクル</strong>を確認して、決済事務のフローを組み立てよう。">
+          各国の株主総会の開催時期を調べる
+        </button>
+      </div>
+      <div class="scene-feedback info-box" style="display: none;"></div>
+
+      <!-- 質問3 -->
+      <div class="dialogue mt-lg">
+        <div class="dialogue-row right">
+          <div class="dialogue-avatar" id="scene-parrot-3"></div>
+          <div class="speech-bubble">
+            <div class="speaker-name">トラストン</div>
+            <p><strong>Question 3</strong>：基準価額（NAV）算出の体制整備で、海外ファンド特有の課題は？</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-choices" style="margin: 16px 0;">
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="基準価額の算出頻度を減らすのは法令上も実務上もNGだよ。投資信託は毎営業日のNAV算出が義務付けられている。海外ファンド特有の課題を踏まえて、<strong>多通貨・時差への対応体制</strong>を整えることが大事だよ。">
+          NAVの算出頻度を月次にして負担を減らす
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="全額を円建てにするのは為替ヘッジ戦略の話で、NAV算出の体制整備とは別の論点だね。海外ファンドのNAV算出では<strong>多通貨（ドル・ユーロ・人民元・ルピー等）の時価評価と適用為替レートの管理、時差への対応</strong>がポイントだよ。">
+          為替リスクを避けるため全額を円建てにする
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="true"
+                data-feedback="<strong>素晴らしい！</strong>海外ファンドのNAV算出で特有の課題は①<strong>多通貨対応</strong>：米ドル、ユーロ、人民元、インドルピー等の時価を取得し円換算。適用する為替レートの統一も重要、②<strong>時差対応</strong>：米国市場は日本時間の早朝に終了するため、NAV算出のスケジュール調整が必要、③<strong>新興国市場の時価取得</strong>：流動性が低い銘柄の公正価値評価の仕組みが必要。この3つの体制整備がカストディアンの腕の見せどころだよ！">
+          多通貨（ドル・ユーロ・人民元等）の時価評価と時差を考慮した算出スケジュールの整備
+        </button>
+      </div>
+      <div class="scene-feedback info-box" style="display: none;"></div>
+
+      <!-- 質問4 -->
+      <div class="dialogue mt-lg">
+        <div class="dialogue-row">
+          <div class="dialogue-avatar">👔</div>
+          <div class="speech-bubble">
+            <div class="speaker-name">田中マネージャー</div>
+            <p>ありがとうございます。ちなみに、ファンド設定後にコーポレートアクションへの対応も必要になりますよね？</p>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="dialogue-avatar" id="scene-parrot-4"></div>
+          <div class="speech-bubble">
+            <div class="speaker-name">トラストン</div>
+            <p><strong>Question 4</strong>：複数国のコーポレートアクション対応で、最も注意すべきことは？</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-choices" style="margin: 16px 0;">
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="全部のコーポレートアクションに自動応募してしまうのは危険！任意型（Voluntary）のイベントは、運用会社が投資判断として「応募する/しない」を決める必要がある。カストディアンが勝手に判断してはダメだよ。">
+          すべてのイベントに自動的に応募する設定にする
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="true"
+                data-feedback="<strong>正解！</strong>各国のコーポレートアクション対応で最も重要なのは①<strong>各国の制度・期限の違い</strong>を正確に把握すること。国によって通知タイミングや期限が大きく異なる、②<strong>任意型（Voluntary）イベントの期限管理</strong>：公開買付け、権利行使等は期限を逃すと権利を失う、③<strong>税務処理の国別対応</strong>：配当の源泉徴収税率が国ごとに異なり、租税条約による軽減税率の適用手続きも必要。多国籍ファンドのコーポレートアクション管理は、カストディ業務の中でも高度な専門性が求められる分野なんだ。">
+          各国の制度・期限の違いを把握し、特に任意型イベントの期限管理と国別の税務処理を整備する
+        </button>
+        <button class="scene-choice-btn"
+                data-correct="false"
+                data-feedback="コーポレートアクションを無視することは絶対にできない！配当金の受領漏れ、株式分割の未対応などが起きると、投資家に大きな損害を与える。カストディアンとして<strong>各国の制度・期限を把握し、確実に対応する体制</strong>を整えることが必要だよ。">
+          対応が煩雑なのでコーポレートアクションは対象外にする
+        </button>
+      </div>
+      <div class="scene-feedback info-box" style="display: none;"></div>
+
+      <!-- オウムのリアクション -->
+      <div style="text-align: center; margin-top: 16px;">
+        <div class="parrot-reaction" id="scene-parrot-reaction"></div>
+      </div>
+    </section>
+
+    <!-- セクションクイズ -->
+    <section class="level-block" id="section-quiz">
+      <h2>セクションクイズ</h2>
+      <p>カストディ業務の理解度をチェックしよう！</p>
+      <div id="quiz-container-custody"></div>
+    </section>
+
+    <!-- ページ内ナビゲーション -->
+    <nav class="section-nav" aria-label="セクション間ナビゲーション">
+      <a href="pension.html" class="btn btn-outline">← 年金・資産運用業務</a>
+      <a href="../index.html" class="btn btn-primary">トップへ戻る →</a>
+    </nav>
+
+  </main>
+
+  <!-- フッター -->
+  <div id="site-footer"></div>
+
+  <script src="../quiz/quiz-data.js"></script>
+  <script src="../js/quiz.js"></script>
+  <script src="../js/common.js"></script>
+  <script>
+    // ヘッダー・フッター挿入
+    document.getElementById('site-header').innerHTML = HeaderTemplate.create('../');
+    document.getElementById('site-footer').innerHTML = FooterTemplate.create();
+
+    // オウムキャラ挿入
+    document.getElementById('section-parrot').innerHTML = ParrotSVG.create('normal', 64);
+    document.getElementById('lv1-parrot').innerHTML = ParrotSVG.create('normal', 64);
+    document.getElementById('lv2-parrot').innerHTML = ParrotSVG.create('thinking', 64);
+    document.getElementById('lv3-parrot').innerHTML = ParrotSVG.create('normal', 64);
+    document.getElementById('lv4-parrot').innerHTML = ParrotSVG.create('cheering', 64);
+    document.getElementById('scene-parrot-1').innerHTML = ParrotSVG.create('thinking', 48);
+    document.getElementById('scene-parrot-2').innerHTML = ParrotSVG.create('thinking', 48);
+    document.getElementById('scene-parrot-3').innerHTML = ParrotSVG.create('thinking', 48);
+    document.getElementById('scene-parrot-4').innerHTML = ParrotSVG.create('thinking', 48);
+    document.getElementById('scene-parrot-reaction').innerHTML = ParrotSVG.create('thinking', 60);
+
+    // アプリ初期化
+    document.addEventListener('DOMContentLoaded', () => {
+      App.init({ sectionId: 'custody' });
+
+      // クイズ初期化
+      QuizEngine.renderStartScreen('custody', 'quiz-container-custody');
+
+      // ミニシーンの複数質問対応
+      document.querySelectorAll('.scene-choices').forEach(choicesBlock => {
+        const feedback = choicesBlock.nextElementSibling;
+        const btns = choicesBlock.querySelectorAll('.scene-choice-btn');
+        const parrotReaction = document.getElementById('scene-parrot-reaction');
+
+        btns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (choicesBlock.querySelector('.scene-choice-btn.correct')) return;
+            if (choicesBlock.querySelector('.scene-choice-btn.incorrect')) return;
+
+            const isCorrect = btn.dataset.correct === 'true';
+
+            if (isCorrect) {
+              btn.classList.add('correct');
+              if (feedback && feedback.classList.contains('scene-feedback')) {
+                feedback.innerHTML = btn.dataset.feedback;
+                feedback.className = 'scene-feedback info-box success';
+                feedback.style.display = 'block';
+              }
+              if (parrotReaction) parrotReaction.innerHTML = ParrotSVG.create('correct', 60);
+            } else {
+              btn.classList.add('incorrect');
+              if (feedback && feedback.classList.contains('scene-feedback')) {
+                feedback.innerHTML = btn.dataset.feedback;
+                feedback.className = 'scene-feedback info-box warning';
+                feedback.style.display = 'block';
+              }
+              if (parrotReaction) parrotReaction.innerHTML = ParrotSVG.create('incorrect', 60);
+              setTimeout(() => {
+                btn.classList.remove('incorrect');
+                if (feedback) feedback.style.display = 'none';
+                if (parrotReaction) parrotReaction.innerHTML = ParrotSVG.create('thinking', 60);
+              }, 2500);
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
