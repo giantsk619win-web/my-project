@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel English Circus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== CSS Variables / Design System ===== */
+:root {
+  --main: #1B4F72;
+  --main-dark: #154360;
+  --main-light: #2E86C1;
+  --sub-light: #AED6F1;
+  --sub-mint: #A3E4D7;
+  --accent: #F39C12;
+  --accent-orange: #E67E22;
+  --accent-red: #E74C3C;
+  --success: #27AE60;
+  --bg-start: #F0F8FF;
+  --bg-end: #E8F4FD;
+  --white: #FFFFFF;
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-300: #CBD5E1;
+  --gray-400: #94A3B8;
+  --gray-500: #64748B;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1E293B;
+  --text: #2C3E50;
+  --text-light: #5D6D7E;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+  --shadow-xl: 0 12px 36px rgba(0,0,0,0.15);
+  --font-display: 'Baloo 2', cursive;
+  --font-body: 'Noto Sans JP', 'Inter', sans-serif;
+  --font-phrase: 'Inter', 'Noto Sans JP', sans-serif;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ===== Background Decoration ===== */
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  right: -30%;
+  width: 80vw;
+  height: 80vw;
+  background: radial-gradient(circle, rgba(174,214,241,0.15) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -40%;
+  left: -20%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(163,228,215,0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== Header ===== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(27,79,114,0.08);
+  box-shadow: var(--shadow-sm);
+}
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--main);
+}
+.logo-icon { font-size: 28px; }
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--main);
+  letter-spacing: -0.5px;
+}
+.logo-text span { color: var(--accent); }
+
+/* Hamburger */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  background: none;
+  border: none;
+  z-index: 1002;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: var(--main);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* ===== Side Navigation ===== */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+.nav-overlay.active { opacity: 1; visibility: visible; }
+
+.side-nav {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  max-width: 85vw;
+  height: 100vh;
+  background: var(--white);
+  z-index: 1001;
+  transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  padding: 80px 20px 40px;
+  box-shadow: var(--shadow-xl);
+}
+.side-nav.active { right: 0; }
+
+.nav-section-title {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 16px 12px 8px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.nav-item:hover, .nav-item.active { background: rgba(27,79,114,0.06); color: var(--main); }
+.nav-item .nav-icon { font-size: 1.3rem; width: 32px; text-align: center; }
+.nav-divider { height: 1px; background: var(--gray-200); margin: 8px 12px; }
+
+/* ===== Main Content ===== */
+.main { padding-top: 60px; position: relative; z-index: 1; min-height: 100vh; }
+.page { display: none; padding: 24px 16px 80px; max-width: 900px; margin: 0 auto; animation: fadeIn 0.4s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===== Home Page ===== */
+.hero {
+  text-align: center;
+  padding: 40px 0 32px;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--main);
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hero-title span { color: var(--accent); }
+.hero-subtitle {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+
+/* Pal Welcome */
+.pal-welcome {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-md);
+  border-left: 4px solid var(--accent);
+}
+.pal-message {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+.pal-message strong { color: var(--main); }
+
+/* Progress Summary */
+.progress-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.progress-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.progress-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--main);
+}
+.progress-label {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+/* Section Cards */
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.section-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 20px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  border: 2px solid transparent;
+  text-decoration: none;
+  color: var(--text);
+}
+.section-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--sub-light); }
+.section-card .card-icon { font-size: 2rem; margin-bottom: 8px; display: block; }
+.section-card .card-title { font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: var(--main); }
+.section-card .card-desc { font-size: 0.75rem; color: var(--text-light); margin-top: 4px; }
+
+/* ===== Pal SVG ===== */
+.pal-container { display: inline-block; position: relative; }
+.pal-svg { width: 64px; height: 64px; }
+.pal-mini { width: 40px; height: 40px; }
+.pal-large { width: 100px; height: 100px; }
+
+/* ===== Scene Page Common ===== */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--gray-100);
+}
+.page-header-icon { font-size: 2rem; }
+.page-header-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--main); }
+
+/* Mode Tabs */
+.mode-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.mode-tab {
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  background: var(--gray-100);
+  color: var(--gray-600);
+  border: none;
+  font-family: var(--font-body);
+}
+.mode-tab.active { background: var(--main); color: var(--white); }
+
+/* Politeness Toggle */
+.politeness-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+.toggle-switch {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  background: var(--sub-light);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.toggle-switch.polite { background: var(--main-light); }
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: var(--white);
+  border-radius: 50%;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+.toggle-switch.polite::after { left: 25px; }
+
+/* Phrase Card */
+.phrase-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--sub-light);
+  transition: var(--transition);
+  position: relative;
+}
+.phrase-card:hover { box-shadow: var(--shadow-md); }
+.phrase-jp { font-size: 0.85rem; color: var(--text-light); margin-bottom: 6px; }
+.phrase-en { font-family: var(--font-phrase); font-size: 1.1rem; font-weight: 600; color: var(--main-dark); line-height: 1.5; }
+.phrase-note { font-size: 0.75rem; color: var(--gray-400); margin-top: 4px; font-style: italic; }
+
+/* Favorite Button */
+.fav-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--gray-300);
+  transition: var(--transition);
+  padding: 4px;
+}
+.fav-btn.active { color: var(--accent); }
+.fav-btn:hover { transform: scale(1.2); }
+
+/* Sparkle effect */
+@keyframes sparkle {
+  0% { transform: scale(0) rotate(0); opacity: 1; }
+  100% { transform: scale(1.5) rotate(180deg); opacity: 0; }
+}
+.sparkle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+.sparkle::before, .sparkle::after {
+  content: '✦';
+  position: absolute;
+  font-size: 12px;
+  color: var(--accent);
+  animation: sparkle 0.6s ease forwards;
+}
+.sparkle::after { animation-delay: 0.1s; top: -8px; left: 8px; }
+
+/* ===== Flip Card (Instant Composition) ===== */
+.flip-cards-container { perspective: 1000px; }
+.flip-card {
+  width: 100%;
+  min-height: 200px;
+  cursor: pointer;
+  perspective: 1000px;
+  margin-bottom: 16px;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+.flip-card-front {
+  background: linear-gradient(135deg, var(--main) 0%, var(--main-light) 100%);
+  color: var(--white);
+  box-shadow: var(--shadow-lg);
+}
+.flip-card-back {
+  background: var(--white);
+  color: var(--main);
+  transform: rotateY(180deg);
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--sub-light);
+}
+.flip-card-front .flip-label { font-size: 0.75rem; opacity: 0.8; margin-bottom: 12px; }
+.flip-card-front .flip-jp { font-size: 1.2rem; font-weight: 700; line-height: 1.6; }
+.flip-card-back .flip-label { font-size: 0.75rem; color: var(--text-light); margin-bottom: 12px; }
+.flip-card-back .flip-en { font-family: var(--font-phrase); font-size: 1.3rem; font-weight: 700; line-height: 1.5; }
+.flip-hint { font-size: 0.75rem; opacity: 0.6; margin-top: 16px; }
+
+/* Self-report buttons */
+.self-report {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 12px;
+}
+.self-report button {
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: var(--transition);
+}
+.btn-correct { background: var(--success); color: var(--white); }
+.btn-incorrect { background: var(--gray-200); color: var(--gray-600); }
+.btn-correct:hover { background: #219a52; }
+.btn-incorrect:hover { background: var(--gray-300); }
+
+/* ===== Quiz ===== */
+.quiz-container { max-width: 600px; margin: 0 auto; }
+.quiz-progress { font-size: 0.85rem; color: var(--text-light); margin-bottom: 16px; text-align: center; }
+.quiz-question {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+.quiz-question-text { font-size: 1.1rem; font-weight: 600; color: var(--main); margin-bottom: 20px; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option {
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--gray-200);
+  background: var(--white);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-family: var(--font-phrase);
+  transition: var(--transition);
+  text-align: left;
+}
+.quiz-option:hover { border-color: var(--main-light); background: rgba(46,134,193,0.05); }
+.quiz-option.correct { border-color: var(--success); background: rgba(39,174,96,0.08); color: var(--success); }
+.quiz-option.incorrect { border-color: var(--accent-red); background: rgba(231,76,60,0.08); color: var(--accent-red); }
+
+.quiz-result {
+  text-align: center;
+  padding: 32px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+.quiz-score { font-family: var(--font-display); font-size: 2.5rem; font-weight: 800; color: var(--main); }
+.quiz-score-label { color: var(--text-light); margin-bottom: 20px; }
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  font-family: var(--font-body);
+}
+.btn-primary { background: var(--main); color: var(--white); }
+.btn-primary:hover { background: var(--main-dark); transform: translateY(-1px); }
+.btn-accent { background: var(--accent); color: var(--white); }
+.btn-accent:hover { background: var(--accent-orange); }
+.btn-outline { background: transparent; border: 2px solid var(--main); color: var(--main); }
+.btn-outline:hover { background: var(--main); color: var(--white); }
+.btn-ghost { background: var(--gray-100); color: var(--gray-600); }
+.btn-ghost:hover { background: var(--gray-200); }
+
+/* ===== Form Elements ===== */
+.input, .textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  transition: var(--transition);
+  background: var(--white);
+  color: var(--text);
+}
+.input:focus, .textarea:focus { outline: none; border-color: var(--main-light); box-shadow: 0 0 0 3px rgba(46,134,193,0.15); }
+.textarea { resize: vertical; min-height: 100px; }
+
+/* ===== Search ===== */
+.search-box {
+  position: relative;
+  margin-bottom: 16px;
+}
+.search-box .input { padding-left: 40px; }
+.search-box::before {
+  content: '🔍';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+}
+
+/* ===== API / Loading ===== */
+.loading-pal {
+  text-align: center;
+  padding: 40px;
+}
+.loading-pal .pal-bounce {
+  animation: bounce 0.6s infinite alternate;
+  display: inline-block;
+  font-size: 3rem;
+}
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-12px); }
+}
+.loading-text { color: var(--text-light); margin-top: 12px; font-size: 0.9rem; }
+
+.error-msg {
+  background: rgba(231,76,60,0.08);
+  border: 1px solid rgba(231,76,60,0.2);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  color: var(--accent-red);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* ===== Custom Phrase / Intro Cards ===== */
+.saved-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.saved-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.saved-card-actions button {
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  cursor: pointer;
+  color: var(--gray-500);
+  transition: var(--transition);
+}
+.saved-card-actions button:hover { background: var(--gray-100); }
+.saved-card-actions .delete-btn:hover { color: var(--accent-red); border-color: var(--accent-red); }
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  padding: 24px 16px;
+  color: var(--gray-400);
+  font-size: 0.75rem;
+}
+
+/* ===== Pal Reactions ===== */
+.pal-reaction {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  margin: 16px 0;
+  animation: fadeIn 0.4s ease;
+}
+.pal-reaction.happy { background: rgba(39,174,96,0.08); border: 1px solid rgba(39,174,96,0.2); }
+.pal-reaction.encourage { background: rgba(243,156,18,0.08); border: 1px solid rgba(243,156,18,0.2); }
+.pal-reaction-text { font-size: 0.9rem; }
+
+/* ===== Responsive ===== */
+@media (min-width: 640px) {
+  .section-grid { grid-template-columns: repeat(3, 1fr); }
+  .hero-title { font-size: 2.5rem; }
+  .page { padding: 32px 24px 80px; }
+}
+@media (min-width: 900px) {
+  .section-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 380px) {
+  .progress-summary { grid-template-columns: 1fr; }
+  .section-grid { grid-template-columns: 1fr; }
+  .logo-text { font-size: 1.1rem; }
+}
+
+/* ===== Tab content visibility ===== */
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+
+/* ===== Empty state ===== */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--gray-400);
+}
+.empty-state-icon { font-size: 2.5rem; margin-bottom: 12px; display: block; }
+.empty-state-text { font-size: 0.9rem; }
+
+/* ===== API key input ===== */
+.api-key-section {
+  background: rgba(243,156,18,0.06);
+  border: 1px dashed var(--accent);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+}
+.api-key-section .input { font-size: 0.85rem; margin-top: 8px; }
+
+/* My Phrase Book */
+.my-phrases-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* Continuous mode nav */
+.continuous-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+.card-counter {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-inner">
+    <a class="logo" onclick="navigateTo('home')">
+      <span class="logo-icon">🐧</span>
+      <span class="logo-text">Travel English <span>Circus</span></span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Nav Overlay -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- Side Navigation -->
+<nav class="side-nav" id="sideNav">
+  <div class="nav-section-title">Menu</div>
+  <a class="nav-item active" onclick="navigateTo('home')">
+    <span class="nav-icon">🏠</span> ホーム
+  </a>
+  <a class="nav-item" onclick="navigateTo('intro')">
+    <span class="nav-icon">🐧</span> 自己紹介
+  </a>
+  <a class="nav-item" onclick="navigateTo('custom')">
+    <span class="nav-icon">✏️</span> カスタムフレーズ
+  </a>
+  <div class="nav-divider"></div>
+  <div class="nav-section-title">Phrases</div>
+  <a class="nav-item" onclick="navigateTo('helper')">
+    <span class="nav-icon">🆘</span> お助けフレーズ
+  </a>
+  <a class="nav-item" onclick="navigateTo('airport')">
+    <span class="nav-icon">✈️</span> 空港・機内
+  </a>
+  <a class="nav-item" onclick="navigateTo('transport')">
+    <span class="nav-icon">🚕</span> 移動・交通
+  </a>
+  <a class="nav-item" onclick="navigateTo('hotel')">
+    <span class="nav-icon">🏨</span> ホテル
+  </a>
+  <a class="nav-item" onclick="navigateTo('restaurant')">
+    <span class="nav-icon">🍽️</span> レストラン・カフェ
+  </a>
+  <a class="nav-item" onclick="navigateTo('shopping')">
+    <span class="nav-icon">🛍️</span> ショッピング
+  </a>
+  <a class="nav-item" onclick="navigateTo('sightseeing')">
+    <span class="nav-icon">📸</span> 観光・アクティビティ
+  </a>
+  <a class="nav-item" onclick="navigateTo('trouble')">
+    <span class="nav-icon">🚨</span> トラブル・緊急
+  </a>
+  <a class="nav-item" onclick="navigateTo('smalltalk')">
+    <span class="nav-icon">💬</span> スモールトーク
+  </a>
+  <div class="nav-divider"></div>
+  <a class="nav-item" onclick="navigateTo('myphrases')">
+    <span class="nav-icon">⭐</span> マイフレーズ帳
+  </a>
+</nav>
+
+<!-- Main Content -->
+<main class="main">
+
+<!-- Home Page -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div style="font-size:4rem;margin-bottom:12px">🐧</div>
+    <h1 class="hero-title">Travel English <span>Circus</span></h1>
+    <p class="hero-subtitle">海外旅行で使える英語フレーズの瞬発力を鍛えよう！</p>
+  </div>
+
+  <div class="pal-welcome">
+    <div style="font-size:2rem">🐧</div>
+    <div class="pal-message">
+      やあ！ぼくは<strong>パル</strong>、キミの旅の相棒だよ！<br>
+      一緒に旅先で使えるフレーズをたくさん練習しよう。<br>
+      パッと英語が口から出るようになるまで、ぼくが応援するよ！
+    </div>
+  </div>
+
+  <div class="progress-summary">
+    <div class="progress-card">
+      <div class="progress-num" id="favCount">0</div>
+      <div class="progress-label">お気に入り</div>
+    </div>
+    <div class="progress-card">
+      <div class="progress-num" id="learnCount">0</div>
+      <div class="progress-label">練習済み</div>
+    </div>
+    <div class="progress-card">
+      <div class="progress-num" id="quizCount">0</div>
+      <div class="progress-label">クイズ正解</div>
+    </div>
+  </div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--main);margin-bottom:16px;">セクション一覧</h2>
+  <div class="section-grid">
+    <div class="section-card" onclick="navigateTo('intro')">
+      <span class="card-icon">🐧</span>
+      <span class="card-title">自己紹介</span>
+      <span class="card-desc">英語で自分を紹介</span>
+    </div>
+    <div class="section-card" onclick="navigateTo('custom')">
+      <span class="card-icon">✏️</span>
+      <span class="card-title">カスタム</span>
+      <span class="card-desc">言いたいことを翻訳</span>
+    </div>
+    <div class="section-card" onclick="navigateTo('helper')">
+      <span class="card-icon">🆘</span>
+      <span class="card-title">お助け</span>
+      <span class="card-desc">万能フレーズ集</span>
+    </div>
+    <div class="section-card" onclick="navigateTo('airport')">
+      <span class="card-icon">✈️</span>
+      <span class="card-title">空港・機内</span>
+      <span class="card-desc">チェックイン〜入国</span>
+    </div>
+    <div class="section-card" onclick="navigateTo('transport')">
+      <span class="card-icon">🚕</span>
+      <span class="card-title">移動・交通</span>
+      <span class="card-desc">タクシー・電車等</span>
+    </div>
+    <div class="section-card" onclick="navigateTo('hotel')">
+      <span class="card-icon">🏨</span>
+      <span class="card-title">ホテル</span>
+      <span class="card-desc">チェックイン・要望</span>
+    </div>
+    <div class="section-card" onclick="navigateTo('restaurant')">
+      <span class="card-icon">🍽️</span>
+      <span class="card-title">レストラン</span>
+      <span class="card-desc">注文・会計</span>
+    </div>
+    <div class="section-card" onclick="navigateTo('shopping')">
+      <span class="card-icon">🛍️</span>
+      <span class="card-title">ショッピング</span>
+      <span class="card-desc">買い物・免税</span>
+    </div>
+    <div class="section-card" onclick="navigateTo('sightseeing')">
+      <span class="card-icon">📸</span>
+      <span class="card-title">観光</span>
+      <span class="card-desc">チケット・撮影</span>
+    </div>
+    <div class="section-card" onclick="navigateTo('trouble')">
+      <span class="card-icon">🚨</span>
+      <span class="card-title">トラブル</span>
+      <span class="card-desc">緊急・紛失</span>
+    </div>
+    <div class="section-card" onclick="navigateTo('smalltalk')">
+      <span class="card-icon">💬</span>
+      <span class="card-title">スモールトーク</span>
+      <span class="card-desc">雑談・挨拶</span>
+    </div>
+    <div class="section-card" onclick="navigateTo('myphrases')">
+      <span class="card-icon">⭐</span>
+      <span class="card-title">マイフレーズ</span>
+      <span class="card-desc">お気に入り一覧</span>
+    </div>
+  </div>
+</div>
+
+<!-- Placeholder pages - will be filled in subsequent phases -->
+<div class="page" id="page-intro"></div>
+<div class="page" id="page-custom"></div>
+<div class="page" id="page-helper"></div>
+<div class="page" id="page-airport"></div>
+<div class="page" id="page-transport"></div>
+<div class="page" id="page-hotel"></div>
+<div class="page" id="page-restaurant"></div>
+<div class="page" id="page-shopping"></div>
+<div class="page" id="page-sightseeing"></div>
+<div class="page" id="page-trouble"></div>
+<div class="page" id="page-smalltalk"></div>
+<div class="page" id="page-myphrases"></div>
+
+</main>
+
+<footer class="footer">
+  <p>Travel English Circus &copy; 2026 — Your travel buddy Pal 🐧</p>
+</footer>
+
+<script>
+// ===== Navigation =====
+const hamburger = document.getElementById('hamburger');
+const sideNav = document.getElementById('sideNav');
+const navOverlay = document.getElementById('navOverlay');
+
+function toggleNav() {
+  hamburger.classList.toggle('active');
+  sideNav.classList.toggle('active');
+  navOverlay.classList.toggle('active');
+  document.body.style.overflow = sideNav.classList.contains('active') ? 'hidden' : '';
+}
+hamburger.addEventListener('click', toggleNav);
+navOverlay.addEventListener('click', toggleNav);
+
+function navigateTo(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + pageId);
+  if (target) target.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + pageId + "'")) {
+      n.classList.add('active');
+    }
+  });
+  if (sideNav.classList.contains('active')) toggleNav();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (pageId === 'home') updateProgressSummary();
+  if (pageId === 'myphrases') renderMyPhrases();
+}
+
+// ===== localStorage helpers =====
+const STORAGE_PREFIX = 'tec_';
+function storageGet(key, fallback) {
+  try {
+    const v = localStorage.getItem(STORAGE_PREFIX + key);
+    return v ? JSON.parse(v) : fallback;
+  } catch { return fallback; }
+}
+function storageSet(key, value) {
+  try { localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(value)); } catch {}
+}
+
+// ===== Favorites =====
+let favorites = storageGet('favorites', []);
+
+function toggleFavorite(phraseId) {
+  const idx = favorites.indexOf(phraseId);
+  const adding = idx === -1;
+  if (adding) {
+    favorites.push(phraseId);
+    // Sparkle effect
+    const btn = document.querySelector(`.fav-btn[data-phrase-id="${phraseId}"]`);
+    if (btn) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      btn.style.position = 'relative';
+      btn.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 700);
+    }
+  } else {
+    favorites.splice(idx, 1);
+  }
+  storageSet('favorites', favorites);
+  updateAllFavButtons();
+  updateProgressSummary();
+}
+
+function isFavorite(phraseId) {
+  return favorites.includes(phraseId);
+}
+
+function updateAllFavButtons() {
+  document.querySelectorAll('.fav-btn').forEach(btn => {
+    const id = btn.dataset.phraseId;
+    btn.classList.toggle('active', isFavorite(id));
+    btn.textContent = isFavorite(id) ? '★' : '☆';
+  });
+}
+
+// ===== Learning Records =====
+let learnedPhrases = storageGet('learned', []);
+let quizCorrect = storageGet('quizCorrect', 0);
+
+function markLearned(phraseId) {
+  if (!learnedPhrases.includes(phraseId)) {
+    learnedPhrases.push(phraseId);
+    storageSet('learned', learnedPhrases);
+  }
+}
+
+function updateProgressSummary() {
+  document.getElementById('favCount').textContent = favorites.length;
+  document.getElementById('learnCount').textContent = learnedPhrases.length;
+  document.getElementById('quizCount').textContent = quizCorrect;
+}
+
+// ===== Phrase Data Store (populated by each scene) =====
+const allPhrases = {};
+
+function registerPhrases(sceneId, phrases) {
+  allPhrases[sceneId] = phrases;
+}
+
+function getAllPhrasesFlat() {
+  const result = [];
+  for (const scene in allPhrases) {
+    allPhrases[scene].forEach(p => result.push({ ...p, scene }));
+  }
+  return result;
+}
+
+// ===== Scene Page Renderer =====
+function renderScenePage(pageId, icon, title, phrases, quizData) {
+  const page = document.getElementById('page-' + pageId);
+  if (!page) return;
+
+  registerPhrases(pageId, phrases);
+
+  let html = `
+    <div class="page-header">
+      <span class="page-header-icon">${icon}</span>
+      <h1 class="page-header-title">${title}</h1>
+    </div>
+    <div class="mode-tabs">
+      <button class="mode-tab active" onclick="switchMode('${pageId}','list')">フレーズ一覧</button>
+      <button class="mode-tab" onclick="switchMode('${pageId}','flash')">瞬間英作文</button>
+      <button class="mode-tab" onclick="switchMode('${pageId}','quiz')">ミニクイズ</button>
+    </div>
+
+    <div class="tab-content active" id="${pageId}-list">
+      <div class="politeness-toggle">
+        <span>カジュアル</span>
+        <div class="toggle-switch" id="${pageId}-toggle" onclick="togglePoliteness('${pageId}')"></div>
+        <span>ポライト</span>
+      </div>
+      <div id="${pageId}-phrases"></div>
+    </div>
+
+    <div class="tab-content" id="${pageId}-flash">
+      <div class="card-counter" id="${pageId}-flash-counter"></div>
+      <div id="${pageId}-flash-area"></div>
+      <div class="continuous-nav">
+        <button class="btn btn-ghost" onclick="flashPrev('${pageId}')">← 前</button>
+        <button class="btn btn-primary" onclick="flashNext('${pageId}')">次 →</button>
+      </div>
+    </div>
+
+    <div class="tab-content" id="${pageId}-quiz">
+      <div id="${pageId}-quiz-area"></div>
+    </div>
+  `;
+  page.innerHTML = html;
+
+  renderPhraseList(pageId);
+  initFlashCards(pageId);
+  if (quizData) initQuiz(pageId, quizData);
+}
+
+function switchMode(pageId, mode) {
+  const tabs = document.querySelectorAll(`#page-${pageId} .mode-tab`);
+  const contents = document.querySelectorAll(`#page-${pageId} .tab-content`);
+  tabs.forEach(t => t.classList.remove('active'));
+  contents.forEach(c => c.classList.remove('active'));
+  document.getElementById(`${pageId}-${mode}`).classList.add('active');
+  const modeIdx = { list: 0, flash: 1, quiz: 2 }[mode];
+  if (tabs[modeIdx]) tabs[modeIdx].classList.add('active');
+}
+
+// ===== Phrase List Rendering =====
+const politenessState = {};
+
+function togglePoliteness(pageId) {
+  politenessState[pageId] = !politenessState[pageId];
+  const toggle = document.getElementById(pageId + '-toggle');
+  toggle.classList.toggle('polite', politenessState[pageId]);
+  renderPhraseList(pageId);
+}
+
+function renderPhraseList(pageId) {
+  const phrases = allPhrases[pageId];
+  if (!phrases) return;
+  const container = document.getElementById(pageId + '-phrases');
+  const isPolite = politenessState[pageId];
+
+  container.innerHTML = phrases.map(p => {
+    const en = isPolite && p.polite ? p.polite : p.casual;
+    const favClass = isFavorite(p.id) ? 'active' : '';
+    const favIcon = isFavorite(p.id) ? '★' : '☆';
+    return `
+      <div class="phrase-card">
+        <button class="fav-btn ${favClass}" data-phrase-id="${p.id}" onclick="toggleFavorite('${p.id}');event.stopPropagation();">${favIcon}</button>
+        <div class="phrase-jp">${p.jp}</div>
+        <div class="phrase-en">${en}</div>
+        ${p.note ? `<div class="phrase-note">${p.note}</div>` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+// ===== Flash Cards =====
+const flashState = {};
+
+function initFlashCards(pageId) {
+  const phrases = allPhrases[pageId];
+  if (!phrases) return;
+  flashState[pageId] = { index: 0, flipped: false };
+  renderFlashCard(pageId);
+}
+
+function renderFlashCard(pageId) {
+  const phrases = allPhrases[pageId];
+  const state = flashState[pageId];
+  if (!phrases || !state) return;
+  const p = phrases[state.index];
+  const isPolite = politenessState[pageId];
+  const en = isPolite && p.polite ? p.polite : p.casual;
+
+  document.getElementById(pageId + '-flash-counter').textContent = `${state.index + 1} / ${phrases.length}`;
+  document.getElementById(pageId + '-flash-area').innerHTML = `
+    <div class="flip-card ${state.flipped ? 'flipped' : ''}" onclick="flipCard('${pageId}')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-label">日本語</div>
+          <div class="flip-jp">${p.jp}</div>
+          <div class="flip-hint">タップで英語を表示</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-label">English</div>
+          <div class="flip-en">${en}</div>
+        </div>
+      </div>
+    </div>
+    ${state.flipped ? `
+      <div class="self-report">
+        <button class="btn-correct" onclick="reportResult('${pageId}','${p.id}',true)">言えた！ 😊</button>
+        <button class="btn-incorrect" onclick="reportResult('${pageId}','${p.id}',false)">もう一回 💪</button>
+      </div>
+    ` : ''}
+  `;
+}
+
+function flipCard(pageId) {
+  flashState[pageId].flipped = !flashState[pageId].flipped;
+  renderFlashCard(pageId);
+}
+
+function flashNext(pageId) {
+  const phrases = allPhrases[pageId];
+  const state = flashState[pageId];
+  state.index = (state.index + 1) % phrases.length;
+  state.flipped = false;
+  renderFlashCard(pageId);
+}
+
+function flashPrev(pageId) {
+  const phrases = allPhrases[pageId];
+  const state = flashState[pageId];
+  state.index = (state.index - 1 + phrases.length) % phrases.length;
+  state.flipped = false;
+  renderFlashCard(pageId);
+}
+
+function reportResult(pageId, phraseId, correct) {
+  markLearned(phraseId);
+  if (correct) {
+    // show brief happy reaction, then next
+  }
+  flashNext(pageId);
+}
+
+// ===== Quiz =====
+const quizState = {};
+
+function initQuiz(pageId, quizData) {
+  quizState[pageId] = { questions: quizData, current: 0, score: 0, answered: false };
+  renderQuizQuestion(pageId);
+}
+
+function renderQuizQuestion(pageId) {
+  const state = quizState[pageId];
+  if (!state) return;
+  const area = document.getElementById(pageId + '-quiz-area');
+
+  if (state.current >= state.questions.length) {
+    quizCorrect += state.score;
+    storageSet('quizCorrect', quizCorrect);
+    area.innerHTML = `
+      <div class="quiz-result">
+        <div style="font-size:3rem;margin-bottom:12px">🐧</div>
+        <div class="quiz-score">${state.score} / ${state.questions.length}</div>
+        <div class="quiz-score-label">正解</div>
+        <div class="pal-reaction ${state.score >= 3 ? 'happy' : 'encourage'}" style="justify-content:center;margin-top:16px">
+          <span>${state.score >= 3 ? 'すごい！パルも嬉しいよ！🎉' : 'いい調子！もう一回やってみよう！💪'}</span>
+        </div>
+        <button class="btn btn-primary" style="margin-top:20px" onclick="retryQuiz('${pageId}')">もう一回チャレンジ</button>
+      </div>
+    `;
+    updateProgressSummary();
+    return;
+  }
+
+  const q = state.questions[state.current];
+  area.innerHTML = `
+    <div class="quiz-progress">問題 ${state.current + 1} / ${state.questions.length}</div>
+    <div class="quiz-question">
+      <div class="quiz-question-text">${q.jp}</div>
+      <div class="quiz-options">
+        ${q.options.map((opt, i) => `
+          <div class="quiz-option" onclick="answerQuiz('${pageId}', ${i}, ${q.answer})">${opt}</div>
+        `).join('')}
+      </div>
+      <div id="${pageId}-quiz-feedback"></div>
+    </div>
+  `;
+}
+
+function answerQuiz(pageId, selected, correct) {
+  const state = quizState[pageId];
+  if (state.answered) return;
+  state.answered = true;
+
+  const options = document.querySelectorAll(`#page-${pageId} .quiz-option`);
+  options[correct].classList.add('correct');
+  if (selected !== correct) {
+    options[selected].classList.add('incorrect');
+  } else {
+    state.score++;
+  }
+
+  const feedback = document.getElementById(pageId + '-quiz-feedback');
+  if (selected === correct) {
+    feedback.innerHTML = `<div class="pal-reaction happy"><span>🐧</span><span class="pal-reaction-text">正解！ Great job! 🎉</span></div>`;
+  } else {
+    feedback.innerHTML = `<div class="pal-reaction encourage"><span>🐧</span><span class="pal-reaction-text">惜しい！次はきっとできるよ！💪</span></div>`;
+  }
+
+  setTimeout(() => {
+    state.current++;
+    state.answered = false;
+    renderQuizQuestion(pageId);
+  }, 1500);
+}
+
+function retryQuiz(pageId) {
+  const state = quizState[pageId];
+  state.current = 0;
+  state.score = 0;
+  state.answered = false;
+  renderQuizQuestion(pageId);
+}
+
+// ===== My Phrases Page =====
+function renderMyPhrases() {
+  const page = document.getElementById('page-myphrases');
+  const allFlat = getAllPhrasesFlat();
+  const favPhrases = allFlat.filter(p => isFavorite(p.id));
+
+  let html = `
+    <div class="page-header">
+      <span class="page-header-icon">⭐</span>
+      <h1 class="page-header-title">マイフレーズ帳</h1>
+    </div>
+  `;
+
+  if (favPhrases.length === 0) {
+    html += `<div class="empty-state"><span class="empty-state-icon">⭐</span><div class="empty-state-text">お気に入りフレーズがまだありません。<br>各ページの ☆ ボタンでフレーズを追加しよう！</div></div>`;
+  } else {
+    html += `<p style="color:var(--text-light);font-size:0.85rem;margin-bottom:16px">${favPhrases.length} フレーズ</p>`;
+    html += `<div class="mode-tabs"><button class="mode-tab active" onclick="switchMyPhrasesMode('list')">一覧</button><button class="mode-tab" onclick="switchMyPhrasesMode('flash')">瞬間英作文</button></div>`;
+    html += `<div id="myphrases-list" class="tab-content active">`;
+    favPhrases.forEach(p => {
+      html += `
+        <div class="phrase-card">
+          <button class="fav-btn active" data-phrase-id="${p.id}" onclick="toggleFavorite('${p.id}');renderMyPhrases();event.stopPropagation();">★</button>
+          <div class="phrase-jp">${p.jp}</div>
+          <div class="phrase-en">${p.casual}</div>
+        </div>
+      `;
+    });
+    html += `</div>`;
+    html += `<div id="myphrases-flash" class="tab-content"><div id="myphrases-flash-counter" class="card-counter"></div><div id="myphrases-flash-area"></div><div class="continuous-nav"><button class="btn btn-ghost" onclick="myFlashPrev()">← 前</button><button class="btn btn-primary" onclick="myFlashNext()">次 →</button></div></div>`;
+  }
+
+  page.innerHTML = html;
+}
+
+let myFlashIdx = 0;
+function switchMyPhrasesMode(mode) {
+  document.querySelectorAll('#page-myphrases .mode-tab').forEach((t,i) => t.classList.toggle('active', (mode==='list'?0:1)===i));
+  document.getElementById('myphrases-list').classList.toggle('active', mode==='list');
+  document.getElementById('myphrases-flash').classList.toggle('active', mode==='flash');
+  if (mode==='flash') { myFlashIdx=0; renderMyFlash(); }
+}
+function renderMyFlash() {
+  const allFlat = getAllPhrasesFlat();
+  const favPhrases = allFlat.filter(p => isFavorite(p.id));
+  if (!favPhrases.length) return;
+  const p = favPhrases[myFlashIdx % favPhrases.length];
+  document.getElementById('myphrases-flash-counter').textContent = `${myFlashIdx%favPhrases.length+1} / ${favPhrases.length}`;
+  const flipped = document.getElementById('myphrases-flash-area').dataset.flipped === 'true';
+  document.getElementById('myphrases-flash-area').innerHTML = `
+    <div class="flip-card ${flipped?'flipped':''}" onclick="document.getElementById('myphrases-flash-area').dataset.flipped=document.getElementById('myphrases-flash-area').dataset.flipped==='true'?'false':'true';renderMyFlash();">
+      <div class="flip-card-inner">
+        <div class="flip-card-front"><div class="flip-label">日本語</div><div class="flip-jp">${p.jp}</div><div class="flip-hint">タップで英語を表示</div></div>
+        <div class="flip-card-back"><div class="flip-label">English</div><div class="flip-en">${p.casual}</div></div>
+      </div>
+    </div>`;
+}
+function myFlashNext() { myFlashIdx++; document.getElementById('myphrases-flash-area').dataset.flipped='false'; renderMyFlash(); }
+function myFlashPrev() { myFlashIdx = Math.max(0, myFlashIdx-1); document.getElementById('myphrases-flash-area').dataset.flipped='false'; renderMyFlash(); }
+
+// ===== Helper Phrases Page =====
+(function() {
+  const categories = [
+    { name: '聞き返す', icon: '👂', phrases: [
+      { id:'h01', jp:'すみません、もう一度言っていただけますか？', casual:'Sorry, could you say that again?', polite:'I\'m sorry, would you mind repeating that?' },
+      { id:'h02', jp:'もう少しゆっくり話してもらえますか？', casual:'Could you speak a bit slower?', polite:'Would you mind speaking a little more slowly, please?' },
+      { id:'h03', jp:'それはどういう意味ですか？', casual:'What does that mean?', polite:'Could you tell me what that means?' },
+      { id:'h04', jp:'書いてもらえますか？', casual:'Can you write it down?', polite:'Would you mind writing that down for me?' },
+      { id:'h05', jp:'英語があまり得意ではありません', casual:'My English isn\'t great.', polite:'I\'m afraid my English is rather limited.' },
+      { id:'h06', jp:'聞き取れませんでした', casual:'I didn\'t catch that.', polite:'I\'m sorry, I didn\'t quite catch that.' },
+      { id:'h07', jp:'もう一度お願いします', casual:'One more time, please?', polite:'Could you say that one more time, please?' },
+      { id:'h08', jp:'何と言いましたか？', casual:'What did you say?', polite:'I beg your pardon?' },
+      { id:'h09', jp:'○○ということですか？', casual:'You mean ___?', polite:'Do you mean ___?' },
+      { id:'h10', jp:'すみません、聞こえませんでした', casual:'Sorry, I couldn\'t hear you.', polite:'I\'m sorry, I couldn\'t quite hear you.' },
+    ]},
+    { name: 'お礼', icon: '🙏', phrases: [
+      { id:'h11', jp:'ありがとうございます、助かります', casual:'Thanks, that\'s really helpful!', polite:'Thank you so much, that\'s very helpful.' },
+      { id:'h12', jp:'ご親切にありがとうございます', casual:'That\'s so kind of you!', polite:'That\'s very kind of you, thank you.' },
+      { id:'h13', jp:'わざわざすみません', casual:'Sorry for the trouble!', polite:'I appreciate you going out of your way.' },
+      { id:'h14', jp:'おかげさまで助かりました', casual:'You saved me!', polite:'I really appreciate your help.' },
+      { id:'h15', jp:'素晴らしいサービスですね', casual:'Great service!', polite:'The service here is wonderful.' },
+      { id:'h16', jp:'とても楽しかったです', casual:'I had a blast!', polite:'I had a wonderful time, thank you.' },
+      { id:'h17', jp:'本当にありがとう', casual:'Thanks a lot!', polite:'Thank you ever so much.' },
+      { id:'h18', jp:'ご丁寧にどうも', casual:'Thanks for explaining!', polite:'I appreciate you taking the time to explain.' },
+      { id:'h19', jp:'最高です！', casual:'This is awesome!', polite:'This is absolutely wonderful.' },
+      { id:'h20', jp:'あなたのおかげです', casual:'It\'s all thanks to you!', polite:'I couldn\'t have done it without your help.' },
+    ]},
+    { name: '謝る', icon: '🙇', phrases: [
+      { id:'h21', jp:'すみません', casual:'Sorry about that.', polite:'I\'m terribly sorry about that.' },
+      { id:'h22', jp:'間違えました', casual:'My bad.', polite:'I apologise, that was my mistake.' },
+      { id:'h23', jp:'お手数おかけします', casual:'Sorry for the hassle.', polite:'I\'m sorry for the inconvenience.' },
+      { id:'h24', jp:'遅れてすみません', casual:'Sorry I\'m late!', polite:'I apologise for being late.' },
+      { id:'h25', jp:'うっかりしていました', casual:'I wasn\'t paying attention.', polite:'I\'m afraid I wasn\'t paying attention.' },
+    ]},
+    { name: '助けを求める', icon: '🤝', phrases: [
+      { id:'h26', jp:'手伝ってもらえますか？', casual:'Can you help me?', polite:'Could you possibly help me?' },
+      { id:'h27', jp:'ちょっといいですか？', casual:'Got a sec?', polite:'Excuse me, do you have a moment?' },
+      { id:'h28', jp:'日本語を話せる方はいますか？', casual:'Does anyone speak Japanese?', polite:'Is there anyone who speaks Japanese, by any chance?' },
+      { id:'h29', jp:'道に迷っています', casual:'I\'m lost.', polite:'I\'m afraid I\'m a bit lost.' },
+      { id:'h30', jp:'これをお願いしてもいいですか？', casual:'Can you do this for me?', polite:'Would it be possible for you to help me with this?' },
+      { id:'h31', jp:'Wi-Fiはありますか？', casual:'Do you have Wi-Fi?', polite:'Is there Wi-Fi available here?' },
+      { id:'h32', jp:'充電させてもらえますか？', casual:'Can I charge my phone here?', polite:'Would it be alright if I charged my phone?' },
+    ]},
+    { name: 'わからない', icon: '🤔', phrases: [
+      { id:'h33', jp:'よくわかりません', casual:'I\'m not sure.', polite:'I\'m not quite sure what you mean.' },
+      { id:'h34', jp:'それは知りません', casual:'I don\'t know about that.', polite:'I\'m afraid I\'m not familiar with that.' },
+      { id:'h35', jp:'初めて来ました', casual:'It\'s my first time here.', polite:'This is my first visit here.' },
+      { id:'h36', jp:'この辺りは詳しくありません', casual:'I\'m not from around here.', polite:'I\'m not very familiar with this area, I\'m afraid.' },
+      { id:'h37', jp:'考えさせてください', casual:'Let me think about it.', polite:'Could I have a moment to think about it?' },
+    ]},
+    { name: '時間稼ぎ', icon: '⏳', phrases: [
+      { id:'h38', jp:'ちょっと待ってください', casual:'Hang on a sec.', polite:'Just a moment, please.' },
+      { id:'h39', jp:'調べてみます', casual:'Let me look it up.', polite:'Let me check on that for you.' },
+      { id:'h40', jp:'えーと…', casual:'Um, let me see...', polite:'Well, let me think...' },
+      { id:'h41', jp:'確認させてください', casual:'Let me double-check.', polite:'Could I just confirm that?' },
+      { id:'h42', jp:'すぐ戻ります', casual:'I\'ll be right back.', polite:'I\'ll be back in just a moment.' },
+    ]},
+  ];
+
+  const page = document.getElementById('page-helper');
+  const allHelperPhrases = categories.flatMap(c => c.phrases);
+  registerPhrases('helper', allHelperPhrases);
+
+  let currentCat = 'all';
+  function render() {
+    let html = `<div class="page-header"><span class="page-header-icon">🆘</span><h1 class="page-header-title">お助けフレーズ</h1></div>`;
+    html += `<div class="pal-welcome" style="margin-bottom:20px"><div style="font-size:1.5rem">🐧</div><div class="pal-message">困ったときはここを見てね！どんな場面でも使える<strong>万能フレーズ</strong>を集めたよ。</div></div>`;
+    html += `<div class="mode-tabs" style="margin-bottom:20px">`;
+    html += `<button class="mode-tab ${currentCat==='all'?'active':''}" onclick="window._helperFilter('all')">すべて</button>`;
+    categories.forEach(c => {
+      html += `<button class="mode-tab ${currentCat===c.name?'active':''}" onclick="window._helperFilter('${c.name}')">${c.icon} ${c.name}</button>`;
+    });
+    html += `</div>`;
+
+    const filteredCats = currentCat === 'all' ? categories : categories.filter(c => c.name === currentCat);
+    filteredCats.forEach(cat => {
+      html += `<h3 style="font-family:var(--font-display);font-size:1.1rem;color:var(--main);margin:20px 0 10px">${cat.icon} ${cat.name}</h3>`;
+      cat.phrases.forEach(p => {
+        const favClass = isFavorite(p.id) ? 'active' : '';
+        const favIcon = isFavorite(p.id) ? '★' : '☆';
+        html += `<div class="phrase-card"><button class="fav-btn ${favClass}" data-phrase-id="${p.id}" onclick="toggleFavorite('${p.id}');window._helperRender();event.stopPropagation();">${favIcon}</button><div class="phrase-jp">${p.jp}</div><div class="phrase-en">${p.casual}</div></div>`;
+      });
+    });
+    page.innerHTML = html;
+  }
+  window._helperFilter = function(cat) { currentCat = cat; render(); };
+  window._helperRender = render;
+  render();
+})();
+
+// ===== Airport Phrases =====
+(function() {
+  const phrases = [
+    { id:'a01', jp:'チェックインをお願いします', casual:'I\'d like to check in.', polite:'I\'d like to check in for my flight, please.' },
+    { id:'a02', jp:'窓側の席をお願いできますか？', casual:'Can I get a window seat?', polite:'Could I possibly have a window seat, please?' },
+    { id:'a03', jp:'通路側の席がいいのですが', casual:'I\'d prefer an aisle seat.', polite:'Would it be possible to have an aisle seat?' },
+    { id:'a04', jp:'この荷物は機内持ち込みできますか？', casual:'Can I take this on the plane?', polite:'Is this within the carry-on size limit?' },
+    { id:'a05', jp:'荷物を預けたいのですが', casual:'I need to check this bag.', polite:'I\'d like to check this bag in, please.' },
+    { id:'a06', jp:'搭乗ゲートはどこですか？', casual:'Where\'s the gate?', polite:'Could you tell me where the boarding gate is?' },
+    { id:'a07', jp:'乗り継ぎがあるのですが', casual:'I have a connecting flight.', polite:'I have a connecting flight to catch.' },
+    { id:'a08', jp:'乗り継ぎ時間に間に合いますか？', casual:'Will I make my connection?', polite:'Do you think I\'ll be able to make my connecting flight?' },
+    { id:'a09', jp:'旅行で来ました', casual:'I\'m here on holiday.', polite:'I\'m visiting for holiday purposes.' },
+    { id:'a10', jp:'5日間滞在します', casual:'I\'m staying for five days.', polite:'I\'ll be staying for five days.' },
+    { id:'a11', jp:'このホテルに泊まります', casual:'I\'m staying at this hotel.', polite:'I\'ll be staying at this hotel here.' },
+    { id:'a12', jp:'申告するものはありません', casual:'Nothing to declare.', polite:'I have nothing to declare.' },
+    { id:'a13', jp:'これは個人用のお土産です', casual:'These are personal souvenirs.', polite:'These are souvenirs for personal use.' },
+    { id:'a14', jp:'毛布をもう一枚もらえますか？', casual:'Can I get another blanket?', polite:'Could I have an extra blanket, please?' },
+    { id:'a15', jp:'飲み物をいただけますか？', casual:'Can I get something to drink?', polite:'Could I have something to drink, please?' },
+    { id:'a16', jp:'ビーフとチキン、どちらにしますか？（に対して）チキンをお願いします', casual:'Chicken, please.', polite:'I\'ll have the chicken, please.' },
+    { id:'a17', jp:'すみません、通してもらえますか？', casual:'Excuse me, can I get through?', polite:'Excuse me, would you mind letting me through?' },
+    { id:'a18', jp:'入国カードの書き方がわかりません', casual:'How do I fill this out?', polite:'Could you help me with this arrival card?' },
+    { id:'a19', jp:'預けた荷物が出てきません', casual:'My bag hasn\'t come out.', polite:'I\'m afraid my luggage hasn\'t arrived on the carousel.' },
+    { id:'a20', jp:'フライトが遅延していますか？', casual:'Is the flight delayed?', polite:'Could you tell me if there\'s a delay on this flight?' },
+    { id:'a21', jp:'空港内にATMはありますか？', casual:'Is there an ATM around here?', polite:'Could you tell me where I might find an ATM?' },
+    { id:'a22', jp:'Wi-Fiに接続するにはどうすれば？', casual:'How do I connect to Wi-Fi?', polite:'Could you tell me how to connect to the Wi-Fi?' },
+    { id:'a23', jp:'出口はどちらですか？', casual:'Where\'s the exit?', polite:'Could you point me towards the exit, please?' },
+    { id:'a24', jp:'タクシー乗り場はどこですか？', casual:'Where do I get a taxi?', polite:'Could you direct me to the taxi rank, please?' },
+    { id:'a25', jp:'帰りの便を変更したいのですが', casual:'I need to change my return flight.', polite:'I was wondering if I could change my return flight.' },
+  ];
+
+  const quiz = [
+    { jp:'「窓側の席をお願いできますか？」を英語で？', options:['Can I get a window seat?','I want window.','Give me a window seat.','Where is window seat?'], answer:0 },
+    { jp:'「旅行で来ました」を英語で？', options:['I came for travel.','I\'m here on holiday.','I travel here.','My purpose is travel.'], answer:1 },
+    { jp:'「申告するものはありません」を英語で？', options:['I have no things.','No declaration.','Nothing to declare.','I don\'t have anything.'], answer:2 },
+    { jp:'「もう一枚毛布をもらえますか？」を英語で？', options:['Give me blanket.','I want more blanket.','One blanket more.','Can I get another blanket?'], answer:3 },
+    { jp:'「預けた荷物が出てきません」を英語で？', options:['My bag hasn\'t come out.','Bag is not here.','Where is my bag going?','I lost my bag inside.'], answer:0 },
+  ];
+
+  renderScenePage('airport', '✈️', '空港・機内', phrases, quiz);
+})();
+
+// ===== Restaurant Phrases =====
+(function() {
+  const phrases = [
+    { id:'r01', jp:'2名で予約しています', casual:'I have a reservation for two.', polite:'I have a reservation for two under the name ___.' },
+    { id:'r02', jp:'予約していないのですが、入れますか？', casual:'Do you have a table for two?', polite:'We don\'t have a reservation. Would you happen to have a table for two?' },
+    { id:'r03', jp:'待ち時間はどのくらいですか？', casual:'How long is the wait?', polite:'Could you tell me how long the wait would be?' },
+    { id:'r04', jp:'テラス席はありますか？', casual:'Can we sit outside?', polite:'Would it be possible to sit on the terrace?' },
+    { id:'r05', jp:'メニューをいただけますか？', casual:'Can I see the menu?', polite:'Could we have the menu, please?' },
+    { id:'r06', jp:'おすすめは何ですか？', casual:'What do you recommend?', polite:'What would you recommend here?' },
+    { id:'r07', jp:'これは何の料理ですか？', casual:'What\'s this dish?', polite:'Could you tell me what this dish is?' },
+    { id:'r08', jp:'これをください', casual:'I\'ll have this one.', polite:'I\'d like this one, please.' },
+    { id:'r09', jp:'同じものをお願いします', casual:'I\'ll have the same.', polite:'I\'d like the same, please.' },
+    { id:'r10', jp:'ナッツアレルギーがあります', casual:'I\'m allergic to nuts.', polite:'I have a nut allergy. Could you check if this contains nuts?' },
+    { id:'r11', jp:'ベジタリアンメニューはありますか？', casual:'Do you have vegetarian options?', polite:'Would you happen to have any vegetarian options?' },
+    { id:'r12', jp:'グルテンフリーのものはありますか？', casual:'Anything gluten-free?', polite:'Do you have any gluten-free options available?' },
+    { id:'r13', jp:'お水をいただけますか？', casual:'Can I get some water?', polite:'Could we have some water, please?' },
+    { id:'r14', jp:'すみません（店員を呼ぶ）', casual:'Excuse me!', polite:'Excuse me, when you have a moment.' },
+    { id:'r15', jp:'お会計をお願いします', casual:'Can I get the check?', polite:'Could we have the bill, please?' },
+    { id:'r16', jp:'カードで払えますか？', casual:'Do you take cards?', polite:'Is it possible to pay by card?' },
+    { id:'r17', jp:'別々に払えますか？', casual:'Can we split the bill?', polite:'Would it be possible to split the bill?' },
+    { id:'r18', jp:'とても美味しかったです', casual:'That was delicious!', polite:'The meal was absolutely wonderful, thank you.' },
+    { id:'r19', jp:'量が多すぎます。持ち帰れますか？', casual:'This is too much. Can I get a takeaway box?', polite:'Could I possibly get a box to take the rest home?' },
+    { id:'r20', jp:'辛さ控えめにできますか？', casual:'Can you make it less spicy?', polite:'Would it be possible to make it a bit less spicy?' },
+    { id:'r21', jp:'デザートメニューはありますか？', casual:'Do you have a dessert menu?', polite:'Could we see the dessert menu, please?' },
+    { id:'r22', jp:'コーヒーを一杯お願いします', casual:'A coffee, please.', polite:'Could I have a coffee, please?' },
+    { id:'r23', jp:'チップは含まれていますか？', casual:'Is the tip included?', polite:'Does the bill include a service charge?' },
+    { id:'r24', jp:'写真を撮ってもいいですか？（料理の）', casual:'Mind if I take a photo?', polite:'Would it be alright if I took a photo of the food?' },
+    { id:'r25', jp:'予約をキャンセルしたいのですが', casual:'I need to cancel my reservation.', polite:'I\'m afraid I need to cancel my reservation.' },
+  ];
+
+  const quiz = [
+    { jp:'「おすすめは何ですか？」を英語で？', options:['What is good here?','What do you recommend?','Tell me the best.','Which is popular?'], answer:1 },
+    { jp:'「お会計をお願いします」を英語で？', options:['Money please.','I want to pay.','Can I get the check?','How much is it?'], answer:2 },
+    { jp:'「ナッツアレルギーがあります」を英語で？', options:['I can\'t eat nuts.','Nuts are bad for me.','No nuts.','I\'m allergic to nuts.'], answer:3 },
+    { jp:'「テラス席はありますか？」を英語で？', options:['Can we sit outside?','Outside table?','I want terrace.','Is there outside?'], answer:0 },
+    { jp:'「別々に払えますか？」を英語で？', options:['Each person pays.','Separate, please.','Can we split the bill?','Two bills please.'], answer:2 },
+  ];
+
+  renderScenePage('restaurant', '🍽️', 'レストラン・カフェ', phrases, quiz);
+})();
+
+// ===== Transport Phrases =====
+(function() {
+  const phrases = [
+    { id:'t01', jp:'○○までお願いします', casual:'To ___, please.', polite:'Could you take me to ___, please?' },
+    { id:'t02', jp:'だいたいいくらかかりますか？', casual:'How much will it cost?', polite:'Could you give me a rough idea of the fare?' },
+    { id:'t03', jp:'どのくらい時間がかかりますか？', casual:'How long will it take?', polite:'Could you tell me how long the journey will take?' },
+    { id:'t04', jp:'ここで降ろしてください', casual:'You can drop me off here.', polite:'Could you drop me off here, please?' },
+    { id:'t05', jp:'メーターを使ってもらえますか？', casual:'Can you use the meter?', polite:'Would you mind using the meter, please?' },
+    { id:'t06', jp:'トランクを開けてもらえますか？', casual:'Can you pop the boot?', polite:'Could you open the boot for me, please?', note:'boot=トランク（英）/ trunk（米）' },
+    { id:'t07', jp:'この電車は○○に行きますか？', casual:'Does this train go to ___?', polite:'Excuse me, does this train stop at ___?' },
+    { id:'t08', jp:'次の駅はどこですか？', casual:'What\'s the next stop?', polite:'Could you tell me what the next stop is?' },
+    { id:'t09', jp:'乗り換えが必要ですか？', casual:'Do I need to transfer?', polite:'Will I need to change trains at any point?' },
+    { id:'t10', jp:'一日乗車券はありますか？', casual:'Do you have a day pass?', polite:'Is there a day pass available?' },
+    { id:'t11', jp:'片道切符をください', casual:'A one-way ticket, please.', polite:'Could I have a single ticket to ___, please?' },
+    { id:'t12', jp:'往復切符をください', casual:'A return ticket, please.', polite:'Could I have a return ticket to ___, please?' },
+    { id:'t13', jp:'○○への行き方を教えてもらえますか？', casual:'How do I get to ___?', polite:'Could you tell me the best way to get to ___?' },
+    { id:'t14', jp:'歩いて行ける距離ですか？', casual:'Can I walk there?', polite:'Is it within walking distance?' },
+    { id:'t15', jp:'バス停はどこですか？', casual:'Where\'s the bus stop?', polite:'Could you point me to the nearest bus stop?' },
+    { id:'t16', jp:'このバスは○○を通りますか？', casual:'Does this bus go past ___?', polite:'Excuse me, does this bus go via ___?' },
+    { id:'t17', jp:'降りるところを教えてもらえますか？', casual:'Can you tell me when to get off?', polite:'Would you mind letting me know when we reach ___?' },
+    { id:'t18', jp:'Uberを呼びたいのですが', casual:'I\'m going to call an Uber.', polite:'I\'d like to arrange an Uber, if possible.' },
+    { id:'t19', jp:'レンタカーを借りたいのですが', casual:'I want to rent a car.', polite:'I\'d like to hire a car, please.' },
+    { id:'t20', jp:'ナビ付きの車はありますか？', casual:'Do you have one with GPS?', polite:'Do you have a car with GPS navigation available?' },
+    { id:'t21', jp:'まっすぐ行ってください', casual:'Go straight.', polite:'Straight ahead, please.' },
+    { id:'t22', jp:'次の角を右に曲がってください', casual:'Turn right at the next corner.', polite:'Could you turn right at the next corner, please?' },
+    { id:'t23', jp:'ここは駐車できますか？', casual:'Can I park here?', polite:'Is it alright to park here?' },
+    { id:'t24', jp:'最終電車は何時ですか？', casual:'When\'s the last train?', polite:'Could you tell me when the last train departs?' },
+    { id:'t25', jp:'領収書をもらえますか？', casual:'Can I get a receipt?', polite:'Could I have a receipt, please?' },
+  ];
+  const quiz = [
+    { jp:'「○○までお願いします」を英語で？', options:['To ___, please.','Bring me to ___.','I go ___.','Take ___.'], answer:0 },
+    { jp:'「乗り換えが必要ですか？」を英語で？', options:['Must I change?','Do I need to transfer?','Is there a switch?','Should I move trains?'], answer:1 },
+    { jp:'「歩いて行ける距離ですか？」を英語で？', options:['Can I walk?','Is it far by foot?','Can I walk there?','Is walking OK?'], answer:2 },
+    { jp:'「領収書をもらえますか？」を英語で？', options:['Receipt, please.','I need paper.','Give me receipt.','Can I get a receipt?'], answer:3 },
+    { jp:'「最終電車は何時ですか？」を英語で？', options:['When\'s the last train?','Last train time?','What time train finishes?','Is there a late train?'], answer:0 },
+  ];
+  renderScenePage('transport', '🚕', '移動・交通', phrases, quiz);
+})();
+
+// ===== Hotel Phrases =====
+(function() {
+  const phrases = [
+    { id:'ht01', jp:'チェックインをお願いします', casual:'I\'d like to check in.', polite:'I\'d like to check in, please. The reservation is under ___.' },
+    { id:'ht02', jp:'予約を確認してもらえますか？', casual:'Can you look up my booking?', polite:'Could you check my reservation, please?' },
+    { id:'ht03', jp:'チェックアウトは何時ですか？', casual:'What time is checkout?', polite:'Could you tell me what time checkout is?' },
+    { id:'ht04', jp:'チェックアウトを遅くできますか？', casual:'Can I get a late checkout?', polite:'Would it be possible to have a late checkout?' },
+    { id:'ht05', jp:'荷物を預かってもらえますか？', casual:'Can you hold my bags?', polite:'Could I leave my luggage here until later?' },
+    { id:'ht06', jp:'部屋をアップグレードできますか？', casual:'Any chance of an upgrade?', polite:'Would there be any possibility of a room upgrade?' },
+    { id:'ht07', jp:'高層階の部屋がいいのですが', casual:'Can I get a higher floor?', polite:'Would it be possible to have a room on a higher floor?' },
+    { id:'ht08', jp:'静かな部屋をお願いします', casual:'I\'d like a quiet room.', polite:'Could I have a quiet room, if possible?' },
+    { id:'ht09', jp:'タオルを追加でもらえますか？', casual:'Can I get extra towels?', polite:'Could I have some extra towels sent to my room?' },
+    { id:'ht10', jp:'エアコンが効きません', casual:'The AC isn\'t working.', polite:'I\'m afraid the air conditioning doesn\'t seem to be working.' },
+    { id:'ht11', jp:'お湯が出ません', casual:'There\'s no hot water.', polite:'I\'m sorry to bother you, but there doesn\'t seem to be any hot water.' },
+    { id:'ht12', jp:'鍵が開きません', casual:'My key isn\'t working.', polite:'I\'m having trouble with my room key — it doesn\'t seem to work.' },
+    { id:'ht13', jp:'Wi-Fiのパスワードを教えてください', casual:'What\'s the Wi-Fi password?', polite:'Could you tell me the Wi-Fi password, please?' },
+    { id:'ht14', jp:'モーニングコールをお願いします', casual:'Can I get a wake-up call at 7?', polite:'Could I arrange a wake-up call for 7 a.m., please?' },
+    { id:'ht15', jp:'朝食は何時からですか？', casual:'When does breakfast start?', polite:'Could you tell me what time breakfast is served?' },
+    { id:'ht16', jp:'近くにおすすめのレストランはありますか？', casual:'Any good restaurants nearby?', polite:'Could you recommend a restaurant in the area?' },
+    { id:'ht17', jp:'タクシーを呼んでもらえますか？', casual:'Can you call me a taxi?', polite:'Would you be able to arrange a taxi for me?' },
+    { id:'ht18', jp:'この周辺の地図はありますか？', casual:'Do you have a map of the area?', polite:'Would you happen to have a map of the surrounding area?' },
+    { id:'ht19', jp:'クリーニングサービスはありますか？', casual:'Do you have laundry service?', polite:'Is there a laundry service available?' },
+    { id:'ht20', jp:'部屋に金庫はありますか？', casual:'Is there a safe in the room?', polite:'Does the room have an in-room safe?' },
+    { id:'ht21', jp:'コンセントの変換プラグを借りられますか？', casual:'Can I borrow a plug adapter?', polite:'Would it be possible to borrow a power adapter?' },
+    { id:'ht22', jp:'隣の部屋がうるさいのですが', casual:'The room next door is really noisy.', polite:'I\'m sorry to trouble you, but there\'s quite a bit of noise coming from the next room.' },
+    { id:'ht23', jp:'部屋を変えてもらえますか？', casual:'Can I switch rooms?', polite:'Would it be possible to move to a different room?' },
+    { id:'ht24', jp:'チェックアウトお願いします', casual:'I\'m checking out.', polite:'I\'d like to check out, please.' },
+    { id:'ht25', jp:'ミニバーは使っていません', casual:'I didn\'t use the minibar.', polite:'I haven\'t used anything from the minibar.' },
+  ];
+  const quiz = [
+    { jp:'「チェックアウトを遅くできますか？」を英語で？', options:['Late checkout?','Can I get a late checkout?','Checkout later OK?','I want late checkout.'], answer:1 },
+    { jp:'「お湯が出ません」を英語で？', options:['Water is cold.','Hot water broken.','There\'s no hot water.','No warm water comes.'], answer:2 },
+    { jp:'「Wi-Fiのパスワードを教えてください」を英語で？', options:['Wi-Fi key?','Tell me Wi-Fi.','Internet password?','What\'s the Wi-Fi password?'], answer:3 },
+    { jp:'「タクシーを呼んでもらえますか？」を英語で？', options:['Can you call me a taxi?','I want taxi.','Taxi here please.','Order me a taxi.'], answer:0 },
+    { jp:'「荷物を預かってもらえますか？」を英語で？', options:['Keep my bag.','Can you hold my bags?','Watch my luggage.','Bags stay here?'], answer:1 },
+  ];
+  renderScenePage('hotel', '🏨', 'ホテル', phrases, quiz);
+})();
+
+// ===== Shopping Phrases =====
+(function() {
+  const phrases = [
+    { id:'s01', jp:'見ているだけです', casual:'Just looking, thanks.', polite:'I\'m just browsing, thank you.' },
+    { id:'s02', jp:'これはいくらですか？', casual:'How much is this?', polite:'Could you tell me the price of this?' },
+    { id:'s03', jp:'試着してもいいですか？', casual:'Can I try this on?', polite:'Would it be alright if I tried this on?' },
+    { id:'s04', jp:'もう少し小さいサイズはありますか？', casual:'Do you have this in a smaller size?', polite:'Would you happen to have this in a smaller size?' },
+    { id:'s05', jp:'他の色はありますか？', casual:'Do you have this in a different colour?', polite:'Does this come in any other colours?' },
+    { id:'s06', jp:'少し大きいです', casual:'It\'s a bit too big.', polite:'I\'m afraid this is a little too large for me.' },
+    { id:'s07', jp:'ぴったりです！', casual:'It fits perfectly!', polite:'This fits wonderfully!' },
+    { id:'s08', jp:'これをください', casual:'I\'ll take this.', polite:'I\'d like to purchase this, please.' },
+    { id:'s09', jp:'ギフト包装してもらえますか？', casual:'Can you gift-wrap it?', polite:'Would it be possible to have this gift-wrapped?' },
+    { id:'s10', jp:'割引はありますか？', casual:'Is there a discount?', polite:'Would there be any discount available?' },
+    { id:'s11', jp:'免税手続きはできますか？', casual:'Can I get tax-free?', polite:'Is tax-free shopping available here?' },
+    { id:'s12', jp:'日本に発送できますか？', casual:'Can you ship to Japan?', polite:'Would it be possible to have this shipped to Japan?' },
+    { id:'s13', jp:'返品・交換はできますか？', casual:'Can I return or exchange this?', polite:'What is your return and exchange policy?' },
+    { id:'s14', jp:'お土産を探しています', casual:'I\'m looking for souvenirs.', polite:'I\'m looking for some souvenirs. Could you suggest anything?' },
+    { id:'s15', jp:'予算は○○ドルくらいです', casual:'My budget is around ___ dollars.', polite:'I\'m looking for something around ___ dollars.' },
+    { id:'s16', jp:'おすすめはありますか？', casual:'What do you recommend?', polite:'Would you have any recommendations?' },
+    { id:'s17', jp:'考えてもいいですか？', casual:'Let me think about it.', polite:'Could I have a moment to think it over?' },
+    { id:'s18', jp:'袋はいりません', casual:'No bag, thanks.', polite:'I don\'t need a bag, thank you.' },
+    { id:'s19', jp:'レシートをもらえますか？', casual:'Can I get a receipt?', polite:'Could I have a receipt, please?' },
+    { id:'s20', jp:'これは壊れています／汚れています', casual:'This one\'s damaged.', polite:'I\'m afraid this one appears to have some damage.' },
+  ];
+  const quiz = [
+    { jp:'「見ているだけです」を英語で？', options:['Just looking, thanks.','I don\'t buy.','Only watching.','I see things.'], answer:0 },
+    { jp:'「試着してもいいですか？」を英語で？', options:['I wear this?','Let me try.','Can I try this on?','Fitting room?'], answer:2 },
+    { jp:'「免税手続きはできますか？」を英語で？', options:['Tax return?','No tax please.','Can I get tax-free?','Remove the tax.'], answer:2 },
+    { jp:'「ギフト包装してもらえますか？」を英語で？', options:['Wrap it nice.','Make it gift.','Present style please.','Can you gift-wrap it?'], answer:3 },
+    { jp:'「他の色はありますか？」を英語で？', options:['Do you have this in a different colour?','Other colour?','Change colour please.','More colours?'], answer:0 },
+  ];
+  renderScenePage('shopping', '🛍️', 'ショッピング', phrases, quiz);
+})();
+
+// ===== Sightseeing Phrases =====
+(function() {
+  const phrases = [
+    { id:'ss01', jp:'大人2枚ください', casual:'Two adults, please.', polite:'Could I have two adult tickets, please?' },
+    { id:'ss02', jp:'学生割引はありますか？', casual:'Is there a student discount?', polite:'Do you offer a student discount by any chance?' },
+    { id:'ss03', jp:'写真を撮っていただけますか？', casual:'Could you take our photo?', polite:'Would you mind taking a photo of us, please?' },
+    { id:'ss04', jp:'ここで写真を撮ってもいいですか？', casual:'Can I take photos here?', polite:'Is photography allowed here?' },
+    { id:'ss05', jp:'おすすめの観光スポットはどこですか？', casual:'What are the must-sees around here?', polite:'Could you recommend some must-see attractions in the area?' },
+    { id:'ss06', jp:'ガイドツアーはありますか？', casual:'Do you have guided tours?', polite:'Are there any guided tours available?' },
+    { id:'ss07', jp:'英語のガイドはいますか？', casual:'Is there an English guide?', polite:'Is there a tour available in English?' },
+    { id:'ss08', jp:'ツアーはどのくらいかかりますか？', casual:'How long is the tour?', polite:'Could you tell me how long the tour takes?' },
+    { id:'ss09', jp:'この建物はいつ建てられたのですか？', casual:'When was this built?', polite:'Do you know when this building was constructed?' },
+    { id:'ss10', jp:'閉館時間は何時ですか？', casual:'What time do you close?', polite:'Could you tell me what time you close?' },
+    { id:'ss11', jp:'オーディオガイドはありますか？', casual:'Do you have audio guides?', polite:'Is there an audio guide available, by any chance?' },
+    { id:'ss12', jp:'日本語のパンフレットはありますか？', casual:'Do you have a Japanese brochure?', polite:'Would you happen to have a brochure in Japanese?' },
+    { id:'ss13', jp:'ここから○○まで歩けますか？', casual:'Can I walk to ___ from here?', polite:'Is ___ within walking distance from here?' },
+    { id:'ss14', jp:'一番の見どころは何ですか？', casual:'What\'s the highlight?', polite:'What would you say is the main highlight here?' },
+    { id:'ss15', jp:'荷物を預けるところはありますか？', casual:'Is there a locker?', polite:'Is there a cloakroom or locker available?' },
+    { id:'ss16', jp:'ここは予約が必要ですか？', casual:'Do I need to book in advance?', polite:'Is advance booking required for this?' },
+    { id:'ss17', jp:'Wi-Fiスポットはどこですか？', casual:'Where can I get Wi-Fi?', polite:'Is there a Wi-Fi hotspot nearby?' },
+    { id:'ss18', jp:'この近くにカフェはありますか？', casual:'Any cafes nearby?', polite:'Could you recommend a cafe near here?' },
+    { id:'ss19', jp:'チケットはオンラインで買えますか？', casual:'Can I buy tickets online?', polite:'Is it possible to purchase tickets online?' },
+    { id:'ss20', jp:'夜景がきれいな場所はどこですか？', casual:'Where\'s a good spot for the night view?', polite:'Could you recommend a place with a beautiful night view?' },
+  ];
+  const quiz = [
+    { jp:'「写真を撮っていただけますか？」を英語で？', options:['Take my photo.','Photo please.','Could you take our photo?','Shoot us.'], answer:2 },
+    { jp:'「おすすめの観光スポットは？」を英語で？', options:['Good places?','What are the must-sees around here?','Where should I go?','Tell me sights.'], answer:1 },
+    { jp:'「閉館時間は何時ですか？」を英語で？', options:['When closed?','What time do you close?','Closing hour?','When do you finish?'], answer:1 },
+    { jp:'「大人2枚ください」を英語で？', options:['Two adults, please.','Give me two.','Two people ticket.','Adult two tickets.'], answer:0 },
+    { jp:'「ガイドツアーはありますか？」を英語で？', options:['Tour guide here?','Can I get a guide?','Do you have guided tours?','Is there touring?'], answer:2 },
+  ];
+  renderScenePage('sightseeing', '📸', '観光・アクティビティ', phrases, quiz);
+})();
+
+// ===== Trouble Phrases =====
+(function() {
+  const phrases = [
+    { id:'tr01', jp:'道に迷いました', casual:'I\'m lost.', polite:'I\'m afraid I\'ve lost my way.' },
+    { id:'tr02', jp:'財布をなくしました', casual:'I lost my wallet.', polite:'I\'m afraid I\'ve lost my wallet.' },
+    { id:'tr03', jp:'パスポートを盗まれました', casual:'My passport was stolen.', polite:'I need to report that my passport has been stolen.' },
+    { id:'tr04', jp:'警察を呼んでください', casual:'Call the police!', polite:'Could you please call the police?' },
+    { id:'tr05', jp:'救急車を呼んでください', casual:'Call an ambulance!', polite:'We need an ambulance, please.' },
+    { id:'tr06', jp:'具合が悪いです', casual:'I don\'t feel well.', polite:'I\'m feeling rather unwell.' },
+    { id:'tr07', jp:'頭が痛いです', casual:'I have a headache.', polite:'I\'ve got quite a bad headache.' },
+    { id:'tr08', jp:'お腹が痛いです', casual:'My stomach hurts.', polite:'I\'m having some stomach pain.' },
+    { id:'tr09', jp:'薬局はどこですか？', casual:'Where\'s the pharmacy?', polite:'Could you direct me to the nearest pharmacy?' },
+    { id:'tr10', jp:'病院に行きたいのですが', casual:'I need to see a doctor.', polite:'I need to go to a hospital. Could you help me?' },
+    { id:'tr11', jp:'この薬にアレルギーがあります', casual:'I\'m allergic to this medicine.', polite:'I have an allergy to this medication.' },
+    { id:'tr12', jp:'保険証を見せます', casual:'Here\'s my insurance card.', polite:'Here is my travel insurance information.' },
+    { id:'tr13', jp:'日本大使館に連絡したいのですが', casual:'I need to contact the Japanese embassy.', polite:'Could you help me contact the Japanese embassy?' },
+    { id:'tr14', jp:'携帯をどこかに置き忘れました', casual:'I left my phone somewhere.', polite:'I believe I\'ve left my phone somewhere.' },
+    { id:'tr15', jp:'遺失物取扱所はどこですか？', casual:'Where\'s the lost and found?', polite:'Could you tell me where the lost property office is?' },
+    { id:'tr16', jp:'ホテルの住所がわかりません', casual:'I don\'t know my hotel address.', polite:'I\'m afraid I can\'t remember my hotel address.' },
+    { id:'tr17', jp:'クレジットカードを止めたいのですが', casual:'I need to cancel my credit card.', polite:'I need to report my credit card as lost and have it cancelled.' },
+    { id:'tr18', jp:'助けてください！', casual:'Help!', polite:'Please, I need help!' },
+    { id:'tr19', jp:'英語が話せる医者はいますか？', casual:'Is there a doctor who speaks English?', polite:'Would there be an English-speaking doctor available?' },
+    { id:'tr20', jp:'被害届を出したいのですが', casual:'I want to file a report.', polite:'I\'d like to file a police report, please.' },
+  ];
+  const quiz = [
+    { jp:'「財布をなくしました」を英語で？', options:['My wallet is gone.','I lost my wallet.','Wallet disappeared.','No more wallet.'], answer:1 },
+    { jp:'「具合が悪いです」を英語で？', options:['I\'m sick feeling.','Bad condition.','I don\'t feel well.','Health is bad.'], answer:2 },
+    { jp:'「薬局はどこですか？」を英語で？', options:['Medicine shop?','Drug place?','Where\'s medicine?','Where\'s the pharmacy?'], answer:3 },
+    { jp:'「遺失物取扱所はどこですか？」を英語で？', options:['Where\'s the lost and found?','Lost things office?','Missing items?','Where do I find lost?'], answer:0 },
+    { jp:'「助けてください！」を英語で？', options:['Save me!','Help!','Please assist!','I need saving!'], answer:1 },
+  ];
+  renderScenePage('trouble', '🚨', 'トラブル・緊急', phrases, quiz);
+})();
+
+// ===== Small Talk Phrases =====
+(function() {
+  const phrases = [
+    { id:'st01', jp:'いい天気ですね', casual:'Nice weather, isn\'t it?', polite:'What lovely weather we\'re having.' },
+    { id:'st02', jp:'どちらから来たのですか？', casual:'Where are you from?', polite:'May I ask where you\'re from?' },
+    { id:'st03', jp:'日本から来ました', casual:'I\'m from Japan.', polite:'I\'m from Japan, from a city called ___.' },
+    { id:'st04', jp:'ここは初めてですか？', casual:'Is this your first time here?', polite:'Is this your first visit to this area?' },
+    { id:'st05', jp:'ここは初めてです', casual:'It\'s my first time here.', polite:'This is my first time visiting, actually.' },
+    { id:'st06', jp:'この街が気に入りました', casual:'I love this city!', polite:'I\'m really enjoying this city.' },
+    { id:'st07', jp:'この辺りでおすすめはありますか？', casual:'Any tips for around here?', polite:'Would you have any recommendations for things to do around here?' },
+    { id:'st08', jp:'お仕事は何をされていますか？', casual:'What do you do?', polite:'What do you do for a living, if you don\'t mind my asking?' },
+    { id:'st09', jp:'素敵な服ですね', casual:'I love your outfit!', polite:'What a lovely outfit you\'re wearing.' },
+    { id:'st10', jp:'それ、いいですね！', casual:'That\'s cool!', polite:'That\'s really wonderful.' },
+    { id:'st11', jp:'楽しんでますか？', casual:'Having a good time?', polite:'Are you enjoying yourself?' },
+    { id:'st12', jp:'旅行は楽しんでいます', casual:'I\'m having a great trip!', polite:'I\'m having a wonderful time on this trip.' },
+    { id:'st13', jp:'写真を一緒に撮ってもいいですか？', casual:'Can we take a photo together?', polite:'Would you mind if we took a photo together?' },
+    { id:'st14', jp:'連絡先を交換しませんか？', casual:'Wanna exchange contacts?', polite:'Would you like to exchange contact details?' },
+    { id:'st15', jp:'SNSやってますか？', casual:'Are you on Instagram?', polite:'Do you use social media, by any chance?' },
+    { id:'st16', jp:'また会えるといいですね', casual:'Hope to see you again!', polite:'It would be lovely to see you again sometime.' },
+    { id:'st17', jp:'お会いできてよかったです', casual:'It was nice meeting you!', polite:'It\'s been a real pleasure meeting you.' },
+    { id:'st18', jp:'良い旅を！', casual:'Have a great trip!', polite:'I hope you have a wonderful journey.' },
+    { id:'st19', jp:'気をつけて！', casual:'Take care!', polite:'Do take care of yourself.' },
+    { id:'st20', jp:'日本に来ることがあればぜひ連絡してください', casual:'Hit me up if you\'re ever in Japan!', polite:'If you ever visit Japan, please don\'t hesitate to get in touch.' },
+  ];
+  const quiz = [
+    { jp:'「どちらから来たのですか？」を英語で？', options:['Your country?','Where are you from?','Where do you live?','Which country?'], answer:1 },
+    { jp:'「この街が気に入りました」を英語で？', options:['Good city.','City is nice.','I love this city!','This town is fine.'], answer:2 },
+    { jp:'「お会いできてよかったです」を英語で？', options:['Good to see you.','Nice meeting.','Happy we met.','It was nice meeting you!'], answer:3 },
+    { jp:'「良い旅を！」を英語で？', options:['Have a great trip!','Good travel!','Trip well!','Travel safely!'], answer:0 },
+    { jp:'「おすすめはありますか？」を英語で？', options:['What\'s good?','Any tips for around here?','Recommend me.','Best things?'], answer:1 },
+  ];
+  renderScenePage('smalltalk', '💬', 'スモールトーク', phrases, quiz);
+})();
+
+// ===== Claude API Helper =====
+let claudeApiKey = storageGet('apiKey', '');
+
+async function callClaude(systemPrompt, userMessage) {
+  if (!claudeApiKey) throw new Error('APIキーが設定されていません。');
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': claudeApiKey,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1024,
+      system: systemPrompt,
+      messages: [{ role: 'user', content: userMessage }]
+    })
+  });
+  if (!res.ok) { const e = await res.text(); throw new Error('API error: ' + e); }
+  const data = await res.json();
+  return data.content[0].text;
+}
+
+// ===== Self Introduction Page =====
+(function() {
+  const page = document.getElementById('page-intro');
+  let savedIntros = storageGet('intros', []);
+  let introMode = 'template';
+
+  function render() {
+    let html = `
+      <div class="page-header"><span class="page-header-icon">🐧</span><h1 class="page-header-title">自己紹介</h1></div>
+      <div class="pal-welcome" style="margin-bottom:20px"><div style="font-size:1.5rem">🐧</div><div class="pal-message">旅先での自己紹介を英語で準備しよう！<strong>テンプレートモード</strong>で簡単に作れるし、<strong>AI翻訳モード</strong>で自由に書いてもOK！</div></div>
+      <div class="api-key-section">
+        <strong>🔑 API Key（AI翻訳に必要）</strong><br>
+        <input type="password" class="input" placeholder="sk-ant-..." value="${claudeApiKey}" onchange="window._setApiKey(this.value)" style="margin-top:8px">
+      </div>
+      <div class="mode-tabs">
+        <button class="mode-tab ${introMode==='template'?'active':''}" onclick="window._introMode('template')">テンプレート</button>
+        <button class="mode-tab ${introMode==='ai'?'active':''}" onclick="window._introMode('ai')">AI翻訳</button>
+      </div>
+    `;
+
+    if (introMode === 'template') {
+      html += `
+        <div style="background:var(--white);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-md);margin-bottom:20px">
+          <div style="margin-bottom:12px"><label style="font-size:0.85rem;color:var(--text-light)">名前</label><input class="input" id="intro-name" placeholder="Taro"></div>
+          <div style="margin-bottom:12px"><label style="font-size:0.85rem;color:var(--text-light)">出身地</label><input class="input" id="intro-from" placeholder="Tokyo, Japan"></div>
+          <div style="margin-bottom:12px"><label style="font-size:0.85rem;color:var(--text-light)">職業</label><input class="input" id="intro-job" placeholder="software engineer"></div>
+          <div style="margin-bottom:12px"><label style="font-size:0.85rem;color:var(--text-light)">趣味</label><input class="input" id="intro-hobby" placeholder="traveling, photography"></div>
+          <div style="margin-bottom:12px"><label style="font-size:0.85rem;color:var(--text-light)">旅行の目的</label>
+            <select class="input" id="intro-purpose">
+              <option value="holiday">観光・休暇</option>
+              <option value="business">ビジネス</option>
+              <option value="study">留学・語学</option>
+              <option value="backpacking">バックパッキング</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" onclick="window._generateTemplate()" style="width:100%">英語の自己紹介を生成 ✨</button>
+          <div id="intro-template-result" style="margin-top:16px"></div>
+        </div>
+      `;
+    } else {
+      html += `
+        <div style="background:var(--white);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-md);margin-bottom:20px">
+          <label style="font-size:0.85rem;color:var(--text-light)">日本語で自由に自己紹介を書いてね</label>
+          <textarea class="textarea" id="intro-freetext" placeholder="例：こんにちは！太郎です。東京から来ました。写真を撮るのが好きで、今回はヨーロッパの建築を見に来ました！" style="margin-top:8px"></textarea>
+          <button class="btn btn-accent" onclick="window._translateIntro()" style="width:100%;margin-top:12px">AIで英語に翻訳 🐧</button>
+          <div id="intro-ai-result" style="margin-top:16px"></div>
+        </div>
+      `;
+    }
+
+    // Saved introductions
+    html += `<h3 style="font-family:var(--font-display);font-size:1.1rem;color:var(--main);margin:24px 0 12px">📝 保存した自己紹介</h3>`;
+    if (savedIntros.length === 0) {
+      html += `<div class="empty-state"><span class="empty-state-icon">📝</span><div class="empty-state-text">まだ保存された自己紹介はありません</div></div>`;
+    } else {
+      savedIntros.forEach((intro, i) => {
+        html += `<div class="saved-card"><div class="phrase-en" style="font-size:1rem">${intro.en}</div>${intro.jp ? `<div class="phrase-jp" style="margin-top:8px">${intro.jp}</div>` : ''}<div class="saved-card-actions"><button onclick="window._deleteIntro(${i})">削除</button></div></div>`;
+      });
+    }
+    page.innerHTML = html;
+  }
+
+  window._setApiKey = function(key) { claudeApiKey = key; storageSet('apiKey', key); };
+  window._introMode = function(mode) { introMode = mode; render(); };
+
+  window._generateTemplate = function() {
+    const name = document.getElementById('intro-name').value || 'someone';
+    const from = document.getElementById('intro-from').value || 'Japan';
+    const job = document.getElementById('intro-job').value;
+    const hobby = document.getElementById('intro-hobby').value;
+    const purpose = document.getElementById('intro-purpose').value;
+    const purposeMap = { holiday:'on holiday', business:'on a business trip', study:'here to study', backpacking:'backpacking' };
+    let text = `Hi, I'm ${name}! I'm from ${from}.`;
+    if (job) text += ` I work as a ${job}.`;
+    if (hobby) text += ` I'm into ${hobby}.`;
+    text += ` I'm ${purposeMap[purpose] || 'on holiday'}.`;
+    text += ` Nice to meet you!`;
+
+    const resultDiv = document.getElementById('intro-template-result');
+    resultDiv.innerHTML = `<div class="phrase-card" style="border-left-color:var(--accent)"><div class="phrase-en">${text}</div><button class="btn btn-ghost" style="margin-top:10px" onclick="window._saveIntro('','${text.replace(/'/g,"\\'")}')">💾 保存</button></div>`;
+  };
+
+  window._translateIntro = async function() {
+    const jp = document.getElementById('intro-freetext').value.trim();
+    if (!jp) return;
+    const resultDiv = document.getElementById('intro-ai-result');
+    resultDiv.innerHTML = `<div class="loading-pal"><div class="pal-bounce">🐧</div><div class="loading-text">パルが翻訳中...</div></div>`;
+    try {
+      const en = await callClaude('あなたは英会話の翻訳アシスタントです。日本語の自己紹介文を、海外旅行中の日常会話で自然に使える英語に翻訳してください。堅すぎず、フレンドリーで自然な口語表現にしてください。', jp);
+      resultDiv.innerHTML = `<div class="phrase-card" style="border-left-color:var(--accent)"><div class="phrase-en">${en}</div><button class="btn btn-ghost" style="margin-top:10px" onclick="window._saveIntro('${jp.replace(/'/g,"\\'")}','${en.replace(/'/g,"\\'")}')">💾 保存</button></div>`;
+    } catch(e) {
+      resultDiv.innerHTML = `<div class="error-msg">🐧 パルが迷子になっちゃった…もう一度試してね<br><small>${e.message}</small></div>`;
+    }
+  };
+
+  window._saveIntro = function(jp, en) {
+    savedIntros.push({ jp, en, date: new Date().toISOString() });
+    storageSet('intros', savedIntros);
+    render();
+  };
+
+  window._deleteIntro = function(idx) {
+    savedIntros.splice(idx, 1);
+    storageSet('intros', savedIntros);
+    render();
+  };
+
+  render();
+})();
+
+// ===== Custom Phrase Page =====
+(function() {
+  const page = document.getElementById('page-custom');
+  let customPhrases = storageGet('customPhrases', []);
+  let searchText = '';
+
+  function render() {
+    let html = `
+      <div class="page-header"><span class="page-header-icon">✏️</span><h1 class="page-header-title">カスタムフレーズ</h1></div>
+      <div class="pal-welcome" style="margin-bottom:20px"><div style="font-size:1.5rem">🐧</div><div class="pal-message">「これ英語で何て言うの？」をパルに聞いてみよう！<br>AIが<strong>カジュアル版</strong>と<strong>ポライト版</strong>を教えてくれるよ。</div></div>
+      <div class="api-key-section">
+        <strong>🔑 API Key</strong>
+        <input type="password" class="input" placeholder="sk-ant-..." value="${claudeApiKey}" onchange="window._setApiKey(this.value)">
+      </div>
+      <div style="background:var(--white);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-md);margin-bottom:20px">
+        <label style="font-size:0.85rem;color:var(--text-light)">日本語で入力してね</label>
+        <textarea class="textarea" id="custom-input" placeholder="例：この席は空いていますか？" style="margin-top:8px;min-height:60px"></textarea>
+        <button class="btn btn-accent" onclick="window._translateCustom()" style="width:100%;margin-top:12px">英語に翻訳 🐧</button>
+        <div id="custom-result" style="margin-top:16px"></div>
+      </div>
+      <h3 style="font-family:var(--font-display);font-size:1.1rem;color:var(--main);margin:24px 0 12px">📖 フレーズ帳 (${customPhrases.length})</h3>
+      <div class="search-box"><input class="input" placeholder="フレーズを検索..." value="${searchText}" oninput="window._customSearch(this.value)"></div>
+    `;
+
+    const filtered = customPhrases.filter(p => {
+      if (!searchText) return true;
+      const q = searchText.toLowerCase();
+      return p.jp.toLowerCase().includes(q) || p.en.toLowerCase().includes(q);
+    });
+
+    if (filtered.length === 0) {
+      html += `<div class="empty-state"><span class="empty-state-icon">✏️</span><div class="empty-state-text">${searchText ? '該当するフレーズがありません' : '翻訳したフレーズがここに保存されます'}</div></div>`;
+    } else {
+      filtered.forEach((p, i) => {
+        const favClass = isFavorite('c_'+i) ? 'active' : '';
+        const favIcon = isFavorite('c_'+i) ? '★' : '☆';
+        html += `<div class="phrase-card"><button class="fav-btn ${favClass}" data-phrase-id="c_${i}" onclick="toggleFavorite('c_${i}');window._customRender();event.stopPropagation();">${favIcon}</button><div class="phrase-jp">${p.jp}</div><div class="phrase-en">${p.en}</div><div class="saved-card-actions"><button class="delete-btn" onclick="window._deleteCustom(${i})">削除</button></div></div>`;
+      });
+    }
+
+    page.innerHTML = html;
+  }
+
+  window._customSearch = function(q) { searchText = q; render(); };
+  window._customRender = render;
+
+  window._translateCustom = async function() {
+    const jp = document.getElementById('custom-input').value.trim();
+    if (!jp) return;
+    const resultDiv = document.getElementById('custom-result');
+    resultDiv.innerHTML = `<div class="loading-pal"><div class="pal-bounce">🐧</div><div class="loading-text">パルが翻訳中...</div></div>`;
+    try {
+      const en = await callClaude('あなたは英会話の翻訳アシスタントです。日本語を、ネイティブが日常会話で自然に使う英語表現に翻訳してください。直訳ではなく、実際に口語で使われる自然な表現にしてください。カジュアル版とポライト版の両方を提示してください。', jp);
+      resultDiv.innerHTML = `<div class="phrase-card" style="border-left-color:var(--accent)"><div class="phrase-jp">${jp}</div><div class="phrase-en" style="white-space:pre-wrap">${en}</div><button class="btn btn-ghost" style="margin-top:10px" onclick="window._saveCustom('${jp.replace(/'/g,"\\'")}', this)">💾 保存</button></div>`;
+    } catch(e) {
+      resultDiv.innerHTML = `<div class="error-msg">🐧 パルが迷子になっちゃった…もう一度試してね<br><small>${e.message}</small></div>`;
+    }
+  };
+
+  window._saveCustom = function(jp, btn) {
+    const card = btn.closest('.phrase-card');
+    const en = card.querySelector('.phrase-en').textContent;
+    customPhrases.unshift({ jp, en, date: new Date().toISOString() });
+    storageSet('customPhrases', customPhrases);
+    render();
+  };
+
+  window._deleteCustom = function(idx) {
+    customPhrases.splice(idx, 1);
+    storageSet('customPhrases', customPhrases);
+    render();
+  };
+
+  render();
+})();
+
+// ===== Init =====
+updateProgressSummary();
+</script>
+
+</body>
+</html>
